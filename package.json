@@ -1,50 +1,50 @@
 {
   "name": "react-mui-datepicker",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "start": "rollup -c -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.2.19",
+    "@types/react-dom": "^18.2.7",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^3.28.0",
+    "rollup-plugin-sass": "^1.12.20",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "dependencies": {
     "@date-io/moment": "^2.17.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.4",
     "@mui/x-date-pickers": "^6.11.0",
-    "@testing-library/react": "^14.0.0",
-    "@types/jest": "^29.5.3",
     "@types/moment-hijri": "^2.1.0",
-    "@types/node": "^20.4.9",
-    "@types/react": "^18.2.19",
-    "@types/react-dom": "^18.2.7",
-    "cra-template-typescript": "1.2.0",
     "moment": "^2.29.4",
-    "moment-hijri": "^2.1.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^5.1.6",
-    "web-vitals": "^3.4.0"
+    "moment-hijri": "^2.1.2"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "typescript",
+    "npm"
+  ]
 }

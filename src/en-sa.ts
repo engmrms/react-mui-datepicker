@@ -34,42 +34,42 @@ const numberMap = {
   "9": "9",
   "0": "0",
 } as any;
-const pluralForm = function (n: number) {
-  switch (n) {
-    case 0:
-      return 0;
-    case 1:
-      return 1;
-    case 2:
-      return 2;
-    default:
-      if (n % 100 >= 3 && n % 100 <= 10) {
-        return 3;
-      }
-      if (n % 100 >= 11) {
-        return 4;
-      }
-      return 5;
-  }
-};
-const plurals = {
-  s: ["أقل من ثانية", "ثانية واحدة", ["ثانيتان", "ثانيتين"], "%d ثوان", "%d ثانية", "%d ثانية"],
-  m: ["أقل من دقيقة", "دقيقة واحدة", ["دقيقتان", "دقيقتين"], "%d دقائق", "%d دقيقة", "%d دقيقة"],
-  h: ["أقل من ساعة", "ساعة واحدة", ["ساعتان", "ساعتين"], "%d ساعات", "%d ساعة", "%d ساعة"],
-  d: ["أقل من يوم", "يوم واحد", ["يومان", "يومين"], "%d أيام", "%d يومًا", "%d يوم"],
-  M: ["أقل من شهر", "شهر واحد", ["شهران", "شهرين"], "%d أشهر", "%d شهرا", "%d شهر"],
-  y: ["أقل من عام", "عام واحد", ["عامان", "عامين"], "%d أعوام", "%d عامًا", "%d عام"],
-} as any;
-const pluralize = function (u: string | number) {
-  return function (number: number, withoutSuffix: any) {
-    const f = pluralForm(number);
-    let str = plurals[u][pluralForm(number)];
-    if (f === 2) {
-      str = str[withoutSuffix ? 0 : 1];
-    }
-    return str.replace(/%d/i, number);
-  };
-};
+// const pluralForm = function (n: number) {
+//   switch (n) {
+//     case 0:
+//       return 0;
+//     case 1:
+//       return 1;
+//     case 2:
+//       return 2;
+//     default:
+//       if (n % 100 >= 3 && n % 100 <= 10) {
+//         return 3;
+//       }
+//       if (n % 100 >= 11) {
+//         return 4;
+//       }
+//       return 5;
+//   }
+// };
+// const plurals = {
+//   s: ["أقل من ثانية", "ثانية واحدة", ["ثانيتان", "ثانيتين"], "%d ثوان", "%d ثانية", "%d ثانية"],
+//   m: ["أقل من دقيقة", "دقيقة واحدة", ["دقيقتان", "دقيقتين"], "%d دقائق", "%d دقيقة", "%d دقيقة"],
+//   h: ["أقل من ساعة", "ساعة واحدة", ["ساعتان", "ساعتين"], "%d ساعات", "%d ساعة", "%d ساعة"],
+//   d: ["أقل من يوم", "يوم واحد", ["يومان", "يومين"], "%d أيام", "%d يومًا", "%d يوم"],
+//   M: ["أقل من شهر", "شهر واحد", ["شهران", "شهرين"], "%d أشهر", "%d شهرا", "%d شهر"],
+//   y: ["أقل من عام", "عام واحد", ["عامان", "عامين"], "%d أعوام", "%d عامًا", "%d عام"],
+// } as any;
+// const pluralize = function (u: string | number) {
+//   return function (number: number, withoutSuffix: any) {
+//     const f = pluralForm(number);
+//     let str = plurals[u][pluralForm(number)];
+//     if (f === 2) {
+//       str = str[withoutSuffix ? 0 : 1];
+//     }
+//     return str.replace(/%d/i, number);
+//   };
+// };
 
 export default moment.defineLocale("en-sa", {
   weekdays: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],

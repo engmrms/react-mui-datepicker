@@ -57,7 +57,7 @@ const symbolMap = {
     y: ["أقل من عام", "عام واحد", ["عامان", "عامين"], "%d أعوام", "%d عامًا", "%d عام"],
   } as any,
   pluralize = function (u: string) {
-    return function (number: number, withoutSuffix: any, string: any, isFuture: any) {
+    return function (number: number, withoutSuffix: any) {
       const f = pluralForm(number);
       let str = plurals[u][pluralForm(number)];
       if (f === 2) {
@@ -88,7 +88,7 @@ export default moment.defineLocale("ar-sa", {
   isPM: function (input) {
     return "م" === input;
   },
-  meridiem: function (hour, minute, isLower) {
+  meridiem: function (hour) {
     if (hour < 12) {
       return "ص";
     } else {
