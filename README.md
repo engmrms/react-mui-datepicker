@@ -28,22 +28,3 @@ value: string (optional)
 onChange: (date: Moment | null) => void (optional)
 
 ```
-
-To customise this component, pass in a class name to the `className` prop and style that class name in your custom CSS.
-
-```
-
-// your-component.js
-import DatePicker from 'react-mui-datepicker'
-
-...
-<Dummy className="dummy" />
-...
-
-// your-component.css
-.dummy {
-  color: white;
-  background-color: purple;
-}
-
-```
