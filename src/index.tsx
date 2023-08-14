@@ -17,44 +17,79 @@ import React, { MouseEvent, useEffect, useState } from "react";
 interface Props {
   lang?: "ar" | "en";
   isError?: boolean;
+  isToggle?: boolean;
+  calendar?: "gregrian" | "hijri";
   maxDate?: Date;
   minDate?: Date;
   disabled?: boolean;
   ref?: React.Ref<HTMLInputElement>;
   value?: any;
+  toggleText?: string;
   onChange?: (date: moment.Moment | null) => void;
 }
 
 export function DatePicker({
   ref,
-
   lang = "en",
-
   isError,
   disabled,
-
   maxDate = new Date(2075, 11, 31),
   minDate = new Date(1938, 0, 1),
-
   onChange,
   value,
+  isToggle,
+  toggleText = "switch the picker",
+  calendar = "gregrian",
 }: Props) {
-  const [locale, setLocale] = useState<boolean>(false);
+  const [localei, setLocalei] = useState<boolean>(calendar === "hijri");
 
-  const hijriHandler = (e: MouseEvent<HTMLInputElement, globalThis.MouseEvent>) => {
-    setLocale(e.currentTarget.checked);
+  const toggleHandler = (e: MouseEvent<HTMLInputElement, globalThis.MouseEvent>) => {
+    setLocalei(e.currentTarget.checked);
   };
   // eslint-disable-next-line prefer-const
 
   useEffect(() => {
     if (lang) {
-      console.log(lang);
       moment.locale(`${lang}-sa`);
     }
-  }, [lang]);
+
+    if (lang === "en" && localei) {
+      moment.updateLocale("ar-sa", {
+        iMonths: [
+          "Muharram",
+          "Safar",
+          "Rabi' al-Awwal",
+          "Rabi' al-Thani",
+          "Jumada al-Ula",
+          "Jumada al-Alkhirah",
+          "Rajab",
+          "Sha’ban",
+          "Ramadhan",
+          "Shawwal",
+          "Thul-Qi’dah",
+          "Thul-Hijjah",
+        ],
+        iMonthsShort: [
+          "Muharram",
+          "Safar",
+          "Rabi' al-Awwal",
+          "Rabi' al-Thani",
+          "Jumada al-Ula",
+          "Jumada al-Alkhirah",
+          "Rajab",
+          "Sha’ban",
+          "Ramadhan",
+          "Shawwal",
+          "Thul-Qi’dah",
+          "Thul-Hijjah",
+        ],
+        weekdaysMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      });
+    }
+  }, [lang, localei]);
   return (
     <>
-      {locale && (
+      {localei && (
         <LocalizationProvider dateAdapter={AdapterMomentHijri}>
           <MuiDatePicker
             inputRef={ref}
@@ -78,7 +113,7 @@ export function DatePicker({
           />
         </LocalizationProvider>
       )}
-      {!locale && (
+      {!localei && (
         <LocalizationProvider dateAdapter={AdapterMoment}>
           <div>
             <MuiDatePicker
@@ -99,11 +134,11 @@ export function DatePicker({
           </div>
         </LocalizationProvider>
       )}
-      {!disabled && (
+      {!disabled && isToggle && (
         <div className="mt-3 flex justify-between">
           <label className="ml-3 flex items-center">
-            <input type="checkbox" className="" onClick={hijriHandler} />
-            <span className="mr-4 whitespace-nowrap">switch to Hijri</span>
+            <input type="checkbox" className="" onClick={toggleHandler} />
+            <span className="mr-4 whitespace-nowrap">{toggleText}</span>
           </label>
         </div>
       )}

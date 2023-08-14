@@ -1,7 +1,6 @@
-import "./ar-sa";
-import "./en-sa";
-import moment from "moment";
-import React from "react";
+import moment from 'moment';
+import React from 'react';
+
 interface Props {
     lang?: "ar" | "en";
     isError?: boolean;
@@ -15,5 +14,6 @@ interface Props {
     toggleText?: string;
     onChange?: (date: moment.Moment | null) => void;
 }
-export declare function DatePicker({ ref, lang, isError, disabled, maxDate, minDate, onChange, value, isToggle, toggleText, calendar, }: Props): React.JSX.Element;
-export {};
+declare function DatePicker({ ref, lang, isError, disabled, maxDate, minDate, onChange, value, isToggle, toggleText, calendar, }: Props): React.JSX.Element;
+
+export { DatePicker };

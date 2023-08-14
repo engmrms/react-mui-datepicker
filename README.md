@@ -17,8 +17,7 @@ import {DatePicker} from 'react-mui-datepicker'
 
 ```
 
-lang: ar | en (optional) default en
-
+lang: ar | en (optional) default **en**
 isError: boolean (optional)
 maxDate: Date (optional)
 minDate: Date (optional)
@@ -26,5 +25,9 @@ disabled: boolean (optional)
 ref: React.Ref<HTMLInputElement> (optional)
 value: string (optional)
 onChange: (date: Moment | null) => void (optional)
+toggleText: string (optional)
+isToggle: boolean (optional)
+calendar: "gregrian" | "hijri" (optional) default __gregrian__
+
 
 ```
