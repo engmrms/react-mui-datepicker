@@ -1,6 +1,6 @@
 {
   "name": "react-mui-datepicker",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "The Date Picker component lets the user select a date and supported to Gregorian Calendar and Hijri(Umm Al-Qura) Calendar",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -75,8 +75,14 @@
     "dist"
   ],
   "publishConfig": {
-    "registry": "https://github.com/engmrms/react-mui-datepicker"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/engmrms/react-mui-datepicker"
+  },
+  "homepage": "https://github.com/engmrms/react-mui-datepicker",
   "keywords": [
     "react",
     "typescript",
