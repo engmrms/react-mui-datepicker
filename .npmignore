@@ -5,5 +5,3 @@ dist
 .prettierrc
 rollup.config.js
 tsconfig.json
-
-src/stories
