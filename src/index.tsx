@@ -81,55 +81,32 @@ export function DatePicker({
 
   return (
     <>
-      {localei && (
-        <LocalizationProvider dateAdapter={AdapterMomentHijri}>
-          <MuiDatePicker
-            inputRef={ref}
-            onError={newError => console.log({ newError })}
-            format="iDD/iMM/iYYYY"
-            views={["year", "month", "day"]}
-            value={momentHj(value) || null}
-            onChange={date => {
-              if (onChange) onChange(date);
-            }}
-            defaultValue={momentHj("2022-04-17")}
-            minDate={momentHj(minDate)}
-            maxDate={momentHj(maxDate)}
-            slotProps={{
-              textField: {
-                variant: "outlined",
-                error: isError,
-                className: "w-full",
-              },
-            }}
-          />
-        </LocalizationProvider>
-      )}
-      {!localei && (
-        <LocalizationProvider dateAdapter={AdapterMoment}>
-          <div>
-            <MuiDatePicker
-              onError={newError => console.log({ newError })}
-              inputRef={ref}
-              format="DD/MM/YYYY"
-              views={["year", "month", "day"]}
-              value={moment(value) || null}
-              onChange={date => {
-                if (onChange) onChange(date);
-              }}
-              minDate={moment(minDate)}
-              maxDate={moment(maxDate)}
-              slotProps={{
-                textField: { variant: "outlined", error: isError, className: "w-full" },
-              }}
-            />
-          </div>
-        </LocalizationProvider>
-      )}
+      <LocalizationProvider dateAdapter={localei ? AdapterMomentHijri : AdapterMoment}>
+        <MuiDatePicker
+          inputRef={ref}
+          onError={newError => console.log({ newError })}
+          format={localei ? "iDD/iMM/iYYYY" : "DD/MM/YYYY"}
+          views={["year", "month", "day"]}
+          value={localei ? momentHj(value) : moment(value) || null}
+          onChange={date => {
+            if (onChange) onChange(date);
+          }}
+          minDate={localei ? momentHj(minDate) : moment(minDate)}
+          maxDate={localei ? momentHj(maxDate) : moment(maxDate)}
+          slotProps={{
+            textField: {
+              variant: "outlined",
+              error: isError,
+              className: "w-full",
+            },
+          }}
+        />
+      </LocalizationProvider>
+
       {!disabled && isToggle && (
         <div className="mt-3 flex justify-between">
           <label className="ml-3 flex items-center">
-            <input type="checkbox" className="" onClick={toggleHandler} />
+            <input type="checkbox" className="" id="toggleCalendar" onClick={toggleHandler} />
             <span className="mr-4 whitespace-nowrap">{toggleText}</span>
           </label>
         </div>
