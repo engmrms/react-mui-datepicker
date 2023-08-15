@@ -42,7 +42,7 @@ export default [
   },
   {
     input: "src/index.tsx",
-    output: [{ file: "dist/esm/index.d.ts", format: "es" }],
+    output: [{ file: "dist/esm/index.d.ts", format: "es" },{file:"dist/index.d.ts",format:"cjs"}],
     plugins: [dts.default()],
   },
 
