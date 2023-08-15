@@ -74,6 +74,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "registry": "https://github.com/engmrms/react-mui-datepicker"
+  },
   "keywords": [
     "react",
     "typescript",
