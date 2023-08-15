@@ -10,14 +10,30 @@ You can now import `DatePicker` as a normal package installed from npm like so:
 
 ```
 import {DatePicker} from 'react-mui-datepicker'
-...
+
+const App = () => <DatePicker  />;
+
+export default App;
+
+```
+
+to switch between calendars
+
+```
+import {DatePicker} from 'react-mui-datepicker'
+
+const App = () => <DatePicker  isToggle />;
+
+export default App;
+
+
 ```
 
 ## Available props
 
 ```
 
-lang: ar | en (optional) default **en**
+lang: ar | en (optional) default: en
 isError: boolean (optional)
 maxDate: Date (optional)
 minDate: Date (optional)
@@ -27,7 +43,11 @@ value: string (optional)
 onChange: (date: Moment | null) => void (optional)
 toggleText: string (optional)
 isToggle: boolean (optional)
-calendar: "gregrian" | "hijri" (optional) default __gregrian__
+calendar: "gregrian" | "hijri" (optional) default: gregrian
 
 
 ```
+
+## License
+
+**react-mui-datepicker** is available under the [MIT license](https://github.com/engmrms/react-mui-datepicker/LICENSE)

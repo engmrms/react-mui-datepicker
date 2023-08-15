@@ -41,7 +41,7 @@ export function DatePicker({
   toggleText = "switch the picker",
   calendar = "gregrian",
 }: Props) {
-  const [localei, setLocalei] = useState<boolean>(calendar === "hijri");
+  const [localei, setLocalei] = useState<boolean>(false);
 
   const toggleHandler = (e: MouseEvent<HTMLInputElement, globalThis.MouseEvent>) => {
     setLocalei(e.currentTarget.checked);
@@ -54,39 +54,31 @@ export function DatePicker({
     }
 
     if (lang === "en" && localei) {
-      moment.updateLocale("ar-sa", {
-        iMonths: [
-          "Muharram",
-          "Safar",
-          "Rabi' al-Awwal",
-          "Rabi' al-Thani",
-          "Jumada al-Ula",
-          "Jumada al-Alkhirah",
-          "Rajab",
-          "Sha’ban",
-          "Ramadhan",
-          "Shawwal",
-          "Thul-Qi’dah",
-          "Thul-Hijjah",
-        ],
-        iMonthsShort: [
-          "Muharram",
-          "Safar",
-          "Rabi' al-Awwal",
-          "Rabi' al-Thani",
-          "Jumada al-Ula",
-          "Jumada al-Alkhirah",
-          "Rajab",
-          "Sha’ban",
-          "Ramadhan",
-          "Shawwal",
-          "Thul-Qi’dah",
-          "Thul-Hijjah",
-        ],
+      momentHj.updateLocale("ar-sa", {
+        iMonths:
+          "Muharram_Safar_Rabi' al-Awwal_Rabi' al-Thani_Jumada al-Ula_Jumada al-Alkhirah_Rajab_Sha’ban_Ramadhan_Shawwal_Thul-Qi’dah_Thul-Hijjah".split(
+            "_"
+          ),
+        iMonthsShort:
+          "Muharram_Safar_Rabi' al-Awwal_Rabi' al-Thani_Jumada al-Ula_Jumada al-Alkhirah_Rajab_Sha’ban_Ramadhan_Shawwal_Thul-Qi’dah_Thul-Hijjah".split(
+            "_"
+          ),
         weekdaysMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
       });
     }
+    if (lang === "ar" && localei) {
+      momentHj.updateLocale("ar-sa", {
+        iMonths: "محرم_صفر_ربيع الأول_ربيع الثاني_جمادى الأولى_جمادى الآخرة_رجب_شعبان_رمضان_شوال_ذو القعدة_ذو الحجة".split("_"),
+        iMonthsShort: "محرم_صفر_ربيع ١_ربيع ٢_جمادى ١_جمادى ٢_رجب_شعبان_رمضان_شوال_ذو القعدة_ذو الحجة".split("_"),
+        weekdaysMin: "ح_ن_ث_ر_خ_ج_س".split("_"),
+      });
+    }
   }, [lang, localei]);
+
+  useEffect(() => {
+    setLocalei(calendar === "hijri");
+  }, [calendar]);
+
   return (
     <>
       {localei && (
@@ -121,7 +113,7 @@ export function DatePicker({
               inputRef={ref}
               format="DD/MM/YYYY"
               views={["year", "month", "day"]}
-              value={value || null}
+              value={moment(value) || null}
               onChange={date => {
                 if (onChange) onChange(date);
               }}

@@ -11,14 +11,25 @@
   },
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
-    "start": "rollup -c -w"
+    "start": "rollup -c -w",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "author": "Mohammad Saleh",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
+    "@originjs/vite-plugin-commonjs": "^1.0.3",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-typescript": "^11.1.2",
+    "@storybook/addon-essentials": "^7.2.3",
+    "@storybook/addon-interactions": "^7.2.3",
+    "@storybook/addon-links": "^7.2.3",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.2.3",
+    "@storybook/react": "^7.2.3",
+    "@storybook/react-vite": "^7.2.3",
+    "@storybook/testing-library": "^0.2.0",
     "@types/react": "^18.2.19",
     "@types/react-dom": "^18.2.7",
     "babel-core": "^6.26.3",
@@ -31,7 +42,9 @@
     "rollup-plugin-sass": "^1.12.20",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.35.0",
-    "typescript": "^5.1.6"
+    "storybook": "^7.2.3",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9"
   },
   "peerDependencies": {
     "react": "^18.2.0",
