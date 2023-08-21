@@ -31,22 +31,23 @@ export default App;
 
 ## Available props
 
-```
+The React MUI Datepicker component accepts the following props:
 
-lang: ar | en (optional) default: en
-isError: boolean (optional)
-maxDate: Date (optional)
-minDate: Date (optional)
-disabled: boolean (optional)
-ref: React.Ref<HTMLInputElement> (optional)
-value: string (optional)
-onChange: (date: Moment | null) => void (optional)
-toggleText: string (optional)
-isToggle: boolean (optional)
-calendar: "gregrian" | "hijri" (optional) default: gregrian
-
-
-```
+| Prop            | Type                                      | Description       |
+| --------------- | ----------------------------------------- | ----------------- |
+| lang            | ar or en (optional)                       | default: en       |
+| isError         | boolean (optional)                        |                   |
+| maxDate         | Date (optional)                           |                   |
+| minDate         | Date (optional)                           |                   |
+| disabled        | boolean (optional)                        |                   |
+| ref             | React.Ref<HTMLInputElement> (optional)    |                   |
+| value           | string (optional)                         |                   |
+| onChange        | (date: Moment or null) => void (optional) |                   |
+| toggleText      | string (optional)                         |                   |
+| isToggle        | boolean (optional)                        |                   |
+| calendar        | "gregrian" or "hijri" (optional)          | default: gregrian |
+| toggleClassName | string (optional)                         |                   |
+| inputClassName  | string (optional)                         |                   |
 
 ## License
 

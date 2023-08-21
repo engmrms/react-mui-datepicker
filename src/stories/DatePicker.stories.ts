@@ -41,5 +41,7 @@ export const Primary: Story = {
     toggleText: "switch calendar",
     maxDate: new Date(),
     minDate: new Date(),
+    toggleClassName: "",
+    inputClassName: "",
   },
 };

@@ -26,6 +26,8 @@ interface Props {
   value?: any;
   toggleText?: string;
   onChange?: (date: moment.Moment | null) => void;
+  toggleClassName?: string;
+  inputClassName?: string;
 }
 
 export function DatePicker({
@@ -40,6 +42,8 @@ export function DatePicker({
   isToggle,
   toggleText = "switch the picker",
   calendar = "gregrian",
+  toggleClassName,
+  inputClassName,
 }: Props) {
   const [localei, setLocalei] = useState<boolean>(false);
 
@@ -97,17 +101,17 @@ export function DatePicker({
             textField: {
               variant: "outlined",
               error: isError,
-              className: "w-full",
+              className: inputClassName,
             },
           }}
         />
       </LocalizationProvider>
 
       {!disabled && isToggle && (
-        <div className="mt-3 flex justify-between">
-          <label className="ml-3 flex items-center">
+        <div>
+          <label className={toggleClassName}>
             <input type="checkbox" className="" id="toggleCalendar" onClick={toggleHandler} />
-            <span className="mr-4 whitespace-nowrap">{toggleText}</span>
+            <span>{toggleText}</span>
           </label>
         </div>
       )}
