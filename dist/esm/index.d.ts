@@ -1,19 +1,21 @@
-import moment from 'moment';
 import React from 'react';
 
+type Calendar = "gregrian" | "hijri";
 interface Props {
     lang?: "ar" | "en";
     isError?: boolean;
     isToggle?: boolean;
-    calendar?: "gregrian" | "hijri";
+    calendar?: Calendar;
     maxDate?: Date;
     minDate?: Date;
     disabled?: boolean;
     ref?: React.Ref<HTMLInputElement>;
     value?: any;
     toggleText?: string;
-    onChange?: (date: moment.Moment | null) => void;
+    onChange?: (date: string | null) => void;
+    toggleClassName?: string;
+    inputClassName?: string;
 }
-declare function DatePicker({ ref, lang, isError, disabled, maxDate, minDate, onChange, value, isToggle, toggleText, calendar, }: Props): React.JSX.Element;
+declare function DatePicker({ ref, lang, isError, disabled, maxDate, minDate, onChange, value, isToggle, toggleText, calendar, toggleClassName, inputClassName, }: Props): React.JSX.Element;
 
 export { DatePicker };

@@ -34,13 +34,13 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
   args: {
-    isToggle: false,
+    isToggle: true,
     disabled: false,
     calendar: "gregrian",
     lang: "en",
     toggleText: "switch calendar",
-    maxDate: new Date(),
-    minDate: new Date(),
+    maxDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+    minDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
     toggleClassName: "",
     inputClassName: "",
   },
