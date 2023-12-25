@@ -1,0 +1,125 @@
+import { cva, type VariantProps } from 'class-variance-authority'
+import * as React from 'react'
+
+import { cn } from '../../Lib/utils'
+
+const badgeVariants = cva(
+    'inline-flex items-center   border    transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+    {
+        variants: {
+            variant: {
+                default: '',
+                ghost: 'border-none',
+                outline: 'border-2 border-current text-foreground',
+            },
+            size: {
+                default: 'py-space-02 px-space-04 text-base font-semibold',
+                sm: 'py-space-01 px-space-02 text-[1.2rem] leading-[1.8rem] font-medium',
+            },
+            rounded: {
+                default: 'rounded-1',
+                full: 'rounded-full',
+            },
+            colors: {
+                default: 'bg-primary text-primary-foreground',
+                secondary: 'bg-secondary text-secondary-foreground ',
+                tertiary: 'bg-tertiary text-tertiary-foreground ',
+                error: 'bg-error text-error-foreground ',
+                warning: 'bg-warning text-warning-foreground ',
+                success: 'bg-success text-success-foreground ',
+                info: 'bg-info text-info-foreground ',
+            },
+
+            disabled: {
+                true: 'bg-disabled text-white',
+            },
+        },
+        compoundVariants: [
+            {
+                colors: 'secondary',
+                variant: 'outline',
+                className: 'text-secondary bg-transparent',
+            },
+            {
+                variant: 'outline',
+                colors: 'tertiary',
+                className: 'text-tertiary bg-transparent ',
+            },
+            {
+                variant: 'outline',
+                colors: 'default',
+                className: 'text-primary bg-transparent',
+            },
+            {
+                variant: 'outline',
+                colors: 'info',
+                className: 'text-info bg-transparent',
+            },
+            {
+                variant: 'outline',
+                colors: 'error',
+                className: 'text-error bg-transparent',
+            },
+            {
+                variant: 'outline',
+                colors: 'warning',
+                className: 'text-warning bg-transparent ',
+            },
+            {
+                variant: 'outline',
+                colors: 'success',
+                className: 'text-success bg-transparent ',
+            },
+
+            {
+                variant: 'ghost',
+                colors: 'secondary',
+                className: 'text-secondary-oncontainer bg-secondary-container',
+            },
+            {
+                variant: 'ghost',
+                colors: 'tertiary',
+                className: 'text-tertiary-oncontainer bg-tertiary-container',
+            },
+            {
+                variant: 'ghost',
+                colors: 'default',
+                className: 'text-primary-oncontainer bg-primary-container',
+            },
+            {
+                variant: 'ghost',
+                colors: 'info',
+                className: 'text-info-oncontainer bg-info-container',
+            },
+            {
+                variant: 'ghost',
+                colors: 'error',
+                className: 'text-error-oncontainer bg-error-container',
+            },
+            {
+                variant: 'ghost',
+                colors: 'success',
+                className: 'text-success-oncontainer bg-sucess-container',
+            },
+            {
+                variant: 'ghost',
+                colors: 'warning',
+                className: 'text-warning-oncontainer bg-warning-container',
+            },
+        ],
+        defaultVariants: {
+            variant: 'default',
+            colors: 'default',
+            rounded: 'default',
+            size: 'default',
+        },
+    },
+)
+
+export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {}
+
+function Badge({ className, variant, size, rounded, colors, disabled, ...props }: BadgeProps) {
+    return <div className={cn(badgeVariants({ variant, size, rounded, disabled, colors }), className)} {...props} />
+}
+
+export { Badge, badgeVariants }
