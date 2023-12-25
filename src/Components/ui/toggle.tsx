@@ -5,12 +5,15 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const toggleVariants = cva(
-    'inline-flex items-center justify-center rounded-full text-base font-normal ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:font-semibold ',
+    `inline-flex items-center justify-center rounded-full text-base font-normal ring-offset-background transition-colors hover:bg-card-hover hover:text-primary
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+    disabled:bg-transparent  disabled:text-disabled disabled:border-disabled disabled:pointer-events-none disabld:data-[state=on]:bg-disabled
+    data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:font-semibold  hover:data-[state=on]:bg-primary-dark `,
     {
         variants: {
             variant: {
                 default: 'bg-transparent',
-                outline: 'border border-input bg-transparent hover:bg-accent hover:text-accent-foreground',
+                outline: 'border border-input bg-transparent ',
             },
             size: {
                 default: 'px-space-05 py-space-03',
@@ -18,6 +21,7 @@ const toggleVariants = cva(
                 lg: 'h-11 px-5',
             },
         },
+
         defaultVariants: {
             variant: 'default',
             size: 'default',
