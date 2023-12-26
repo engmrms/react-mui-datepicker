@@ -3,7 +3,7 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const textAreaVariants = cva(
-    'flex min-h-[10rem] w-full border pl-space-04   text-base placeholder:text-foreground-secondary disabled:cursor-not-allowed disabled:text-disabled',
+    'flex min-h-[10rem] w-full border pr-space-04 text-base placeholder:text-foreground-secondary disabled:cursor-not-allowed disabled:text-disabled',
     {
         variants: {
             variant: {
