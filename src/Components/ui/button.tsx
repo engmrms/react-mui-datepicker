@@ -10,7 +10,7 @@ const buttonVariants = cva(
         variants: {
             variant: {
                 default: '',
-                outline: 'border-2  border-current',
+                outline: 'border  border-input',
                 ghost: ' border-none text',
                 link: ' text-current underline-offset-4 hover:underline',
             },
@@ -39,83 +39,86 @@ const buttonVariants = cva(
             {
                 colors: 'secondary',
                 variant: 'outline',
-                className: 'text-secondary bg-transparent hover:text-secondary-foreground',
+                className:
+                    'text-secondary bg-transparent hover:text-secondary hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 colors: 'primary',
                 variant: 'outline',
-                className: 'text-primary bg-transparent hover:text-primary-foreground',
+                className: 'text-primary bg-transparent hover:text-primary hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
                 colors: 'tertiary',
-                className: 'text-tertiary bg-transparent hover:text-tertiary-foreground',
+                className:
+                    'text-tertiary bg-transparent hover:text-tertiary  hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
                 colors: 'default',
-                className: 'border-input',
+                className: 'border-input hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
                 colors: 'info',
-                className: 'text-info bg-transparent hover:text-info-foreground',
+                className: 'text-info bg-transparent hover:text-info hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
                 colors: 'error',
-                className: 'text-error bg-transparent hover:text-error-foreground',
+                className: 'text-error bg-transparent hover:text-error hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
                 colors: 'warning',
-                className: 'text-warning bg-transparent hover:text-warning-foreground',
+                className: 'text-warning bg-transparent hover:text-warning hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
                 colors: 'success',
-                className: 'text-success bg-transparent hover:text-success-foreground',
+                className: 'text-success bg-transparent hover:text-success hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
 
             {
                 variant: 'ghost',
                 colors: 'secondary',
-                className: 'text-secondary !bg-transparent',
+                className:
+                    'text-secondary bg-transparent hover:bg-secondary-container active:bg-secondary-container active:text-secondary-oncontainer',
             },
             {
                 variant: 'ghost',
                 colors: 'tertiary',
-                className: 'text-tertiary !bg-transparent',
+                className: 'text-tertiary bg-transparent hover:bg-tertiary-container active:bg-tertiary-container active:text-tertiary-oncontainer',
             },
             {
                 variant: 'ghost',
                 colors: 'default',
-                className: '!bg-transparent',
+                className: 'bg-transparent hover:bg-card-hover active:bg-card-hover active:text-primary-oncontainer',
             },
             {
                 variant: 'ghost',
                 colors: 'primary',
-                className: 'text-primary !bg-transparent',
+                className: 'text-primary bg-transparent hover:bg-primary-container active:bg-primary-container active:text-primary-oncontainer',
             },
             {
                 variant: 'ghost',
                 colors: 'info',
-                className: 'text-info !bg-transparent',
+                className: 'text-info bg-transparent hover:bg-info-container active:bg-info-container active:text-info-oncontainer',
             },
             {
                 variant: 'ghost',
                 colors: 'error',
-                className: 'text-error !bg-transparent',
+                className: 'text-error bg-transparent hover:bg-error-container active:bg-error-container active:text-error-oncontainer',
             },
             {
                 variant: 'ghost',
                 colors: 'success',
-                className: 'text-success !bg-transparent',
+                className: 'text-success bg-transparent hover:bg-success-container active:bg-success-container active:text-success-oncontainer',
             },
             {
                 variant: 'ghost',
                 colors: 'warning',
-                className: 'text-warning !bg-transparent',
+                className: 'text-warning bg-transparent hover:bg-warning-container active:bg-warning-container active:text-warning-oncontainer',
             },
             {
                 variant: 'link',
