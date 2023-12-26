@@ -3,7 +3,7 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const textAreaVariants = cva(
-    'flex min-h-[10rem] w-full border pr-space-04 text-base placeholder:text-foreground-secondary disabled:cursor-not-allowed disabled:text-disabled',
+    'flex min-h-[10rem] w-full border pr-space-04 text-base hover:border-foreground   disabled:cursor-not-allowed disabled:text-disabled',
     {
         variants: {
             variant: {
@@ -40,7 +40,11 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         return (
             <div className={cn(textAreaVariants({ variant, rounded, colors }), className)}>
                 {startAdornment && <div className="w-[2rem] h-[2rem] mr-space-02 mt-space-04 ">{startAdornment}</div>}
-                <textarea className="outline-none py-space-03 w-full bg-transparent resize-none " ref={ref} {...props} />
+                <textarea
+                    className="outline-none py-space-03 w-full bg-transparent resize-none placeholder:text-foreground-secondary"
+                    ref={ref}
+                    {...props}
+                />
                 {endAdornment && <div className="w-[2rem] h-[2rem] ml-space-02">{endAdornment}</div>}
             </div>
         )
