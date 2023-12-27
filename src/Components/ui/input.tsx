@@ -39,14 +39,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ({ className, variant, rounded, type, colors, startAdornment, endAdornment, ...props }, ref) => {
         return (
             <div className={cn(inputVariants({ variant, rounded, colors }), className)} aria-invalid={props['aria-invalid']}>
-                {startAdornment && <div className=" mr-space-02 ">{startAdornment}</div>}
+                {startAdornment && <div className=" me-space-02 ">{startAdornment}</div>}
                 <input
                     type={type}
                     className="outline-none py-space-03 w-full bg-transparent file:border-0 file:bg-transparent  file:text-sm file:font-mdium placeholder:text-foreground-secondary  "
                     ref={ref}
                     {...props}
                 />
-                {endAdornment && <div className=" ml-space-02">{endAdornment}</div>}
+                {endAdornment && <div className="ms-space-02">{endAdornment}</div>}
             </div>
         )
     },
