@@ -9,12 +9,13 @@ export function Toaster() {
             {toasts.map(function ({ id, title, description, action, ...props }) {
                 return (
                     <Toast key={id} {...props}>
-                        <div className="grid gap-1">
+                        <ToastClose />
+                        <span className="block !ml-0 !mr-0 h-20 self-stretch border border-border opacity-20" />
+                        <div className="grid gap-1 flex-1">
                             {title && <ToastTitle>{title}</ToastTitle>}
                             {description && <ToastDescription>{description}</ToastDescription>}
                         </div>
                         {action}
-                        <ToastClose />
                     </Toast>
                 )
             })}
