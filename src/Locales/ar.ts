@@ -34,6 +34,9 @@ export const ar = {
         male: 'ذكر',
         female: 'انثى',
         submit: 'ارسال',
+        next: 'التالي',
+        previous: 'السابق',
+        morePages: 'المزيد'
     },
 
     Footer: {
