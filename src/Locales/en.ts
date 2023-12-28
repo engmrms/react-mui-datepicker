@@ -35,6 +35,9 @@ export const en = {
         male: 'Male',
         female: 'Female',
         submit: 'Submit',
+        next: 'Next',
+        previous: 'Previous',
+        morePages: 'More pages',
     },
     Footer: {
         TermsOfUse: 'Terms Of Use',
