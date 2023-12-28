@@ -166,4 +166,7 @@
     .display-02 {
         @apply text-[4.2rem] leading-[5.4rem] md:text-[5.4rem] md:leading-[7rem] font-semibold  lg:text-[8.4rem] lg:leading-[9.8rem];
     }
+    .dsgrid {
+        @apply grid grid-cols-4 gap-space-04 md:grid-cols-8 lg:grid-cols-12 lg:gap-space-05;
+    }
 }
