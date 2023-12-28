@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -17,4 +18,20 @@ export const langRegex = {
     nonSaudianNationalId: /^2(\d){9}$/,
     tags: /<[^>]*>?/gm,
     specialCharcter: /[!@#$%^&*()_+\-'~<>/\\?|÷×]/,
+}
+
+export const handleArabicNumbers = (e: React.ChangeEvent<HTMLInputElement>, watch: any) => {
+    const reg = /^[0-9\u0660-\u0669]+$/
+    if (!reg.test(e.target.value) && e.target.value !== '') {
+        e.target.value = watch
+    }
+
+    e.target.value = e.target.value
+        .replace(/[٠١٢٣٤٥٦٧٨٩]/g, d => {
+            return String(d.charCodeAt(0) - 1632)
+        })
+        .replace(/[۰۱۲۳۴۵۶۷۸۹]/g, d => {
+            return String(d.charCodeAt(0) - 1776)
+        })
+    return e
 }
