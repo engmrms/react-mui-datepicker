@@ -244,6 +244,7 @@ module.exports = {
                 'accordion-up': 'accordion-up 0.2s ease-out',
             },
             spacing: {
+                'space-00': '0px',
                 'space-01': '4px',
                 'space-02': '8px',
                 'space-03': '12px',
