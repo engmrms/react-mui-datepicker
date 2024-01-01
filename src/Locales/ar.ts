@@ -36,7 +36,14 @@ export const ar = {
         submit: 'ارسال',
         next: 'التالي',
         previous: 'السابق',
-        morePages: 'المزيد'
+        morePages: 'المزيد',
+        Total: 'الإجمالي',
+        YearTitle: 'السنة',
+        MonthTitle: 'الشهر',
+        PaginationDesc: 'عرض {0} إلى {1} من أصل {2} نتيجة',
+        Actions: 'الإجراءات',
+        ViewDetails: 'عرض التفاصيل',
+        Language: 'اللغة',
     },
 
     Footer: {

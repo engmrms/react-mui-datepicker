@@ -38,6 +38,13 @@ export const en = {
         next: 'Next',
         previous: 'Previous',
         morePages: 'More pages',
+        Total: 'Total',
+        YearTitle: 'Year',
+        MonthTitle: 'Month',
+        PaginationDesc: 'Showing {0} to {1} of {2} results',
+        Actions: 'Actions',
+        ViewDetails: 'View Details',
+        Language: 'Language',
     },
     Footer: {
         TermsOfUse: 'Terms Of Use',
