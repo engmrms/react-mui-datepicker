@@ -14,7 +14,7 @@ const ToastViewport = React.forwardRef<
     <ToastPrimitives.Viewport
         ref={ref}
         className={cn(
-            'fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-10 sm:left-1/2 ltr:sm:translate-x-1/2  rtl:sm:-translate-x-1/2 sm:top-auto sm:flex-col md:max-w-fit',
+            'fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-10 sm:left-1/2 ltr:sm:translate-x-1/2  rtl:sm:-translate-x-1/2 sm:top-auto sm:flex-col lg:max-w-fit',
             className,
         )}
         {...props}
@@ -23,7 +23,7 @@ const ToastViewport = React.forwardRef<
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName
 
 const toastVariants = cva(
-    'group pointer-events-auto gap-space-03 relative bg-card flex w-full items-center space-x-4 overflow-hidden rounded-3 border p-space-03 shadow-xsm transition-all data-[swipe=cancel]:translate-y-0 data-[swipe=end]:translate-y-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-y-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-bottom-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full',
+    'group pointer-events-auto gap-space-03 relative bg-card flex flex-col sm:flex-row w-full items-center space-x-4 overflow-hidden rounded-3 border p-space-03 shadow-xsm transition-all data-[swipe=cancel]:translate-y-0 data-[swipe=end]:translate-y-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-y-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-bottom-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full',
     {
         variants: {
             variant: {

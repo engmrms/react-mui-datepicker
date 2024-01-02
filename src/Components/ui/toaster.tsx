@@ -10,7 +10,7 @@ export function Toaster() {
                 return (
                     <Toast key={id} {...props}>
                         <ToastClose />
-                        <span className="block !ml-0 !mr-0 h-20 self-center border border-border opacity-20" />
+                        <span className="hidden sm:block !ml-0 !mr-0 h-20 self-center border border-border opacity-20" />
                         <div className="grid gap-1 flex-1">
                             {title && <ToastTitle>{title}</ToastTitle>}
                             {description && <ToastDescription>{description}</ToastDescription>}
