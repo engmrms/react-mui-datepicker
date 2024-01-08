@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as PopoverPrimitive from '@radix-ui/react-popover'
 import * as React from 'react'
 
