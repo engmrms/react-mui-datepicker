@@ -23,6 +23,7 @@ export const ar = {
         Enter: 'ادخل',
         AddSupportingFiles: 'أرفق ملفات داعمة',
         Send: 'إرسال',
+        Submit: 'إرسال الطلب',
         Cancel: 'إلغاء',
         Main: 'الرئيسية',
         Select: 'اختر',
@@ -44,6 +45,7 @@ export const ar = {
         Actions: 'الإجراءات',
         ViewDetails: 'عرض التفاصيل',
         Language: 'اللغة',
+        Specify: 'حدد',
     },
 
     Footer: {

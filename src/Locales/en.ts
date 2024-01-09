@@ -24,6 +24,7 @@ export const en = {
         Enter: 'Enter',
         AddSupportingFiles: 'Attachments',
         Send: 'Submit',
+        Submit: 'Submit Request',
         Cancel: 'Cancel',
         Main: 'Home',
         Select: 'Select',
@@ -45,6 +46,7 @@ export const en = {
         Actions: 'Actions',
         ViewDetails: 'View Details',
         Language: 'Language',
+        Specify: 'Specify',
     },
     Footer: {
         TermsOfUse: 'Terms Of Use',

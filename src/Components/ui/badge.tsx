@@ -4,7 +4,7 @@ import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
 
-const badgeVariants = cva('inline-flex items-center      transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2', {
+const badgeVariants = cva('inline-flex items-center transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2', {
     variants: {
         variant: {
             default: 'border-none',
@@ -20,13 +20,13 @@ const badgeVariants = cva('inline-flex items-center      transition-colors focus
             full: 'rounded-full',
         },
         colors: {
-            default: 'bg-primary text-primary-foreground',
+            default: 'bg-foreground text-primary-foreground',
+            primary: 'bg-primary text-primary-foreground',
             secondary: 'bg-secondary text-secondary-foreground ',
             tertiary: 'bg-tertiary text-tertiary-foreground ',
             error: 'bg-error text-error-foreground ',
             warning: 'bg-warning text-warning-foreground ',
-            success: 'bg-success text-success-foreground ',
-            info: 'bg-info text-info-foreground ',
+            info: 'bg-info text-info-foreground',
         },
 
         disabled: {
@@ -46,7 +46,7 @@ const badgeVariants = cva('inline-flex items-center      transition-colors focus
         },
         {
             variant: 'outline',
-            colors: 'default',
+            colors: 'primary',
             className: 'text-primary bg-transparent',
         },
         {
@@ -66,8 +66,8 @@ const badgeVariants = cva('inline-flex items-center      transition-colors focus
         },
         {
             variant: 'outline',
-            colors: 'success',
-            className: 'text-success bg-transparent ',
+            colors: 'default',
+            className: 'text-foreground bg-transparent ',
         },
 
         {
@@ -82,7 +82,7 @@ const badgeVariants = cva('inline-flex items-center      transition-colors focus
         },
         {
             variant: 'ghost',
-            colors: 'default',
+            colors: 'primary',
             className: 'text-primary-oncontainer bg-primary-container',
         },
         {
@@ -97,8 +97,8 @@ const badgeVariants = cva('inline-flex items-center      transition-colors focus
         },
         {
             variant: 'ghost',
-            colors: 'success',
-            className: 'text-success-oncontainer bg-sucess-container',
+            colors: 'default',
+            className: 'text-foreground bg-background-secondary',
         },
         {
             variant: 'ghost',
