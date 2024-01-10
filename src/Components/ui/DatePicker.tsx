@@ -7,7 +7,14 @@ import { Button } from './button'
 import { Calendar } from './calendar'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
 
-const DatePicker = ({ placeholder, value, onChange }: { placeholder?: string; value: string; onChange: (value: string) => void }) => {
+interface Props {
+    lang: 'ar' | 'en'
+    placeholder?: string
+    value: string
+    onChange: (value: string) => void
+}
+
+const DatePicker = ({ placeholder, value, onChange, lang }: Props) => {
     const [isOpen, setIsopen] = useState(false)
     return (
         <Popover open={isOpen} onOpenChange={op => setIsopen(op)}>
@@ -30,6 +37,7 @@ const DatePicker = ({ placeholder, value, onChange }: { placeholder?: string; va
             </div> */}
                     <Calendar
                         value={moment(value)}
+                        lang={lang}
                         onChange={(d: Moment) => {
                             setIsopen(false)
                             onChange(d.format('MM/DD/yyyy'))
