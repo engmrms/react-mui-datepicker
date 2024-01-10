@@ -1,3 +1,4 @@
+import { esbuildCommonjs } from '@originjs/vite-plugin-commonjs'
 import inject from '@rollup/plugin-inject'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 import react from '@vitejs/plugin-react'
@@ -27,5 +28,11 @@ export default defineConfig({
     server: {
         https: true,
         port: 5000,
+    },
+    optimizeDeps: {
+        esbuildOptions: {
+            plugins: [esbuildCommonjs(['moment-hijri'])],
+        },
+        include: ['moment-hijri'],
     },
 })

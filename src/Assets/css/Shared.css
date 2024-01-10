@@ -171,3 +171,29 @@
         @apply grid grid-cols-4 gap-space-04 md:grid-cols-8 lg:grid-cols-12 lg:gap-space-05;
     }
 }
+
+.MuiButtonBase-root.MuiPickersDay-root {
+    @apply font-IBMReguler text-sm rounded-1 hover:bg-primary-container disabled:text-disabled;
+}
+.MuiButtonBase-root.MuiPickersDay-root.Mui-selected {
+    @apply bg-primary;
+}
+.MuiDayCalendar-header .MuiTypography-caption {
+    @apply text-xs text-foreground-secondary;
+}
+.MuiPickersCalendarHeader-root {
+    @apply justify-between;
+}
+.MuiPickersCalendarHeader-root > div {
+    @apply m-0 text-body-01;
+}
+.MuiButtonBase-root.MuiIconButton-root {
+    @apply rtl:rotate-180 text-body-01;
+}
+
+.MuiPickersYear-root .MuiPickersYear-yearButton {
+    @apply text-body-01 hover:bg-primary-container;
+}
+.MuiPickersYear-root .MuiPickersYear-yearButton.Mui-selected {
+    @apply !bg-primary;
+}
