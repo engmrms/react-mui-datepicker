@@ -13,7 +13,7 @@ const badgeVariants = cva('inline-flex items-center transition-colors focus:outl
         },
         size: {
             default: 'py-space-02 px-space-04 text-base font-semibold',
-            sm: 'py-space-01 px-space-02 text-[1.2rem] leading-[1.8rem] font-medium',
+            sm: 'py-space-01 px-space-02 text-[1.2rem] leading-[1.8rem] font-semibold',
         },
         rounded: {
             default: 'rounded-1',
