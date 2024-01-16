@@ -12,8 +12,8 @@ const badgeVariants = cva('inline-flex items-center transition-colors focus:outl
             outline: 'border border-current text-foreground',
         },
         size: {
-            default: 'py-space-02 px-space-04 text-base font-semibold',
-            sm: 'py-space-01 px-space-02 text-[1.2rem] leading-[1.8rem] font-semibold',
+            default: 'py-space-02 px-space-04 text-base font-IBMBold',
+            sm: 'py-space-01 px-space-02 text-[1.2rem] leading-[1.8rem] font-IBMBold',
         },
         rounded: {
             default: 'rounded-1',

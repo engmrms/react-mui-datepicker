@@ -29,7 +29,7 @@ const TabsTrigger = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Trigg
                 text-foreground-secondary hover:text-primary-dark hover:bg-card-hover font-normal
                 px-space-04 py-space-02 text-base  ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
                 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50
-                data-[state=active]:bg-primary data-[state=active]:font-semibold data-[state=active]:text-white data-[state=active]:shadow-sm hover:data-[state=active]:bg-primary-dark`,
+                data-[state=active]:bg-primary data-[state=active]:font-IBMBold data-[state=active]:text-white data-[state=active]:shadow-sm hover:data-[state=active]:bg-primary-dark`,
                 className,
             )}
             {...props}
