@@ -146,6 +146,10 @@
         @apply border-border;
     }
 
+    html {
+        @apply scroll-smooth;
+    }
+
     body {
         @apply bg-card text-foreground text-base font-IBMReguler;
     }
