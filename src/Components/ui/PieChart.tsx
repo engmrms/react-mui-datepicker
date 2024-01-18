@@ -43,7 +43,7 @@ export const PieChart = ({ seriesData, title, tooltipFormatter, chartOptions, wi
             floating: true,
             align: 'center',
             verticalAlign: 'middle',
-            y: 50,
+            y: 60,
             x: 50,
             width: 100,
             useHTML: true,
