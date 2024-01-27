@@ -278,6 +278,8 @@ module.exports = {
             },
             boxShadow: {
                 xsm: '0px 10px 16px 0px rgba(38, 36, 36, 0.04), 0px 1px 0px 0px rgba(5, 6, 12, 0.02), 0px 0px 8px 0px rgba(5, 6, 12, 0.02)',
+                sharp: '0px 1px 4px 0px rgba(169, 169, 169, 0.25);',
+                hover: '0px 3px 12px 0px rgba(169, 169, 169, 0.50);',
             },
             fontFamily: {
                 IBMReguler: ['IBM Reguler', 'ui-sans-serif', 'system-ui'],

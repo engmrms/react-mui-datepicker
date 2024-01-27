@@ -14,7 +14,8 @@ const alertVariants = cva(
                 ghost: 'border-none',
             },
             colors: {
-                default: 'text-secondary-oncontainer bg-primary-container [&>svg]:text-primary-oncontainer',
+                default: 'text-foreground bg-background [&>svg]:text-foreground',
+                primary: 'text-primary-oncontainer bg-primary-container [&>svg]:text-primary-oncontainer',
                 error: 'text-error-oncontainer bg-error-container [&>svg]:text-error-oncontainer',
                 warning: 'text-warning-oncontainer bg-warning-container [&>svg]:text-warning-oncontainer',
                 info: 'text-info-oncontainer bg-info-container [&>svg]:text-info-oncontainer',
@@ -25,6 +26,11 @@ const alertVariants = cva(
             {
                 variant: 'outline',
                 colors: 'default',
+                className: 'bg-transparent text-foreground [&>svg]:text-foreground',
+            },
+            {
+                variant: 'outline',
+                colors: 'primary',
                 className: 'bg-transparent text-primary [&>svg]:text-primary',
             },
             {
