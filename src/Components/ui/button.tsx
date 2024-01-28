@@ -19,7 +19,7 @@ const buttonVariants = cva(
                 default: 'py-space-03 px-space-05',
                 sm: 'py-space-02 px-space-04',
                 // lg: 'px-8',
-                icon: 'p-space-03 ',
+                icon: 'md:p-space-03 px-space-02 py-space-03 ',
             },
             rounded: {
                 default: 'rounded-2',
