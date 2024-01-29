@@ -42,6 +42,7 @@ export const ar = {
         YearTitle: 'السنة',
         MonthTitle: 'الشهر',
         PaginationDesc: 'عرض {0} إلى {1} من أصل {2} نتيجة',
+        LinesPerPage: 'عدد السطور بالصفحة',
         Actions: 'الإجراءات',
         ViewDetails: 'عرض التفاصيل',
         Language: 'اللغة',
