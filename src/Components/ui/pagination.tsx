@@ -31,17 +31,15 @@ type PaginationLinkProps = {
     React.ComponentProps<'button'>
 
 const PaginationLink = ({ className, isActive, ...props }: PaginationLinkProps) => (
-    <PaginationItem>
-        <button
-            aria-current={isActive ? 'page' : undefined}
-            className={cn(
-                'w-16 h-16 flex items-center justify-center border rounded-1 gap-space-01',
-                `${isActive ? 'border-primary text-primary' : 'border-transparent hover:bg-card-hover'}`,
-                className,
-            )}
-            {...props}
-        />
-    </PaginationItem>
+    <button
+        aria-current={isActive ? 'page' : undefined}
+        className={cn(
+            'w-16 h-16 flex items-center justify-center border rounded-1 gap-space-01',
+            `${isActive ? 'border-primary text-primary' : 'border-transparent hover:bg-card-hover'}`,
+            className,
+        )}
+        {...props}
+    />
 )
 PaginationLink.displayName = 'PaginationLink'
 
