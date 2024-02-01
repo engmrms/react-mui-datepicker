@@ -13,6 +13,8 @@ import {
     UseFormReturn,
     useForm,
     useFormContext,
+    useFormState,
+    useWatch,
 } from 'react-hook-form'
 
 import { Label } from '../../Components/ui/label'
@@ -123,5 +125,18 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
 })
 FormMessage.displayName = 'FormMessage'
 
-export { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, useForm, useFormField }
+export {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+    useForm,
+    useFormField,
+    useFormContext,
+    useFormState,
+    useWatch,
+}
 export type { SubmitHandler, UseFormReturn }
