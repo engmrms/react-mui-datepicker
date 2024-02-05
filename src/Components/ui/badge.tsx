@@ -30,6 +30,7 @@ const badgeVariants = cva(
                 error: 'bg-error text-error-foreground ',
                 warning: 'bg-warning text-warning-foreground ',
                 info: 'bg-info text-info-foreground',
+                gray: 'text-card-foreground',
             },
 
             disabled: {
@@ -71,6 +72,11 @@ const badgeVariants = cva(
                 variant: 'outline',
                 colors: 'default',
                 className: 'text-foreground bg-transparent ',
+            },
+            {
+                variant: 'outline',
+                colors: 'gray',
+                className: 'bg-transparent border-border',
             },
 
             {
