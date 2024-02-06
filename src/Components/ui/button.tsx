@@ -34,6 +34,7 @@ const buttonVariants = cva(
                 warning: 'bg-warning text-warning-foreground hover:bg-warning-dark active:bg-warning-oncontainer',
                 success: 'bg-success text-success-foreground hover:bg-success-dark active:bg-success-oncontainer',
                 info: 'bg-info text-info-foreground hover:bg-info-dark active:bg-info-oncontainer',
+                gray: 'bg-transparent text-card-foreground hover:bg-card-hover active:bg-card-hover active:text-primary-oncontainer',
             },
         },
         compoundVariants: [
@@ -78,6 +79,11 @@ const buttonVariants = cva(
                 variant: 'outline',
                 colors: 'success',
                 className: 'text-success bg-transparent hover:text-success hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
+            },
+            {
+                variant: 'outline',
+                colors: 'gray',
+                className: 'bg-transparent border-border hover:bg-card-hover active:bg-card-hover active:text-primary-oncontainer',
             },
 
             {
