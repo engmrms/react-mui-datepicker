@@ -16,6 +16,7 @@ export const langRegex = {
     enRegex: /^[a-zA-Z- ]+$/,
     arRegex: /^[\u0621-\u064A- ]+$/,
     bothArAndEnRegexonlyLetters: /^[a-zA-Z-\u0621-\u064A ]+$/,
+    bothArAndEnRegexonlyLettersAndNumbers: /^[a-zA-Z0-9-\u0621-\u064A ]+$/,
     enletterAndNumbersRegex: /^[a-zA-Z0-9]*$/,
     mobileNumber: /^(5)(\d){8}$/,
     TelPhone: /^(0096611)(\d){7}$/,
