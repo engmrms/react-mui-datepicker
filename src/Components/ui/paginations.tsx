@@ -1,0 +1,220 @@
+import classNames from 'classnames'
+import ChevronLeft from 'google-material-icons/outlined/ChevronLeft'
+import ChevronRight from 'google-material-icons/outlined/ChevronRight'
+import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import ShouldRender from '../../Lib/ShouldRender'
+import { cn } from '../../Lib/utils'
+import { strings } from '../../Locales'
+import { PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, Pagination as ShadPagination } from './pagination'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './select'
+
+interface Props {
+    totalItems: number
+    onPageChange: (page: number) => void
+    selectedPage: number
+    className?: string
+    withoutText?: boolean
+    itemsPerPage?: number
+}
+
+const Pagination = ({ totalItems, onPageChange, selectedPage, className, withoutText, itemsPerPage = 6 }: Props) => {
+    const pageCount = Math.ceil(totalItems / itemsPerPage)
+    const pages = Array.from(Array(pageCount).keys())
+
+    const isLastItems = (i: number) =>
+        (selectedPage === pageCount - 3 && i === pageCount - 2) ||
+        (selectedPage === pageCount - 2 && i === pageCount - 5) ||
+        (selectedPage === pageCount - 1 && (i === pageCount - 4 || i === pageCount - 5)) ||
+        (selectedPage === pageCount && (selectedPage === i + 3 || selectedPage === i + 4 || selectedPage === i + 5))
+
+    const handleScroll = () => {
+        const listId = document.getElementById('gridList')
+        setTimeout(() => {
+            listId
+                ? listId.scrollIntoView({ behavior: window.navigator.userAgent.indexOf('iPhone') !== -1 ? 'auto' : 'smooth' })
+                : window.scrollTo({ top: 0, behavior: window.navigator.userAgent.indexOf('iPhone') !== -1 ? 'auto' : 'smooth' })
+        }, 500)
+    }
+
+    const handlePageClick = (selected: number) => {
+        handleScroll()
+        onPageChange(selected + 1)
+    }
+
+    if (!pageCount || pageCount <= 1) return null
+
+    return (
+        <ShadPagination className={cn('', className)}>
+            <PaginationContent>
+                <PaginationItem>
+                    <PaginationPrevious
+                        hasText={!withoutText}
+                        className={classNames({
+                            'cursor-pointer': true,
+                            'text-disabled pointer-events-none': selectedPage === 1,
+                        })}
+                        onClick={() => {
+                            handlePageClick(selectedPage - 2)
+                        }}
+                    />
+                </PaginationItem>
+                <ShouldRender shouldRender={pageCount <= 6}>
+                    {pages?.map(i => (
+                        <PaginationItem key={i}>
+                            <PaginationLink
+                                isActive={selectedPage === i + 1}
+                                className={classNames({
+                                    'cursor-pointer': true,
+                                })}
+                                onClick={() => {
+                                    handlePageClick(i)
+                                }}>
+                                {i + 1 < 10 ? `0${i + 1}` : i + 1}
+                            </PaginationLink>
+                        </PaginationItem>
+                    ))}
+                </ShouldRender>
+                <ShouldRender shouldRender={pageCount > 6}>
+                    {pages?.map(i => (
+                        <React.Fragment key={uuidv4()}>
+                            <ShouldRender shouldRender={(selectedPage < 5 && i < 5) || i + 1 === pageCount || i === 0}>
+                                <PaginationItem key={i}>
+                                    <PaginationLink
+                                        isActive={selectedPage === i + 1}
+                                        className={classNames({
+                                            'cursor-pointer': true,
+                                        })}
+                                        onClick={() => {
+                                            handlePageClick(i)
+                                        }}>
+                                        {i + 1 < 10 ? `0${i + 1}` : i + 1}
+                                    </PaginationLink>
+                                </PaginationItem>
+                            </ShouldRender>
+                            <ShouldRender
+                                key={uuidv4()}
+                                shouldRender={
+                                    selectedPage >= 5 &&
+                                    (selectedPage === i || selectedPage === i + 2 || selectedPage === i + 1 || isLastItems(i)) &&
+                                    i + 1 !== pageCount
+                                }>
+                                <PaginationItem key={i}>
+                                    <PaginationLink
+                                        isActive={selectedPage === i + 1}
+                                        className={classNames({
+                                            'cursor-pointer': true,
+                                        })}
+                                        onClick={() => {
+                                            handlePageClick(i)
+                                        }}>
+                                        {i + 1 < 10 ? `0${i + 1}` : i + 1}
+                                    </PaginationLink>
+                                </PaginationItem>
+                            </ShouldRender>
+                            <ShouldRender
+                                shouldRender={selectedPage >= 5 && (selectedPage === i || selectedPage === i + 3) && selectedPage < pageCount - 3}>
+                                <Break />
+                            </ShouldRender>
+                            <ShouldRender shouldRender={selectedPage < 5 && i === 5}>
+                                <Break />
+                            </ShouldRender>
+                            <ShouldRender shouldRender={selectedPage >= 5 && selectedPage > pageCount - 4 && i === 0}>
+                                <Break />
+                            </ShouldRender>
+                        </React.Fragment>
+                    ))}
+                </ShouldRender>
+
+                <PaginationItem>
+                    <PaginationNext
+                        hasText={!withoutText}
+                        className={classNames({
+                            'cursor-pointer': true,
+                            'text-disabled pointer-events-none': selectedPage === pageCount,
+                        })}
+                        onClick={() => {
+                            handlePageClick(selectedPage)
+                        }}
+                    />
+                </PaginationItem>
+            </PaginationContent>
+        </ShadPagination>
+    )
+}
+
+const Break = () => (
+    <PaginationItem className="w-space-05 text-center flex items-center justify-center">
+        <PaginationLink
+            className={classNames({
+                'pointer-events-none': true,
+            })}>
+            ...
+        </PaginationLink>
+    </PaginationItem>
+)
+
+const PaginationDescription = ({ selectedPage, pageCount, totalItems }: { selectedPage: number; pageCount: number; totalItems: number }) => {
+    return <div className="flex-1 text-body-02">{strings.formatString(strings.Shared.PaginationDesc, selectedPage, pageCount, totalItems)}</div>
+}
+const LinesPerPage = ({ value, onChange }: { value: number; onChange: (value: string) => void }) => {
+    return (
+        <>
+            <span className="text-body-01 block whitespace-nowrap">{strings.Shared.LinesPerPage} :</span>
+            <Select value={value.toString()} onValueChange={val => onChange(val)}>
+                <SelectTrigger className="">
+                    <SelectValue placeholder={strings.Shared.Select} />
+                </SelectTrigger>
+                <SelectContent className="!min-w-fit">
+                    <SelectGroup>
+                        <SelectItem value="5">5</SelectItem>
+                        <SelectItem value="10">10</SelectItem>
+                        <SelectItem value="15">15</SelectItem>
+                        <SelectItem value="20">20</SelectItem>
+                        <SelectItem value="25">25</SelectItem>
+                    </SelectGroup>
+                </SelectContent>
+            </Select>
+        </>
+    )
+}
+
+export interface SliderPaginationProps {
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+    currentPage: number
+    totalPages: number
+    disabled?: boolean
+}
+const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }: SliderPaginationProps) => {
+    if (totalPages <= 1) return null
+
+    return (
+        <div className="flex gap-space-02">
+            <button
+                disabled={disabled ?? currentPage === 1}
+                className="p-space-03 rounded-full border
+                 border-border disabled:border-disabled disabled:text-disabled"
+                onClick={() =>
+                    setCurrentPage(prev => {
+                        if (prev > 1) return prev - 1
+                        return prev
+                    })
+                }>
+                <ChevronRight className="ltr:rotate-180" />
+            </button>
+            <button
+                disabled={disabled ?? currentPage === totalPages}
+                className="p-space-03 rounded-full border border-border disabled:border-disabled disabled:text-disabled"
+                onClick={() =>
+                    setCurrentPage(prev => {
+                        if (disabled) return prev
+                        return prev + 1
+                    })
+                }>
+                <ChevronLeft className="ltr:rotate-180" />
+            </button>
+        </div>
+    )
+}
+
+export { LinesPerPage, Pagination, PaginationDescription, SliderPagination }

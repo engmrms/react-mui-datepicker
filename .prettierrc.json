@@ -1,4 +1,4 @@
-{
+  {
     "trailingComma": "all",
     "tabWidth": 4,
     "semi": false,
@@ -9,5 +9,7 @@
     "bracketSpacing": true,
     "useTabs": false,
     "endOfLine": "auto",
-    "arrowParens": "avoid"
+    "arrowParens": "avoid",
+    "const": false,
+    "plugins": ["prettier-plugin-tailwindcss"]
 }
