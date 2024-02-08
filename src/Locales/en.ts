@@ -48,6 +48,8 @@ export const en = {
         ViewDetails: 'View Details',
         Language: 'Language',
         Specify: 'Specify',
+        ServerError: 'Sorry, something went wrong',
+        BackToHome: 'Back to Main Page',
     },
     Footer: {
         TermsOfUse: 'Terms Of Use',

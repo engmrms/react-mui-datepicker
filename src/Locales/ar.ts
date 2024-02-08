@@ -47,6 +47,8 @@ export const ar = {
         ViewDetails: 'عرض التفاصيل',
         Language: 'اللغة',
         Specify: 'حدد',
+        ServerError: 'عفوًا، حدث خطأ ما',
+        BackToHome: 'العودة للصفحة الرئيسية',
     },
 
     Footer: {
