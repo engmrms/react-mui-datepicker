@@ -8,13 +8,21 @@ module.exports = {
         container: {
             center: true,
             padding: {
-                DEFAULT: '0',
-                md: '32px',
-                xl: '64px',
-                xxl: '0',
+                DEFAULT: '1.6rem',
+                sm: '1.6rem',
+                md: '3.2rem',
+                lg: '3.2rem',
+                xl: '6.4rem',
+                '2xl': '6.4rem',
             },
             screens: {
-                xxl: '1464px',
+                DEFAULT: '100%',
+                sm: '640px',
+                md: '768px',
+                lg: '1056px',
+                xl: '1312px',
+                '2xl': '1592px',
+                '3xl': '1920px',
             },
         },
 
