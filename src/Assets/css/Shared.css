@@ -7,6 +7,7 @@
         --background: 0 0% 97%;
         --background-secondary: 0 0% 92%;
         --foreground: 0 0% 6%;
+        --overlay: 0, 0%, 6%, 0.5;
         --foreground-secondary: 170, 8%, 14%, 0.74;
         --foreground-tertiary: 170, 6%, 22%, 0.6;
 

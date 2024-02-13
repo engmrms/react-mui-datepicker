@@ -17,7 +17,7 @@ const AlertDialogOverlay = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
     <AlertDialogPrimitive.Overlay
         className={cn(
-            'fixed inset-0 z-50 bg-black/50 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+            'bg-background-overlay fixed inset-0 z-50  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
             className,
         )}
         {...props}
@@ -57,7 +57,7 @@ AlertDialogFooter.displayName = 'AlertDialogFooter'
 const AlertDialogTitle = React.forwardRef<
     React.ElementRef<typeof AlertDialogPrimitive.Title>,
     React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Title>
->(({ className, ...props }, ref) => <AlertDialogPrimitive.Title ref={ref} className={cn('text-lg font-IBMBold', className)} {...props} />)
+>(({ className, ...props }, ref) => <AlertDialogPrimitive.Title ref={ref} className={cn('font-IBMBold text-lg', className)} {...props} />)
 AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName
 
 const AlertDialogDescription = React.forwardRef<

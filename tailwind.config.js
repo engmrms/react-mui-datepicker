@@ -34,6 +34,7 @@ module.exports = {
                 background: {
                     DEFAULT: 'hsl(var(--background))',
                     secondary: 'hsla(var(--background-secondary))',
+                    overlay: 'hsla(var(--overlay))'
                 },
                 foreground: {
                     DEFAULT: 'hsl(var(--foreground))',
