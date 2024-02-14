@@ -79,7 +79,7 @@ const DropdownMenuItem = React.forwardRef<
     <DropdownMenuPrimitive.Item
         ref={ref}
         className={cn(
-            'relative flex cursor-default select-none items-center rounded-1 ps-space-03 pe-space-01 py-space-01 text-body-01 outline-none transition-colors focus:bg-card-hover   data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
+            'relative flex cursor-default select-none items-center rounded-1 py-space-02 pe-space-01 ps-space-03 text-body-01 outline-none transition-colors focus:bg-card-hover   data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
             inset && 'pl-8',
             className,
         )}
@@ -95,7 +95,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     <DropdownMenuPrimitive.CheckboxItem
         ref={ref}
         className={cn(
-            'relative flex cursor-default select-none items-center  rounded-1 ps-space-03 pe-space-01 py-space-01 text-body-01 outline-none transition-colors focus:bg-card-hover data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
+            'relative flex cursor-default select-none items-center  rounded-1 py-space-01 pe-space-01 ps-space-03 text-body-01 outline-none transition-colors focus:bg-card-hover data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
             className,
         )}
         checked={checked}
@@ -117,7 +117,7 @@ const DropdownMenuRadioItem = React.forwardRef<
     <DropdownMenuPrimitive.RadioItem
         ref={ref}
         className={cn(
-            'relative flex cursor-default select-none items-center rounded-1 ps-space-03 pe-space-01 py-space-01 text-body-01 outline-none transition-colors focus:bg-card-hover data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
+            'relative flex cursor-default select-none items-center rounded-1 py-space-01 pe-space-01 ps-space-03 text-body-01 outline-none transition-colors focus:bg-card-hover data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
             className,
         )}
         {...props}>
@@ -139,7 +139,7 @@ const DropdownMenuLabel = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
     <DropdownMenuPrimitive.Label
         ref={ref}
-        className={cn('text-caption-01 text-foreground-secondary font-IBMBold', inset && 'pl-8', className)}
+        className={cn('font-IBMBold text-caption-01 text-foreground-secondary', inset && 'pl-8', className)}
         {...props}
     />
 ))
