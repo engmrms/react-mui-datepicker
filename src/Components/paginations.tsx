@@ -3,11 +3,11 @@ import ChevronLeft from 'google-material-icons/outlined/ChevronLeft'
 import ChevronRight from 'google-material-icons/outlined/ChevronRight'
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import ShouldRender from '../../Lib/ShouldRender'
-import { cn } from '../../Lib/utils'
-import { strings } from '../../Locales'
-import { PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, Pagination as ShadPagination } from './pagination'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './select'
+import { cn } from '../Lib/utils'
+import { strings } from '../Locales'
+import ShouldRender from './ShouldRender'
+import { PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, Pagination as ShadPagination } from './ui/pagination'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 
 interface Props {
     totalItems: number
@@ -52,7 +52,7 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                         hasText={!withoutText}
                         className={classNames({
                             'cursor-pointer': true,
-                            'text-disabled pointer-events-none': selectedPage === 1,
+                            'pointer-events-none text-disabled': selectedPage === 1,
                         })}
                         onClick={() => {
                             handlePageClick(selectedPage - 2)
@@ -131,7 +131,7 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                         hasText={!withoutText}
                         className={classNames({
                             'cursor-pointer': true,
-                            'text-disabled pointer-events-none': selectedPage === pageCount,
+                            'pointer-events-none text-disabled': selectedPage === pageCount,
                         })}
                         onClick={() => {
                             handlePageClick(selectedPage)
@@ -144,7 +144,7 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
 }
 
 const Break = () => (
-    <PaginationItem className="w-space-05 text-center flex items-center justify-center">
+    <PaginationItem className="flex w-space-05 items-center justify-center text-center">
         <PaginationLink
             className={classNames({
                 'pointer-events-none': true,
@@ -160,7 +160,7 @@ const PaginationDescription = ({ selectedPage, pageCount, totalItems }: { select
 const LinesPerPage = ({ value, onChange }: { value: number; onChange: (value: string) => void }) => {
     return (
         <>
-            <span className="text-body-01 block whitespace-nowrap">{strings.Shared.LinesPerPage} :</span>
+            <span className="block whitespace-nowrap text-body-01">{strings.Shared.LinesPerPage} :</span>
             <Select value={value.toString()} onValueChange={val => onChange(val)}>
                 <SelectTrigger className="">
                     <SelectValue placeholder={strings.Shared.Select} />
@@ -192,8 +192,8 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
         <div className="flex gap-space-02">
             <button
                 disabled={disabled ?? currentPage === 1}
-                className="p-space-03 rounded-full border
-                 border-border disabled:border-disabled disabled:text-disabled"
+                className="rounded-full border border-border
+                 p-space-03 disabled:border-disabled disabled:text-disabled"
                 onClick={() =>
                     setCurrentPage(prev => {
                         if (prev > 1) return prev - 1
@@ -204,7 +204,7 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
             </button>
             <button
                 disabled={disabled ?? currentPage === totalPages}
-                className="p-space-03 rounded-full border border-border disabled:border-disabled disabled:text-disabled"
+                className="rounded-full border border-border p-space-03 disabled:border-disabled disabled:text-disabled"
                 onClick={() =>
                     setCurrentPage(prev => {
                         if (disabled) return prev
