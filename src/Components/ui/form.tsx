@@ -118,7 +118,7 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
     }
 
     return (
-        <p ref={ref} id={formMessageId} className={cn('text-xs leading-[1.8rem] font-IBMBold mt-space-01 text-error', className)} {...props}>
+        <p ref={ref} id={formMessageId} className={cn('mt-space-01 font-IBMBold text-xs leading-[1.8rem] text-error', className)} {...props}>
             {body}
         </p>
     )
@@ -134,8 +134,8 @@ export {
     FormLabel,
     FormMessage,
     useForm,
-    useFormField,
     useFormContext,
+    useFormField,
     useFormState,
     useWatch,
 }
