@@ -10,7 +10,7 @@ export const en = {
         ResidentID: 'Resident ID',
         Welcome: 'Welcome, ',
         Login: 'Login',
-        Logout: 'Logout',
+        Logout: 'Log out',
         InformationPanel: 'Information Panel',
         AccountSettings: 'Account Settings',
         Chat: 'Chat Now',
