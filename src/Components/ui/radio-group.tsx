@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
-import { Circle } from 'lucide-react'
+import Circle from 'google-material-icons/filled/Circle'
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
@@ -21,14 +21,14 @@ const RadioGroupItem = React.forwardRef<
         <RadioGroupPrimitive.Item
             ref={ref}
             className={cn(
-                `aspect-square h-[1.6rem] w-[1.6rem] rounded-full border-[1.5px] border-input hover:border-primary-dark hover:bg-primary-container
-                ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
-                disabled:cursor-not-allowed disabled:bg-disabled disabled:border-input  data-[state=checked]:bg-primary hover:data-[state=checked]:bg-primary-dark `,
+                `aspect-square h-8 w-8 rounded-full border-2 border-primary ring-offset-background hover:border-primary-dark
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+                disabled:cursor-not-allowed disabled:border-disabled data-[state=checked]:text-primary hover:data-[state=checked]:text-primary-dark disabled:data-[state=checked]:text-disabled`,
                 className,
             )}
             {...props}>
-            <RadioGroupPrimitive.Indicator className="flex items-center justify-center   h-full w-full rounded-full">
-                <Circle className="h-[.8rem] w-[.8rem] fill-white text-white disabled:text-gray-600/30 " />
+            <RadioGroupPrimitive.Indicator className="flex h-full w-full items-center justify-center rounded-full">
+                <Circle className="h-4 w-4" />
             </RadioGroupPrimitive.Indicator>
         </RadioGroupPrimitive.Item>
     )
