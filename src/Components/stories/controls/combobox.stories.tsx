@@ -37,7 +37,7 @@ const ComboboxControlDemo = (arg: any) => {
                 <FormItem className="flex flex-col">
                     <FormLabel>Language</FormLabel>
 
-                    <ComboboxControl<Languages>
+                    <ComboboxControl
                         options={languages}
                         optionLabel="label"
                         optionValue="value"
