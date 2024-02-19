@@ -22,7 +22,7 @@ function SVGIcons() {
         <>
             <div className="visible mb-4">
                 <h3 className="title-01">Icons</h3>
-                <div className="flex w-full items-end justify-between">
+                <div className="flex w-full items-end    justify-between">
                     <span className="flex items-center gap-x-space-02">
                         Filled <Switch onCheckedChange={() => setToggle(!toggle)} /> Outlined{' '}
                     </span>
