@@ -19,7 +19,7 @@ module.exports = {
                 DEFAULT: '100%',
                 sm: '640px',
                 md: '768px',
-                lg: '1056px',
+                lg: '1024px',
                 xl: '1312px',
                 '2xl': '1592px',
                 '3xl': '1920px',
@@ -34,7 +34,7 @@ module.exports = {
                 background: {
                     DEFAULT: 'hsl(var(--background))',
                     secondary: 'hsla(var(--background-secondary))',
-                    overlay: 'hsla(var(--overlay))'
+                    overlay: 'hsla(var(--overlay))',
                 },
                 foreground: {
                     DEFAULT: 'hsl(var(--foreground))',
