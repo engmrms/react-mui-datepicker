@@ -108,8 +108,8 @@ dependencies:
     specifier: ^0.2.0
     version: 0.2.0(@types/react@18.2.18)(react-dom@18.2.0)(react@18.2.0)
   google-material-icons:
-    specifier: 1.0.5
-    version: 1.0.5
+    specifier: 0.1.0
+    version: 0.1.0
   highcharts:
     specifier: ^11.2.0
     version: 11.2.0
@@ -7555,8 +7555,8 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /google-material-icons@1.0.5:
-    resolution: {integrity: sha512-ilvg5M7Lf00StH/nzHFPbGIW/6K82NbBgTxBGfioYTMeSdtktY4FESdb6zSxAD3doR/0McHKJUe/uE0EcPKP/A==}
+  /google-material-icons@0.1.0:
+    resolution: {integrity: sha512-iWjvyc+wAKgYIfiX+fcKOuPk2DWeZWLzewSf6wjxR95JX3PAlcO9iGYfCI9yO2M74mp6paEwq9RGrTtfwjn12A==}
     dev: false
 
   /gopd@1.0.1:
