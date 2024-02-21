@@ -21,6 +21,7 @@ const toggleVariants = cva(
                 default: 'px-space-05 py-space-03',
                 sm: 'px-space-04 py-space-02',
                 lg: 'h-11 px-5',
+                fit: '',
             },
         },
 
