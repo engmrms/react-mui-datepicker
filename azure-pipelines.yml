@@ -1,0 +1,76 @@
+trigger:
+  batch: false
+  branches:
+    include:
+      - dev
+      - master
+
+pool:
+  name: ubuntu-18.04
+  demands: java
+
+variables:
+  enableCodeScanning: "true"
+
+workspace:
+  clean: all
+
+steps:
+  - task: GitVersion@5
+    displayName: GitVersion
+    inputs:
+      preferBundledVersion: false
+      configFilePath: "GitVersion.yml"
+      updateAssemblyInfo: false
+    enabled: true
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "17.x"
+    displayName: "Install Node.js"
+
+  - task: replacetokens@5
+    displayName: "Update SonarQube Settings"
+    inputs:
+      targetFiles: "**/*sonar.ts"
+      encoding: "auto"
+      tokenPattern: "default"
+      writeBOM: true
+      actionOnMissing: "warn"
+      keepToken: false
+      actionOnNoFiles: "continue"
+      enableTransforms: false
+      enableRecursion: false
+      useLegacyPattern: false
+      enableTelemetry: true
+
+  - script: |
+      cd '$(System.DefaultWorkingDirectory)/Core'
+      curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6
+      pnpm install
+      
+      cd '$(System.DefaultWorkingDirectory)/'
+      curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6
+      pnpm install
+      pnpm run build
+    displayName: "npm install and build"
+
+  - script: |
+      cd '$(System.DefaultWorkingDirectory)/'
+      pnpm run sonar
+    displayName: "Run Code Analysis"
+    condition: and(succeeded(), eq('${{ variables.enableCodeScanning }}', 'true'))
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: "$(System.DefaultWorkingDirectory)/dist"
+      includeRootFolder: false
+      archiveType: "zip"
+      archiveFile: "$(Build.ArtifactStagingDirectory)/Portal.zip"
+      replaceExistingArchive: true
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)/Portal.zip"
+      ArtifactName: "drop"
+      publishLocation: "Container"
