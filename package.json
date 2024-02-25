@@ -9,7 +9,8 @@
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview",
         "start": "storybook dev -p 6006",
-        "build-storybook": "tsc && storybook build"
+        "build-storybook": "tsc && storybook build",
+        "sonar": "node ./src/Lib/sonar.ts"
     },
     "dependencies": {
         "@date-io/moment": "^2.17.0",
@@ -63,6 +64,7 @@
         "uuid": "^9.0.1",
         "zod": "^3.22.4",
         "zustand": "^4.5.1",
+        "sonarqube-scanner": "^3.1.0",
         "immer": "^10.0.3"
     },
     "devDependencies": {
