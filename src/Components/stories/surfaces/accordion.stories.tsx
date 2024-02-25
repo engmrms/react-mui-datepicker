@@ -6,7 +6,7 @@ import Add from 'google-material-icons/outlined/Add'
 import Minimize from 'google-material-icons/outlined/Minimize'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../../ui/accordion'
 
-export function AccordionDemo(arg: any) {
+function AccordionDemo(arg: any) {
     return (
         <Accordion {...arg} type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
