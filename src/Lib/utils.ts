@@ -49,3 +49,13 @@ export const formatter = (dir: string) => {
 export const formatterTime = (dir: string) => {
     return new Intl.DateTimeFormat(dir === 'ar' ? 'ar' : 'en', { timeStyle: 'short' })
 }
+
+export const tw = (...classes: string[]) =>
+    classes
+        .map(cls =>
+            cls
+                .split(' ')
+                .map(className => (process.env.NODE_ENV === 'production' ? `er-${className}` : className))
+                .join(' '),
+        )
+        .join(' ')
