@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
-import * as filled from 'google-material-icons/filled'
-import * as outlined from 'google-material-icons/outlined'
+
+import { filled, outlined } from 'google-material-icons'
 import debounce from 'lodash/debounce'
 import React, { useCallback, useState } from 'react'
 import { Input } from '../../ui/input'
@@ -15,7 +15,7 @@ function SVGIcons() {
     }
 
     const searchFilter = useCallback(() => {
-        return Object.keys(toggle ? outlined : filled).filter(icon => icon.toLowerCase().includes(search))
+        return Object.keys(toggle ? outlined : filled).filter(icon => icon.toLowerCase().includes(search) && icon !== 'default')
     }, [search, toggle])
 
     return (

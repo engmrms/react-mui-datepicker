@@ -34,5 +34,13 @@ const config: StorybookConfig = {
         defaultName: 'Documentation',
     },
     staticDirs: ['../public'],
+    viteFinal: async config => {
+        config.build = {
+            ...config.build,
+            commonjsOptions: { requireReturnsDefault: 'preferred' },
+        }
+
+        return config
+    },
 }
 export default config
