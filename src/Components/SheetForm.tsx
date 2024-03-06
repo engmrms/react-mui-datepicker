@@ -44,7 +44,7 @@ const SheetFormHeader = ({ className, title, ...props }: React.ComponentPropsWit
 SheetFormHeader.displayName = 'SheetFormHeader'
 
 const SheetFormFooter = ({ className, title, ...props }: React.ComponentPropsWithoutRef<typeof SheetFooter>) => (
-    <SheetFooter className={cn('mt-auto bg-background p-space-05', className)} {...props} />
+    <SheetFooter className={cn('fixed bottom-0 left-0 mt-auto w-full bg-background p-space-05 sm:w-3/4 sm:max-w-[60rem]', className)} {...props} />
 )
 
 SheetFormFooter.displayName = 'SheetFormFooter'
