@@ -45,8 +45,6 @@ TabsList.displayName = TabsPrimitive.List.displayName
 const TabsTrigger = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Trigger>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>>(
     ({ className, ...props }, ref) => {
         const context = React.useContext(TabsContext)
-        console.log(context)
-
         return <TabsPrimitive.Trigger ref={ref} className={cn(tabVariants({ variant: context.variant }), className)} {...props} />
     },
 )
