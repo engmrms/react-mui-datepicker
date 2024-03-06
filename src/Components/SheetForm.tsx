@@ -20,8 +20,9 @@ const SheetFormContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<H
     return (
         <SheetContent
             ref={ref}
-            className="flex flex-col rounded-tl-4 rounded-tr-4 bg-card p-0 sm:max-w-[60rem] md:rounded-tl-none md:rounded-tr-none"
+            className="flex flex-col rounded-tl-4 rounded-tr-4 bg-card p-0 data-[side=bottom]:max-md:h-[93%] sm:max-w-[60rem] md:rounded-tl-none md:rounded-tr-none"
             side={!matches ? 'bottom' : 'left'}
+            data-side={!matches ? 'bottom' : 'left'}
             {...props}
         />
     )
