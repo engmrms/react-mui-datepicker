@@ -12,17 +12,17 @@ pool:
 variables:
   enableCodeScanning: "true"
 
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: Platform/templates
+
 workspace:
   clean: all
 
 steps:
-  - task: GitVersion@5
-    displayName: GitVersion
-    inputs:
-      preferBundledVersion: false
-      configFilePath: "GitVersion.yml"
-      updateAssemblyInfo: false
-    enabled: true
+  - template: GitVersion.yml@templates
 
   - task: NodeTool@0
     inputs:
