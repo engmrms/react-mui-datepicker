@@ -12,8 +12,8 @@ export function Toaster() {
                 return (
                     <Toast key={id} {...props} className={`${isActive ? 'grayscale' : 'grayscale-0'}`}>
                         <ToastClose />
-                        <span className="hidden sm:block !ml-0 !mr-0 h-20 self-center border border-border opacity-20" />
-                        <div className="grid gap-1 flex-1">
+                        <span className="!ml-0 !mr-0 h-20 self-center border border-border opacity-20" />
+                        <div className="grid flex-1 gap-1">
                             {title && <ToastTitle>{title}</ToastTitle>}
                             {description && <ToastDescription>{description}</ToastDescription>}
                         </div>
