@@ -39,13 +39,13 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     ({ className, variant, rounded, startAdornment, colors, endAdornment, ...props }, ref) => {
         return (
             <div className={cn(textAreaVariants({ variant, rounded, colors }), className)} aria-invalid={props['aria-invalid']}>
-                {startAdornment && <div className="w-[2rem] h-[2rem] mr-space-02 mt-space-04 ">{startAdornment}</div>}
+                {startAdornment && <div className="size-8 mr-space-02 mt-space-04 ">{startAdornment}</div>}
                 <textarea
-                    className="outline-none py-space-03 w-full bg-transparent resize-none placeholder:text-foreground-secondary"
+                    className="w-full resize-none bg-transparent py-space-03 outline-none placeholder:text-foreground-secondary"
                     ref={ref}
                     {...props}
                 />
-                {endAdornment && <div className="w-[2rem] h-[2rem] ml-space-02">{endAdornment}</div>}
+                {endAdornment && <div className="size-8 ml-space-02">{endAdornment}</div>}
             </div>
         )
     },
