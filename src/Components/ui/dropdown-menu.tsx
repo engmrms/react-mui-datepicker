@@ -1,6 +1,9 @@
 /* eslint-disable react/prop-types */
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
-import { Check, ChevronRight, Circle } from 'lucide-react'
+
+import Circle from "google-material-icons/filled/Circle"
+import Check from "google-material-icons/filled/Check"
+import ChevronRight from "google-material-icons/filled/ChevronRight"
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
@@ -117,13 +120,13 @@ const DropdownMenuRadioItem = React.forwardRef<
     <DropdownMenuPrimitive.RadioItem
         ref={ref}
         className={cn(
-            'relative flex cursor-default select-none items-center rounded-1 py-space-01 pe-space-01 ps-space-03 text-body-01 outline-none transition-colors focus:bg-card-hover data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
+            'relative flex cursor-default select-none items-center rounded-1 py-space-01 pe-space-04 ps-space-03 text-body-01 outline-none transition-colors focus:bg-card-hover data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
             className,
         )}
         {...props}>
-        <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+        <span className="absolute left-0 flex h-space-02 w-space-02 items-center justify-center">
             <DropdownMenuPrimitive.ItemIndicator>
-                <Circle className="h-2 w-2 fill-current" />
+                <Circle className="h-space-01 w-space-01 fill-current" />
             </DropdownMenuPrimitive.ItemIndicator>
         </span>
         {children}
