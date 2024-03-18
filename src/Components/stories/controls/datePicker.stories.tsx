@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
 
 import DatePicker from '../../ui/DatePicker'
+import { useState } from 'react'
+import { Moment } from 'moment'
 
 const meta: Meta<typeof DatePicker> = {
     title: 'Design System/Controls/DatePicker',
@@ -24,9 +27,15 @@ export const Default: Story = {
     args: {
         lang: 'ar',
         placeholder: '',
-        value: new Date().toLocaleString(),
+        rounded: 'default',
     },
     render: arg => {
-        return <DatePicker {...arg} />
+        return <DatePickerDemo {...arg} />
     },
+}
+
+const DatePickerDemo = (arg: any) => {
+    const [valu, setValu] = useState<Moment>()
+    console.log(valu)
+    return <DatePicker value={valu} onChange={v => { console.log(v); setValu(v)}} {...arg} />
 }
