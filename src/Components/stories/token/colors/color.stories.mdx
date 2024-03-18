@@ -1,0 +1,85 @@
+import { Meta } from '@storybook/blocks'
+import ColorBlock from './components/ColorBlock'
+import { gray, lavender, middleBlue, blue, green, red, marigold, cyan, azure } from './components/colors'
+
+<Meta title="Design Tokens/Color/Primitives Color" />
+
+# Primitives Color
+
+A primitive color is an individual color from our catalog of brand colors, gray.100, gary.200, etc. It is the most atomic form of color and will be attached to a semantic color name.
+
+## Gray
+
+<div className="flex flex-wrap gap-space-04">
+    {gray.map(e => (
+        <ColorBlock key={e} color={e} value={e} />
+    ))}
+</div>
+
+## Lavender
+
+<div className="flex flex-wrap gap-space-04">
+    {lavender.map(e => (
+        <ColorBlock key={e} color={e} value={e} />
+    ))}
+</div>
+
+## Middle Blue
+
+<div className="flex flex-wrap gap-space-04">
+    {middleBlue.map(e => (
+        <ColorBlock key={e} color={e} value={e} />
+    ))}
+</div>
+
+## Blue
+
+<div className="flex flex-wrap gap-space-04">
+    {blue.map(e => (
+        <ColorBlock key={e} color={e} value={e} />
+    ))}
+</div>
+
+## Green
+
+<div className="flex flex-wrap gap-space-04">
+    {green.map(e => (
+        <ColorBlock key={e} color={e} value={e} />
+    ))}
+</div>
+
+## Red
+
+<div className="flex flex-wrap gap-space-04">
+    {red.map(e => (
+        <ColorBlock key={e} color={e} value={e} />
+    ))}
+</div>
+
+## Marigold
+
+<div className="flex flex-wrap gap-space-04">
+    {marigold.map(e => (
+        <ColorBlock key={e} color={e} value={e} />
+    ))}
+</div>
+
+## Cyan
+
+<div className="flex flex-wrap gap-space-04">
+    {cyan.map(e => (
+        <ColorBlock key={e} color={e} value={e} />
+    ))}
+</div>
+
+## Azure
+
+<div className="flex flex-wrap gap-space-04">
+    {azure.map(e => (
+        <ColorBlock key={e} color={e} value={e} />
+    ))}
+</div>
+
+# Color tokens
+
+This component is used to assist developers and designers in understanding the design status.

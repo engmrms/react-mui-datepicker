@@ -5,16 +5,16 @@ import { RadioGroup, RadioGroupItem } from '../../ui/radio-group'
 
 function RadioGroupDemo(arg: Story) {
     return (
-        <RadioGroup defaultValue="comfortable" {...arg} className="space-y-space-02" dir="rtl">
-            <div className="flex items-center space-x-reverse space-x-space-02">
+        <RadioGroup defaultValue="comfortable" {...arg} className="space-y-space-02" orientation="horizontal">
+            <div className="flex items-center space-x-space-02 space-x-reverse">
                 <RadioGroupItem value="default" id="r1" />
                 <Label htmlFor="r1">Default</Label>
             </div>
-            <div className="flex items-center space-x-reverse space-x-space-02">
+            <div className="flex items-center space-x-space-02 space-x-reverse">
                 <RadioGroupItem value="comfortable" id="r2" />
                 <Label htmlFor="r2">Comfortable</Label>
             </div>
-            <div className="flex items-center space-x-reverse space-x-space-02">
+            <div className="flex items-center space-x-space-02 space-x-reverse">
                 <RadioGroupItem value="compact" id="r3" />
                 <Label htmlFor="r3">Compact</Label>
             </div>

@@ -3,7 +3,7 @@
 const plugin = require('tailwindcss/plugin')
 module.exports = {
     darkMode: ['class'],
-    content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
+    content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx,mdx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx,mdx}'],
     theme: {
         container: {
             center: true,
@@ -28,7 +28,7 @@ module.exports = {
 
         extend: {
             colors: {
-                border: 'hsla(var(--border))',
+                border: { DEFAULT: 'hsla(var(--border))', secondary: '#2D2D2F0D' },
                 input: 'hsl(var(--input))',
                 ring: 'hsl(var(--ring))',
                 background: {
