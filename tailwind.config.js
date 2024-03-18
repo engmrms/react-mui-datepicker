@@ -119,6 +119,9 @@ module.exports = {
                     foreground: 'hsl(var(--card-foreground))',
                     hover: 'hsla(var(--card-hover))',
                 },
+                skeleton: {
+                    DEFAULT: 'hsl(var(--skeleton))',
+                },
                 gray: {
                     50: '#F5F5F5',
                     100: '#F4F4F5',
