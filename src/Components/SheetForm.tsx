@@ -3,9 +3,9 @@
 import Close from 'google-material-icons/outlined/Close'
 import React from 'react'
 import { useMediaQuery } from 'usehooks-ts'
+import { cn } from '../Lib/utils'
 import { Button, ButtonProps } from './ui/button'
 import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTrigger } from './ui/sheet'
-import { cn } from '../Lib/utils'
 
 const SheetForm = Sheet
 
@@ -44,13 +44,13 @@ const SheetFormHeader = ({ className, title, ...props }: React.ComponentPropsWit
 SheetFormHeader.displayName = 'SheetFormHeader'
 
 const SheetFormFooter = ({ className, title, ...props }: React.ComponentPropsWithoutRef<typeof SheetFooter>) => (
-    <SheetFooter className={cn('fixed bottom-0 left-0 mt-auto w-full bg-background p-space-05 sm:w-3/4 sm:max-w-[60rem]', className)} {...props} />
+    <SheetFooter className={cn('absolute bottom-0 left-0 mt-auto w-full bg-background p-space-05', className)} {...props} />
 )
 
 SheetFormFooter.displayName = 'SheetFormFooter'
 
 const SheetFormBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('p-space-05 text-foreground', className)} {...props} />
+    <div ref={ref} className={cn('mb-space-11 overflow-auto p-space-05 text-foreground', className)} {...props} />
 ))
 
 SheetFormBody.displayName = 'SheetFormBody'
