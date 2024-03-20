@@ -3,8 +3,7 @@ import * as React from 'react'
 
 import CheckIcon from 'google-material-icons/outlined/Check'
 import ChevronUpIcon from 'google-material-icons/outlined/ExpandLess'
-import ChevronDownIcon from 'google-material-icons/outlined/ExpandMore'
-import CaretSortIcon from 'google-material-icons/outlined/UnfoldMore'
+import { default as ChevronDownIcon, default as ExpandMore } from 'google-material-icons/outlined/ExpandMore'
 
 import * as SelectPrimitive from '@radix-ui/react-select'
 
@@ -29,7 +28,7 @@ const SelectTrigger = React.forwardRef<
         {...props}>
         {children}
         <SelectPrimitive.Icon asChild>
-            <CaretSortIcon className="!size-[24px] ms-space-01 text-foreground" />
+            <ExpandMore className="!size-[24px] ms-space-01 text-foreground" />
         </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
 ))
