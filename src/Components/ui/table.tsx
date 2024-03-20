@@ -26,7 +26,7 @@ const TableFooter = React.forwardRef<HTMLTableSectionElement, React.HTMLAttribut
 TableFooter.displayName = 'TableFooter'
 
 const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableRowElement>>(({ className, ...props }, ref) => (
-    <tr ref={ref} className={cn('   transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted', className)} {...props} />
+    <tr ref={ref} className={cn('transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted', className)} {...props} />
 ))
 TableRow.displayName = 'TableRow'
 
@@ -34,7 +34,7 @@ const TableHead = React.forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<
     <th
         ref={ref}
         className={cn(
-            'py-space-05 bg-background text-start ps-space-04   align-middle text-body-02 font-IBMBold [&:has([role=checkbox])]:pr-0',
+            'bg-background py-space-05 ps-space-04 text-center   align-middle font-IBMBold text-body-02 [&:has([role=checkbox])]:pr-0',
             className,
         )}
         {...props}
@@ -46,7 +46,7 @@ const TableCell = React.forwardRef<HTMLTableCellElement, React.TdHTMLAttributes<
     <td
         ref={ref}
         className={cn(
-            'text-start ps-space-04 py-space-04 align-middle text-body-02 text-foreground-secondary [&:has([role=checkbox])]:pr-0',
+            'py-space-04 ps-space-04 text-center align-middle text-body-02 font-normal text-foreground-secondary [&:has([role=checkbox])]:pr-0',
             className,
         )}
         {...props}
