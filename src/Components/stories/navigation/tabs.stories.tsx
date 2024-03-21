@@ -1,16 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Button } from '../../ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../ui/card'
 import { Input } from '../../ui/input'
 import { Label } from '../../ui/label'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../ui/tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger, tabVariants } from '../../ui/tabs'
 
 const meta: Meta<typeof Tabs> = {
     title: 'Design System/Navigation/Tabs',
     component: Tabs,
     tags: ['autodocs'],
-    argTypes: {},
+
     parameters: {
         layout: 'centered',
         docs: {
@@ -22,11 +23,19 @@ const meta: Meta<typeof Tabs> = {
 }
 
 export default meta
-type Story = StoryObj<typeof Tabs>
+type Story = StoryObj<typeof Tabs | typeof tabVariants>
 export const Default: Story = {
-    render: arg => (
-        <Tabs {...arg} defaultValue="account" className="w-[400px]">
-            <TabsList className="grid w-full grid-cols-2">
+    args: {
+        variant: 'underline',
+        dir: 'ltr',
+    },
+    argTypes: {
+        variant: { control: 'radio', options: ['underline', 'filled'] ,description:"'underline', 'filled'"},
+        dir: { control: 'radio', options: ['rtl', 'ltr'] },
+    },
+    render: (arg: any) => (
+        <Tabs dir={arg?.dir} orientation={arg?.orientation} defaultValue="account" className="w-[400px]">
+            <TabsList className="grid w-full grid-cols-2" variant={arg?.variant}>
                 <TabsTrigger value="account">Account</TabsTrigger>
                 <TabsTrigger value="password">Password</TabsTrigger>
             </TabsList>
