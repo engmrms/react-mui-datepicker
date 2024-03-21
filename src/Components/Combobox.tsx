@@ -4,12 +4,13 @@ import classNames from 'classnames'
 import ExpandMore from 'google-material-icons/outlined/ExpandMore'
 import { cn } from '../Lib/utils'
 import useLanguage from '../Stores/useLanguage'
-import { Button, ButtonProps } from './ui/button'
+import { Button, ButtonProps, buttonVariants } from './ui/button'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command'
 import { FormControl } from './ui/form'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
 import { ScrollArea } from './ui/scroll-area'
 
+import { VariantProps } from 'class-variance-authority'
 import React, { useState } from 'react'
 import ActionLoader from './ActionLoader'
 
@@ -81,7 +82,7 @@ const ComboboxGroup = React.forwardRef<React.ElementRef<typeof CommandGroup>, Re
 )
 ComboboxGroup.displayName = 'ComboboxGroup'
 
-interface Props<T> {
+interface Props<T> extends VariantProps<typeof buttonVariants> {
     options?: T[]
     optionLabel: keyof T
     optionValue: keyof T
@@ -90,12 +91,12 @@ interface Props<T> {
     isLoading?: boolean
     onChange: (value: string) => void
 }
-const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, optionValue, onChange, value }: Props<T>) => {
+const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, optionValue, onChange, value, ...rest }: Props<T>) => {
     const [open, setOpen] = useState(false)
-    const currentValue = options?.find(opt => opt[optionValue] === value)?.[optionLabel] || ''
+    const currentValue = options?.find(opt => opt[optionValue] === value)?.[optionLabel] ?? ''
     return (
         <Combobox open={open}>
-            <ComboboxTrigger placeholder={placeholder} onClick={() => setOpen(!open)} isLoading={isLoading}>
+            <ComboboxTrigger placeholder={placeholder} onClick={() => setOpen(!open)} isLoading={isLoading} {...rest}>
                 {currentValue.toString()}
             </ComboboxTrigger>
             <ComboboxGroup>

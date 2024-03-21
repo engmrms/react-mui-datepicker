@@ -42,6 +42,9 @@ const meta: Meta<typeof ToggleGroup> = {
     title: 'Design System/Controls/Toggle Group',
     component: ToggleGroup,
     tags: ['autodocs'],
+    argTypes: {
+        dir: { control: 'radio', options: ['rtl', 'ltr'] },
+    },
 
     parameters: {
         layout: 'centered',
@@ -62,6 +65,7 @@ export const Default: Story = {
         asChild: false,
         variant: 'default',
         size: 'default',
+        dir: 'ltr',
     },
     render: ToggleGroupDemo,
 }
