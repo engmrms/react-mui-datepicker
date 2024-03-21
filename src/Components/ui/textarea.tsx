@@ -1,9 +1,11 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import * as React from 'react'
 import { cn } from '../../Lib/utils'
+import ShouldRender from '../ShouldRender'
+import { useFormContext } from '../ui/form'
 
 const textAreaVariants = cva(
-    'flex min-h-[10rem] w-full border ps-space-04 text-base hover:border-foreground   disabled:cursor-not-allowed disabled:text-disabled aria-[invalid=true]:border-error',
+    'flex relative min-h-[10rem] w-full border ps-space-04 text-base hover:border-foreground   disabled:cursor-not-allowed disabled:text-disabled aria-[invalid=true]:border-error',
     {
         variants: {
             variant: {
@@ -37,15 +39,23 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     ({ className, variant, rounded, startAdornment, colors, endAdornment, ...props }, ref) => {
+        const { watch } = useFormContext()
         return (
-            <div className={cn(textAreaVariants({ variant, rounded, colors }), className)} aria-invalid={props['aria-invalid']}>
-                {startAdornment && <div className="mr-space-02 mt-space-04 h-[2rem] w-[2rem] ">{startAdornment}</div>}
-                <textarea
-                    className="w-full resize-none bg-transparent py-space-03 outline-none placeholder:text-foreground-secondary"
-                    ref={ref}
-                    {...props}
-                />
-                {endAdornment && <div className="ml-space-02 h-[2rem] w-[2rem]">{endAdornment}</div>}
+            <div className="flex flex-col gap-space-01">
+                <div className={cn(textAreaVariants({ variant, rounded, colors }), className)} aria-invalid={props['aria-invalid']}>
+                    {startAdornment && <div className="mr-space-02 mt-space-04 h-[2rem] w-[2rem] ">{startAdornment}</div>}
+                    <textarea
+                        className="w-full resize-none bg-transparent py-space-03 outline-none placeholder:text-foreground-secondary"
+                        ref={ref}
+                        {...props}
+                    />
+                    {endAdornment && <div className="ml-space-02 h-[2rem] w-[2rem]">{endAdornment}</div>}
+                </div>
+                <ShouldRender shouldRender={!!props?.name && !!watch(props?.name)}>
+                    <span className="flex flex-row-reverse text-caption-01 text-foreground">
+                        <span className="text-foreground-secondary">{props?.maxLength}</span>/<span>{watch(String(props?.name))?.length}</span>
+                    </span>
+                </ShouldRender>
             </div>
         )
     },
