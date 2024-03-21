@@ -51,7 +51,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
                     />
                     {endAdornment && <div className="ml-space-02 h-[2rem] w-[2rem]">{endAdornment}</div>}
                 </div>
-                <ShouldRender shouldRender={!!props?.name && !!watch(props?.name)}>
+                <ShouldRender shouldRender={!!props?.name}>
                     <span className="flex flex-row-reverse text-caption-01 text-foreground">
                         <span className="text-foreground-secondary">{props?.maxLength}</span>/<span>{watch(String(props?.name))?.length}</span>
                     </span>
