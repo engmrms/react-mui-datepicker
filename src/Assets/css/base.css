@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 
-
 @layer base {
     :root {
         --background: 0 0% 97%;
@@ -81,7 +80,7 @@
         --ring: 222.2 84% 4.9%;
         --disabled: 230, 6%, 24%, 0.3;
 
-        --skeleton: 170, 5%, 22%, 0.20;
+        --skeleton: 170, 5%, 22%, 0.2;
 
         --radius: 12px;
     }
@@ -150,18 +149,16 @@
     }
 
     html {
-        @apply sm:text-[62.5%] text-[55%] scroll-smooth;
+        @apply scroll-smooth text-[55%] sm:text-[62.5%];
     }
 
     body {
-        @apply bg-card text-foreground text-base font-IBMReguler;
+        @apply bg-card font-IBMReguler text-base text-foreground;
     }
 }
 
-
-
 .MuiButtonBase-root.MuiPickersDay-root {
-    @apply font-IBMReguler text-sm rounded-1 hover:bg-primary-container disabled:text-disabled;
+    @apply rounded-1 font-IBMReguler text-sm hover:bg-primary-container disabled:text-disabled;
 }
 .MuiButtonBase-root.MuiPickersDay-root.Mui-selected {
     @apply bg-primary;
@@ -176,7 +173,7 @@
     @apply m-0 text-body-01;
 }
 .MuiButtonBase-root.MuiIconButton-root {
-    @apply rtl:rotate-180 text-body-01;
+    @apply text-body-01 rtl:rotate-180;
 }
 
 .MuiPickersYear-root .MuiPickersYear-yearButton {
@@ -184,4 +181,8 @@
 }
 .MuiPickersYear-root .MuiPickersYear-yearButton.Mui-selected {
     @apply !bg-primary;
+}
+
+.Mui-disabled.MuiPickersDay-today {
+    @apply !border-transparent;
 }
