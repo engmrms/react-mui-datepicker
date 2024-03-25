@@ -10,6 +10,13 @@ export enum StatusCodes {
     BadGateway = 502,
     ServerUnavailable = 503,
 }
+export enum UserTypes {
+    None = 0,
+    Administrative = 101,
+    Student = 201,
+    Parent = 202,
+    Teacher = 203,
+}
 
 export enum Gender {
     male = 1,

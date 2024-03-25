@@ -39,7 +39,7 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     ({ className, variant, rounded, startAdornment, colors, endAdornment, ...props }, ref) => {
-        const { watch } = useFormContext()
+        const methods = useFormContext()
         return (
             <div className="flex flex-col gap-space-01">
                 <div className={cn(textAreaVariants({ variant, rounded, colors }), className)} aria-invalid={props['aria-invalid']}>
@@ -51,9 +51,9 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
                     />
                     {endAdornment && <div className="ml-space-02 h-[2rem] w-[2rem]">{endAdornment}</div>}
                 </div>
-                <ShouldRender shouldRender={!!props?.name}>
+                <ShouldRender shouldRender={!!props?.name && !!methods}>
                     <span className="flex flex-row-reverse text-caption-01 text-foreground">
-                        <span className="text-foreground-secondary">{props?.maxLength}</span>/<span>{watch(String(props?.name))?.length}</span>
+                        <span className="text-foreground-secondary">{props?.maxLength}</span>/<span>{methods?.watch(String(props?.name))?.length}</span>
                     </span>
                 </ShouldRender>
             </div>
