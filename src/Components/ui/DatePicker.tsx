@@ -11,12 +11,12 @@ import { Popover, PopoverContent, PopoverTrigger } from './popover'
 interface Props {
     lang: 'ar' | 'en'
     placeholder?: string
-    value: string
+    value: Date | string | null
     onChange: (value: string) => void
     rounded?: ButtonProps['rounded']
 }
 
-const DatePicker = ({ placeholder, value, onChange, lang, rounded, ...rest }: Props & DateCalendarProps<Moment>) => {
+const DatePicker = ({ placeholder, value, onChange, lang, rounded, ...rest }: Props & Omit<DateCalendarProps<Moment>, 'value'>) => {
     const [isOpen, setIsopen] = useState(false)
     return (
         <Popover open={isOpen} onOpenChange={op => setIsopen(op)}>

@@ -93,7 +93,7 @@ interface Props<T> extends VariantProps<typeof buttonVariants> {
 }
 const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, optionValue, onChange, value, ...rest }: Props<T>) => {
     const [open, setOpen] = useState(false)
-    const currentValue = options?.find(opt => opt[optionValue] === value)?.[optionLabel] ?? ''
+    const currentValue = options?.find(opt => String(opt[optionValue]) === value)?.[optionLabel] ?? ''
     return (
         <Combobox open={open}>
             <ComboboxTrigger placeholder={placeholder} onClick={() => setOpen(!open)} isLoading={isLoading} {...rest}>
