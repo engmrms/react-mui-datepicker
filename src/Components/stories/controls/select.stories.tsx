@@ -21,8 +21,8 @@ const meta: Meta<typeof Select> = {
 export default meta
 type Story = StoryObj<typeof Select>
 export const Default: Story = {
-    render: (arg, { globals: { locale } }) => (
-        <Select {...arg} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    render: (arg, { globals: { dir } }) => (
+        <Select {...arg} dir={dir}>
             <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Theme" />
             </SelectTrigger>
@@ -36,8 +36,8 @@ export const Default: Story = {
 }
 
 export const Scrollable: Story = {
-    render: (arg, { globals: { locale } }) => (
-        <Select {...arg} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    render: (arg, { globals: { dir } }) => (
+        <Select {...arg} dir={dir}>
             <SelectTrigger className="w-[280px]">
                 <SelectValue placeholder="Select a timezone" />
             </SelectTrigger>

@@ -4,15 +4,6 @@ import { Checkbox } from '../../ui/checkbox'
 
 type CheckboxType = typeof Checkbox
 
-const CheckBoxSample = (arg: Story) => (
-    <div className="flex items-center gap-space-01">
-        <Checkbox {...arg} id="terms" />
-        <label htmlFor="terms" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-            Accept terms and conditions
-        </label>
-    </div>
-)
-
 const meta: Meta<CheckboxType> = {
     title: 'Design System/Controls/Checkbox',
     component: Checkbox,
@@ -36,5 +27,12 @@ export const Default: Story = {
         asChild: false,
         disabled: false,
     },
-    render: CheckBoxSample,
+    render: (arg, { globals: { dir } }) => (
+        <div className="flex items-center gap-space-01">
+            <Checkbox {...arg} id="terms" dir={dir} />
+            <label htmlFor="terms" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Accept terms and conditions
+            </label>
+        </div>
+    ),
 }
