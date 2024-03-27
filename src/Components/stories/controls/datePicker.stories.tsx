@@ -1,15 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useArgs } from '@storybook/client-api'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import DatePicker from '../../ui/DatePicker'
-import { useState } from 'react'
-import { Moment } from 'moment'
-
 const meta: Meta<typeof DatePicker> = {
     title: 'Design System/Controls/DatePicker',
     component: DatePicker,
     tags: ['autodocs'],
-    argTypes: {},
 }
 
 export default meta
@@ -28,14 +26,22 @@ export const Default: Story = {
         lang: 'ar',
         placeholder: '',
         rounded: 'default',
+        value: '',
+    },
+    argTypes: {
+        value: { control: 'text' },
     },
     render: arg => {
-        return <DatePickerDemo {...arg} />
+        const [storyArgs, updateArgs] = useArgs()
+        return (
+            <DatePicker
+                {...arg}
+                onChange={v => {
+                    if (v !== storyArgs.value) {
+                        updateArgs({ value: v })
+                    }
+                }}
+            />
+        )
     },
-}
-
-const DatePickerDemo = (arg: any) => {
-    const [valu, setValu] = useState<Moment>()
-    console.log(valu)
-    return <DatePicker value={valu} onChange={v => { console.log(v); setValu(v)}} {...arg} />
 }

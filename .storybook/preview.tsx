@@ -20,6 +20,32 @@ const preview: Preview = {
                 dynamicTitle: true,
             },
         },
+        dir: {
+            name: 'Text direction',
+            description: 'Set the text direction for the story',
+            defaultValue: 'ltr',
+            toolbar: {
+                icon: 'transfer',
+                title: 'Text direction',
+                items: [
+                    {
+                        right: '🔄',
+                        title: 'auto',
+                        value: 'auto',
+                    },
+                    {
+                        right: '➡️',
+                        title: 'left-to-right (ltr)',
+                        value: 'ltr',
+                    },
+                    {
+                        right: '⬅️',
+                        title: 'right-to-left (rtl)',
+                        value: 'rtl',
+                    },
+                ],
+            },
+        },
     },
     parameters: {
         actions: { argTypesRegex: '^on[A-Z].*' },
@@ -35,8 +61,9 @@ const preview: Preview = {
     },
     decorators: [
         (Story, context) => {
+            console.log(context.globals)
             return (
-                <div dir={context.globals.locale === 'ar' ? 'rtl' : 'ltr'}>
+                <div dir={context.globals.dir}>
                     <Story />
                 </div>
             )

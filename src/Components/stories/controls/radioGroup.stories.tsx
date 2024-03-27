@@ -3,27 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Label } from '../../ui/label'
 import { RadioGroup, RadioGroupItem } from '../../ui/radio-group'
 
-function RadioGroupDemo(arg: Story) {
-    //const { dir } = useLanguage()
-
-    return (
-        <RadioGroup defaultValue="comfortable" {...arg} className="space-y-space-02" orientation="horizontal">
-            <div className="flex items-center gap-x-space-02">
-                <RadioGroupItem value="default" id="r1" />
-                <Label htmlFor="r1">Default</Label>
-            </div>
-            <div className="flex items-center gap-x-space-02 ">
-                <RadioGroupItem value="comfortable" id="r2" />
-                <Label htmlFor="r2">Comfortable</Label>
-            </div>
-            <div className="flex items-center gap-x-space-02 ">
-                <RadioGroupItem value="compact" id="r3" />
-                <Label htmlFor="r3">Compact</Label>
-            </div>
-        </RadioGroup>
-    )
-}
-
 const meta: Meta<typeof RadioGroup> = {
     title: 'Design System/Controls/Radio Group',
     component: RadioGroup,
@@ -51,5 +30,24 @@ export const Default: Story = {
         dir: 'ltr',
     },
 
-    render: RadioGroupDemo,
+    render: (arg, { globals: { dir } }) => {
+        //const { dir } = useLanguage()
+
+        return (
+            <RadioGroup defaultValue="comfortable" {...arg} className="space-y-space-02" orientation="horizontal" dir={dir}>
+                <div className="flex items-center gap-x-space-02">
+                    <RadioGroupItem value="default" id="r1" />
+                    <Label htmlFor="r1">Default</Label>
+                </div>
+                <div className="flex items-center gap-x-space-02 ">
+                    <RadioGroupItem value="comfortable" id="r2" />
+                    <Label htmlFor="r2">Comfortable</Label>
+                </div>
+                <div className="flex items-center gap-x-space-02 ">
+                    <RadioGroupItem value="compact" id="r3" />
+                    <Label htmlFor="r3">Compact</Label>
+                </div>
+            </RadioGroup>
+        )
+    },
 }
