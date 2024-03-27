@@ -154,7 +154,10 @@ const Break = () => (
     </PaginationItem>
 )
 
-const PaginationDescription = ({ selectedPage, pageCount, totalItems }: { selectedPage: number; pageCount: number; totalItems: number }) => {
+const PaginationDescription = ({ currentPage, totalCount, limit = 10 }: { currentPage: number; totalCount: number; limit: number }) => {
+    const selectedPage = (currentPage - 1) * limit + 1
+    const pageCount = currentPage * limit > totalCount ? totalCount : currentPage * limit
+    const totalItems = totalCount
     return <div className="flex-1 text-body-02">{strings.formatString(strings.Shared.PaginationDesc, selectedPage, pageCount, totalItems)}</div>
 }
 const LinesPerPage = ({ value, onChange }: { value: number; onChange: (value: string) => void }) => {

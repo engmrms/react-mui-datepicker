@@ -1,12 +1,10 @@
 import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table'
-import { strings } from '../Locales/index'
 import { Skeleton } from './ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 
 import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
-import { Pagination } from './paginations'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select'
+import { LinesPerPage, Pagination, PaginationDescription } from './paginations'
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
@@ -38,7 +36,6 @@ function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent }: D
 
     const matches = useMediaQuery('(min-width: 768px)')
 
-    const pageCount = table.getPageCount()
     const currentPage = table.getState().pagination.pageIndex + 1
 
     useEffect(() => {
@@ -90,25 +87,10 @@ function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent }: D
             </div>
             {!!table.getFilteredRowModel().rows.length && (
                 <div className="flex items-center justify-end ">
-                    <div className="flex-1 text-body-02">
-                        {strings.formatString(strings.Shared.PaginationDesc, currentPage, pageCount, table.getFilteredRowModel().rows.length)}
-                    </div>
+                    <PaginationDescription currentPage={currentPage} limit={pageSize} totalCount={table.getFilteredRowModel().rows.length} />
+
                     <div className="flex items-center space-x-space-03 space-x-reverse">
-                        <span className="block whitespace-nowrap text-body-01">{strings.Shared.LinesPerPage} :</span>
-                        <Select value={pageSize.toString()} onValueChange={value => setPageSize(+value)}>
-                            <SelectTrigger className="">
-                                <SelectValue placeholder={strings.Shared.Select} />
-                            </SelectTrigger>
-                            <SelectContent className="!min-w-fit">
-                                <SelectGroup>
-                                    <SelectItem value="5">5</SelectItem>
-                                    <SelectItem value="10">10</SelectItem>
-                                    <SelectItem value="15">15</SelectItem>
-                                    <SelectItem value="20">20</SelectItem>
-                                    <SelectItem value="25">25</SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
+                        <LinesPerPage value={pageSize} onChange={value => setPageSize(+value)} />
                         <Pagination
                             withoutText
                             className="justify-center"
