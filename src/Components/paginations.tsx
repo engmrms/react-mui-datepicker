@@ -154,7 +154,7 @@ const Break = () => (
     </PaginationItem>
 )
 
-const PaginationDescription = ({ currentPage, totalCount, limit = 10 }: { currentPage: number; totalCount: number; limit: number }) => {
+ const PaginationDescription = ({ currentPage, totalCount, limit = 10 }: { currentPage: number; totalCount: number; limit: number }) => {
     const selectedPage = (currentPage - 1) * limit + 1
     const pageCount = currentPage * limit > totalCount ? totalCount : currentPage * limit
     const totalItems = totalCount

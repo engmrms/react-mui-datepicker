@@ -57,9 +57,9 @@ const ComboboxDemo = (arg: any) => {
     const [selectedLanguage, setSelectedLanguage] = React.useState<Languages>()
 
     return (
-        <Combobox >
+        <Combobox>
             <PopoverTrigger asChild>
-                <Button variant="outline" role="combobox" {...arg} >
+                <Button variant="outline" role="combobox" {...arg}>
                     {!selectedLanguage?.label ? (
                         <span className="text-body-01 text-foreground-secondary">Select Language</span>
                     ) : (
@@ -93,7 +93,7 @@ const meta: Meta<typeof ComboboxControl> = {
     argTypes: {
         rounded: { control: 'radio', options: ['full', 'default'] },
     },
-    args:{
+    args: {
         rounded: 'full',
     },
 

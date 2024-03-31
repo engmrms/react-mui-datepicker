@@ -1,14 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useArgs } from '@storybook/client-api'
 import type { Meta, StoryObj } from '@storybook/react'
-
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from '../../ui/pagination'
+import { LinesPerPage, Pagination, PaginationDescription } from '../../paginations'
 
 const meta: Meta<typeof Pagination> = {
     title: 'Design System/Navigation/Pagination',
@@ -33,24 +26,31 @@ type Story = StoryObj<typeof Pagination>
  * to learn how to use render functions.
  */
 export const Default: Story = {
-    render: arg => (
-        <Pagination {...arg}>
-            <PaginationContent>
-                <PaginationItem>
-                    <PaginationPrevious />
-                </PaginationItem>
-                <PaginationItem>
-                    <PaginationLink>1</PaginationLink>
-                    <PaginationLink>2</PaginationLink>
-                    <PaginationLink>3</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                    <PaginationEllipsis />
-                </PaginationItem>
-                <PaginationItem>
-                    <PaginationNext />
-                </PaginationItem>
-            </PaginationContent>
-        </Pagination>
-    ),
+    args: {
+        totalItems: 50,
+        itemsPerPage: 10,
+        selectedPage: 1,
+        withoutText: false,
+    },
+    render: arg => {
+        const [storyArgs, updateArgs] = useArgs()
+        return (
+            <>
+                <div className="flex items-center justify-end ">
+                    <PaginationDescription currentPage={storyArgs.selectedPage} limit={storyArgs.itemsPerPage} totalCount={storyArgs.totalItems} />
+                    <div className="flex items-center space-x-space-03 space-x-reverse">
+                        <LinesPerPage value={storyArgs.itemsPerPage} onChange={value => updateArgs({ itemsPerPage: value })} />
+                        <Pagination
+                            {...arg}
+                            onPageChange={function (page: number): void {
+                                if (page !== storyArgs.selectedPage) {
+                                    updateArgs({ selectedPage: page })
+                                }
+                            }}
+                        />
+                    </div>
+                </div>
+            </>
+        )
+    },
 }
