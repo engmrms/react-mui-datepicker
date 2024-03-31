@@ -30,7 +30,7 @@ export const Default: Story = {
         dir: 'ltr',
     },
     argTypes: {
-        variant: { control: 'radio', options: ['underline', 'filled'] ,description:"'underline', 'filled'"},
+        variant: { control: 'radio', options: ['underline', 'filled'], description: "'underline', 'filled'" },
         dir: { control: 'radio', options: ['rtl', 'ltr'] },
     },
     render: (arg: any) => (

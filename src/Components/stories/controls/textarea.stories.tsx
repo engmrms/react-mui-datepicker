@@ -87,7 +87,13 @@ function TextareaForm() {
                         <FormItem>
                             <FormLabel>Bio</FormLabel>
                             <FormControl>
-                                <Textarea variant={"outline"} placeholder="Tell us a little bit about yourself" className="resize-none" maxLength={200} {...field} />
+                                <Textarea
+                                    variant={'outline'}
+                                    placeholder="Tell us a little bit about yourself"
+                                    className="resize-none"
+                                    maxLength={200}
+                                    {...field}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

@@ -29,7 +29,7 @@ const AlertDialogExample = () => {
                         This action cannot be undone. This will permanently delete your account and remove your data from our servers.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
-                <AlertDialogFooter className="justify-center w-full">
+                <AlertDialogFooter className="w-full justify-center">
                     <AlertDialogCancel asChild>
                         <Button rounded="full" variant="outline" colors={'error'} className="w-full">
                             Sure
