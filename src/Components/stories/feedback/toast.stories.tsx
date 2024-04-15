@@ -14,7 +14,7 @@ const meta: Meta<typeof Toast & ToasterToast> = {
     argTypes: {},
     decorators: [
         Story => (
-            <div className="min-h-96">
+            <div className="min-h-space-12">
                 <Toaster />
                 <Story />
             </div>

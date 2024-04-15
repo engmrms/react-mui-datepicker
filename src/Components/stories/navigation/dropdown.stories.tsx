@@ -48,8 +48,8 @@ type Story = StoryObj<typeof DropdownMenu>
  * to learn how to use render functions.
  */
 export const Default: Story = {
-    render: arg => (
-        <DropdownMenu {...arg}>
+    render: (arg, { globals: { dir } }) => (
+        <DropdownMenu {...arg} dir={dir}>
             <DropdownMenuTrigger asChild>
                 <Button variant="outline">Open</Button>
             </DropdownMenuTrigger>
@@ -107,13 +107,13 @@ export const Default: Story = {
 }
 
 export const CheckBoxs: Story = {
-    render: arg => {
+    render: (arg, { globals: { dir } }) => {
         const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true)
         const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false)
         const [showPanel, setShowPanel] = React.useState<Checked>(false)
 
         return (
-            <DropdownMenu {...arg}>
+            <DropdownMenu {...arg} dir={dir}>
                 <DropdownMenuTrigger asChild>
                     <Button variant="outline">Open</Button>
                 </DropdownMenuTrigger>
@@ -136,11 +136,11 @@ export const CheckBoxs: Story = {
 }
 
 export const RadioGroup: Story = {
-    render: arg => {
+    render: (arg, { globals: { dir } }) => {
         const [position, setPosition] = React.useState('bottom')
 
         return (
-            <DropdownMenu {...arg}>
+            <DropdownMenu {...arg} dir={dir}>
                 <DropdownMenuTrigger asChild>
                     <Button variant="outline">Open</Button>
                 </DropdownMenuTrigger>

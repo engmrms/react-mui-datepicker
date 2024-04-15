@@ -14,10 +14,10 @@ const EmojiVariants = cva(
             },
             size: {
                 default: '',
-                sm: '',
+                // sm: 'w-space-04 h-space-04',
             },
             disabled: {
-                true: 'fill-transparent [&>ellipse]:fill-disabled [&>path:last-child]:fill-disabled [&>path]:stroke-disabled',
+                true: 'fill-transparent [&>ellipse]:fill-disabled [&>path:last-child]:fill-disabled [&>path]:stroke-disabled [&>rect]:fill-disabled pointer-events-none',
             },
         },
 
@@ -37,7 +37,7 @@ const Emoji = ({ variant, size, disabled, className, ...props }: EmojiProps) => 
             width={56}
             height={56}
             fill="none"
-            className={cn(EmojiVariants({ variant, size, disabled }), className)}
+            className={cn(EmojiVariants({ variant, size, disabled }), 'h-space-10 w-space-10', className)}
             {...props}>
             <path d="M.5 28C.5 12.812 12.812.5 28 .5S55.5 12.812 55.5 28 43.188 55.5 28 55.5.5 43.188.5 28Z" />
             <ellipse cx={37.1} cy={18.9} rx={3.5} ry={6.3} />

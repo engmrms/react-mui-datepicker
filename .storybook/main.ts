@@ -10,6 +10,7 @@ const config: StorybookConfig = {
         '@storybook/addon-onboarding',
         '@storybook/addon-interactions',
         '@storybook/addon-a11y',
+        '@storybook/addon-mdx-gfm',
     ],
     typescript: {
         reactDocgenTypescriptOptions: {
@@ -24,6 +25,8 @@ const config: StorybookConfig = {
                 return !(isExcludedProp || isHTMLElementProp)
             },
         },
+
+        reactDocgen: 'react-docgen-typescript',
     },
     framework: {
         name: '@storybook/react-vite',

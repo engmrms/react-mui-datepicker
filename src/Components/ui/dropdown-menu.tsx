@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 
-import Circle from "google-material-icons/filled/Circle"
-import Check from "google-material-icons/filled/Check"
-import ChevronRight from "google-material-icons/filled/ChevronRight"
+import Check from 'google-material-icons/filled/Check'
+import ChevronRight from 'google-material-icons/filled/ChevronRight'
+import Circle from 'google-material-icons/filled/Circle'
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
@@ -103,9 +103,9 @@ const DropdownMenuCheckboxItem = React.forwardRef<
         )}
         checked={checked}
         {...props}>
-        <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+        <span className="absolute -start-space-01 flex h-space-04 w-space-04 items-center justify-center">
             <DropdownMenuPrimitive.ItemIndicator>
-                <Check className="h-4 w-4" />
+                <Check className="h-space-03 w-space-03" />
             </DropdownMenuPrimitive.ItemIndicator>
         </span>
         {children}
@@ -124,9 +124,9 @@ const DropdownMenuRadioItem = React.forwardRef<
             className,
         )}
         {...props}>
-        <span className="absolute left-0 flex h-space-02 w-space-02 items-center justify-center">
+        <span className="absolute -start-space-01 flex h-space-04 w-space-04 items-center justify-center">
             <DropdownMenuPrimitive.ItemIndicator>
-                <Circle className="h-space-01 w-space-01 fill-current" />
+                <Circle className="h-space-02 w-space-02 fill-current" />
             </DropdownMenuPrimitive.ItemIndicator>
         </span>
         {children}

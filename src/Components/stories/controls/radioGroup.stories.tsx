@@ -34,7 +34,7 @@ export const Default: Story = {
         //const { dir } = useLanguage()
 
         return (
-            <RadioGroup defaultValue="comfortable" {...arg} className="space-y-space-02" orientation="horizontal" dir={dir}>
+            <RadioGroup defaultValue="comfortable" {...arg}  dir={dir}>
                 <div className="flex items-center gap-x-space-02">
                     <RadioGroupItem value="default" id="r1" />
                     <Label htmlFor="r1">Default</Label>
