@@ -15,7 +15,7 @@ export default create({
     colorSecondary: '#585C6D',
 
     // UI
-    appBg: '#ffffff',
+    appBg: '#F7F7F7',
     appContentBg: '#ffffff',
     appPreviewBg: '#ffffff',
     appBorderColor: '#585C6D',
@@ -26,13 +26,13 @@ export default create({
     textInverseColor: '#ffffff',
 
     // Toolbar default and active colors
-    barTextColor: '#9E9E9E',
+    barTextColor: '#0F0F0F',
     barSelectedColor: '#585C6D',
     barBg: '#ffffff',
 
     // Form colors
     inputBg: '#ffffff',
-    inputBorder: '#10162F',
-    inputTextColor: '#10162F',
-    inputBorderRadius: 2,
+    inputBorder: '#353B3A',
+    inputTextColor: '#0F0F0F',
+    inputBorderRadius: 24,
 })

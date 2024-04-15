@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import CheckCircle from 'google-material-icons/outlined/CheckCircle'
+import WarningAmber from 'google-material-icons/outlined/WarningAmber'
 import { Alert, AlertDescription, AlertTitle } from '../../ui/alert'
-
 const meta: Meta<typeof Alert> = {
     title: 'Design System/FeedBack/Alert',
     component: Alert,
@@ -27,6 +28,31 @@ type Story = StoryObj<typeof Alert>
 export const Default: Story = {
     render: arg => (
         <Alert {...arg}>
+            <AlertTitle>Notification title</AlertTitle>
+            <AlertDescription>Notification contents</AlertDescription>
+        </Alert>
+    ),
+}
+
+export const Primary: Story = {
+    args: {
+        colors: 'primary',
+    },
+    render: arg => (
+        <Alert {...arg}>
+            <CheckCircle />
+            <AlertTitle>Notification title</AlertTitle>
+            <AlertDescription>Notification contents</AlertDescription>
+        </Alert>
+    ),
+}
+export const Warning: Story = {
+    args: {
+        colors: 'warning',
+    },
+    render: arg => (
+        <Alert {...arg}>
+            <WarningAmber />
             <AlertTitle>Notification title</AlertTitle>
             <AlertDescription>Notification contents</AlertDescription>
         </Alert>

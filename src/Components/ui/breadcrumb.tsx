@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Slot } from '@radix-ui/react-slot'
-import { ChevronRight, MoreHorizontal } from 'lucide-react'
+import ChevronRight from 'google-material-icons/outlined/ChevronRight'
+import MoreHoriz from 'google-material-icons/outlined/MoreHoriz'
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
@@ -14,12 +15,16 @@ const Breadcrumb = React.forwardRef<
 Breadcrumb.displayName = 'Breadcrumb'
 
 const BreadcrumbList = React.forwardRef<HTMLOListElement, React.ComponentPropsWithoutRef<'ol'>>(({ className, ...props }, ref) => (
-    <ol ref={ref} className={cn('flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5', className)} {...props} />
+    <ol
+        ref={ref}
+        className={cn('flex flex-wrap items-center gap-1.5 break-words text-body-01 text-foreground-secondary sm:gap-space-02', className)}
+        {...props}
+    />
 ))
 BreadcrumbList.displayName = 'BreadcrumbList'
 
 const BreadcrumbItem = React.forwardRef<HTMLLIElement, React.ComponentPropsWithoutRef<'li'>>(({ className, ...props }, ref) => (
-    <li ref={ref} className={cn('inline-flex items-center gap-1.5', className)} {...props} />
+    <li ref={ref} className={cn('inline-flex items-center gap-space-02', className)} {...props} />
 ))
 BreadcrumbItem.displayName = 'BreadcrumbItem'
 
@@ -43,14 +48,14 @@ BreadcrumbPage.displayName = 'BreadcrumbPage'
 
 const BreadcrumbSeparator = ({ children, className, ...props }: React.ComponentProps<'li'>) => (
     <li role="presentation" aria-hidden="true" className={cn('[&>svg]:size-3.5', className)} {...props}>
-        {children ?? <ChevronRight />}
+        {children ?? <ChevronRight className="rtl:rotate-180" />}
     </li>
 )
 BreadcrumbSeparator.displayName = 'BreadcrumbSeparator'
 
 const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => (
     <span role="presentation" aria-hidden="true" className={cn('flex h-9 w-9 items-center justify-center', className)} {...props}>
-        <MoreHorizontal className="h-4 w-4" />
+        <MoreHoriz className="h-space-04 w-space-04" />
         <span className="sr-only">More</span>
     </span>
 )

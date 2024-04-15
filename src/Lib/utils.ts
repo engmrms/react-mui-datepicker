@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from 'clsx'
 import { extendTailwindMerge } from 'tailwind-merge'
+import useLanguage from '../Stores/useLanguage'
 
 export const twMerge = extendTailwindMerge({
     classGroups: {
@@ -59,3 +60,10 @@ export const tw = (...classes: string[]) =>
                 .join(' '),
         )
         .join(' ')
+
+export const useSwitchData = () => {
+    const { lang } = useLanguage(state => state)
+    return (arValue: string = '', enValue: string = '') => {
+        return String(lang).toLocaleLowerCase() === 'ar' ? arValue : enValue
+    }
+}

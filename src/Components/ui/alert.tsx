@@ -5,7 +5,7 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const alertVariants = cva(
-    'relative w-full rounded-2 border p-space-03 [&>svg~*]:pr-11 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:right-[1.2rem] [&>svg]:top-[1.2rem] [&>svg]:text-foreground [&>svg]:w-8 [&>svg]:h-8',
+    'relative w-full rounded-2 border p-space-03 [&>svg~*]:ps-11 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:start-[1.2rem] [&>svg]:top-[1.2rem] [&>svg]:text-foreground [&>svg]:w-8 [&>svg]:h-8',
     {
         variants: {
             variant: {
