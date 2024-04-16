@@ -26,7 +26,7 @@ steps:
 
   - task: NodeTool@0
     inputs:
-      versionSpec: "17.x"
+      versionSpec: "18.x"
     displayName: "Install Node.js"
 
   - task: replacetokens@5
@@ -44,7 +44,7 @@ steps:
       useLegacyPattern: false
       enableTelemetry: true
 
-  - script: |      
+  - script: |
       cd '$(System.DefaultWorkingDirectory)/'
       curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6
       pnpm install
