@@ -1,72 +1,72 @@
 trigger:
-  batch: false
-  branches:
-    include:
-      - dev
-      - master
+    batch: false
+    branches:
+        include:
+            - dev
+            - master
 
 pool:
-  name: ubuntu-18.04
-  demands: java
+    name: ubuntu-22.04
+    demands: java
 
 variables:
-  enableCodeScanning: "true"
+    enableCodeScanning: 'true'
 
 resources:
-  repositories:
-    - repository: templates
-      type: git
-      name: Platform/templates
+    repositories:
+        - repository: templates
+          type: git
+          name: Platform/templates
 
 workspace:
-  clean: all
+    clean: all
 
 steps:
-  - template: GitVersion.yml@templates
+    - template: GitVersion.yml@templates
 
-  - task: NodeTool@0
-    inputs:
-      versionSpec: "18.x"
-    displayName: "Install Node.js"
+    - task: NodeTool@0
+      inputs:
+          versionSpec: '20.x'
+      displayName: 'Install Node.js'
 
-  - task: replacetokens@5
-    displayName: "Update SonarQube Settings"
-    inputs:
-      targetFiles: "**/*sonar.ts"
-      encoding: "auto"
-      tokenPattern: "default"
-      writeBOM: true
-      actionOnMissing: "warn"
-      keepToken: false
-      actionOnNoFiles: "continue"
-      enableTransforms: false
-      enableRecursion: false
-      useLegacyPattern: false
-      enableTelemetry: true
+    - task: replacetokens@5
+      displayName: 'Update SonarQube Settings'
+      inputs:
+          targetFiles: '**/*sonar.ts'
+          encoding: 'auto'
+          tokenPattern: 'default'
+          writeBOM: true
+          actionOnMissing: 'warn'
+          keepToken: false
+          actionOnNoFiles: 'continue'
+          enableTransforms: false
+          enableRecursion: false
+          useLegacyPattern: false
+          enableTelemetry: true
 
-  - script: |
-      cd '$(System.DefaultWorkingDirectory)/'
-      curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6
-      pnpm install
-      pnpm run build
-    displayName: "npm install and build"
+    - script: |
+          cd '$(System.DefaultWorkingDirectory)/'
+          curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6
+          pnpm install
+          pnpm run build
+      displayName: 'npm install and build'
 
-  - script: |
-      cd '$(System.DefaultWorkingDirectory)/'
-      pnpm run sonar
-    displayName: "Run Code Analysis"
-    condition: and(succeeded(), eq('${{ variables.enableCodeScanning }}', 'true'))
+    - script: |
+          cd '$(System.DefaultWorkingDirectory)/'
+          pnpm run sonar
+      displayName: 'Run Code Analysis'
+      condition: and(succeeded(), eq('${{ variables.enableCodeScanning }}', 'true'))
 
-  - task: ArchiveFiles@2
-    inputs:
-      rootFolderOrFile: "$(System.DefaultWorkingDirectory)/dist"
-      includeRootFolder: false
-      archiveType: "zip"
-      archiveFile: "$(Build.ArtifactStagingDirectory)/Portal.zip"
-      replaceExistingArchive: true
+    - task: ArchiveFiles@2
+      inputs:
+          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist'
+          includeRootFolder: false
+          archiveType: 'zip'
+          archiveFile: '$(Build.ArtifactStagingDirectory)/Portal.zip'
+          replaceExistingArchive: true
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: "$(Build.ArtifactStagingDirectory)/Portal.zip"
-      ArtifactName: "drop"
-      publishLocation: "Container"
+    - task: PublishBuildArtifacts@1
+      inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)/Portal.zip'
+          ArtifactName: 'drop'
+          publishLocation: 'Container'
