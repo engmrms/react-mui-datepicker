@@ -24,7 +24,7 @@ workspace:
 steps:
     - template: GitVersion.yml@templates
       parameters:
-        useDotnet: true
+        useDotnet: false
 
     - task: NodeTool@0
       inputs:
