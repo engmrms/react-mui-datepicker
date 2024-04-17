@@ -6,7 +6,7 @@ trigger:
             - master
 
 pool:
-    name: ubuntu-22.04
+    name: windows-2019
     demands: java
 
 variables:
