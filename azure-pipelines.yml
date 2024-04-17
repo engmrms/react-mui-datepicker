@@ -28,7 +28,7 @@ steps:
 
     - task: NodeTool@0
       inputs:
-          versionSpec: '20.x'
+          versionSpec: '18.x'
       displayName: 'Install Node.js'
 
     - task: replacetokens@5
