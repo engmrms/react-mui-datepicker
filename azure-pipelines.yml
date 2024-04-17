@@ -48,7 +48,7 @@ steps:
 
     - script: |
           cd '$(System.DefaultWorkingDirectory)/'
-          curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6
+          curl -f https://get.pnpm.io/v8.12.js | node - add --global pnpm@8
           pnpm install
           pnpm run build
       displayName: 'npm install and build'
