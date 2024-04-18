@@ -2,7 +2,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { filled, outlined } from 'google-material-icons'
-import debounce from 'lodash/debounce'
+//import debounce from 'lodash/debounce'
 import React, { useCallback, useState } from 'react'
 import { Input } from '../../ui/input'
 import { Switch } from '../../ui/switch'
@@ -32,7 +32,8 @@ function SVGIcons() {
                             rounded="full"
                             type="text"
                             placeholder="Search icon"
-                            onChange={debounce(changeHandler, 600)}
+                            //onChange={debounce(changeHandler, 600)}
+                            onChange={changeHandler}
                             endAdornment={<outlined.Search />}
                         />
                     </div>
