@@ -8,7 +8,7 @@ export default create({
 
     brandTitle: 'Tetco Design System',
     brandUrl: 'https://tetco.sa',
-    brandImage: 'tetcologo.svg',
+    brandImage: 'LogoDS.svg',
     brandTarget: '_self',
     //
     colorPrimary: '#3A10E5',
