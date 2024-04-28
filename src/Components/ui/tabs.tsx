@@ -14,7 +14,7 @@ data-[state=active]:font-IBMBold`,
     {
         variants: {
             container: {
-                filled: 'inline-flex  items-center justify-center space-x-space-01 space-x-reverse rounded-[10rem] border border-input bg-white p-space-02',
+                filled: 'inline-flex  items-center justify-center space-x-space-01 space-x-reverse rounded-[10rem] border border-input bg-muted p-space-02',
                 underline: '',
             },
             variant: {
@@ -64,4 +64,4 @@ const TabsContent = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Conte
 )
 TabsContent.displayName = TabsPrimitive.Content.displayName
 
-export { Tabs, TabsContent, TabsList, TabsTrigger ,tabVariants}
+export { Tabs, TabsContent, TabsList, TabsTrigger, tabVariants }
