@@ -68,3 +68,8 @@ export enum ArabicMonth {
     'نوفمبر',
     'ديسمبر',
 }
+
+export enum DateFormat {
+    ArShort = 'DD MMMM YYYY',
+    EnShort = 'MMM DD, YYYY',
+}
