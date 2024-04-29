@@ -86,7 +86,7 @@
     }
 
     .dark {
-        --background: 206, 9%, 36%;
+        --background: 216, 5%, 20%;
         --background-secondary: 210, 6%, 27%;
         --foreground: 0, 0%, 100%;
         --overlay: 0, 0%, 6%, 0.5;
@@ -159,7 +159,7 @@
         --destructive-foreground: 0, 0%, 100%;
 
         --border: 206, 9%, 36%;
-        --input: 214.3 31.8% 91.4%;
+        --input: 206, 9%, 36%;
         --ring: 222.2 84% 4.9%;
         --disabled: 204, 9%, 43%;
 
