@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from 'clsx'
+import moment from 'moment'
 import { extendTailwindMerge } from 'tailwind-merge'
+import { DateFormat } from '../Models/enums'
 import useLanguage from '../Stores/useLanguage'
 
 export const twMerge = extendTailwindMerge({
@@ -83,4 +85,17 @@ export function debounce<T extends (...args: any[]) => void>(func: T, wait: numb
 
         timeout = setTimeout(later, wait)
     } as T
+}
+
+export const dateFormatter = ({ date, format }: { date: string | Date; format: 'short' | 'mid' | 'long' }) => {
+    const isArabic = document.dir === 'rtl'
+    moment.updateLocale(isArabic ? 'ar-sa' : 'en', {})
+    switch (format) {
+        case 'short':
+            return moment(date).format(isArabic ? DateFormat.ArShort : DateFormat.EnShort)
+        case 'mid':
+            return moment(date).format('dddd')
+        case 'long':
+            return moment(date).format('DD/MM/YYYY')
+    }
 }
