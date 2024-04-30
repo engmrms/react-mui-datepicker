@@ -30,9 +30,9 @@ const authStore = create<Local_DTO.AuthStore>()(
                 }),
             logout: () =>
                 set(() => {
-                    localStorage.removeItem('user')
                     window.location.replace('/')
-                    return { isAuthenticated: false }
+                    localStorage.removeItem('user')
+                    return { isAuthenticated: true }
                 }),
             resetUser: (defaultRole?: UserTypes) =>
                 set(() => {
