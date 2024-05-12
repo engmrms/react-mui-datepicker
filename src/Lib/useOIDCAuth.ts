@@ -3,14 +3,14 @@ import AuthOIDCService, { IAuthService } from './AuthOIDCService'
 
 export default function useOidcAuth() {
     const [user, setUser] = useState<IAuthService['user'] | null>(null)
-    const [isLoading, setIsLoading] = useState(false)
+
+    const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState()
     useEffect(() => {
-        setIsLoading(true)
         AuthOIDCService.getUser()
-            .then(user => {
+            .then(val => {
                 setIsLoading(false)
-                setUser(user)
+                setUser(val)
             })
             .catch(error => {
                 setError(error)
@@ -24,5 +24,5 @@ export default function useOidcAuth() {
         }
     }, [])
 
-    return { user, isLoading, error, isAuthenticated: user && !user?.expired }
+    return { user: user, isLoading, error, isAuthenticated: user && !user?.expired }
 }
