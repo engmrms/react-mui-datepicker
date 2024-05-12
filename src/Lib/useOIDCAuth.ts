@@ -24,5 +24,5 @@ export default function useOidcAuth() {
         }
     }, [])
 
-    return { user, isLoading, error, isAuthenticated: !user?.expired }
+    return { user, isLoading, error, isAuthenticated: user && !user?.expired }
 }

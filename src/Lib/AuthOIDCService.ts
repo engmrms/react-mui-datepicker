@@ -92,7 +92,7 @@ class AuthService implements IAuthService {
         this.userManager.events.addAccessTokenExpired(() => {
             console.log('Access token expired.')
             this.userManager
-                .signinRedirect()
+                .signinSilent()
                 .then(() => {
                     this.completeSignIn()
                 })
