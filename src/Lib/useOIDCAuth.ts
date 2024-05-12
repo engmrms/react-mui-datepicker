@@ -1,15 +1,28 @@
-import React from 'react'
-import { AuthContext, AuthContextProps } from '../Stores/OicdAuth/AuthContext'
+import { useEffect, useState } from 'react'
+import AuthOIDCService, { IAuthService } from './AuthOIDCService'
 
-/**
- * @public
- */
-export const useOIDCAuth = (): AuthContextProps => {
-    const context = React.useContext(AuthContext)
+export default function useOidcAuth() {
+    const [user, setUser] = useState<IAuthService['user'] | null>(null)
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState()
+    useEffect(() => {
+        setIsLoading(true)
+        AuthOIDCService.getUser()
+            .then(user => {
+                setIsLoading(false)
+                setUser(user)
+            })
+            .catch(error => {
+                setError(error)
+                setIsLoading(false)
+                setUser(null)
+            })
+        return () => {
+            setError(undefined)
+            setIsLoading(false)
+            setUser(null)
+        }
+    }, [])
 
-    if (!context) {
-        console.warn('AuthProvider context is undefined, please verify you are calling useAuth() as child of a <AuthProvider> component.')
-    }
-
-    return context as AuthContextProps
+    return { user, isLoading, error, isAuthenticated: !user?.expired }
 }
