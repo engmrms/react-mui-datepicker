@@ -6,7 +6,7 @@
         --background: theme(colors.gray.100);
         --background-secondary: theme(colors.gray.300);
         --foreground: theme(colors.gray.900);
-        --overlay: 0, 0%, 6%, 0.5;
+        --overlay: theme(colors.gray.800);
         --foreground-secondary: theme(colors.gray.800);
         --foreground-tertiary: theme(colors.gray.700);
 
@@ -17,63 +17,63 @@
         --popover: theme(colors.white);
         --popover-foreground: theme(colors.gray.900);
 
-        --primary: theme(colors.cyan.500);
+        --primary: theme(colors.cyan.600);
         --primary-foreground: theme(colors.white);
         --primary-light: theme(colors.cyan.300);
         --primary-dark: theme(colors.cyan.700);
         --primary-oncontainer: theme(colors.cyan.900);
-        --primary-container: theme(colors.cyan.50);
+        --primary-container: theme(colors.cyan.100);
 
-        --secondary: theme(colors.lavender.500);
+        --secondary: theme(colors.lavender.600);
         --secondary-foreground: theme(colors.white);
         --secondary-light: theme(colors.lavender.300);
         --secondary-dark: theme(colors.lavender.700);
         --secondary-oncontainer: theme(colors.lavender.900);
-        --secondary-container: theme(colors.lavender.50);
+        --secondary-container: theme(colors.lavender.100);
 
-        --tertiary: theme(colors.middleBlue.500);
+        --tertiary: theme(colors.blue.600);
         --tertiary-foreground: theme(colors.white);
-        --tertiary-light: theme(colors.middleBlue.300);
-        --tertiary-dark: theme(colors.middleBlue.700);
-        --tertiary-oncontainer: theme(colors.middleBlue.900);
-        --tertiary-container: theme(colors.middleBlue.50);
+        --tertiary-light: theme(colors.blue.300);
+        --tertiary-dark: theme(colors.blue.700);
+        --tertiary-oncontainer: theme(colors.blue.900);
+        --tertiary-container: theme(colors.blue.100);
 
-        --error: theme(colors.red.500);
+        --error: theme(colors.red.600);
         --error-foreground: theme(colors.white);
         --error-light: theme(colors.red.300);
         --error-dark: theme(colors.red.700);
         --error-oncontainer: theme(colors.red.900);
-        --error-container: theme(colors.red.50);
+        --error-container: theme(colors.red.100);
 
-        --sucess: theme(colors.green.500);
+        --sucess: theme(colors.green.600);
         --sucess-foreground: theme(colors.white);
         --sucess-light: theme(colors.green.300);
         --sucess-dark: theme(colors.green.700);
         --sucess-oncontainer: theme(colors.green.900);
-        --sucess-container: theme(colors.green.50);
+        --sucess-container: theme(colors.green.100);
 
-        --warning: theme(colors.marigold.500);
+        --warning: theme(colors.marigold.600);
         --warning-foreground: theme(colors.white);
         --warning-light: theme(colors.marigold.300);
         --warning-dark: theme(colors.marigold.700);
         --warning-oncontainer: theme(colors.marigold.900);
-        --warning-container: theme(colors.marigold.50);
+        --warning-container: theme(colors.marigold.100);
 
-        --info: theme(colors.blue.500);
+        --info: theme(colors.blue.600);
         --info-foreground: theme(colors.white);
         --info-light: theme(colors.blue.300);
         --info-dark: theme(colors.blue.700);
         --info-oncontainer: theme(colors.blue.900);
-        --info-container: theme(colors.blue.50);
+        --info-container: theme(colors.blue.100);
 
         --muted: theme(colors.gray.100);
-        --muted-foreground: 215.4 16.3% 46.9%;
+        --muted-foreground: theme(colors.gray.900);
 
         --accent: 210 40% 96.1%;
         --accent-foreground: 222.2 47.4% 11.2%;
 
         --destructive: theme(colors.red.500);
-        --destructive-foreground: 210 40% 98%;
+        --destructive-foreground: theme(colors.white);
 
         --inverted: theme(colors.gray.900);
         --inverted-secondary: theme(colors.gray.700);
@@ -88,7 +88,7 @@
         --input: theme(colors.gray.500);
         --ring: theme(colors.gray.900);
         --divider: theme(colors.gray.500);
-        --skeleton: 170, 5%, 22%, 0.2;
+        --skeleton: theme(colors.gray.400);
         --radius: 12px;
     }
 
@@ -96,7 +96,7 @@
         --background: theme(colors.grayDark.800);
         --background-secondary: theme(colors.grayDark.700);
         --foreground: theme(colors.white);
-        --overlay: 0, 0%, 6%, 0.5;
+        --overlay: theme(colors.grayDark.50);
         --foreground-secondary: theme(colors.grayDark.50);
         --foreground-tertiary: theme(colors.grayDark.100);
 
@@ -106,6 +106,7 @@
 
         --popover: theme(colors.grayDark.900);
         --popover-foreground: theme(colors.white);
+
         --primary: theme(colors.cyan.500);
         --primary-foreground: theme(colors.white);
         --primary-light: theme(colors.cyan.400);
@@ -120,12 +121,12 @@
         --secondary-oncontainer: theme(colors.lavender.50);
         --secondary-container: theme(colors.lavender.900);
 
-        --tertiary: theme(colors.middleBlue.500);
+        --tertiary: theme(colors.blue.500);
         --tertiary-foreground: theme(colors.white);
-        --tertiary-light: theme(colors.middleBlue.400);
-        --tertiary-dark: theme(colors.middleBlue.600);
-        --tertiary-oncontainer: theme(colors.middleBlue.50);
-        --tertiary-container: theme(colors.middleBlue.900);
+        --tertiary-light: theme(colors.blue.400);
+        --tertiary-dark: theme(colors.blue.600);
+        --tertiary-oncontainer: theme(colors.blue.50);
+        --tertiary-container: theme(colors.blue.900);
 
         --error: theme(colors.red.500);
         --error-foreground: theme(colors.white);
@@ -177,34 +178,34 @@
         --input: theme(colors.grayDark.500);
         --ring: theme(colors.gray.900);
         --divider: theme(colors.grayDark.500);
-        --skeleton: 204, 9%, 43%;
+        --skeleton: theme(colors.grayDark.400);
         --radius: 12px;
     }
 
-    @font-face {
+    /* @font-face {
         font-family: 'IBM Light';
         src: url('../fonts/Plex-Sans-Arabic/IBMPlexSansArabic-Light.woff') format('woff');
         font-weight: 300;
         font-style: normal;
         font-display: swap;
-    }
+    } */
     @font-face {
         font-family: 'IBM Reguler';
-        src: url('../fonts/Plex-Sans-Arabic/IBMPlexSansArabic-Regular.woff') format('woff');
+        src: url('../fonts/HelveticaNeue/HelveticaNeueW23forSKYReg.woff') format('woff');
         font-weight: 400;
         font-style: normal;
         font-display: swap;
     }
-    @font-face {
+    /* @font-face {
         font-family: 'IBM Meduim';
         src: url('../fonts/Plex-Sans-Arabic/IBMPlexSansArabic-Medium.woff') format('woff');
         font-weight: 500;
         font-style: normal;
         font-display: swap;
-    }
+    } */
     @font-face {
         font-family: 'IBM Bold';
-        src: url('../fonts/Plex-Sans-Arabic/IBMPlexSansArabic-SemiBold.woff') format('woff');
+        src: url('../fonts/HelveticaNeue/HelveticaNeueW23forSKYbold.woff') format('woff');
         font-weight: 600;
         font-style: normal;
         font-display: swap;
