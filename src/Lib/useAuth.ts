@@ -1,9 +1,9 @@
 import authStore from '../Stores/auth'
 
 const useAuth = () => {
-    const { isAuthenticated, user } = authStore(state => state)
+    const { isAuthenticated, user, nationalId } = authStore(state => state)
 
-    return { isAuthenticated, user }
+    return { isAuthenticated, user, nationalId }
 }
 
 export default useAuth

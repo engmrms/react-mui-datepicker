@@ -2,46 +2,36 @@ import { create } from 'zustand'
 import { Local_DTO } from '../Models/dto'
 import { UserTypes } from '../Models/enums'
 import DevtoolsMiddlewares from './middleware'
-interface Login {
-    Name?: string
-    ProfilePicture?: string
-    Id?: string
-    Email?: string
-    roles?: number[]
-    defaultRole?: number
-}
 
-const getUserFromLocalStorge = () =>
-    localStorage.getItem('user')
-        ? JSON.parse(localStorage.getItem('user')!)
-        : { Name: '', ProfilePicture: '', Id: '', Email: '', roles: [], defaultRole: 0 }
+const getUserFromLocalStorge = () => (localStorage.getItem('nationalId') ? JSON.parse(localStorage.getItem('nationalId')!) : '')
 
 const authStore = create<Local_DTO.AuthStore>()(
     DevtoolsMiddlewares(
         set => ({
-            isAuthenticated: !!localStorage.getItem('user'),
+            isAuthenticated: !!localStorage.getItem('nationalId'),
             accessToken: undefined,
             refreshToken: undefined,
-            user: getUserFromLocalStorge(),
-            login: ({ Name, ProfilePicture, Id, Email, roles, defaultRole }: Login) =>
+            nationalId: getUserFromLocalStorge(),
+            user: { roles: [] },
+            login: nationalId =>
                 set(() => {
-                    localStorage.setItem('user', JSON.stringify({ Name, ProfilePicture, Id, Email, roles, defaultRole }))
-                    return { isAuthenticated: true, user: { Name, ProfilePicture, Id, Email, roles, defaultRole } }
+                    localStorage.setItem('nationalId', JSON.stringify(nationalId))
+                    return { isAuthenticated: true }
+                }),
+            setUser: (user: Partial<Local_DTO.User>) =>
+                set(() => {
+                    return { user }
                 }),
             logout: () =>
                 set(() => {
                     window.location.replace('/')
                     localStorage.removeItem('user')
-                    return { isAuthenticated: true }
+                    localStorage.removeItem('accessToken')
+                    return { isAuthenticated: false }
                 }),
-            resetUser: (defaultRole?: UserTypes) =>
-                set(() => {
-                    const user = getUserFromLocalStorge()
-
-                    if (defaultRole) user.defaultRole = defaultRole
-
-                    localStorage.setItem('user', JSON.stringify(user))
-                    return { isAuthenticated: true, user: user }
+            setDefaultRole: (defaultRole?: UserTypes) =>
+                set(state => {
+                    if (defaultRole && state?.user) state.user.defaultRole = defaultRole
                 }),
         }),
         { name: 'auth' },
