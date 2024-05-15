@@ -13,7 +13,7 @@ const authStore = create<Local_DTO.AuthStore>()(
             user: { roles: [] },
             login: nationalId =>
                 set(() => {
-                    localStorage.setItem('nationalId', JSON.stringify(nationalId))
+                    localStorage.setItem('nationalId', nationalId)
                     return { isAuthenticated: true, nationalId }
                 }),
             setUser: (user: Partial<Local_DTO.User>) =>
