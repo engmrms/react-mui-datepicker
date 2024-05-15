@@ -3,20 +3,18 @@ import { Local_DTO } from '../Models/dto'
 import { UserTypes } from '../Models/enums'
 import DevtoolsMiddlewares from './middleware'
 
-const getUserFromLocalStorge = () => (localStorage.getItem('nationalId') ? JSON.parse(localStorage.getItem('nationalId')!) : '')
-
 const authStore = create<Local_DTO.AuthStore>()(
     DevtoolsMiddlewares(
         set => ({
             isAuthenticated: !!localStorage.getItem('nationalId'),
             accessToken: undefined,
             refreshToken: undefined,
-            nationalId: getUserFromLocalStorge(),
+            nationalId: localStorage.getItem('nationalId'),
             user: { roles: [] },
             login: nationalId =>
                 set(() => {
                     localStorage.setItem('nationalId', JSON.stringify(nationalId))
-                    return { isAuthenticated: true }
+                    return { isAuthenticated: true, nationalId }
                 }),
             setUser: (user: Partial<Local_DTO.User>) =>
                 set(() => {
@@ -25,9 +23,9 @@ const authStore = create<Local_DTO.AuthStore>()(
             logout: () =>
                 set(() => {
                     window.location.replace('/')
-                    localStorage.removeItem('user')
+                    localStorage.removeItem('nationalId')
                     localStorage.removeItem('accessToken')
-                    return { isAuthenticated: false }
+                    return { isAuthenticated: false, nationalId: undefined, user: { roles: [] }, accessToken: undefined, refreshToken: undefined }
                 }),
             setDefaultRole: (defaultRole?: UserTypes) =>
                 set(state => {

@@ -30,7 +30,7 @@ export namespace Local_DTO {
         refreshToken: string | undefined
         isAuthenticated: boolean | undefined
         user: Partial<User>
-        nationalId: string
+        nationalId?: string | null
         login: (nationalId: string) => void
         setUser: (user: Partial<User>) => void
         logout: () => void
