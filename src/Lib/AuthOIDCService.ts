@@ -66,7 +66,7 @@ class AuthService implements IAuthService {
 
     private setupEventListeners() {
         this.userManager.events.addUserLoaded((user: User) => {
-            console.log(user)
+            console.log('loaded => ', user)
 
             this.user = user
             this.isAuthenticated = !!user?.expired

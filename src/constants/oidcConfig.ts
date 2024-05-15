@@ -24,7 +24,7 @@ export const METADATA_OIDC = {
     authorization_endpoint: APP_AUTH_URL + '/authorize',
     token_endpoint: APP_AUTH_URL + '/token',
     userinfo_endpoint: APP_AUTH_URL + '/userinfo',
-    end_session_endpoint: APP_AUTH_URL + '/endsession',
+    end_session_endpoint: APP_AUTH_URL + '/revoke',
     check_session_iframe: APP_AUTH_URL + '/checksession',
     revocation_endpoint: APP_AUTH_URL + '/revoke',
     introspection_endpoint: APP_AUTH_URL + '/introspect',
