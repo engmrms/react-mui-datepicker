@@ -10,7 +10,7 @@ const authStore = create<Local_DTO.AuthStore>()(
             accessToken: undefined,
             refreshToken: undefined,
             nationalId: localStorage.getItem('nationalId'),
-            user: { roles: [] },
+            user: { firstName: '', secondName: '', thridName: '', lastName: '', Id: '', roles: [], email: '' },
             login: nationalId =>
                 set(() => {
                     localStorage.setItem('nationalId', nationalId)
