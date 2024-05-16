@@ -9,27 +9,27 @@ export namespace Local_DTO {
     export type User = {
         ProfilePicture?: string
         Id: string
-        roles?: number[]
+        roles: number[]
         defaultRole?: UserTypes
-        personIdentifier: string
-        refIdentificationTypeCode: string
-        refIdentificationTypeName: string
-        birthdate: string
+        personIdentifier?: string
+        refIdentificationTypeCode?: string
+        refIdentificationTypeName?: string
+        birthdate?: string
         firstName: string
         secondName: string
         thridName: string
         lastName: string
-        refSexName: string
-        refSexCode: string
-        refNationalityCountryCode: string
-        refNationalityCountryName: string
+        refSexName?: string
+        refSexCode?: string
+        refNationalityCountryCode?: string
+        refNationalityCountryName?: string
         email: string
     }
     export type AuthStore = {
         accessToken: string | undefined
         refreshToken: string | undefined
         isAuthenticated: boolean | undefined
-        user: Partial<User>
+        user: User
         nationalId?: string | null
         login: (nationalId: string) => void
         setUser: (user: Partial<User>) => void
