@@ -38,7 +38,10 @@ const authStore = create<Local_DTO.AuthStore>()(
                 set(() => {
                     const user = getUserFromLocalStorge()
 
-                    if (defaultRole) user.defaultRole = defaultRole
+                    if (defaultRole) {
+                        user.defaultRole = defaultRole
+                       
+                    }
 
                     localStorage.setItem('user', JSON.stringify(user))
                     return { isAuthenticated: true, user: user }
