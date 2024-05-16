@@ -18,6 +18,7 @@ const authStore = create<Local_DTO.AuthStore>()(
                 }),
             setUser: (user: Partial<Local_DTO.User>) =>
                 set(() => {
+                    localStorage.setItem('displayName', `${user.firstName} ${user.lastName}`)
                     return { user }
                 }),
             logout: () =>
@@ -25,6 +26,7 @@ const authStore = create<Local_DTO.AuthStore>()(
                     window.location.replace('/')
                     localStorage.removeItem('nationalId')
                     localStorage.removeItem('accessToken')
+                    localStorage.removeItem('displayName')
                     return { isAuthenticated: false, nationalId: undefined, user: { roles: [] }, accessToken: undefined, refreshToken: undefined }
                 }),
             setDefaultRole: (defaultRole?: UserTypes) =>
