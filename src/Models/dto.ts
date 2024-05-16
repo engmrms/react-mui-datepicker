@@ -6,28 +6,35 @@ import React, { ReactNode } from 'react'
 import { UserTypes } from './enums'
 
 export namespace Local_DTO {
+    export type User = {
+        ProfilePicture?: string
+        Id: string
+        roles: number[]
+        defaultRole?: UserTypes
+        personIdentifier?: string
+        refIdentificationTypeCode?: string
+        refIdentificationTypeName?: string
+        birthdate?: string
+        firstName: string
+        secondName: string
+        thridName: string
+        lastName: string
+        refSexName?: string
+        refSexCode?: string
+        refNationalityCountryCode?: string
+        refNationalityCountryName?: string
+        email: string
+    }
     export type AuthStore = {
         accessToken: string | undefined
         refreshToken: string | undefined
         isAuthenticated: boolean | undefined
-        user: { Name: string; ProfilePicture?: string; Id: string; Email: string; roles?: number[]; defaultRole?: UserTypes }
-        login: ({
-            Name,
-            ProfilePicture,
-            Id,
-            Email,
-            roles,
-            defaultRole,
-        }: {
-            Name: string
-            ProfilePicture?: string
-            Id: string
-            Email: string
-            roles?: UserTypes[]
-            defaultRole?: UserTypes
-        }) => void
+        user: User
+        nationalId?: string | null
+        login: (nationalId: string) => void
+        setUser: (user: Partial<User>) => void
         logout: () => void
-        resetUser: (defaultRole?: UserTypes) => void
+        setDefaultRole: (defaultRole?: UserTypes) => void
     }
 
     export interface ServiceCategory {
