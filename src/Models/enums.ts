@@ -11,11 +11,10 @@ export enum StatusCodes {
     ServerUnavailable = 503,
 }
 export enum UserTypes {
-    None = 0,
-    Administrative = 101,
-    Student = 201,
-    Parent = 202,
-    Teacher = 203,
+    None = 'None',
+    Employee = 'Employee',
+    Student = 'K12Student',
+    Parent = 'ParentGuardian',
 }
 
 export enum Gender {

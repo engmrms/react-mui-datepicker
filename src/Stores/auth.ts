@@ -21,6 +21,11 @@ const authStore = create<Local_DTO.AuthStore>()(
                     localStorage.setItem('displayName', `${user.firstName} ${user.lastName}`)
                     return { user }
                 }),
+            updateUser: (user: Partial<Local_DTO.User>) =>
+                set((state) => {
+                    if(user.firstName&&user.lastName)localStorage.setItem('displayName', `${user.firstName} ${user.lastName}`)
+                    return { user:{...state?.user, ...user} }
+                }),
             logout: () =>
                 set(() => {
                     window.location.replace('/')
