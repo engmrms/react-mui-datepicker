@@ -9,7 +9,7 @@ export namespace Local_DTO {
     export type User = {
         ProfilePicture?: string
         Id: string
-        roles: number[]
+        roles: UserTypes[]
         defaultRole?: UserTypes
         personIdentifier?: string
         refIdentificationTypeCode?: string
@@ -24,6 +24,7 @@ export namespace Local_DTO {
         refNationalityCountryCode?: string
         refNationalityCountryName?: string
         email: string
+        mobile?: string
     }
     export type AuthStore = {
         accessToken: string | undefined
@@ -33,6 +34,7 @@ export namespace Local_DTO {
         nationalId?: string | null
         login: (nationalId: string) => void
         setUser: (user: Partial<User>) => void
+        updateUser: (user: Partial<User>) => void
         logout: () => void
         setDefaultRole: (defaultRole?: UserTypes) => void
     }
