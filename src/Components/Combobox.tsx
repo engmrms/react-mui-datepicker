@@ -90,13 +90,14 @@ interface Props<T> extends VariantProps<typeof buttonVariants> {
     placeholder: string
     isLoading?: boolean
     onChange: (value: string) => void
+    triggerProps?: ButtonPropsExtend
 }
-const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, optionValue, onChange, value, ...rest }: Props<T>) => {
+const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, optionValue, onChange, value, triggerProps, ...rest }: Props<T>) => {
     const [open, setOpen] = useState(false)
     const currentValue = options?.find(opt => String(opt[optionValue]) === value)?.[optionLabel] ?? ''
     return (
         <Combobox open={open}>
-            <ComboboxTrigger placeholder={placeholder} onClick={() => setOpen(!open)} isLoading={isLoading} {...rest}>
+            <ComboboxTrigger {...triggerProps} placeholder={placeholder} onClick={() => setOpen(!open)} isLoading={isLoading}  {...rest}>
                 {currentValue.toString()}
             </ComboboxTrigger>
             <ComboboxGroup>
