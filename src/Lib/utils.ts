@@ -93,10 +93,12 @@ export const dateFormatter = ({
     date,
     format,
     isHijri = false,
+    hasHijriFormat,
 }: {
     date: string | Date | undefined
     format: 'short' | 'mid' | 'long'
     isHijri?: boolean
+    hasHijriFormat?: boolean
 }) => {
     const isArabic = document.dir === 'rtl'
     moment.updateLocale(isArabic ? 'ar-sa' : 'en', {})
@@ -106,7 +108,7 @@ export const dateFormatter = ({
         case 'mid':
             return moment(date).format('dddd')
         case 'long':
-            if (isHijri) return momentHijri(date, 'iDD/iMM/iYYYY').format(isArabic ? 'iYYYY/iM/iD' : 'iD/iM/iYYYY')
+            if (isHijri) return momentHijri(date, hasHijriFormat ? 'iDD/iMM/iYYYY' : undefined).format(isArabic ? 'iYYYY/iM/iD' : 'iD/iM/iYYYY')
             return moment(date, 'DD-MM-YYYY').format(isArabic ? 'YYYY/M/D' : 'D/M/YYYY')
     }
 }
