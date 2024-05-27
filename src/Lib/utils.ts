@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from 'clsx'
 import moment from 'moment'
+import momentHijri from 'moment-hijri'
 import { extendTailwindMerge } from 'tailwind-merge'
 import { DateFormat } from '../Models/enums'
 import useLanguage from '../Stores/useLanguage'
+import './ar-sa'
 
 export const twMerge = extendTailwindMerge({
     classGroups: {
@@ -87,7 +89,15 @@ export function debounce<T extends (...args: any[]) => void>(func: T, wait: numb
     } as T
 }
 
-export const dateFormatter = ({ date, format }: { date: string | Date; format: 'short' | 'mid' | 'long' }) => {
+export const dateFormatter = ({
+    date,
+    format,
+    isHijri = false,
+}: {
+    date: string | Date | undefined
+    format: 'short' | 'mid' | 'long'
+    isHijri?: boolean
+}) => {
     const isArabic = document.dir === 'rtl'
     moment.updateLocale(isArabic ? 'ar-sa' : 'en', {})
     switch (format) {
@@ -96,6 +106,7 @@ export const dateFormatter = ({ date, format }: { date: string | Date; format: '
         case 'mid':
             return moment(date).format('dddd')
         case 'long':
-            return moment(date).format('DD/MM/YYYY')
+            if (isHijri) return momentHijri(date, 'iDD/iMM/iYYYY').format(isArabic ? 'iYYYY/iM/iD' : 'iD/iM/iYYYY')
+            return moment(date, 'DD-MM-YYYY').format(isArabic ? 'YYYY/M/D' : 'D/M/YYYY')
     }
 }
