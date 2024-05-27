@@ -22,9 +22,9 @@ const authStore = create<Local_DTO.AuthStore>()(
                     return { user }
                 }),
             updateUser: (user: Partial<Local_DTO.User>) =>
-                set((state) => {
-                    if(user.firstName&&user.lastName)localStorage.setItem('displayName', `${user.firstName} ${user.lastName}`)
-                    return { user:{...state?.user, ...user} }
+                set(state => {
+                    if (user.firstName && user.lastName) localStorage.setItem('displayName', `${user.firstName} ${user.lastName}`)
+                    return { user: { ...state?.user, ...user } }
                 }),
             logout: () =>
                 set(() => {
@@ -32,6 +32,7 @@ const authStore = create<Local_DTO.AuthStore>()(
                     localStorage.removeItem('nationalId')
                     localStorage.removeItem('accessToken')
                     localStorage.removeItem('displayName')
+                    localStorage.removeItem('roles')
                     return { isAuthenticated: false, nationalId: undefined, user: { roles: [] }, accessToken: undefined, refreshToken: undefined }
                 }),
             setDefaultRole: (defaultRole?: UserTypes) =>
