@@ -271,8 +271,9 @@
 }
 
 .MuiButtonBase-root.MuiPickersDay-root {
-    @apply rounded-1 font-IBMReguler text-sm hover:bg-primary-container disabled:text-disabled;
+    @apply rounded-1 font-IBMReguler text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground;
 }
+
 .MuiButtonBase-root.MuiPickersDay-root.Mui-selected {
     @apply bg-primary;
 }
@@ -286,7 +287,7 @@
     @apply m-0 text-body-01;
 }
 .MuiButtonBase-root.MuiIconButton-root {
-    @apply text-body-01 rtl:rotate-180;
+    @apply text-body-01 dark:text-foreground rtl:rotate-180;
 }
 
 .MuiPickersYear-root .MuiPickersYear-yearButton {
