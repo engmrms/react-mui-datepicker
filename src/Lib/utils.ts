@@ -109,6 +109,6 @@ export const dateFormatter = ({
             return moment(date).format('dddd')
         case 'long':
             if (isHijri) return momentHijri(date, hasHijriFormat ? 'iDD/iMM/iYYYY' : undefined).format(isArabic ? 'iYYYY/iM/iD' : 'iD/iM/iYYYY')
-            return moment(date, 'DD-MM-YYYY').format(isArabic ? 'YYYY/M/D' : 'D/M/YYYY')
+            return moment(new Date(date ?? ''), 'DD-MM-YYYY').format(isArabic ? 'YYYY/M/D' : 'D/M/YYYY')
     }
 }
