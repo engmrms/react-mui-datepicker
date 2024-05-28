@@ -6,38 +6,56 @@ import DevtoolsMiddlewares from './middleware'
 const authStore = create<Local_DTO.AuthStore>()(
     DevtoolsMiddlewares(
         set => ({
-            isAuthenticated: !!localStorage.getItem('nationalId'),
+            isAuthenticated: !!localStorage.getItem('up_nationalId'),
             accessToken: undefined,
             refreshToken: undefined,
-            nationalId: localStorage.getItem('nationalId'),
-            user: { firstName: '', secondName: '', thridName: '', lastName: '', Id: '', roles: [], email: '' },
+            nationalId: localStorage.getItem('up_nationalId'),
+            user: {
+                firstName: '',
+                secondName: '',
+                thridName: '',
+                lastName: '',
+                Id: '',
+                roles: [],
+                email: '',
+                defaultRole: localStorage.getItem('up_defaultRole') as UserTypes,
+            },
             login: nationalId =>
                 set(() => {
-                    localStorage.setItem('nationalId', nationalId)
+                    localStorage.setItem('up_nationalId', nationalId)
                     return { isAuthenticated: true, nationalId }
                 }),
             setUser: (user: Partial<Local_DTO.User>) =>
                 set(() => {
-                    localStorage.setItem('displayName', `${user.firstName} ${user.lastName}`)
+                    if (user.defaultRole) {
+                        localStorage.setItem('up_defaultRole', user.defaultRole)
+                    }
+                    localStorage.setItem('up_displayName', `${user.firstName} ${user.lastName}`)
                     return { user }
                 }),
             updateUser: (user: Partial<Local_DTO.User>) =>
                 set(state => {
-                    if (user.firstName && user.lastName) localStorage.setItem('displayName', `${user.firstName} ${user.lastName}`)
+                    if (user.defaultRole) {
+                        localStorage.setItem('up_defaultRole', user.defaultRole)
+                    }
+                    if (user.firstName && user.lastName) localStorage.setItem('up_displayName', `${user.firstName} ${user.lastName}`)
                     return { user: { ...state?.user, ...user } }
                 }),
             logout: () =>
                 set(() => {
                     window.location.replace('/')
-                    localStorage.removeItem('nationalId')
-                    localStorage.removeItem('accessToken')
-                    localStorage.removeItem('displayName')
-                    localStorage.removeItem('roles')
+                    localStorage.removeItem('up_nationalId')
+                    localStorage.removeItem('up_accessToken')
+                    localStorage.removeItem('up_displayName')
+                    localStorage.removeItem('up_defaultRole')
                     return { isAuthenticated: false, nationalId: undefined, user: { roles: [] }, accessToken: undefined, refreshToken: undefined }
                 }),
             setDefaultRole: (defaultRole?: UserTypes) =>
                 set(state => {
-                    if (defaultRole && state?.user) state.user.defaultRole = defaultRole
+                    if (defaultRole && state?.user) {
+                        localStorage.setItem('up_defaultRole', defaultRole)
+                        state.user.defaultRole = defaultRole
+                    }
                 }),
         }),
         { name: 'auth' },
