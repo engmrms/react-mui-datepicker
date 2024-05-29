@@ -10,7 +10,16 @@ const authStore = create<Local_DTO.AuthStore>()(
             accessToken: undefined,
             refreshToken: undefined,
             nationalId: localStorage.getItem('nationalId'),
-            user: { firstName: '', secondName: '', thridName: '', lastName: '', Id: '', roles: [], email: '' },
+            user: {
+                firstName: '',
+                secondName: '',
+                thridName: '',
+                lastName: '',
+                Id: '',
+                roles: [],
+                email: '',
+                defaultRole: localStorage.getItem('defaultRole') as UserTypes,
+            },
             login: nationalId =>
                 set(() => {
                     localStorage.setItem('nationalId', nationalId)
@@ -18,11 +27,17 @@ const authStore = create<Local_DTO.AuthStore>()(
                 }),
             setUser: (user: Partial<Local_DTO.User>) =>
                 set(() => {
+                    if (user.defaultRole) {
+                        localStorage.setItem('defaultRole', user.defaultRole)
+                    }
                     localStorage.setItem('displayName', `${user.firstName} ${user.lastName}`)
                     return { user }
                 }),
             updateUser: (user: Partial<Local_DTO.User>) =>
                 set(state => {
+                    if (user.defaultRole) {
+                        localStorage.setItem('defaultRole', user.defaultRole)
+                    }
                     if (user.firstName && user.lastName) localStorage.setItem('displayName', `${user.firstName} ${user.lastName}`)
                     return { user: { ...state?.user, ...user } }
                 }),
@@ -32,12 +47,15 @@ const authStore = create<Local_DTO.AuthStore>()(
                     localStorage.removeItem('nationalId')
                     localStorage.removeItem('accessToken')
                     localStorage.removeItem('displayName')
-                    localStorage.removeItem('roles')
+                    localStorage.removeItem('defaultRole')
                     return { isAuthenticated: false, nationalId: undefined, user: { roles: [] }, accessToken: undefined, refreshToken: undefined }
                 }),
             setDefaultRole: (defaultRole?: UserTypes) =>
                 set(state => {
-                    if (defaultRole && state?.user) state.user.defaultRole = defaultRole
+                    if (defaultRole && state?.user) {
+                        localStorage.setItem('defaultRole', defaultRole)
+                        state.user.defaultRole = defaultRole
+                    }
                 }),
         }),
         { name: 'auth' },
