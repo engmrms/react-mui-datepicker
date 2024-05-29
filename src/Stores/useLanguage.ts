@@ -5,12 +5,12 @@ import DevtoolsMiddlewares from '../Stores/middleware'
 const useLanguage = create<Local_DTO.useLanguageStore>()(
     DevtoolsMiddlewares(
         set => ({
-            lang: localStorage.getItem('up_lang') ?? 'ar',
-            dir: localStorage.getItem('up_lang') === 'en' ? 'ltr' : 'rtl',
+            lang: localStorage.getItem('lang') ?? 'ar',
+            dir: localStorage.getItem('lang') === 'en' ? 'ltr' : 'rtl',
             changeLang: value =>
                 set(state => {
                     if (value === state.lang) return
-                    localStorage.setItem('up_lang', value)
+                    localStorage.setItem('lang', value)
                     window.location.reload()
                 }),
         }),

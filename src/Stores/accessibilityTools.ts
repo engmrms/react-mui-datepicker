@@ -35,13 +35,13 @@ const CheckIfAllowedToDecreaseSize = ({ state }: { state: Local_DTO.Accessibilit
 const accessibilityTools = create<Local_DTO.AccessibilityToolsStore>()(
     DevtoolsMiddlewares(
         set => ({
-            isActive: !!localStorage.getItem('up_Colors'),
+            isActive: !!localStorage.getItem('Colors'),
             toggleColors: () =>
                 set(state => {
                     if (state.isActive) {
-                        localStorage.removeItem('up_Colors')
+                        localStorage.removeItem('Colors')
                     } else {
-                        localStorage.setItem('up_Colors', 'true')
+                        localStorage.setItem('Colors', 'true')
                     }
                     return { isActive: !state.isActive }
                 }),
