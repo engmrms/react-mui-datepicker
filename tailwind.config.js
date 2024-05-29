@@ -26,6 +26,9 @@ module.exports = {
         },
 
         extend: {
+            backgroundImage: theme => ({
+                gradientPrimary: `linear-gradient(0deg, ${theme('colors.primary.oncontainer')} 0%, ${theme('colors.primary.DEFAULT')} 100%)`,
+            }),
             colors: {
                 border: {
                     DEFAULT: 'var(--border)',
