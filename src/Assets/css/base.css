@@ -183,19 +183,19 @@
     }
 
     [data-theme='parent'] {
-        --primary: theme(colors.lavender.600);
-        --primary-foreground: theme(colors.white);
-        --primary-light: theme(colors.lavender.300);
-        --primary-dark: theme(colors.lavender.700);
-        --primary-oncontainer: theme(colors.lavender.900);
-        --primary-container: theme(colors.lavender.100);
+        --primary: theme(colors.middleBlue.600);
+        --primary-foreground: theme(colors.middleBlue.10);
+        --primary-light: theme(colors.middleBlue.300);
+        --primary-dark: theme(colors.middleBlue.700);
+        --primary-oncontainer: theme(colors.middleBlue.900);
+        --primary-container: theme(colors.middleBlue.100);
 
-        --secondary: theme(colors.blue.600);
-        --secondary-foreground: theme(colors.white);
-        --secondary-light: theme(colors.blue.300);
-        --secondary-dark: theme(colors.blue.700);
-        --secondary-oncontainer: theme(colors.blue.900);
-        --secondary-container: theme(colors.blue.100);
+        --secondary: theme(colors.puertoRico.500);
+        --secondary-foreground: theme(colors.puertoRico.10);
+        --secondary-light: theme(colors.puertoRico.400);
+        --secondary-dark: theme(colors.puertoRico.700);
+        --secondary-oncontainer: theme(colors.puertoRico.900);
+        --secondary-container: theme(colors.puertoRico.100);
 
         --tertiary: theme(colors.cyan.600);
         --tertiary-foreground: theme(colors.white);
@@ -206,19 +206,19 @@
     }
 
     [data-theme='student'] {
-        --primary: theme(colors.blue.600);
-        --primary-foreground: theme(colors.white);
-        --primary-light: theme(colors.blue.300);
-        --primary-dark: theme(colors.blue.700);
-        --primary-oncontainer: theme(colors.blue.900);
-        --primary-container: theme(colors.blue.100);
+        --primary: theme(colors.lavender.600);
+        --primary-foreground: theme(colors.lavender.10);
+        --primary-light: theme(colors.lavender.300);
+        --primary-dark: theme(colors.lavender.700);
+        --primary-oncontainer: theme(colors.lavender.900);
+        --primary-container: theme(colors.lavender.100);
 
-        --secondary: theme(colors.lavender.600);
-        --secondary-foreground: theme(colors.white);
-        --secondary-light: theme(colors.lavender.300);
-        --secondary-dark: theme(colors.lavender.700);
-        --secondary-oncontainer: theme(colors.lavender.900);
-        --secondary-container: theme(colors.lavender.100);
+        --secondary: theme(colors.olivine.400);
+        --secondary-foreground: theme(colors.olivine.10);
+        --secondary-light: theme(colors.olivine.300);
+        --secondary-dark: theme(colors.olivine.600);
+        --secondary-oncontainer: theme(colors.olivine.900);
+        --secondary-container: theme(colors.olivine.100);
 
         --tertiary: theme(colors.cyan.600);
         --tertiary-foreground: theme(colors.white);
