@@ -48,6 +48,7 @@ const authStore = create<Local_DTO.AuthStore>()(
                     localStorage.removeItem('accessToken')
                     localStorage.removeItem('displayName')
                     localStorage.removeItem('defaultRole')
+                    localStorage.removeItem('jwt')
                     return { isAuthenticated: false, nationalId: undefined, user: { roles: [] }, accessToken: undefined, refreshToken: undefined }
                 }),
             setDefaultRole: (defaultRole?: UserTypes) =>
