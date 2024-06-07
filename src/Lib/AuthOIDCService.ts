@@ -31,6 +31,7 @@ export interface IAuthService {
     signin(): Promise<void>
     completeSignIn(): Promise<void | User>
     signout(): void
+    clearSession(): void
 }
 
 class AuthService implements IAuthService {
@@ -172,10 +173,28 @@ class AuthService implements IAuthService {
             })
     }
 
+    /**
+     * function to call another url to kill opend session to allow set credentials again
+     */
+    public clearSession = () => {
+        // Open the logout URL in a new tab
+        const logoutWindow = window.open('https://iam-stg.moe.gov.sa/pkmslogout', '_blank', 'width=800,height=600')
+        // Check if the window was successfully opened
+        if (logoutWindow) {
+            // Close the new tab after a short delay
+            setTimeout(() => {
+                logoutWindow.close()
+            }, 1000)
+        } else {
+            console.error('Failed to open logout window')
+        }
+    }
+
     public signout = () => {
         this.userManager
             .getUser()
             .then(user => {
+                // this.clearSession()
                 axios
                     .post(
                         `${METADATA_OIDC.end_session_endpoint}?client_id=${IDENTITY_CONFIG.client_id}&client_secret=${IDENTITY_CONFIG.client_secret}&token=${user?.access_token}`,
@@ -190,7 +209,7 @@ class AuthService implements IAuthService {
                 })
                 return user
             })
-            .finally(() => {
+            .then(() => {
                 this.userManager.removeUser()
                 this.userManager.clearStaleState()
             })
