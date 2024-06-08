@@ -2,27 +2,32 @@ import { useEffect, useState } from 'react'
 import AuthOIDCService, { IAuthService } from './AuthOIDCService'
 
 export default function useOidcAuth() {
-    const [user, setUser] = useState<IAuthService['user'] | null>(null)
+    const [user, setUser] = useState<IAuthService['user'] | null>(AuthOIDCService.user)
+    const [isLoading, setIsLoading] = useState<boolean>(AuthOIDCService.isLoading)
+    const [error, setError] = useState<Error | undefined>(AuthOIDCService.error)
 
-    const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState()
     useEffect(() => {
-        AuthOIDCService.getUser()
-            .then(val => {
-                setIsLoading(false)
-                setUser(val)
-            })
-            .catch(error => {
-                setError(error)
-                setIsLoading(false)
+        const fetchUser = async () => {
+            setIsLoading(true)
+            try {
+                const user = await AuthOIDCService.getUser()
+                setUser(user)
+                setError(AuthOIDCService.error)
+            } catch (err) {
+                setError(err as Error)
                 setUser(null)
-            })
-        return () => {
-            setError(undefined)
-            setIsLoading(false)
-            setUser(null)
+            } finally {
+                setIsLoading(false)
+            }
         }
+
+        fetchUser()
     }, [])
 
-    return { user: user, isLoading, error, isAuthenticated: user && !user?.expired }
+    return {
+        user,
+        isLoading,
+        error,
+        isAuthenticated: !!user && !user?.expired,
+    }
 }

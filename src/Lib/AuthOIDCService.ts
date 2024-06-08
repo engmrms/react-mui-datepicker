@@ -30,8 +30,8 @@ export interface IAuthService {
     getUser(): Promise<User | null>
     signin(): Promise<void>
     completeSignIn(): Promise<void | User>
-    signout(): void
-    clearSession(): void
+    signout(): Promise<void>
+    clearSession(): Promise<void>
 }
 
 class AuthService implements IAuthService {
@@ -68,9 +68,8 @@ class AuthService implements IAuthService {
     private setupEventListeners() {
         this.userManager.events.addUserLoaded((user: User) => {
             console.log('loaded => ', user)
-
             this.user = user
-            this.isAuthenticated = !!user?.expired
+            this.isAuthenticated = !user?.expired
             this.error = undefined
             this.isLoading = false
         })
@@ -92,15 +91,7 @@ class AuthService implements IAuthService {
 
         this.userManager.events.addAccessTokenExpired(() => {
             console.log('Access token expired.')
-            this.userManager
-                .signinSilent()
-                .then(() => {
-                    this.completeSignIn()
-                })
-                .catch(e => {
-                    console.error('Silent renew error:', e.message)
-                    this.signout()
-                })
+            this.signin()
         })
 
         this.userManager.events.addUserSignedIn(() => {
@@ -174,44 +165,40 @@ class AuthService implements IAuthService {
     }
 
     /**
-     * function to call another url to kill opend session to allow set credentials again
+     * function to call another url to kill opend session with 'sso service'
      */
-    public clearSession = () => {
-        // Open the logout URL in a new tab
-        const logoutWindow = window.open('https://iam-stg.moe.gov.sa/pkmslogout', '_blank', 'width=800,height=600')
-        // Check if the window was successfully opened
-        if (logoutWindow) {
-            // Close the new tab after a short delay
-            setTimeout(() => {
-                logoutWindow.close()
-            }, 1000)
-        } else {
-            console.error('Failed to open logout window')
-        }
+    public async clearSession(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            const logoutWindow = window.open('https://iam-stg.moe.gov.sa/pkmslogout', '_blank', 'width=800,height=600')
+            if (logoutWindow) {
+                setTimeout(() => {
+                    logoutWindow.close()
+                    resolve()
+                }, 1000)
+            } else {
+                console.error('Failed to open logout window')
+                reject(new Error('Unable to open new popup window'))
+            }
+        })
     }
 
     public signout = () => {
-        this.userManager
+        return this.userManager
             .getUser()
-            .then(user => {
-                // this.clearSession()
-                axios
-                    .post(
-                        `${METADATA_OIDC.end_session_endpoint}?client_id=${IDENTITY_CONFIG.client_id}&client_secret=${IDENTITY_CONFIG.client_secret}&token=${user?.access_token}`,
-                        {},
-                        { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
-                    )
-                    .catch(e => {
-                        console.log('err', e)
-                    })
-                axios.post('https://iam-stg.moe.gov.sa/up/sps/oauth/oauth20/logout').catch(e => {
-                    console.log('err', e)
-                })
+            .then(async user => {
+                await this.clearSession()
+                await axios.post(
+                    `${METADATA_OIDC.end_session_endpoint}?client_id=${IDENTITY_CONFIG.client_id}&client_secret=${IDENTITY_CONFIG.client_secret}&token=${user?.access_token}`,
+                    {},
+                    { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
+                )
+                await axios.post('https://iam-stg.moe.gov.sa/up/sps/oauth/oauth20/logout')
                 return user
             })
-            .then(() => {
-                this.userManager.removeUser()
-                this.userManager.clearStaleState()
+            .then(async () => {
+                await this.userManager.removeUser()
+                await this.userManager.clearStaleState()
+                return
             })
     }
 }
