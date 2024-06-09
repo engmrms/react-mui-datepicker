@@ -1,6 +1,6 @@
 import { IDENTITY_CONFIG, METADATA_OIDC } from '../constants/oidcConfig'
 import { UserManager, Log } from 'oidc-client-ts'
-
+import axios from 'axios'
 import type { User } from 'oidc-client-ts'
 
 /**
@@ -30,7 +30,8 @@ export interface IAuthService {
     getUser(): Promise<User | null>
     signin(): Promise<void>
     completeSignIn(): Promise<void | User>
-    signout(): void
+    signout(): Promise<void>
+    clearSession(): Promise<void>
 }
 
 class AuthService implements IAuthService {
@@ -67,9 +68,8 @@ class AuthService implements IAuthService {
     private setupEventListeners() {
         this.userManager.events.addUserLoaded((user: User) => {
             console.log('loaded => ', user)
-
             this.user = user
-            this.isAuthenticated = !!user?.expired
+            this.isAuthenticated = !user?.expired
             this.error = undefined
             this.isLoading = false
         })
@@ -91,15 +91,7 @@ class AuthService implements IAuthService {
 
         this.userManager.events.addAccessTokenExpired(() => {
             console.log('Access token expired.')
-            this.userManager
-                .signinSilent()
-                .then(() => {
-                    this.completeSignIn()
-                })
-                .catch(e => {
-                    console.error('Silent renew error:', e.message)
-                    this.signout()
-                })
+            this.signin()
         })
 
         this.userManager.events.addUserSignedIn(() => {
@@ -172,10 +164,42 @@ class AuthService implements IAuthService {
             })
     }
 
+    /**
+     * function to call another url to kill opend session with 'sso service'
+     */
+    public async clearSession(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            const logoutWindow = window.open('https://iam-stg.moe.gov.sa/pkmslogout', '_blank', 'width=800,height=600')
+            if (logoutWindow) {
+                setTimeout(() => {
+                    logoutWindow.close()
+                    resolve()
+                }, 1000)
+            } else {
+                console.error('Failed to open logout window')
+                reject(new Error('Unable to open new popup window'))
+            }
+        })
+    }
+
     public signout = () => {
-        this.userManager.signoutSilent()
-        this.userManager.removeUser()
-        this.userManager.clearStaleState()
+        return this.userManager
+            .getUser()
+            .then(async user => {
+                await this.clearSession()
+                await axios.post(
+                    `${METADATA_OIDC.end_session_endpoint}?client_id=${IDENTITY_CONFIG.client_id}&client_secret=${IDENTITY_CONFIG.client_secret}&token=${user?.access_token}`,
+                    {},
+                    { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
+                )
+                await axios.post('https://iam-stg.moe.gov.sa/up/sps/oauth/oauth20/logout')
+                return user
+            })
+            .then(async () => {
+                await this.userManager.removeUser()
+                await this.userManager.clearStaleState()
+                return
+            })
     }
 }
 
