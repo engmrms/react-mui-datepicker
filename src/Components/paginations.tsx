@@ -5,6 +5,7 @@ import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { cn } from '../Lib/utils'
 import { strings } from '../Locales'
+import useLanguage from '../Stores/useLanguage'
 import ShouldRender from './ShouldRender'
 import { PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, Pagination as ShadPagination } from './ui/pagination'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select'
@@ -154,18 +155,19 @@ const Break = () => (
     </PaginationItem>
 )
 
- const PaginationDescription = ({ currentPage, totalCount, limit = 10 }: { currentPage: number; totalCount: number; limit: number }) => {
+const PaginationDescription = ({ currentPage, totalCount, limit = 10 }: { currentPage: number; totalCount: number; limit: number }) => {
     const selectedPage = (currentPage - 1) * limit + 1
     const pageCount = currentPage * limit > totalCount ? totalCount : currentPage * limit
     const totalItems = totalCount
     return <div className="flex-1 text-body-02">{strings.formatString(strings.Shared.PaginationDesc, selectedPage, pageCount, totalItems)}</div>
 }
 const LinesPerPage = ({ value, onChange }: { value: number; onChange: (value: string) => void }) => {
+    const { dir } = useLanguage()
     return (
         <>
             <span className="block whitespace-nowrap text-body-01">{strings.Shared.LinesPerPage} :</span>
-            <Select value={value.toString()} onValueChange={val => onChange(val)}>
-                <SelectTrigger className="">
+            <Select dir={dir} value={value.toString()} onValueChange={val => onChange(val)}>
+                <SelectTrigger className="!px-space-03 !py-space-02">
                     <SelectValue placeholder={strings.Shared.Select} />
                 </SelectTrigger>
                 <SelectContent className="!min-w-fit">
