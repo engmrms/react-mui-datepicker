@@ -1,6 +1,5 @@
 import { IDENTITY_CONFIG, METADATA_OIDC } from '../constants/oidcConfig'
 import { UserManager, Log } from 'oidc-client-ts'
-import axios from 'axios'
 import type { User } from 'oidc-client-ts'
 
 /**
@@ -187,12 +186,11 @@ class AuthService implements IAuthService {
             .getUser()
             .then(async user => {
                 await this.clearSession()
-                await axios.post(
+                await fetch(
                     `${METADATA_OIDC.end_session_endpoint}?client_id=${IDENTITY_CONFIG.client_id}&client_secret=${IDENTITY_CONFIG.client_secret}&token=${user?.access_token}`,
-                    {},
-                    { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
+                    { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
                 )
-                await axios.post('https://iam-stg.moe.gov.sa/up/sps/oauth/oauth20/logout')
+                await fetch('https://iam-stg.moe.gov.sa/up/sps/oauth/oauth20/logout', { method: 'POST' })
                 return user
             })
             .then(async () => {
