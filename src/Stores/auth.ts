@@ -43,7 +43,6 @@ const authStore = create<Local_DTO.AuthStore>()(
                 }),
             logout: () =>
                 set(() => {
-                    window.location.replace('/')
                     localStorage.removeItem('nationalId')
                     localStorage.removeItem('accessToken')
                     localStorage.removeItem('displayName')
