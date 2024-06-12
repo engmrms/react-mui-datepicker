@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const sonarqubeScannerShared = require('sonarqube-scanner')
+const sonarqubeScannerShared = require('sonarqube-scanner').default
 
 sonarqubeScannerShared(
     {
