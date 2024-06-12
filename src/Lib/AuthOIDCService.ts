@@ -182,10 +182,11 @@ class AuthService implements IAuthService {
     }
 
     public signout = () => {
+        this.isLoading = false
+        this.clearSession()
         return this.userManager
             .getUser()
             .then(async user => {
-                await this.clearSession()
                 await fetch(
                     `${METADATA_OIDC.end_session_endpoint}?client_id=${IDENTITY_CONFIG.client_id}&client_secret=${IDENTITY_CONFIG.client_secret}&token=${user?.access_token}`,
                     { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
