@@ -67,7 +67,7 @@ const ComboboxGroup = React.forwardRef<React.ElementRef<typeof CommandGroup>, Re
             <ComboboxContent>
                 {childrenCount > 10 && (
                     <>
-                        <ComboboxInput />
+                        <ComboboxInput placeholder={props?.placeholder} />
                         <ComboboxEmpty>No Data Found</ComboboxEmpty>
                     </>
                 )}
