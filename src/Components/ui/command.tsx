@@ -38,7 +38,7 @@ const CommandInput = React.forwardRef<React.ElementRef<typeof CommandPrimitive.I
         <div
             className="mb-space-03 flex items-center gap-space-02 rounded-2 border border-border bg-muted px-space-03 py-space-02"
             cmdk-input-wrapper=""
-            dir="rtl">
+            dir={document.dir}>
             <Search className="size-[2rem] shrink-0 text-foreground-tertiary" />
             <CommandPrimitive.Input
                 ref={ref}
@@ -63,7 +63,13 @@ const CommandList = React.forwardRef<React.ElementRef<typeof CommandPrimitive.Li
 CommandList.displayName = CommandPrimitive.List.displayName
 
 const CommandEmpty = React.forwardRef<React.ElementRef<typeof CommandPrimitive.Empty>, React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>>(
-    (props, ref) => <CommandPrimitive.Empty ref={ref} className="py-6 text-center text-sm" {...props} />,
+    (props, ref) => (
+        <CommandPrimitive.Empty
+            ref={ref}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center text-sm"
+            {...props}
+        />
+    ),
 )
 
 CommandEmpty.displayName = CommandPrimitive.Empty.displayName

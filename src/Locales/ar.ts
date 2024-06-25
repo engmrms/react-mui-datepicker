@@ -49,6 +49,7 @@ export const ar = {
         Specify: 'حدد',
         ServerError: 'عفوًا، حدث خطأ ما',
         BackToHome: 'العودة للصفحة الرئيسية',
+        NoDataFound: 'لا توجد بيانات',
     },
 
     Footer: {
