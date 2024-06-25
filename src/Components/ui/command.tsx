@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { DialogProps } from '@radix-ui/react-dialog'
 import { Command as CommandPrimitive } from 'cmdk'
-import { Search } from 'lucide-react'
+import Search from 'google-material-icons/outlined/Search'
 import * as React from 'react'
 
 import { Dialog, DialogContent } from '../../Components/ui/dialog'
@@ -35,12 +35,15 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
 
 const CommandInput = React.forwardRef<React.ElementRef<typeof CommandPrimitive.Input>, React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>>(
     ({ className, ...props }, ref) => (
-        <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
-            <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+        <div
+            className="mb-space-03 flex items-center gap-space-02 rounded-2 border border-border bg-muted px-space-03 py-space-02"
+            cmdk-input-wrapper=""
+            dir={document.dir}>
+            <Search className="size-[2rem] shrink-0 text-foreground-tertiary" />
             <CommandPrimitive.Input
                 ref={ref}
                 className={cn(
-                    'flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
+                    'flex h-11 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-body-01 placeholder:text-foreground-secondary disabled:cursor-not-allowed disabled:opacity-50',
                     className,
                 )}
                 {...props}
@@ -60,7 +63,13 @@ const CommandList = React.forwardRef<React.ElementRef<typeof CommandPrimitive.Li
 CommandList.displayName = CommandPrimitive.List.displayName
 
 const CommandEmpty = React.forwardRef<React.ElementRef<typeof CommandPrimitive.Empty>, React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>>(
-    (props, ref) => <CommandPrimitive.Empty ref={ref} className="py-6 text-center text-sm" {...props} />,
+    (props, ref) => (
+        <CommandPrimitive.Empty
+            ref={ref}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center text-sm"
+            {...props}
+        />
+    ),
 )
 
 CommandEmpty.displayName = CommandPrimitive.Empty.displayName
@@ -91,7 +100,7 @@ const CommandItem = React.forwardRef<React.ElementRef<typeof CommandPrimitive.It
         <CommandPrimitive.Item
             ref={ref}
             className={cn(
-                'relative flex cursor-default select-none items-center rounded-2 ps-space-03 pe-space-01 py-space-02 text-body-01 outline-none aria-selected:bg-card-hover  data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
+                'relative flex cursor-default select-none items-center rounded-2 py-space-02 pe-space-01 ps-space-03 text-body-01 outline-none aria-selected:bg-card-hover  data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
                 className,
             )}
             {...props}
