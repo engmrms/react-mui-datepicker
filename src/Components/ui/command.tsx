@@ -11,6 +11,10 @@ import { cn } from '../../Lib/utils'
 const Command = React.forwardRef<React.ElementRef<typeof CommandPrimitive>, React.ComponentPropsWithoutRef<typeof CommandPrimitive>>(
     ({ className, ...props }, ref) => (
         <CommandPrimitive
+            filter={(value, searchText) => {
+                if (value?.includes(searchText)) return 1
+                return 0
+            }}
             ref={ref}
             className={cn('flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground', className)}
             {...props}
