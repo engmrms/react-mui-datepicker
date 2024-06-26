@@ -12,7 +12,7 @@ const Command = React.forwardRef<React.ElementRef<typeof CommandPrimitive>, Reac
     ({ className, ...props }, ref) => (
         <CommandPrimitive
             filter={(value, searchText) => {
-                if (value?.includes(searchText)) return 1
+                if (value?.toLowerCase()?.includes(searchText?.toLowerCase())) return 1
                 return 0
             }}
             ref={ref}
