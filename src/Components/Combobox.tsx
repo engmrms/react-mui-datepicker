@@ -96,7 +96,7 @@ const ComboboxGroup = React.forwardRef<React.ElementRef<typeof CommandGroup>, Re
                         <ComboboxEmpty>{strings.Shared.NoDataFound}</ComboboxEmpty>
                     </>
                 )}
-                <ScrollArea className={classNames({ 'h-auto': childrenCount <= 7, 'h-64': childrenCount > 7 })} dir={dir}>
+                <ScrollArea className={classNames({ 'h-auto': childrenCount <= 7, 'h-48 sm:h-64': childrenCount > 7 })} dir={dir}>
                     <CommandGroup ref={ref} {...props} dir={document.dir}>
                         {children}
                     </CommandGroup>
