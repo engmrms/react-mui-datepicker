@@ -7,8 +7,8 @@ const authStore = create<Local_DTO.AuthStore>()(
     DevtoolsMiddlewares(
         set => ({
             isAuthenticated: !!localStorage.getItem('nationalId'),
-            accessToken: undefined,
-            refreshToken: undefined,
+            accessToken: localStorage.getItem('accessToken') || undefined,
+            refreshToken: localStorage.getItem('refreshToken') || undefined,
             nationalId: localStorage.getItem('nationalId'),
             user: {
                 firstName: '',
@@ -45,6 +45,7 @@ const authStore = create<Local_DTO.AuthStore>()(
                 set(() => {
                     localStorage.removeItem('nationalId')
                     localStorage.removeItem('accessToken')
+                    localStorage.removeItem('refreshToken')
                     localStorage.removeItem('displayName')
                     localStorage.removeItem('defaultRole')
                     localStorage.removeItem('jwt')
