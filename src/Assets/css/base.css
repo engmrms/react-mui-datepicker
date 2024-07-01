@@ -4,6 +4,7 @@
 @layer base {
     :root {
         --background: theme(colors.gray.100);
+        --background-foreground: theme(colors.gray.900);
         --background-secondary: theme(colors.gray.300);
         --foreground: theme(colors.gray.900);
         --overlay: theme(colors.gray.800);
@@ -94,6 +95,7 @@
 
     .dark {
         --background: theme(colors.grayDark.800);
+        --background-foreground: theme(colors.grayDark.10);
         --background-secondary: theme(colors.grayDark.700);
         --foreground: theme(colors.white);
         --overlay: theme(colors.grayDark.50);
@@ -205,6 +207,29 @@
         --tertiary-container: theme(colors.cyan.100);
     }
 
+    [data-theme='parent'].dark {
+        --primary: theme(colors.middleBlue.500);
+        --primary-foreground: theme(colors.middleBlue.10);
+        --primary-light: theme(colors.middleBlue.400);
+        --primary-dark: theme(colors.middleBlue.600);
+        --primary-oncontainer: theme(colors.middleBlue.50);
+        --primary-container: theme(colors.middleBlue.900);
+
+        --secondary: theme(colors.puertoRico.500);
+        --secondary-foreground: theme(colors.puertoRico.10);
+        --secondary-light: theme(colors.puertoRico.400);
+        --secondary-dark: theme(colors.puertoRico.600);
+        --secondary-oncontainer: theme(colors.puertoRico.50);
+        --secondary-container: theme(colors.puertoRico.900);
+
+        --tertiary: theme(colors.cyan.600);
+        --tertiary-foreground: theme(colors.white);
+        --tertiary-light: theme(colors.cyan.300);
+        --tertiary-dark: theme(colors.cyan.700);
+        --tertiary-oncontainer: theme(colors.cyan.900);
+        --tertiary-container: theme(colors.cyan.100);
+    }
+
     [data-theme='student'] {
         --primary: theme(colors.lavender.600);
         --primary-foreground: theme(colors.lavender.10);
@@ -223,6 +248,29 @@
         --tertiary: theme(colors.cyan.600);
         --tertiary-foreground: theme(colors.white);
         --tertiary-light: theme(colors.cyan.300);
+        --tertiary-dark: theme(colors.cyan.700);
+        --tertiary-oncontainer: theme(colors.cyan.900);
+        --tertiary-container: theme(colors.cyan.100);
+    }
+
+    [data-theme='student'].dark {
+        --primary: theme(colors.lavender.500);
+        --primary-foreground: theme(colors.lavender.10);
+        --primary-light: theme(colors.lavender.400);
+        --primary-dark: theme(colors.lavender.600);
+        --primary-oncontainer: theme(colors.lavender.50);
+        --primary-container: theme(colors.lavender.900);
+
+        --secondary: theme(colors.olivine.500);
+        --secondary-foreground: theme(colors.olivine.10);
+        --secondary-light: theme(colors.olivine.300);
+        --secondary-dark: theme(colors.olivine.600);
+        --secondary-oncontainer: theme(colors.olivine.50);
+        --secondary-container: theme(colors.olivine.900);
+
+        --tertiary: theme(colors.cyan.600);
+        --tertiary-foreground: theme(colors.white);
+        --tertiary-light: theme(colors.cyan.400);
         --tertiary-dark: theme(colors.cyan.700);
         --tertiary-oncontainer: theme(colors.cyan.900);
         --tertiary-container: theme(colors.cyan.100);

@@ -34,7 +34,7 @@ const buttonVariants = cva(
                 warning: 'bg-warning text-warning-foreground hover:bg-warning-dark active:bg-warning-oncontainer',
                 success: 'bg-success text-success-foreground hover:bg-success-dark active:bg-success-oncontainer',
                 info: 'bg-info text-info-foreground hover:bg-info-dark active:bg-info-oncontainer',
-                gray: 'bg-transparent text-card-foreground hover:bg-card-hover active:bg-card-hover active:text-primary-oncontainer',
+                gray: 'bg-transparent text-background-foreground hover:bg-card-hover active:bg-card-hover active:text-primary-oncontainer',
             },
         },
         compoundVariants: [

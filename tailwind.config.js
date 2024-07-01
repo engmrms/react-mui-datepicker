@@ -38,6 +38,7 @@ module.exports = {
                     DEFAULT: 'var(--background)',
                     secondary: 'var(--background-secondary)',
                     overlay: 'var(--overlay)',
+                    foreground: 'var(--background-foreground)',
                 },
                 foreground: {
                     DEFAULT: 'var(--foreground)',
@@ -151,6 +152,7 @@ module.exports = {
                     900: '#0F0F0F',
                 },
                 grayDark: {
+                    10: '#FFFFFF',
                     50: '#CECECE',
                     100: '#B7BBBC',
                     200: '#8F9395',
