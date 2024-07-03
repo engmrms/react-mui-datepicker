@@ -113,14 +113,14 @@ class AuthService implements IAuthService {
         return false
     }
 
-    public async signin(): Promise<void> {
+    public signin(): Promise<void> {
         this.isLoading = true
         this.error = undefined
         this.user = null
         return this.userManager.signinRedirect()
     }
 
-    public async completeSignIn() {
+    public completeSignIn() {
         return this.userManager
             .signinRedirectCallback()
             .then(async (user: void | User) => {
