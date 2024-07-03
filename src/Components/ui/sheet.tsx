@@ -1,12 +1,31 @@
 /* eslint-disable react/prop-types */
 import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { cva, type VariantProps } from 'class-variance-authority'
-import * as React from 'react'
+import React, { Dispatch, SetStateAction, createContext, useContext, useEffect, useState } from 'react'
 
 import Close from 'google-material-icons/outlined/Close'
 import { useMediaQuery } from 'usehooks-ts'
 import { cn } from '../../Lib/utils'
 import accessibilityTools from '../../Stores/accessibilityTools'
+
+type SheetFooterContextType = {
+    isFooterUsed: boolean
+    setIsFooterUsed: Dispatch<SetStateAction<boolean>>
+}
+
+// Create the context with initial values
+const SheetFooterContext = createContext<SheetFooterContextType>({
+    isFooterUsed: false,
+    setIsFooterUsed: () => {}, // Provide a default function to prevent undefined
+})
+const useSheetFooter = () => useContext(SheetFooterContext)
+
+// Create the provider component
+const SheetProvider = ({ children }: React.PropsWithChildren) => {
+    const [isFooterUsed, setIsFooterUsed] = useState(false)
+
+    return <SheetFooterContext.Provider value={{ isFooterUsed, setIsFooterUsed }}>{children}</SheetFooterContext.Provider>
+}
 
 const Sheet = SheetPrimitive.Root
 
@@ -55,45 +74,58 @@ const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Con
         const matches = useMediaQuery('(min-width: 768px)')
 
         return (
-            <SheetPortal>
-                <SheetOverlay>
-                    <SheetPrimitive.Content
-                        ref={ref}
-                        className={cn(sheetVariants({ side: !matches ? 'bottom' : 'left' }), { grayscale: isActive }, className)}
-                        data-side={!matches ? 'bottom' : 'left'}
-                        {...props}>
-                        {children}
-                        {/* <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+            <SheetProvider>
+                <SheetPortal>
+                    <SheetOverlay>
+                        <SheetPrimitive.Content
+                            ref={ref}
+                            className={cn(sheetVariants({ side: !matches ? 'bottom' : 'left' }), { grayscale: isActive }, className)}
+                            data-side={!matches ? 'bottom' : 'left'}
+                            {...props}>
+                            {children}
+                            {/* <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
                         <X className="h-4 w-4" />
                         <span className="sr-only">Close</span>
-                    </SheetPrimitive.Close> */}
-                    </SheetPrimitive.Content>
-                </SheetOverlay>
-            </SheetPortal>
+                        </SheetPrimitive.Close> */}
+                        </SheetPrimitive.Content>
+                    </SheetOverlay>
+                </SheetPortal>
+            </SheetProvider>
         )
     },
 )
 SheetContent.displayName = SheetPrimitive.Content.displayName
 
-const SheetHeader = ({ className, title, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-    <div className={cn('flex flex-row items-center justify-between px-space-05 py-space-04', className)} {...props}>
+const SheetHeader = ({ className, title, children, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+    <div className={cn('flex flex-row items-center gap-space-02 px-space-05 py-space-04', className)} {...props}>
+        {children}
         <h1 className="font-IBMBold text-subtitle-02">{title}</h1>
-        <SheetClose>
+        <SheetClose className="mr-auto p-space-02">
             <Close />
         </SheetClose>
     </div>
 )
 SheetHeader.displayName = 'SheetHeader'
 
-const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-    <div
-        className={cn(
-            'absolute bottom-0 left-0 mt-auto flex w-full flex-col-reverse bg-background p-space-05 sm:flex-row sm:justify-end sm:space-x-2',
-            className,
-        )}
-        {...props}
-    />
-)
+const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+    const { setIsFooterUsed } = useSheetFooter()
+
+    useEffect(() => {
+        setIsFooterUsed(true)
+
+        return () => setIsFooterUsed(false)
+    }, [setIsFooterUsed])
+
+    return (
+        <div
+            className={cn(
+                'absolute bottom-0 left-0 mt-auto flex w-full flex-col-reverse bg-background p-space-05 sm:flex-row sm:justify-end sm:space-x-2',
+                className,
+            )}
+            {...props}
+        />
+    )
+}
 SheetFooter.displayName = 'SheetFooter'
 
 const SheetTitle = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Title>, React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>>(
@@ -107,9 +139,18 @@ const SheetDescription = React.forwardRef<
 >(({ className, ...props }, ref) => <SheetPrimitive.Description ref={ref} className={cn('text-sm text-muted-foreground', className)} {...props} />)
 SheetDescription.displayName = SheetPrimitive.Description.displayName
 
-const SheetBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('mb-space-11 h-full overflow-auto rounded-t-4 bg-card p-space-05 text-foreground', className)} {...props} />
-))
+const SheetBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
+    const { isFooterUsed } = useSheetFooter()
+    console.log(isFooterUsed)
+
+    return (
+        <div
+            ref={ref}
+            className={cn(`${isFooterUsed ? 'mb-space-11' : ''} h-full overflow-auto rounded-t-4 bg-card p-space-05 text-foreground`, className)}
+            {...props}
+        />
+    )
+})
 
 SheetBody.displayName = 'SheetBody'
 
