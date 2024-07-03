@@ -120,7 +120,7 @@ class AuthService implements IAuthService {
         return this.userManager.signinRedirect()
     }
 
-    public completeSignIn = () => {
+    public completeSignIn() {
         return this.userManager
             .signinRedirectCallback()
             .then(async (user: void | User) => {
@@ -140,6 +140,7 @@ class AuthService implements IAuthService {
                 this.isLoading = false
                 console.log('completeSignIn:', e)
                 this.error = e
+                throw Error(e)
                 // window.location.replace('/login')
             })
     }
