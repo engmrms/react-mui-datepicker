@@ -6,7 +6,7 @@ import DevtoolsMiddlewares from './middleware'
 const authStore = create<Local_DTO.AuthStore>()(
     DevtoolsMiddlewares(
         set => ({
-            isAuthenticated: !!localStorage.getItem('nationalId'),
+            isAuthenticated: !!localStorage.getItem('nationalId') && !!localStorage.getItem('accessToken'),
             accessToken: localStorage.getItem('accessToken') || undefined,
             refreshToken: localStorage.getItem('refreshToken') || undefined,
             nationalId: localStorage.getItem('nationalId'),
