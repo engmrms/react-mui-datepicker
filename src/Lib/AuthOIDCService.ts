@@ -182,9 +182,9 @@ class AuthService implements IAuthService {
         })
     }
 
-    public signout = () => {
+    public signout = async () => {
         this.isLoading = false
-        this.clearSession()
+        await this.clearSession()
         return this.userManager
             .getUser()
             .then(async user => {
