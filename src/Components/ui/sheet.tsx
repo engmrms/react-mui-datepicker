@@ -141,12 +141,11 @@ SheetDescription.displayName = SheetPrimitive.Description.displayName
 
 const SheetBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
     const { isFooterUsed } = useSheetFooter()
-    console.log(isFooterUsed)
 
     return (
         <div
             ref={ref}
-            className={cn(`${isFooterUsed ? 'mb-space-11' : ''} h-full overflow-auto rounded-t-4 bg-card p-space-05 text-foreground`, className)}
+            className={cn(`${isFooterUsed ? 'mb-space-11' : ''} h-full overflow-auto rounded-4 bg-card p-space-05 text-foreground`, className)}
             {...props}
         />
     )
