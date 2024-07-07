@@ -50,7 +50,7 @@ const SheetOverlay = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Ove
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
 
 const sheetVariants = cva(
-    'flex flex-col data-[side=bottom]:max-md:h-[93%] sm:max-w-[60rem] md:rounded-tl-none md:rounded-tr-none fixed z-50 gap-4 bg-background overflow-y-auto p-space-00 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500',
+    'flex flex-col data-[side=bottom]:max-md:h-[93%] sm:max-w-[60rem] md:rounded-tl-none md:rounded-tr-none fixed z-50 bg-background overflow-y-auto p-space-00 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500',
     {
         variants: {
             side: {
@@ -69,7 +69,7 @@ const sheetVariants = cva(
 interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>, VariantProps<typeof sheetVariants> {}
 
 const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Content>, SheetContentProps>(
-    ({ className, children, ...props }, ref) => {
+    ({ className, side, children, ...props }, ref) => {
         const isActive = accessibilityTools(state => state.isActive)
         const matches = useMediaQuery('(min-width: 768px)')
 
@@ -79,8 +79,8 @@ const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Con
                     <SheetOverlay>
                         <SheetPrimitive.Content
                             ref={ref}
-                            className={cn(sheetVariants({ side: !matches ? 'bottom' : 'left' }), { grayscale: isActive }, className)}
-                            data-side={!matches ? 'bottom' : 'left'}
+                            className={cn(sheetVariants({ side: side ? side : !matches ? 'bottom' : 'left' }), { grayscale: isActive }, className)}
+                            data-side={side ? side : !matches ? 'bottom' : 'left'}
                             {...props}>
                             {children}
                             {/* <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
