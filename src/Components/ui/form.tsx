@@ -146,4 +146,4 @@ export {
     useFormState,
     useWatch,
 }
-export type { SubmitHandler, UseFormReturn }
+export type { SubmitHandler, UseFormReturn, FieldValues }
