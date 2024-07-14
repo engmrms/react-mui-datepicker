@@ -16,14 +16,14 @@ data-[state=active]:font-IBMBold`,
             container: {
                 filled: 'inline-flex  items-center justify-center space-x-space-01 space-x-reverse rounded-[10rem] border border-input bg-muted p-space-02',
                 underline: '',
-                transparent: 'inline-flex items-center justify-center space-x-space-01 space-x-reverse rounded-[10rem] p-space-02',
+                transparent: 'inline-flex items-center justify-center space-x-space-01 space-x-reverse rounded-[10rem]',
             },
             variant: {
                 filled: 'hover:bg-card-hover rounded-full py-space-02 focus-visible:outline-none data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm hover:data-[state=active]:bg-primary-dark',
                 underline:
                     'hover:bg-card-hover py-space-03 data-[state=active]:text-primary border-b-2 border-b-transparent data-[state=active]:border-b-primary data-[state=active]:hover:border-b-primary-dark data-[state=active]:hover:text-primary-dark data-[state=active]:disabled:border-b-disabled',
                 transparent:
-                    'hover:bg-card-hover rounded-full py-space-02 focus-visible:outline-none data-[state=active]:bg-background data-[state=active]:text-black data-[state=active]:shadow-sm hover:data-[state=active]:bg-background',
+                    'hover:bg-card-hover rounded-full py-space-03 focus-visible:outline-none data-[state=active]:bg-background data-[state=active]:text-black data-[state=active]:shadow-sm hover:data-[state=active]:bg-background',
             },
         },
     },
