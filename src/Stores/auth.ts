@@ -50,6 +50,8 @@ const authStore = create<Local_DTO.AuthStore>()(
                     localStorage.removeItem('defaultRole')
                     localStorage.removeItem('jwt')
                     localStorage.removeItem('ERAlertHidden')
+                    localStorage.removeItem('registrationStartDate')
+                    localStorage.removeItem('registrationEndDate')
                     return { isAuthenticated: false, nationalId: undefined, user: { roles: [] }, accessToken: undefined, refreshToken: undefined }
                 }),
             setDefaultRole: (defaultRole?: UserTypes) =>
