@@ -71,7 +71,7 @@ interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof SheetP
 const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Content>, SheetContentProps>(
     ({ className, side, children, ...props }, ref) => {
         const isActive = accessibilityTools(state => state.isActive)
-        const matches = useMediaQuery('(min-width: 768px)')
+        const matches = useMediaQuery('(min-width: 600px)')
 
         return (
             <SheetProvider>
