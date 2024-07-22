@@ -33,7 +33,7 @@ export const ar = {
         Date: 'التاريخ',
         hijriCalendar: 'التاريخ الهجري',
         male: 'ذكر',
-        female: 'انثى',
+        female: 'أنثى',
         submit: 'ارسال',
         next: 'التالي',
         previous: 'السابق',
