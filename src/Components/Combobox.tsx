@@ -117,7 +117,9 @@ interface Props<T> extends VariantProps<typeof buttonVariants> {
     onChange: (value: string) => void
     triggerProps?: ButtonPropsExtend
     disabled?: boolean
-    isDate?: boolean
+    isDate?: boolean,
+    disabledOption?:(option:T)=>boolean
+
 }
 const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, optionValue, onChange, value, triggerProps, ...rest }: Props<T>) => {
     const [open, setOpen] = useState(false)
@@ -159,6 +161,7 @@ const ComboboxControlNoForm = <_, T>({
     value,
     triggerProps,
     isDate,
+    disabledOption ,
     ...rest
 }: Props<T>) => {
     const [open, setOpen] = useState(false)
@@ -178,6 +181,7 @@ const ComboboxControlNoForm = <_, T>({
                         })}
                         value={String(opt[optionLabel])}
                         key={String(opt[optionValue])}
+                        disabled={disabledOption && disabledOption(opt)}
                         onSelect={() => {
                             onChange(String(opt[optionValue]))
                             setOpen(false)
@@ -190,6 +194,10 @@ const ComboboxControlNoForm = <_, T>({
     )
 }
 
+
+
+
+
 export {
     Combobox,
     ComboboxContent,
@@ -199,5 +207,5 @@ export {
     ComboboxGroup,
     ComboboxInput,
     ComboboxItem,
-    ComboboxTrigger,
+    ComboboxTrigger
 }
