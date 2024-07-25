@@ -9,7 +9,6 @@ import useLanguage from '../Stores/useLanguage'
 import ShouldRender from './ShouldRender'
 import { PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, Pagination as ShadPagination } from './ui/pagination'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select'
-import { Button } from './ui/button'
 
 interface Props {
     totalItems: number
@@ -196,8 +195,7 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
 
     return (
         <div className="flex gap-space-02">
-            <Button
-                variant="ghost"
+            <button
                 disabled={disabled ?? currentPage === 1}
                 className="!p-space-02 disabled:border-disabled disabled:text-disabled"
                 onClick={() =>
@@ -207,8 +205,8 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
                     })
                 }>
                 <ChevronRight className="ltr:rotate-180" />
-            </Button>
-            <Button
+            </button>
+            <button
                 disabled={disabled ?? currentPage === totalPages}
                 className="!p-space-02 disabled:border-disabled disabled:text-disabled"
                 onClick={() =>
@@ -218,7 +216,7 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
                     })
                 }>
                 <ChevronLeft className="ltr:rotate-180" />
-            </Button>
+            </button>
         </div>
     )
 }
