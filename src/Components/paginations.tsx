@@ -9,6 +9,7 @@ import useLanguage from '../Stores/useLanguage'
 import ShouldRender from './ShouldRender'
 import { PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, Pagination as ShadPagination } from './ui/pagination'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select'
+import { Button } from './ui/button'
 
 interface Props {
     totalItems: number
@@ -195,10 +196,10 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
 
     return (
         <div className="flex gap-space-02">
-            <button
+            <Button
+                variant="ghost"
                 disabled={disabled ?? currentPage === 1}
-                className="rounded-full border border-border
-                 p-space-03 disabled:border-disabled disabled:text-disabled"
+                className="!p-space-02 disabled:border-disabled disabled:text-disabled"
                 onClick={() =>
                     setCurrentPage(prev => {
                         if (prev > 1) return prev - 1
@@ -206,10 +207,10 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
                     })
                 }>
                 <ChevronRight className="ltr:rotate-180" />
-            </button>
-            <button
+            </Button>
+            <Button
                 disabled={disabled ?? currentPage === totalPages}
-                className="rounded-full border border-border p-space-03 disabled:border-disabled disabled:text-disabled"
+                className="!p-space-02 disabled:border-disabled disabled:text-disabled"
                 onClick={() =>
                     setCurrentPage(prev => {
                         if (disabled) return prev
@@ -217,7 +218,7 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
                     })
                 }>
                 <ChevronLeft className="ltr:rotate-180" />
-            </button>
+            </Button>
         </div>
     )
 }
