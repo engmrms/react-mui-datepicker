@@ -14,6 +14,7 @@ import { VariantProps } from 'class-variance-authority'
 import React, { useState } from 'react'
 import { strings } from '../Locales'
 import ActionLoader from './ActionLoader'
+import ShouldRender from './ShouldRender'
 
 const Combobox = Popover
 
@@ -117,9 +118,8 @@ interface Props<T> extends VariantProps<typeof buttonVariants> {
     onChange: (value: string) => void
     triggerProps?: ButtonPropsExtend
     disabled?: boolean
-    isDate?: boolean,
-    disabledOption?:(option:T)=>boolean
-
+    isDate?: boolean
+    disabledOption?: (option: T) => boolean
 }
 const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, optionValue, onChange, value, triggerProps, ...rest }: Props<T>) => {
     const [open, setOpen] = useState(false)
@@ -161,7 +161,7 @@ const ComboboxControlNoForm = <_, T>({
     value,
     triggerProps,
     isDate,
-    disabledOption ,
+    disabledOption,
     ...rest
 }: Props<T>) => {
     const [open, setOpen] = useState(false)
@@ -172,6 +172,9 @@ const ComboboxControlNoForm = <_, T>({
                 {isDate ? dateFormatter({ date: String(currentValue) ?? '', format: 'long' }) : currentValue.toString()}
             </ComboboxTrigger>
             <ComboboxGroup placeholder={placeholder}>
+                <ShouldRender shouldRender={!options || options?.length < 1}>
+                    <span className="flex items-center justify-center">{strings.Shared.NoDataFound}</span>
+                </ShouldRender>
                 {options?.map(opt => (
                     <ComboboxItem
                         className={classNames({
@@ -194,10 +197,6 @@ const ComboboxControlNoForm = <_, T>({
     )
 }
 
-
-
-
-
 export {
     Combobox,
     ComboboxContent,
@@ -207,5 +206,5 @@ export {
     ComboboxGroup,
     ComboboxInput,
     ComboboxItem,
-    ComboboxTrigger
+    ComboboxTrigger,
 }
