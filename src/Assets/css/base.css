@@ -208,12 +208,12 @@
     }
 
     [data-theme='parent'].dark {
-        --primary: theme(colors.middleBlue.500);
+        --primary: theme(colors.blue.500);
         --primary-foreground: theme(colors.middleBlue.10);
-        --primary-light: theme(colors.middleBlue.400);
-        --primary-dark: theme(colors.middleBlue.600);
-        --primary-oncontainer: theme(colors.middleBlue.50);
-        --primary-container: theme(colors.middleBlue.900);
+        --primary-light: theme(colors.blue.400);
+        --primary-dark: theme(colors.blue.600);
+        --primary-oncontainer: theme(colors.blue.50);
+        --primary-container: theme(colors.blue.900);
 
         --secondary: theme(colors.puertoRico.500);
         --secondary-foreground: theme(colors.puertoRico.10);
