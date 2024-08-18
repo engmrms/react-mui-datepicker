@@ -28,11 +28,11 @@ const meta: Meta<typeof Grid> = {
     component: GridSample,
     tags: ['autodocs'],
     args: {
-        gap: 'medium',
+        gap: 1,
     },
     argTypes: {
         gap: {
-            options: ['none', 'small', 'medium'],
+            options: ['none', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
             control: { type: 'inline-radio' },
         },
     },
@@ -50,4 +50,47 @@ export default meta
 type Story = StoryObj<typeof Grid>
 export const Default: Story = {
     render: GridSample,
+}
+
+const TwoColumnStory = (arg: any) => {
+    return (
+        <Grid {...arg}>
+            <GridItem columns={{ sm: 2, md: 4, lg: 6 }}>
+                <div className="h-36 w-36 bg-red-300" />
+            </GridItem>
+            <GridItem columns={{ sm: 2, md: 4, lg: 6 }}>
+                <div className="h-36 w-36 bg-red-300" />
+            </GridItem>
+        </Grid>
+    )
+}
+export const TwoColumn: Story = {
+    render: TwoColumnStory,
+}
+const SixColumnsStory = (arg: any) => {
+    return (
+        <Grid {...arg}>
+            <GridItem columns={{ base: 2, md: 4, lg: 6 }}>
+                <div className="h-36 w-36 bg-red-300" />
+            </GridItem>
+            <GridItem columns={{ base: 2, md: 4, lg: 6 }}>
+                <div className="h-36 w-36 bg-red-300" />
+            </GridItem>
+            <GridItem columns={{ base: 2, md: 4, lg: 6 }}>
+                <div className="h-36 w-36 bg-red-300" />
+            </GridItem>
+            <GridItem columns={{ base: 2, md: 4, lg: 6 }}>
+                <div className="h-36 w-36 bg-red-300" />
+            </GridItem>
+            <GridItem columns={{ base: 2, md: 4, lg: 6 }}>
+                <div className="h-36 w-36 bg-red-300" />
+            </GridItem>
+            <GridItem columns={{ base: 2, md: 4, lg: 6 }}>
+                <div className="h-36 w-36 bg-red-300" />
+            </GridItem>
+        </Grid>
+    )
+}
+export const SixColumns: Story = {
+    render: SixColumnsStory,
 }

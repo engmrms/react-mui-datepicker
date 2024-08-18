@@ -1,6 +1,7 @@
 import { cva, VariantProps } from 'class-variance-authority'
 import clsx from 'clsx'
 import React from 'react'
+import { processColumns } from './utils'
 // Define the styles using CVA
 const gridStyles = cva('grid', {
     variants: {
@@ -20,8 +21,6 @@ const gridStyles = cva('grid', {
         },
         gap: {
             none: '',
-            small: 'gap-space-04',
-            medium: 'gap-space-05',
             1: 'gap-space-01',
             2: 'gap-space-02',
             3: 'gap-space-03',
@@ -31,11 +30,12 @@ const gridStyles = cva('grid', {
             7: 'gap-space-07',
             8: 'gap-space-08',
             9: 'gap-space-09',
+            10: 'gap-space-10',
+            11: 'gap-space-11',
+            12: 'gap-space-12',
         },
         gapX: {
             none: '',
-            small: 'gap-x-space-04',
-            medium: 'gap-x-space-05',
             1: 'gap-x-space-01',
             2: 'gap-x-space-02',
             3: 'gap-x-space-03',
@@ -45,11 +45,12 @@ const gridStyles = cva('grid', {
             7: 'gap-x-space-07',
             8: 'gap-x-space-08',
             9: 'gap-x-space-09',
+            10: 'gap-x-space-10',
+            11: 'gap-x-space-11',
+            12: 'gap-x-space-12',
         },
         gapY: {
             none: '',
-            small: 'gap-y-space-04',
-            medium: 'gap-y-space-05',
             1: 'gap-y-space-01',
             2: 'gap-y-space-02',
             3: 'gap-y-space-03',
@@ -59,6 +60,9 @@ const gridStyles = cva('grid', {
             7: 'gap-y-space-07',
             8: 'gap-y-space-08',
             9: 'gap-y-space-09',
+            10: 'gap-y-space-10',
+            11: 'gap-y-space-11',
+            12: 'gap-y-space-12',
         },
         autoFlow: {
             row: 'grid-flow-row',
@@ -98,7 +102,7 @@ const gridStyles = cva('grid', {
     },
     defaultVariants: {
         cols: 12,
-        gap: 'small',
+        gap: 1,
         gapX: 'none',
         gapY: 'none',
         autoFlow: 'row',
@@ -145,31 +149,11 @@ export const Grid: React.FC<GridProps> = ({
     )
 }
 
-type GridTypes = '' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
-function toGridColumnSpan(span: number | null): string | null {
-    return span !== null ? `col-span-${span}` : null
-}
-
-function processColumns(columns: number | Partial<Record<GridTypes, number | null>> | undefined): string | null | undefined {
-    let gridColumn
-
-    if (typeof columns === 'number') {
-        gridColumn = toGridColumnSpan(columns)
-    } else if (typeof columns === 'object' && columns !== null) {
-        gridColumn = Object.entries(columns)
-            .map(([key, value]) => {
-                const gridColumnClass = toGridColumnSpan(value)
-                return gridColumnClass ? `${key}:${gridColumnClass}` : null
-            })
-            .filter(Boolean)
-            .join(' ')
-    }
-    return gridColumn
-}
+export type ColumnsTypes = number | Partial<Record<'base' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | string, number | null>> | undefined
 
 interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
-    columns?: number | Partial<Record<GridTypes, number | null>> | undefined
-    children: React.ReactNode
+    columns?: ColumnsTypes
+    children?: React.ReactNode[] | React.ReactNode
 }
 
 export const GridItem: React.FC<GridItemProps> = ({ columns, children, className, ...rest }) => {
