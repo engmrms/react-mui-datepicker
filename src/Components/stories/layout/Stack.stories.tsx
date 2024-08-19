@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { Meta, StoryObj } from '@storybook/react'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React from 'react'
 
 import { Stack } from '../../ui/Layout'
 
