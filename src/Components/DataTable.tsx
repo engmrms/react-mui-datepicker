@@ -34,7 +34,7 @@ function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent }: D
         getPaginationRowModel: getPaginationRowModel(),
     })
 
-    const matches = useMediaQuery('(min-width: 768px)')
+    const matches = useMediaQuery('(min-width: 801px)')
 
     const currentPage = table.getState().pagination.pageIndex + 1
 
