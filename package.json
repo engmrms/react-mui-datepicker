@@ -13,6 +13,7 @@
         "sonar": "node ./src/Lib/sonar.ts"
     },
     "dependencies": {
+        "@tanstack/react-query": "^5.22.2",
         "@date-io/moment": "2.17.0",
         "@emotion/react": "11.11.3",
         "@emotion/styled": "11.11.0",
