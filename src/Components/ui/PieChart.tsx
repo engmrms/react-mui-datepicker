@@ -30,6 +30,7 @@ export const PieChart = ({ seriesData, title, tooltipFormatter, chartOptions, wi
             width: width,
             height: height,
             margin: [0, 0, 0, 0],
+            spacing: [0, 0, 0, 0],
             spacingTop: 0,
             spacingBottom: 0,
             spacingRight: 0,
@@ -56,19 +57,38 @@ export const PieChart = ({ seriesData, title, tooltipFormatter, chartOptions, wi
         },
         plotOptions: {
             pie: {
-                size: width > height ? width : height,
+                size: '200%',
+                states: {
+                    hover: {
+                        enabled: true,
+                        halo: {
+                            size: 0,
+                            opacity: 0.25,
+                        },
+                    },
+                },
                 allowPointSelect: false,
                 cursor: 'pointer',
                 dataLabels: { enabled: false },
                 showInLegend: false,
                 startAngle: -90,
                 endAngle: 90,
-                center: ['50%', '118%'],
-                innerSize: '75%',
+                center: ['50%', '100%'],
+                innerSize: '85%',
+                borderWidth: 0,
+                borderRadius: 0,
             },
         },
-
-        series: seriesData,
+        series: [
+            {
+                ...seriesData[0],
+                borderWidth: 0,
+                groupPadding: 0,
+                pointPadding: 0,
+                grouping: false,
+                shadow: false,
+            },
+        ],
     }
 
     return <HighchartsReact highcharts={Highcharts} options={optionsPie} />
