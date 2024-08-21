@@ -4,12 +4,19 @@ import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
 
-const Progress = React.forwardRef<React.ElementRef<typeof ProgressPrimitive.Root>, React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>>(
-    ({ className, value, ...props }, ref) => (
-        <ProgressPrimitive.Root ref={ref} className={cn('relative h-4 w-full overflow-hidden rounded-full bg-background', className)} {...props}>
+interface ProgressProps extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
+    colors?: 'bg-primary' | 'bg-secondary' | 'bg-tertiary' | 'bg-error' | 'bg-warning' | 'bg-success' | 'bg-info'
+}
+
+const Progress = React.forwardRef<React.ElementRef<typeof ProgressPrimitive.Root>, ProgressProps>(
+    ({ className, value, colors = 'bg-primary', ...props }, ref) => (
+        <ProgressPrimitive.Root
+            ref={ref}
+            className={cn('relative h-space-02 w-full overflow-hidden rounded-1 bg-background-secondary', className)}
+            {...props}>
             <ProgressPrimitive.Indicator
-                className="h-full w-full flex-1 bg-primary transition-all"
-                style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
+                className={cn('h-full w-full flex-1 transition-all', colors)}
+                style={{ transform: props?.dir === 'rtl' ? `translateX(${100 - (value || 0)}%)` : `translateX(-${100 - (value || 0)}%)` }}
             />
         </ProgressPrimitive.Root>
     ),
