@@ -1,10 +1,13 @@
 import Highcharts, { ChartOptions, SeriesPieOptions } from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
+import useLanguage from '../../Stores/useLanguage'
 
 type seriesDataType = Omit<SeriesPieOptions, 'type'> & { y: number }
 type SeriesType = {
     name: string
     data: seriesDataType[]
+    colors?: string[]
+    innerSize?: string
 }[]
 
 type LegendTotalType = string[]
@@ -22,6 +25,11 @@ export type PieChartProps = {
 }
 
 export const PieChart = ({ seriesData, title, tooltipFormatter, chartOptions, width = 200, height = 200, enableTooltip }: PieChartProps) => {
+    const { dir } = useLanguage()
+    const isRTL = dir === 'rtl'
+    const reverseIfRTL = <T,>(arr: T[]): T[] => {
+        return isRTL ? [...arr].reverse() : arr
+    }
     const optionsPie = {
         chart: {
             type: 'pie',
@@ -82,6 +90,8 @@ export const PieChart = ({ seriesData, title, tooltipFormatter, chartOptions, wi
         series: [
             {
                 ...seriesData[0],
+                data: reverseIfRTL(seriesData[0]?.data || []),
+                colors: seriesData[0]?.colors ? reverseIfRTL(seriesData[0].colors) : undefined,
                 borderWidth: 0,
                 groupPadding: 0,
                 pointPadding: 0,
