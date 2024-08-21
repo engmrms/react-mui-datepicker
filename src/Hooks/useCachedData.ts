@@ -1,4 +1,4 @@
-import { QueryKey, QueryStatus, useQueryClient } from '@tanstack/react-query'
+import { QueryClient, QueryKey, QueryStatus } from '@tanstack/react-query'
 
 /**
  * Represents the state of a query.
@@ -48,9 +48,7 @@ type QueryState<T> = {
  * @param {(data: T | undefined) => T | undefined} [transform] - Optional transformation function to apply to the cached data.
  * @returns {QueryState<T>} The state of the query, including the data, status, and any errors.
  */
-export function useCachedData<T>(queryKey: QueryKey, transform?: (data: T | undefined) => T | undefined): QueryState<T> {
-    const queryClient = useQueryClient()
-
+export function useCachedData<T>(queryKey: QueryKey, queryClient: QueryClient, transform?: (data: T | undefined) => T | undefined): QueryState<T> {
     // Get the cached data
     const cachedData = queryClient.getQueryData<T>(queryKey)
 
