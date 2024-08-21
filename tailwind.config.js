@@ -204,7 +204,7 @@ module.exports = {
                 },
                 green: {
                     50: '#E5F0E8',
-                    100: '#BCDAC6',
+                    100: '#D5F5DE',
                     200: '#BCDAC6',
                     300: '#A5CDB2',
                     400: '#8BBF9B',
