@@ -65,7 +65,7 @@ export const PieChart = ({ seriesData, title, tooltipFormatter, chartOptions, wi
         },
         plotOptions: {
             pie: {
-                size: '200%',
+                size: width > height ? width : height,
                 states: {
                     hover: {
                         enabled: true,
@@ -81,7 +81,7 @@ export const PieChart = ({ seriesData, title, tooltipFormatter, chartOptions, wi
                 showInLegend: false,
                 startAngle: -90,
                 endAngle: 90,
-                center: ['50%', '100%'],
+                center: ['50%', '147%'],
                 innerSize: '85%',
                 borderWidth: 0,
                 borderRadius: 0,
