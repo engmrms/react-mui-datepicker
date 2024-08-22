@@ -9,11 +9,6 @@ const stackStyles = cva('flex', {
             col: 'flex-col',
             'col-reverse': 'flex-col-reverse',
         },
-        spacing: {
-            none: '',
-            small: 'gap-space-04',
-            medium: 'gap-space-05',
-        },
         gap: {
             none: '',
             small: 'gap-space-04',
@@ -74,9 +69,9 @@ const stackStyles = cva('flex', {
 
 export type StackProps = React.ComponentPropsWithoutRef<'div'> & VariantProps<typeof stackStyles>
 
-export const Stack: React.FC<StackProps> = ({ direction, gap,gapX,gapY, className, children, ...props }) => {
+export const Stack: React.FC<StackProps> = ({ direction, gap, gapX, gapY, className, children, ...props }) => {
     return (
-        <div className={stackStyles({ direction, gap,gapX,gapY, className })} {...props}>
+        <div className={stackStyles({ direction, gap, gapX, gapY, className })} {...props}>
             {children}
         </div>
     )
