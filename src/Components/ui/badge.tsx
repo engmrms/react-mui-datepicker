@@ -31,6 +31,7 @@ const badgeVariants = cva(
                 warning: 'bg-warning text-warning-foreground ',
                 info: 'bg-info text-info-foreground',
                 gray: 'bg-card-foreground text-primary-foreground',
+                success: 'bg-success text-success-foreground',
             },
 
             disabled: {
@@ -78,6 +79,11 @@ const badgeVariants = cva(
                 colors: 'gray',
                 className: 'bg-transparent border-border text-card-foreground ',
             },
+            {
+                variant: 'outline',
+                colors: 'success',
+                className: 'bg-transparent border-success text-success ',
+            },
 
             {
                 variant: 'ghost',
@@ -118,6 +124,11 @@ const badgeVariants = cva(
                 variant: 'ghost',
                 colors: 'gray',
                 className: 'text-card-foreground bg-background-secondary',
+            },
+            {
+                variant: 'ghost',
+                colors: 'success',
+                className: 'text-success-oncontainer bg-success-container',
             },
         ],
         defaultVariants: {
