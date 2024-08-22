@@ -30,7 +30,7 @@ const meta: Meta<typeof Stack> = {
             options: ['row', 'row-reverse', 'col', 'col-reverse'],
             control: { type: 'inline-radio' },
         },
-        spacing: {
+        gap: {
             options: ['none', 'small', 'medium'],
             control: { type: 'inline-radio' },
         },
