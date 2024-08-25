@@ -50,6 +50,8 @@ export const ar = {
         ServerError: 'عفوًا، حدث خطأ ما',
         BackToHome: 'العودة للصفحة الرئيسية',
         NoDataFound: 'لا توجد بيانات',
+        showResults: 'عرض النتائج',
+        reset: 'إعادة التعيين',
     },
 
     Footer: {
