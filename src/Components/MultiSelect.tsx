@@ -32,15 +32,15 @@ export function MultiSelect<T extends ValueType>({
     disabled,
     size = 'default',
 }: MultiSelectProps<T>) {
-    const [isOpen, , toggle] = useToggle(false)
+    const [isOpen, toggle] = useToggle(false)
 
     return (
         <Popover
             open={isOpen}
-            onOpenChange={open => {
-                toggle(open)
+            onOpenChange={() => {
+                toggle()
             }}>
-            <PopoverTrigger asChild className="gap-space-01" disabled={disabled}>
+            <PopoverTrigger asChild disabled={disabled}>
                 <Button size={size} colors="gray" rounded="full" variant="outline" className="gap-space-01 py-space-02 pl-space-03 pr-space-04">
                     <span className="text-body-02">{placeholder}</span>
                     {selectedValues.length > 0 && (
@@ -102,6 +102,7 @@ export function MultiSelect<T extends ValueType>({
                                 size="sm"
                                 onClick={() => {
                                     onChange([])
+                                    toggle()
                                 }}
                                 className="flex-1">
                                 {strings.Shared.reset}
