@@ -236,7 +236,7 @@ const gridItemColVariants = cva('', {
         },
     },
     defaultVariants: {
-        base: 12,
+        base: 1,
     },
 })
 
