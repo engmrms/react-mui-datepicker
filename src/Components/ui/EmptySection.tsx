@@ -3,20 +3,23 @@ import classnames from 'classnames'
 import React from 'react'
 
 // Define variants for the EmptySection
-const emptySectionVariants = cva('flex flex-col p-space-04 rounded-3', {
+const emptySectionVariants = cva('flex p-space-04 rounded-3 grow', {
     variants: {
         layout: {
-            vertical: 'items-center gap-space-05',
-            horizontal: 'gap-space-02',
+            vertical: 'items-center gap-space-05 flex-col justify-start',
+            horizontal: 'gap-space-03 flex-row ',
         },
         background: {
             gray: 'bg-background',
+            white: 'bg-white',
+            transparent: '',
         },
     },
-    defaultVariants: { layout: 'vertical' },
+    defaultVariants: { layout: 'vertical', background: 'transparent' },
 })
 
 export interface EmptySectionProps extends VariantProps<typeof emptySectionVariants> {
+    className?: string
     title?: string
     message?: string
     icon?: React.ReactNode
@@ -25,28 +28,36 @@ export interface EmptySectionProps extends VariantProps<typeof emptySectionVaria
 }
 
 const EmptySection: React.FC<EmptySectionProps> = ({
+    className = '',
     title = 'No results found',
-    message = 'Try adjusting your search or filter to find what you are looking for.',
+    message,
     background,
     icon,
-    layout,
+    layout = 'vertical',
     children,
     bordered,
 }) => {
     return (
-        <div className={classnames(emptySectionVariants({ layout, background }), { border: bordered })}>
+        <div className={classnames(emptySectionVariants({ layout, background }), { border: bordered }, className)}>
+            {icon && <div className={classnames({ 'self-start': layout === 'horizontal' })}>{icon}</div>}
             <div
-                className={classnames('flex', {
-                    'flex-row gap-space-03': layout === 'horizontal',
-                    'flex-col items-center gap-space-05': layout === 'vertical',
+                className={classnames('flex flex-col', {
+                    'items-center gap-space-05': layout === 'vertical',
+                    'gap-space-02': layout === 'horizontal',
                 })}>
-                {icon && <div>{icon}</div>}
-                <div className={classnames({ 'text-center': layout === 'vertical' })}>
+                <div
+                    className={classnames('', {
+                        'text-center': layout === 'vertical',
+                    })}>
                     <h3 className="font-IBMBold text-body-02 text-card-foreground">{title}</h3>
-                    <p className="text-body-01 text-foreground-secondary">{message}</p>
+                    {message && (
+                        <p className={classnames('text-body-01 text-foreground', { 'text-foreground-secondary': background === 'gray' })}>
+                            {message}
+                        </p>
+                    )}
                 </div>
+                {children && <div className="flex gap-space-02">{children}</div>}
             </div>
-            {children && <div className="flex gap-space-02">{children}</div>}
         </div>
     )
 }
