@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible'
 import { cn } from '../../Lib/utils'
 import * as React from 'react'
