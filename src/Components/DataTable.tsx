@@ -10,9 +10,13 @@ interface DataTableProps<TData, TValue> {
     data: TData[]
     loading: boolean
     NoDataComponent?: JSX.Element
+    onPageChange?: (number: number) => void
+    totalItems?: number
+    pageNumber?: number
+    setLimit?: (number: number) => void
 }
 
-function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent }: DataTableProps<TData, TValue>) {
+function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent, ...rest }: DataTableProps<TData, TValue>) {
     const tableData = React.useMemo(() => (loading ? Array(10).fill({}) : data), [loading, data])
     const [pageSize, setPageSize] = useState(10)
 
@@ -42,6 +46,7 @@ function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent }: D
         table.setPageSize(pageSize)
     }, [table, pageSize])
     if (!matches) return null
+
     return (
         <>
             <div className="overflow-hidden rounded-2 border">
@@ -87,17 +92,32 @@ function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent }: D
             </div>
             {!!table.getFilteredRowModel().rows.length && (
                 <div className="flex items-center justify-end ">
-                    <PaginationDescription currentPage={currentPage} limit={pageSize} totalCount={table.getFilteredRowModel().rows.length} />
+                    <PaginationDescription
+                        currentPage={currentPage}
+                        limit={pageSize}
+                        totalCount={rest?.totalItems ?? table.getFilteredRowModel().rows.length}
+                    />
 
                     <div className="flex items-center space-x-space-03 space-x-reverse">
-                        <LinesPerPage value={pageSize} onChange={value => setPageSize(+value)} />
+                        <LinesPerPage
+                            value={pageSize}
+                            onChange={value => {
+                                setPageSize(+value)
+                                if (rest?.setLimit) rest?.setLimit(+value)
+                            }}
+                        />
                         <Pagination
                             withoutText
                             className="justify-center"
-                            totalItems={table.getFilteredRowModel().rows.length ?? 0}
-                            selectedPage={currentPage}
+                            totalItems={rest?.totalItems ? rest?.totalItems : table.getFilteredRowModel().rows.length ?? 0}
+                            selectedPage={rest?.pageNumber ?? currentPage}
                             itemsPerPage={Number(pageSize)}
-                            onPageChange={page => table.setPageIndex(page - 1)}
+                            onPageChange={page => {
+                                if (rest?.onPageChange) {
+                                    return rest?.onPageChange(page)
+                                }
+                                table.setPageIndex(page - 1)
+                            }}
                         />
                     </div>
                 </div>
