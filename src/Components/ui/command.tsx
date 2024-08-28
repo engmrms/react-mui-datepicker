@@ -7,6 +7,8 @@ import * as React from 'react'
 
 import { Dialog, DialogContent } from '../../Components/ui/dialog'
 import { cn } from '../../Lib/utils'
+import { ScrollArea } from './scroll-area'
+import useLanguage from '../../Stores/useLanguage'
 
 const Command = React.forwardRef<React.ElementRef<typeof CommandPrimitive>, React.ComponentPropsWithoutRef<typeof CommandPrimitive>>(
     ({ className, ...props }, ref) => (
@@ -59,9 +61,14 @@ const CommandInput = React.forwardRef<React.ElementRef<typeof CommandPrimitive.I
 CommandInput.displayName = CommandPrimitive.Input.displayName
 
 const CommandList = React.forwardRef<React.ElementRef<typeof CommandPrimitive.List>, React.ComponentPropsWithoutRef<typeof CommandPrimitive.List>>(
-    ({ className, ...props }, ref) => (
-        <CommandPrimitive.List ref={ref} className={cn('max-h-[300px] overflow-y-auto overflow-x-hidden', className)} {...props} />
-    ),
+    ({ className, ...props }, ref) => {
+        const { dir } = useLanguage()
+        return (
+            <ScrollArea dir={dir}>
+                <CommandPrimitive.List ref={ref} className={cn('max-h-[300px]', className)} {...props} />
+            </ScrollArea>
+        )
+    },
 )
 
 CommandList.displayName = CommandPrimitive.List.displayName

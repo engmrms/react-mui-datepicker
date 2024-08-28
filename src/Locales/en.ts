@@ -51,6 +51,8 @@ export const en = {
         ServerError: 'Sorry, something went wrong',
         BackToHome: 'Back to Main Page',
         NoDataFound: 'No data found',
+        showResults: 'Show results',
+        reset: 'Reset',
     },
     Footer: {
         TermsOfUse: 'Terms Of Use',

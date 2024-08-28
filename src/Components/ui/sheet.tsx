@@ -121,7 +121,7 @@ const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
     return (
         <div
             className={cn(
-                'absolute bottom-0 left-0 mt-auto flex w-full flex-col-reverse bg-background p-space-05 sm:flex-row sm:justify-end sm:space-x-2',
+                'absolute bottom-0 left-0 mt-auto flex w-full flex-col-reverse bg-background p-space-04 sm:flex-row sm:justify-end sm:space-x-2 sm:p-space-05',
                 className,
             )}
             {...props}
@@ -146,7 +146,7 @@ const SheetBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivE
     const { dir } = useLanguage()
 
     return (
-        <ScrollArea dir={dir}>
+        <ScrollArea dir={dir} className="h-full rounded-4 bg-card">
             <div
                 ref={ref}
                 className={cn(`${isFooterUsed ? 'mb-space-11' : ''} h-full overflow-auto rounded-4 bg-card p-space-05 text-foreground`, className)}
