@@ -17,25 +17,25 @@ interface SimpleGridProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
      * The gap between grid items.
      */
-    spacing?: string
+    gap?: string
 
     /**
      * The column gap between grid items.
      */
-    spacingX?: string
+    gapX?: string
 
     /**
      * The row gap between grid items.
      */
-    spacingY?: string
+    gapY?: string
 }
 
 export const SimpleGrid: React.FC<SimpleGridProps> = ({
     minChildWidth,
     cols = 12, // Default to 12 columns
-    spacing = 'gap-space-05', // Default spacing
-    spacingX = '',
-    spacingY = '',
+    gap = 'gap-space-05', // Default spacing
+    gapX = '',
+    gapY = '',
     className,
     children,
     ...rest
@@ -46,7 +46,7 @@ export const SimpleGrid: React.FC<SimpleGridProps> = ({
         : `repeat(${cols}, minmax(0, 1fr))`
 
     return (
-        <div className={clsx('grid', spacing, spacingX, spacingY, className)} style={{ gridTemplateColumns }} {...rest}>
+        <div className={clsx('grid', gap, gapX, gapY, className)} style={{ gridTemplateColumns }} {...rest}>
             {children}
         </div>
     )

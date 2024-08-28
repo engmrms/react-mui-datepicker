@@ -1,4 +1,5 @@
 import { cva, VariantProps } from 'class-variance-authority'
+import clsx from 'clsx'
 import React from 'react'
 
 const stackStyles = cva('flex', {
@@ -60,6 +61,34 @@ const stackStyles = cva('flex', {
             11: 'gap-y-space-11',
             12: 'gap-y-space-12',
         },
+        alignItems: {
+            start: 'items-start',
+            center: 'items-center',
+            end: 'items-end',
+            stretch: 'items-stretch',
+        },
+        justifyItems: {
+            start: 'justify-items-start',
+            center: 'justify-items-center',
+            end: 'justify-items-end',
+            stretch: 'justify-items-stretch',
+        },
+        alignContent: {
+            start: 'content-start',
+            center: 'content-center',
+            end: 'content-end',
+            between: 'content-between',
+            around: 'content-around',
+            evenly: 'content-evenly',
+        },
+        justifyContent: {
+            start: 'justify-start',
+            center: 'justify-center',
+            end: 'justify-end',
+            between: 'justify-between',
+            around: 'justify-around',
+            evenly: 'justify-evenly',
+        },
     },
     defaultVariants: {
         direction: 'row',
@@ -69,9 +98,23 @@ const stackStyles = cva('flex', {
 
 export type StackProps = React.ComponentPropsWithoutRef<'div'> & VariantProps<typeof stackStyles>
 
-export const Stack: React.FC<StackProps> = ({ direction, gap, gapX, gapY, className, children, ...props }) => {
+export const Stack: React.FC<StackProps> = ({
+    direction,
+    gap,
+    gapX,
+    gapY,
+    justifyContent,
+    justifyItems,
+    alignContent,
+    alignItems,
+    className,
+    children,
+    ...props
+}) => {
     return (
-        <div className={stackStyles({ direction, gap, gapX, gapY, className })} {...props}>
+        <div
+            className={clsx(stackStyles({ direction, gap, gapX, gapY, justifyContent, justifyItems, alignContent, alignItems }), className)}
+            {...props}>
             {children}
         </div>
     )
