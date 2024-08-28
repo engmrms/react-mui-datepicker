@@ -102,6 +102,9 @@ function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent, ...
                         <LinesPerPage
                             value={pageSize}
                             onChange={value => {
+                                if (rest?.onPageChange) {
+                                    rest?.onPageChange(1)
+                                }
                                 setPageSize(+value)
                                 if (rest?.setLimit) rest?.setLimit(+value)
                             }}
