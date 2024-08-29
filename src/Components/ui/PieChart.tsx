@@ -22,9 +22,10 @@ export type PieChartProps = {
     height: number
     chartOptions?: ChartOptions
     enableTooltip?: boolean
+    center?: string[]
 }
 
-export const PieChart = ({ seriesData, title, tooltipFormatter, chartOptions, width = 200, height = 200, enableTooltip }: PieChartProps) => {
+export const PieChart = ({ seriesData, title, tooltipFormatter, chartOptions, width = 200, height = 200, enableTooltip, center }: PieChartProps) => {
     const { dir } = useLanguage()
     const isRTL = dir === 'rtl'
     const reverseIfRTL = <T,>(arr: T[]): T[] => {
@@ -81,7 +82,7 @@ export const PieChart = ({ seriesData, title, tooltipFormatter, chartOptions, wi
                 showInLegend: false,
                 startAngle: -90,
                 endAngle: 90,
-                center: ['50%', '147%'],
+                center: center ?? ['50%', '147%'],
                 innerSize: '85%',
                 borderWidth: 0,
                 borderRadius: 0,
