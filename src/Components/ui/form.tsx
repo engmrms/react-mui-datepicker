@@ -17,6 +17,8 @@ import {
     useFormContext,
     useFormState,
     useWatch,
+    useFieldArray,
+    useController,
 } from 'react-hook-form'
 
 import { Label } from '../../Components/ui/label'
@@ -145,5 +147,7 @@ export {
     useFormField,
     useFormState,
     useWatch,
+    useFieldArray,
+    useController,
 }
 export type { SubmitHandler, UseFormReturn, FieldValues }
