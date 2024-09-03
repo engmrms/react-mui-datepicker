@@ -48,7 +48,7 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
                         role="combobox"
                         disabled={isLoading}
                         className={cn(
-                            'flex h-[4rem] w-auto items-center justify-between rounded-4 border border-input bg-transparent  !px-space-03    placeholder:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary',
+                            'flex h-[4rem] w-auto items-center justify-between rounded-4 border border-input bg-transparent !px-space-03 !py-space-02 !font-IBMReguler !text-body-02 placeholder:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary',
                             className,
                         )}
                         {...props}>
@@ -68,7 +68,7 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
                         role="combobox"
                         disabled={isLoading}
                         className={cn(
-                            'flex  w-full items-center justify-between rounded-2 border border-input bg-transparent !px-space-03  placeholder:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary',
+                            'flex h-[4rem]  w-full items-center justify-between rounded-2 border border-input bg-transparent !px-space-03 !py-space-02 !font-IBMReguler !text-body-02 placeholder:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary',
                             className,
                         )}
                         {...props}>
