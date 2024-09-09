@@ -84,7 +84,7 @@
         --border-secondary: theme(colors.gray.300);
 
         --disabled: theme(colors.gray.600);
-        --disabled-foreground: theme(colors.white);
+        --disabled-foreground: theme(colors.gray.50);
 
         --input: theme(colors.gray.500);
         --ring: theme(colors.gray.900);
