@@ -32,11 +32,13 @@ export namespace Local_DTO {
         isAuthenticated: boolean | undefined
         user: User
         nationalId?: string | null
+        sessionExpired?: boolean
         login: (nationalId: string) => void
         setUser: (user: Partial<User>) => void
         updateUser: (user: Partial<User>) => void
         logout: () => void
         setDefaultRole: (defaultRole?: UserTypes) => void
+        setExpireSession: () => void
     }
 
     export interface ServiceCategory {

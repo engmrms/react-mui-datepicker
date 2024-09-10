@@ -10,6 +10,7 @@ const authStore = create<Local_DTO.AuthStore>()(
             accessToken: localStorage.getItem('accessToken') || undefined,
             refreshToken: localStorage.getItem('refreshToken') || undefined,
             nationalId: localStorage.getItem('nationalId'),
+            sessionExpired: false,
             user: {
                 firstName: '',
                 secondName: '',
@@ -23,7 +24,7 @@ const authStore = create<Local_DTO.AuthStore>()(
             login: nationalId =>
                 set(() => {
                     localStorage.setItem('nationalId', nationalId)
-                    return { isAuthenticated: true, nationalId }
+                    return { isAuthenticated: true, nationalId, sessionExpired: false }
                 }),
             setUser: (user: Partial<Local_DTO.User>) =>
                 set(() => {
@@ -52,8 +53,19 @@ const authStore = create<Local_DTO.AuthStore>()(
                     localStorage.removeItem('ERAlertHidden')
                     localStorage.removeItem('registrationStartDate')
                     localStorage.removeItem('registrationEndDate')
-                    return { isAuthenticated: false, nationalId: undefined, user: { roles: [] }, accessToken: undefined, refreshToken: undefined }
+                    return {
+                        isAuthenticated: false,
+                        nationalId: undefined,
+                        user: { roles: [] },
+                        accessToken: undefined,
+                        refreshToken: undefined,
+                        sessionExpired: false,
+                    }
                 }),
+            setExpireSession: () =>
+                set(() => ({
+                    sessionExpired: true,
+                })),
             setDefaultRole: (defaultRole?: UserTypes) =>
                 set(state => {
                     if (defaultRole && state?.user) {
