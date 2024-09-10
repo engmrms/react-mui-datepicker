@@ -17,7 +17,7 @@ const buttonVariants = cva(
             },
             size: {
                 default: 'py-space-03 px-space-05 h-[4.8rem]',
-                sm: 'py-space-01 px-space-03 h-[3rem]',
+                sm: 'py-space-01 px-space-03 h-[30px]',
                 // lg: 'px-8',
                 icon: 'md:p-space-03 px-space-02 py-space-03 h-[4.8rem]',
             },
