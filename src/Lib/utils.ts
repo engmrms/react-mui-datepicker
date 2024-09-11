@@ -30,7 +30,7 @@ export const langRegex = {
     nonSaudianNationalId: /^2(\d){9}$/,
     tags: /<[^>]*>?/gm,
     specialCharcter: /[!@#$%^&*()_+\-'~<>/\\?|÷×]/,
-    arSymbolsRegex: /[\u0600-\u06FF]/,
+    arSymbolsRegex: /^[/^[\u0621-\u064A\s]+$/,
 }
 
 export const handleArabicNumbers = (e: React.ChangeEvent<HTMLInputElement>, watch: any) => {
