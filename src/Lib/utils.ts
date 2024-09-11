@@ -30,6 +30,7 @@ export const langRegex = {
     nonSaudianNationalId: /^2(\d){9}$/,
     tags: /<[^>]*>?/gm,
     specialCharcter: /[!@#$%^&*()_+\-'~<>/\\?|÷×]/,
+    arSymbolsRegex: /[\u0600-\u06FF]/,
 }
 
 export const handleArabicNumbers = (e: React.ChangeEvent<HTMLInputElement>, watch: any) => {
@@ -68,7 +69,7 @@ export const tw = (...classes: string[]) =>
 export const useSwitchData = () => {
     const { lang } = useLanguage(state => state)
     return (arValue: string = '', enValue: string = '') => {
-        return String(lang).toLocaleLowerCase() === 'ar' ? arValue : enValue ?? arValue
+        return String(lang).toLocaleLowerCase() === 'ar' ? arValue : (enValue ?? arValue)
     }
 }
 
