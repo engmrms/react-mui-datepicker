@@ -6,20 +6,20 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const buttonVariants = cva(
-    'inline-flex items-center justify-center text-base ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none   disabled:cursor-not-allowed ',
+    'inline-flex items-center justify-center ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed ',
     {
         variants: {
             variant: {
-                default: 'font-IBMBold disabled:bg-disabled disabled:text-card',
-                outline: 'border border-input disabled:text-disabled',
-                ghost: ' border-none disabled:text-disabled ',
-                link: ' text-current underline-offset-4 hover:underline',
+                default: 'disabled:bg-disabled disabled:text-card font-IBMBold',
+                outline: 'border border-input disabled:text-disabled font-IBMReguler',
+                ghost: ' border-none disabled:text-disabled font-IBMReguler',
+                link: ' text-current underline-offset-4 hover:underline font-IBMReguler',
             },
             size: {
-                default: 'py-space-03 px-space-05 h-[4.8rem]',
-                sm: 'py-space-01 px-space-03 h-[30px]',
+                default: 'py-space-03 px-space-05 h-[4.8rem] text-body-02',
+                sm: 'py-space-01 px-space-03 h-[30px] text-body-01 font-IBMReguler',
                 // lg: 'px-8',
-                icon: 'md:p-space-03 px-space-02 py-space-03 h-[4.8rem]',
+                icon: 'md:p-space-03 px-space-02 py-space-03 h-[4.8rem] text-body-02',
             },
             rounded: {
                 default: 'rounded-2',
