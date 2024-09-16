@@ -36,9 +36,10 @@ const EmptySection: React.FC<EmptySectionProps> = ({
     layout = 'vertical',
     children,
     bordered,
+    ...rest
 }) => {
     return (
-        <div className={classnames(emptySectionVariants({ layout, background }), { border: bordered }, className)}>
+        <div className={classnames(emptySectionVariants({ layout, background }), { border: bordered }, className)} {...rest}>
             {icon && <div className={classnames({ 'self-start': layout === 'horizontal' })}>{icon}</div>}
             <div
                 className={classnames('flex flex-col', {
