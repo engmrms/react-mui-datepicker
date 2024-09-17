@@ -1,5 +1,4 @@
 import DateRange from 'google-material-icons/outlined/DateRange'
-
 import { DateCalendarProps } from '@mui/x-date-pickers'
 import moment, { Moment } from 'moment'
 import { useState } from 'react'
@@ -19,38 +18,46 @@ interface Props {
 
 const DatePicker = ({ placeholder, value, onChange, lang, rounded, ...rest }: Props & Omit<DateCalendarProps<Moment>, 'value'>) => {
     const { lang: portalLang } = useLanguage()
-    const [isOpen, setIsopen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+
+    const dateValue = value && moment(value).isValid() ? moment(value) : moment()
+
+    const [selectedDate, setSelectedDate] = useState<Moment>(dateValue)
+
+    const handleDateChange = (date: Moment) => {
+        setIsOpen(false)
+        setSelectedDate(date)
+        onChange(date.format('MM/DD/yyyy'))
+    }
+
     return (
-        <Popover open={isOpen} onOpenChange={op => setIsopen(op)}>
+        <Popover open={isOpen} onOpenChange={setIsOpen}>
             <PopoverTrigger asChild>
                 <Button
                     id="date"
                     rounded={rounded}
                     variant={'outline'}
                     className={cn(
-                        'w-full  justify-between !px-space-04 font-normal hover:border-foreground  hover:bg-transparent hover:text-foreground',
+                        'w-full justify-between !px-space-04 font-normal hover:border-foreground hover:bg-transparent hover:text-foreground',
                         'text-foreground',
                     )}>
-                    {value ? (
-                        moment(value).format(portalLang === 'ar' ? 'YYYY/M/D' : 'D/M/YYYY')
+                    {selectedDate ? (
+                        selectedDate.format(portalLang === 'ar' ? 'YYYY/M/D' : 'D/M/YYYY')
                     ) : (
-                        <span className="text-body-02 text-foreground-secondary">{placeholder}</span>
+                        <span className="text-body-02 text-foreground-secondary">{placeholder || moment().format(portalLang === 'ar' ? 'YYYY/M/D' : 'D/M/YYYY')}</span> // Default placeholder is today's date
                     )}
                     <DateRange className="h-8 w-8" />
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
                 <>
-                    {/* <div>
+                       {/* <div>
                 <label htmlFor="">To Hijri</label> <Switch onCheckedChange={() => setIshijri(!ishijri)} dir="rtl" />
             </div> */}
                     <Calendar
-                        value={moment(value)}
+                        value={selectedDate}
                         lang={lang}
-                        onChange={(d: Moment) => {
-                            setIsopen(false)
-                            onChange(d.format('MM/DD/yyyy'))
-                        }}
+                        onChange={handleDateChange}
                         {...rest}
                     />
                 </>
