@@ -123,29 +123,30 @@ interface Props<T> extends VariantProps<typeof buttonVariants> {
 }
 const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, optionValue, onChange, value, triggerProps, ...rest }: Props<T>) => {
     const [open, setOpen] = useState(false)
-    const currentValue = options?.find(opt => String(opt[optionValue]) === value)?.[optionLabel] ?? ''
+    const currentValue = (options?.length && options?.find(opt => String(opt[optionValue]) === value)?.[optionLabel]) || ''
     return (
         <Combobox open={open} onOpenChange={open => setOpen(open)}>
             <ComboboxTrigger {...triggerProps} placeholder={placeholder} isLoading={isLoading} disabled={rest?.disabled} {...rest}>
                 {currentValue.toString()}
             </ComboboxTrigger>
             <ComboboxGroup placeholder={placeholder}>
-                {options?.map(opt => (
-                    <ComboboxItem
-                        className={classNames({
-                            relative: true,
-                            'after:absolute after:bottom-auto after:right-space-01 after:top-auto after:h-[75%] after:w-[2px] after:rounded-full after:bg-primary':
-                                String(opt[optionValue]) === value,
-                        })}
-                        value={String(opt[optionLabel])}
-                        key={String(opt[optionValue])}
-                        onSelect={() => {
-                            onChange(String(opt[optionValue]))
-                            setOpen(false)
-                        }}>
-                        {String(opt?.[optionLabel])}
-                    </ComboboxItem>
-                ))}
+                {!!options?.length &&
+                    options?.map(opt => (
+                        <ComboboxItem
+                            className={classNames({
+                                relative: true,
+                                'after:absolute after:bottom-auto after:right-space-01 after:top-auto after:h-[75%] after:w-[2px] after:rounded-full after:bg-primary':
+                                    String(opt[optionValue]) === value,
+                            })}
+                            value={String(opt[optionLabel])}
+                            key={String(opt[optionValue])}
+                            onSelect={() => {
+                                onChange(String(opt[optionValue]))
+                                setOpen(false)
+                            }}>
+                            {String(opt?.[optionLabel])}
+                        </ComboboxItem>
+                    ))}
             </ComboboxGroup>
         </Combobox>
     )
@@ -165,7 +166,7 @@ const ComboboxControlNoForm = <_, T>({
     ...rest
 }: Props<T>) => {
     const [open, setOpen] = useState(false)
-    const currentValue = options?.find(opt => String(opt[optionValue]) === value)?.[optionLabel] ?? ''
+    const currentValue = (options?.length && options?.find(opt => String(opt[optionValue]) === value)?.[optionLabel]) || ''
     return (
         <Combobox open={open} onOpenChange={open => setOpen(open)}>
             <ComboboxTrigger isForm={false} {...triggerProps} placeholder={placeholder} isLoading={isLoading} disabled={rest?.disabled} {...rest}>
@@ -175,23 +176,24 @@ const ComboboxControlNoForm = <_, T>({
                 <ShouldRender shouldRender={!options || options?.length < 1}>
                     <span className="flex items-center justify-center">{strings.Shared.NoDataFound}</span>
                 </ShouldRender>
-                {options?.map(opt => (
-                    <ComboboxItem
-                        className={classNames({
-                            relative: true,
-                            'after:absolute after:bottom-auto after:right-space-01 after:top-auto after:h-[50%] after:w-[2px] after:rounded-full after:bg-primary':
-                                String(opt[optionValue]) === value,
-                        })}
-                        value={String(opt[optionLabel])}
-                        key={String(opt[optionValue])}
-                        disabled={disabledOption && disabledOption(opt)}
-                        onSelect={() => {
-                            onChange(String(opt[optionValue]))
-                            setOpen(false)
-                        }}>
-                        {isDate ? dateFormatter({ date: String(opt?.[optionLabel]) ?? '', format: 'long' }) : String(opt?.[optionLabel])}
-                    </ComboboxItem>
-                ))}
+                {!!options?.length &&
+                    options?.map(opt => (
+                        <ComboboxItem
+                            className={classNames({
+                                relative: true,
+                                'after:absolute after:bottom-auto after:right-space-01 after:top-auto after:h-[50%] after:w-[2px] after:rounded-full after:bg-primary':
+                                    String(opt[optionValue]) === value,
+                            })}
+                            value={String(opt[optionLabel])}
+                            key={String(opt[optionValue])}
+                            disabled={disabledOption && disabledOption(opt)}
+                            onSelect={() => {
+                                onChange(String(opt[optionValue]))
+                                setOpen(false)
+                            }}>
+                            {isDate ? dateFormatter({ date: String(opt?.[optionLabel]) ?? '', format: 'long' }) : String(opt?.[optionLabel])}
+                        </ComboboxItem>
+                    ))}
             </ComboboxGroup>
         </Combobox>
     )
