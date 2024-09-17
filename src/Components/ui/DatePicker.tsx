@@ -10,7 +10,7 @@ import useLanguage from '../../Stores/useLanguage'
 
 interface Props {
     lang: 'ar' | 'en'
-    placeholder?: string | null | undefined
+    placeholder?: string | null 
     value: Date | string | null | undefined
     onChange: (value: string) => void
     rounded?: ButtonProps['rounded']
