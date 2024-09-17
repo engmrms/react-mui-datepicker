@@ -10,19 +10,20 @@ import useLanguage from '../../Stores/useLanguage'
 
 interface Props {
     lang: 'ar' | 'en'
-    placeholder?: string
-    value: Date | string | null
+    placeholder?: string | null | undefined
+    value: Date | string | null | undefined
     onChange: (value: string) => void
     rounded?: ButtonProps['rounded']
+    defaultToToday?: boolean
 }
 
-const DatePicker = ({ placeholder, value, onChange, lang, rounded, ...rest }: Props & Omit<DateCalendarProps<Moment>, 'value'>) => {
+const DatePicker = ({ placeholder, value, onChange, lang, rounded, defaultToToday, ...rest }: Props & Omit<DateCalendarProps<Moment>, 'value'>) => {
     const { lang: portalLang } = useLanguage()
     const [isOpen, setIsOpen] = useState(false)
 
-    const dateValue = value && moment(value).isValid() ? moment(value) : moment()
+    const dateValue = value && moment(value).isValid() ? moment(value) : defaultToToday ? moment() : null
 
-    const [selectedDate, setSelectedDate] = useState<Moment>(dateValue)
+    const [selectedDate, setSelectedDate] = useState<Moment | null>(dateValue)
 
     const handleDateChange = (date: Moment) => {
         setIsOpen(false)
@@ -44,7 +45,9 @@ const DatePicker = ({ placeholder, value, onChange, lang, rounded, ...rest }: Pr
                     {selectedDate ? (
                         selectedDate.format(portalLang === 'ar' ? 'YYYY/M/D' : 'D/M/YYYY')
                     ) : (
-                        <span className="text-body-02 text-foreground-secondary">{placeholder || moment().format(portalLang === 'ar' ? 'YYYY/M/D' : 'D/M/YYYY')}</span> // Default placeholder is today's date
+                        <span className="text-body-02 text-foreground-secondary">
+                            {placeholder || (defaultToToday ? moment().format(portalLang === 'ar' ? 'YYYY/M/D' : 'D/M/YYYY') : '')}
+                        </span>
                     )}
                     <DateRange className="h-8 w-8" />
                 </Button>
