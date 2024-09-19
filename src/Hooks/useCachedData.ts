@@ -38,6 +38,10 @@ type QueryState<T> = {
      * The error associated with the query, if any.
      */
     error?: unknown
+    /**
+     * refetch quiery based on provided key
+     */
+    refetch: () => void
 }
 
 /**
@@ -68,5 +72,8 @@ export function useCachedData<T>(queryKey: QueryKey, queryClient: QueryClient, t
         isFetching: !!isFetching, // Indicates if the query is currently in-progress
         isPending: queryState?.status === 'pending', // Custom pending state if applicable
         isSuccess: queryState?.status === 'success', // Success state if data is available
+        refetch: () => {
+            queryClient.refetchQueries({ queryKey: queryKey })
+        },
     }
 }
