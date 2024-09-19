@@ -73,7 +73,7 @@ export function useCachedData<T>(queryKey: QueryKey, queryClient: QueryClient, t
         isPending: queryState?.status === 'pending', // Custom pending state if applicable
         isSuccess: queryState?.status === 'success', // Success state if data is available
         refetch: () => {
-            queryClient.refetchQueries({ queryKey: queryKey })
+            queryClient.resetQueries({ queryKey: queryKey })
         },
     }
 }
