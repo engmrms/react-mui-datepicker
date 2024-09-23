@@ -1,4 +1,4 @@
-import { QueryClient, QueryKey, QueryStatus } from '@tanstack/react-query'
+import { QueryClient, QueryKey, QueryStatus, useIsFetching } from '@tanstack/react-query'
 
 /**
  * Represents the state of a query.
@@ -59,7 +59,7 @@ export function useCachedData<T>(queryKey: QueryKey, queryClient: QueryClient, t
 
     // Get the query state
     const queryState = queryClient.getQueryState<T>(queryKey)
-    const isFetching = queryClient.isFetching({ queryKey })
+    const isFetching = useIsFetching({ queryKey }, queryClient)
 
     // Apply transformation if needed
     const transformedData = transform ? transform(cachedData) : cachedData
