@@ -120,6 +120,7 @@ interface Props<T> extends VariantProps<typeof buttonVariants> {
     disabled?: boolean
     isDate?: boolean
     disabledOption?: (option: T) => boolean
+    className?:string;
 }
 const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, optionValue, onChange, value, triggerProps, ...rest }: Props<T>) => {
     const [open, setOpen] = useState(false)
