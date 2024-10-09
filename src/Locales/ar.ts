@@ -7,7 +7,7 @@ export const ar = {
         soon: 'قريبًا',
         NationalId: 'الهوية الوطنية',
         ResidentID: 'الإقامة',
-        Welcome: 'مرحبًا بك، ',
+        Welcome: 'أهلًا ',
         Login: 'تسجيل الدخول',
         Logout: 'تسجيل الخروج',
         InformationPanel: 'لوحة المعلومات',
