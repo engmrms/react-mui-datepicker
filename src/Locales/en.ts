@@ -8,7 +8,7 @@ export const en = {
         soon: 'soon',
         NationalId: 'National ID',
         ResidentID: 'Resident ID',
-        Welcome: 'Welcome, ',
+        Welcome: 'Hi ',
         Login: 'Login',
         Logout: 'Log out',
         InformationPanel: 'Information Panel',
