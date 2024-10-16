@@ -18,7 +18,7 @@ interface DataTableProps<TData, TValue> {
 }
 
 function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent, itemsPerPage, ...rest }: DataTableProps<TData, TValue>) {
-    const tableData = React.useMemo(() => (loading ? Array(10).fill({}) : data), [loading, data])
+    const tableData = React.useMemo(() => (loading ? Array(itemsPerPage || 10).fill({}) : data), [loading, data])
     const [pageSize, setPageSize] = useState(itemsPerPage || 10)
 
     const tableColumns = React.useMemo(
