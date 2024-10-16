@@ -13,12 +13,13 @@ interface DataTableProps<TData, TValue> {
     onPageChange?: (number: number) => void
     totalItems?: number
     pageNumber?: number
+    itemsPerPage?: number
     setLimit?: (number: number) => void
 }
 
-function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent, ...rest }: DataTableProps<TData, TValue>) {
-    const tableData = React.useMemo(() => (loading ? Array(10).fill({}) : data), [loading, data])
-    const [pageSize, setPageSize] = useState(10)
+function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent, itemsPerPage, ...rest }: DataTableProps<TData, TValue>) {
+    const tableData = React.useMemo(() => (loading ? Array(itemsPerPage || 10).fill({}) : data), [loading, data])
+    const [pageSize, setPageSize] = useState(itemsPerPage || 10)
 
     const tableColumns = React.useMemo(
         () =>
