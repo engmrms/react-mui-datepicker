@@ -43,7 +43,7 @@ const authStore = create<Local_DTO.AuthStore>()(
                     return { user: { ...state?.user, ...user } }
                 }),
             logout: () =>
-                set(() => {
+                set(state => {
                     localStorage.removeItem('nationalId')
                     localStorage.removeItem('accessToken')
                     localStorage.removeItem('refreshToken')
@@ -53,6 +53,10 @@ const authStore = create<Local_DTO.AuthStore>()(
                     localStorage.removeItem('ERAlertHidden')
                     localStorage.removeItem('registrationStartDate')
                     localStorage.removeItem('registrationEndDate')
+                    state?.user?.roles?.map(role => {
+                        localStorage.removeItem(`${role}-evaluationCounter`)
+                    })
+
                     return {
                         isAuthenticated: false,
                         nationalId: undefined,
