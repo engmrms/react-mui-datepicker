@@ -6,7 +6,7 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const buttonVariants = cva(
-    'inline-flex items-center justify-center ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed ',
+    'inline-flex items-center  justify-center ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed ',
     {
         variants: {
             variant: {
@@ -16,8 +16,8 @@ const buttonVariants = cva(
                 link: ' text-current underline-offset-4 hover:underline font-IBMReguler',
             },
             size: {
-                default: 'py-space-03 px-space-05 h-[4.8rem] text-body-02',
-                sm: 'py-space-01 px-space-03 h-[30px] text-body-01 font-IBMReguler',
+                default: 'py-space-02 px-space-04 h-[4.8rem] text-body-02',
+                sm: 'py-[6px] px-space-03 h-[30px] text-body-01 font-IBMReguler',
                 // lg: 'px-8',
                 icon: 'md:p-space-03 px-space-02 py-space-03 h-[4.8rem] text-body-02',
             },
