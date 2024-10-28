@@ -41,7 +41,7 @@ export function MultiSelect<T extends ValueType>({
                 toggle()
             }}>
             <PopoverTrigger asChild disabled={disabled}>
-                <Button size={size} colors="gray" rounded="full" variant="outline" className="gap-space-01 py-space-02 pl-space-03 pr-space-04">
+                <Button size={size} colors="gray" variant="outline" className="gap-space-01 py-space-02 pl-space-03 pr-space-04">
                     <span className="text-body-02">{placeholder}</span>
                     {selectedValues.length > 0 && (
                         <>
@@ -98,7 +98,6 @@ export function MultiSelect<T extends ValueType>({
                             <Button
                                 colors="gray"
                                 variant="ghost"
-                                rounded="full"
                                 size="sm"
                                 onClick={() => {
                                     onChange([])
