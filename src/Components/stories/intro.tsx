@@ -68,7 +68,7 @@ const IntroCard = ({ Icon, title, desc }: { Icon: (props: React.ComponentProps<'
                 <Icon width={88} height={88} />
             </div>
             <div className="space-y-space-02">
-                <h4 className="font-IBMBold text-xl">{title}</h4>
+                <h4 className="font-bold text-xl">{title}</h4>
                 <p className="text-body-01 text-foreground-secondary">{desc}</p>
             </div>
         </div>

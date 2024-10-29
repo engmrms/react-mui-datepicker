@@ -7,10 +7,10 @@ import { cn } from '../../Lib/utils'
 
 const tabVariants = cva(
     `inline-flex items-center justify-center whitespace-nowrap
-px-space-04 text-body-02 font-IBMReguler
+px-space-04 text-body-02
 text-foreground-secondary ring-offset-background transition-all hover:text-primary-dark focus-visible:ring-2 focus-visible:ring-ring
 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:text-disabled
-data-[state=active]:font-IBMBold`,
+data-[state=active]:font-bold`,
     {
         variants: {
             container: {
