@@ -341,6 +341,7 @@ module.exports = {
                 '3xl': ['3.0rem', '3.6rem'],
                 '4xl': ['3.6rem', '4rem'],
                 'caption-01': ['1.2rem', '1.8rem'],
+                'caption-02': ['1rem', '1.4rem'],
                 'body-01': ['1.4rem', '2.2rem'],
                 'body-02': ['1.6rem', '2.4rem'],
                 'subtitle-01': ['1.6rem', { lineHeight: '2.4rem', fontWeight: '600' }],
