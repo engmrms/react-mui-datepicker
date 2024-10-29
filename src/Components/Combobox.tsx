@@ -44,6 +44,7 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
                 <PopoverTrigger asChild>
                     <Button
                         ref={ref}
+                        rounded="default"
                         variant="outline"
                         role="combobox"
                         disabled={isLoading}
@@ -63,6 +64,7 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
             <PopoverTrigger asChild>
                 <FormControl>
                     <Button
+                        rounded="default"
                         ref={ref}
                         variant="outline"
                         role="combobox"
@@ -120,7 +122,7 @@ interface Props<T> extends VariantProps<typeof buttonVariants> {
     disabled?: boolean
     isDate?: boolean
     disabledOption?: (option: T) => boolean
-    className?:string;
+    className?: string
 }
 const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, optionValue, onChange, value, triggerProps, ...rest }: Props<T>) => {
     const [open, setOpen] = useState(false)

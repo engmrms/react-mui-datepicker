@@ -11,7 +11,7 @@ const SheetForm = Sheet
 
 const SheetFormTrigger = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, ...props }, ref) => (
     <SheetTrigger asChild>
-        <Button ref={ref} colors="primary" rounded="full" className={cn('flex items-center gap-space-02', className)} {...props} />
+        <Button ref={ref} colors="primary" className={cn('flex items-center gap-space-02', className)} {...props} />
     </SheetTrigger>
 ))
 SheetFormTrigger.displayName = 'SheetFormTrigger'
