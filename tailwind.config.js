@@ -341,6 +341,7 @@ module.exports = {
                 '3xl': ['3.0rem', '3.6rem'],
                 '4xl': ['3.6rem', '4rem'],
                 'caption-01': ['1.2rem', '1.8rem'],
+                'caption-02': ['1rem', '1.4rem'],
                 'body-01': ['1.4rem', '2.2rem'],
                 'body-02': ['1.6rem', '2.4rem'],
                 'subtitle-01': ['1.6rem', { lineHeight: '2.4rem', fontWeight: '600' }],
@@ -352,6 +353,7 @@ module.exports = {
                 hover: '0px 3px 12px 0px rgba(169, 169, 169, 0.50);',
                 '01': '0px 10px 16px 0px rgba(38, 36, 36, 0.04), 0px 1px 0px 0px rgba(5, 6, 12, 0.02), 0px 0px 8px 0px rgba(5, 6, 12, 0.02)',
                 '03': '0px 10px 16px 0px rgba(38, 36, 36, 0.04), 0px 1px 0px 0px rgba(5, 6, 12, 0.02), 0px 0px 8px 0px rgba(5, 6, 12, 0.02)',
+                'surface-01': '0px 0px 8px 0px rgba(0,0,0,0.10)',
             },
             fontFamily: {
                 IBMReguler: ['IBM Reguler', 'ui-sans-serif', 'system-ui'],
