@@ -50,12 +50,12 @@ export default function ResponsiveFontSizes() {
                         </div>
                         <div className="flex w-2/4 min-w-0 flex-col  gap-0 p-0">
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-xl font-normal leading-[30px]">
+                                <span className="sb-unstyled w-full  text-right  text-xl font-normal leading-[30px]">
                                     يحيا التصميم
                                 </span>
                             </div>
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-2xl font-normal leading-8">يحيا التصميم</span>
+                                <span className="sb-unstyled w-full  text-right  text-2xl font-normal leading-8">يحيا التصميم</span>
                             </div>
                         </div>
                     </div>
@@ -96,12 +96,12 @@ export default function ResponsiveFontSizes() {
                         </div>
                         <div className="flex w-2/4 flex-col  gap-0 p-0">
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-xl font-semibold leading-[30px]">
+                                <span className="sb-unstyled w-full  text-right  text-xl font-semibold leading-[30px]">
                                     يحيا التصميم
                                 </span>
                             </div>
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-2xl font-semibold leading-9">يحيا التصميم</span>
+                                <span className="sb-unstyled w-full  text-right  text-2xl font-semibold leading-9">يحيا التصميم</span>
                             </div>
                         </div>
                     </div>
@@ -142,12 +142,12 @@ export default function ResponsiveFontSizes() {
                         </div>
                         <div className="flex  w-2/4 flex-col  gap-0 p-0">
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-xl font-semibold leading-[30px]">
+                                <span className="sb-unstyled w-full  text-right  text-xl font-semibold leading-[30px]">
                                     يحيا التصميم
                                 </span>
                             </div>
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-2xl font-semibold leading-9">يحيا التصميم</span>
+                                <span className="sb-unstyled w-full  text-right  text-2xl font-semibold leading-9">يحيا التصميم</span>
                             </div>
                         </div>
                     </div>
@@ -202,17 +202,17 @@ export default function ResponsiveFontSizes() {
                         </div>
                         <div className="flex w-2/4 flex-col  gap-0 p-0">
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-[28px] font-normal leading-[42px]">
+                                <span className="sb-unstyled w-full  text-right  text-[28px] font-normal leading-[42px]">
                                     يحيا التصميم
                                 </span>
                             </div>
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-[40px] font-normal leading-[52px]">
+                                <span className="sb-unstyled w-full  text-right  text-[40px] font-normal leading-[52px]">
                                     يحيا التصميم
                                 </span>
                             </div>
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-5xl font-normal leading-[60px]">
+                                <span className="sb-unstyled w-full  text-right  text-5xl font-normal leading-[60px]">
                                     يحيا التصميم
                                 </span>
                             </div>
@@ -269,17 +269,17 @@ export default function ResponsiveFontSizes() {
                         </div>
                         <div className="flex  w-2/4 flex-col  gap-0 p-0">
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-[28px] font-semibold leading-[42px]">
+                                <span className="sb-unstyled w-full  text-right  text-[28px] font-semibold leading-[42px]">
                                     يحيا التصميم
                                 </span>
                             </div>
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-[40px] font-semibold leading-[52px]">
+                                <span className="sb-unstyled w-full  text-right  text-[40px] font-semibold leading-[52px]">
                                     يحيا التصميم
                                 </span>
                             </div>
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-5xl font-semibold leading-[60px] ">
+                                <span className="sb-unstyled w-full  text-right  text-5xl font-semibold leading-[60px] ">
                                     يحيا التصميم
                                 </span>
                             </div>
@@ -336,17 +336,17 @@ export default function ResponsiveFontSizes() {
                         </div>
                         <div className="flex w-2/4 flex-col  gap-0 p-0">
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-[32px] font-semibold leading-[44px]">
+                                <span className="sb-unstyled w-full  text-right  text-[32px] font-semibold leading-[44px]">
                                     يحيا التصميم
                                 </span>
                             </div>
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-5xl font-semibold leading-[60px] ">
+                                <span className="sb-unstyled w-full  text-right  text-5xl font-semibold leading-[60px] ">
                                     يحيا التصميم
                                 </span>
                             </div>
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-[64px] font-semibold leading-[78px] ">
+                                <span className="sb-unstyled w-full  text-right  text-[64px] font-semibold leading-[78px] ">
                                     يحيا التصميم
                                 </span>
                             </div>
@@ -402,17 +402,17 @@ export default function ResponsiveFontSizes() {
                         </div>
                         <div className="flex w-2/4 flex-col  gap-0 p-0">
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-[42px] font-semibold leading-[54px]">
+                                <span className="sb-unstyled w-full  text-right  text-[42px] font-semibold leading-[54px]">
                                     يحيا التصميم
                                 </span>
                             </div>
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-[54px] font-semibold leading-[70px]">
+                                <span className="sb-unstyled w-full  text-right  text-[54px] font-semibold leading-[70px]">
                                     يحيا التصميم
                                 </span>
                             </div>
                             <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right font-IBMReguler text-[84px] font-semibold leading-[98px]">
+                                <span className="sb-unstyled w-full  text-right  text-[84px] font-semibold leading-[98px]">
                                     يحيا التصميم
                                 </span>
                             </div>

@@ -24,7 +24,7 @@ export default function FixedFontSizes() {
                             <span className="fontWightRegular400 w-full text-left  text-2xl font-normal leading-8 ">Font Wight: Regular 400</span>
                         </div>
                         <div className="flex-1  gap-2 border border-border p-space-04">
-                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right font-IBMReguler text-caption-01 ">يحيا التصميم</span>
+                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right  text-caption-01 ">يحيا التصميم</span>
                         </div>
                     </div>
                     <div className="frame3466428 flex w-full flex-row  gap-0 p-0">
@@ -43,7 +43,7 @@ export default function FixedFontSizes() {
                             </span>
                         </div>
                         <div className="flex-1  gap-2 border border-border p-space-04">
-                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right font-IBMBold text-caption-01 leading-[18px] ">
+                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right font-bold text-caption-01 leading-[18px] ">
                                 يحيا التصميم
                             </span>
                         </div>
@@ -62,7 +62,7 @@ export default function FixedFontSizes() {
                             </span>
                         </div>
                         <div className="flex-1  gap-2 border border-border p-space-04">
-                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right font-IBMReguler text-body-01 tracking-[0px]">
+                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right  text-body-01 tracking-[0px]">
                                 يحيا التصميم
                             </span>
                         </div>
@@ -83,7 +83,7 @@ export default function FixedFontSizes() {
                             </span>
                         </div>
                         <div className="flex-1  gap-2 border border-border p-space-04">
-                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right font-IBMBold text-body-01 ">يحيا التصميم</span>
+                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right font-bold text-body-01 ">يحيا التصميم</span>
                         </div>
                     </div>
                     <div className="frame3466431 flex w-full flex-row  gap-0 p-0">
@@ -100,7 +100,7 @@ export default function FixedFontSizes() {
                             </span>
                         </div>
                         <div className="flex-1  gap-2 border border-border p-space-04">
-                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right   font-IBMReguler text-body-02">يحيا التصميم</span>
+                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right    text-body-02">يحيا التصميم</span>
                         </div>
                     </div>
                     <div className="frame3466432 flex w-full flex-row  gap-0 p-0">
@@ -119,7 +119,7 @@ export default function FixedFontSizes() {
                             </span>
                         </div>
                         <div className="flex-1  gap-2 border border-border p-space-04">
-                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right font-IBMBold text-body-02 leading-[22px]">
+                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right font-bold text-body-02 leading-[22px]">
                                 يحيا التصميم
                             </span>
                         </div>
@@ -138,7 +138,7 @@ export default function FixedFontSizes() {
                             </span>
                         </div>
                         <div className="flex-1  gap-2 border border-border p-space-04">
-                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right font-IBMReguler text-subtitle-01">يحيا التصميم</span>
+                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right  text-subtitle-01">يحيا التصميم</span>
                         </div>
                     </div>
                     <div className="frame3466435 flex w-full flex-row  gap-0 p-0">
@@ -155,7 +155,7 @@ export default function FixedFontSizes() {
                             </span>
                         </div>
                         <div className="flex-1  gap-2 border border-border p-space-04">
-                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1   text-right font-IBMReguler text-subtitle-02">
+                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1   text-right  text-subtitle-02">
                                 يحيا التصميم
                             </span>
                         </div>
@@ -176,7 +176,7 @@ export default function FixedFontSizes() {
                             </span>
                         </div>
                         <div className="flex-1  gap-2 border border-border p-space-04">
-                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right font-IBMBold text-subtitle-02 ">يحيا التصميم</span>
+                            <span className="sb-unstyled w-[493.33px] min-w-0 flex-1  text-right font-bold text-subtitle-02 ">يحيا التصميم</span>
                         </div>
                     </div>
                 </div>
