@@ -35,7 +35,7 @@ SheetFormContent.displayName = 'SheetFormContent'
 
 const SheetFormHeader = ({ className, title, ...props }: React.ComponentPropsWithoutRef<typeof SheetHeader>) => (
     <SheetHeader className={cn('flex flex-row items-center justify-between border-b border-input px-space-05 py-space-04', className)} {...props}>
-        <h1 className="font-IBMBold text-subtitle-02">{title}</h1>
+        <h1 className="font-bold text-subtitle-02">{title}</h1>
         <SheetClose>
             <Close />
         </SheetClose>
