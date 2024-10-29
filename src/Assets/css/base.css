@@ -307,17 +307,19 @@
 
     @font-face {
         font-family: 'NotoKufiArabic';
-        src: url('../fonts/Noto/NotoKufiArabic-Regular.woff') format('woff');
-        font-weight: 400;
+        src: url('../fonts/Noto/NotoKufiArabic.woff2') format('woff2');
+        font-weight: 400 700;
+        font-stretch: 100%;
         font-style: normal;
         font-display: swap;
     }
     @font-face {
         font-family: 'NotoSans';
-        src: url('../fonts/Noto/NotoSans-Regular.woff') format('woff');
-        font-weight: 400;
-        font-style: normal;
+        src: url('../fonts/Noto/NotoSans.woff2') format('woff2');
+        font-weight: 400 700;
+        font-stretch: 100%;
         font-display: swap;
+        font-style: normal;
     }
 
     * {
@@ -329,7 +331,7 @@
     }
 
     body {
-        @apply ltr:font-NotoSans rtl:font-NotoKufiArabic bg-card text-base text-foreground;
+        @apply bg-card text-base text-foreground ltr:font-NotoSans rtl:font-NotoKufiArabic;
     }
     input:-webkit-autofill,
     input:-webkit-autofill:focus {
@@ -340,7 +342,7 @@
 }
 
 .MuiButtonBase-root.MuiPickersDay-root {
-    @apply ltr:font-NotoSans rtl:font-NotoKufiArabic rounded-1 text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground;
+    @apply rounded-1 text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground ltr:font-NotoSans rtl:font-NotoKufiArabic;
 }
 
 .MuiButtonBase-root.MuiPickersDay-root.Mui-selected {
