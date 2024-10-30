@@ -16,10 +16,10 @@ const buttonVariants = cva(
                 link: ' text-current underline-offset-4 hover:underline ',
             },
             size: {
-                default: 'py-space-02 px-space-04 h-[4.8rem] text-body-02',
-                sm: 'py-[6px] px-space-03 h-[30px] text-body-01 ',
+                default: 'py-space-02 px-space-04 h-[4rem] text-body-02',
+                sm: 'py-[6px] px-space-03 h-[32px] text-body-01',
                 // lg: 'px-8',
-                icon: 'md:p-space-03 px-space-02 py-space-03 h-[4.8rem] text-body-02',
+                icon: 'md:p-space-03 px-space-02 py-space-03 h-[4rem] text-body-02',
             },
             rounded: {
                 default: 'rounded-2',
