@@ -75,7 +75,7 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
                         )}
                         {...props}>
                         {placeholder && !children && <span className="text-body-01 text-foreground-secondary">{placeholder}</span>}
-                        <span className="flex-1 truncate text-ellipsis text-right">{children}</span>
+                        <span className="line-clamp-1 flex-1 text-right">{children}</span>
                         {isLoading ? <ActionLoader /> : <ExpandMore className="  h-space-05 w-space-05 shrink-0 text-primary-oncontainer" />}
                     </Button>
                 </FormControl>
