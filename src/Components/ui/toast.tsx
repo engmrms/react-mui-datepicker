@@ -66,12 +66,12 @@ const ToastClose = React.forwardRef<React.ElementRef<typeof ToastPrimitives.Clos
         <ToastPrimitives.Close
             ref={ref}
             className={cn(
-                'text-foreground/50 h-space-07 w-space-07 rounded-md p-1 transition-opacity focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 ',
+                'text-foreground/50 flex h-space-06 w-space-06 items-center justify-center rounded-md transition-opacity focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 ',
                 className,
             )}
             toast-close=""
             {...props}>
-            <XCircle className="h-space-05 w-space-05 text-foreground" />
+            <XCircle className="size-[18px] text-foreground" />
         </ToastPrimitives.Close>
     ),
 )
