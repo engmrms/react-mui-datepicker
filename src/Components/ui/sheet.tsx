@@ -101,8 +101,8 @@ SheetContent.displayName = SheetPrimitive.Content.displayName
 const SheetHeader = ({ className, title, children, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
     <div className={cn('flex flex-row items-center gap-space-02 px-space-05 py-space-04', className)} {...props}>
         {children}
-        <h1 className="font-bold text-subtitle-02">{title}</h1>
-        <SheetClose className="mr-auto p-space-02">
+        <h1 className="text-subtitle-02 font-bold">{title}</h1>
+        <SheetClose className="mr-auto p-space-02" data-testid="sheetClose">
             <Close />
         </SheetClose>
     </div>
@@ -131,7 +131,7 @@ const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
 SheetFooter.displayName = 'SheetFooter'
 
 const SheetTitle = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Title>, React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>>(
-    ({ className, ...props }, ref) => <SheetPrimitive.Title ref={ref} className={cn('font-bold text-lg text-foreground', className)} {...props} />,
+    ({ className, ...props }, ref) => <SheetPrimitive.Title ref={ref} className={cn('text-lg font-bold text-foreground', className)} {...props} />,
 )
 SheetTitle.displayName = SheetPrimitive.Title.displayName
 
