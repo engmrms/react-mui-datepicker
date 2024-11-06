@@ -95,15 +95,13 @@ export const dateFormatter = ({
     format,
     isHijri = false,
     hasHijriFormat,
-    lang = document.dir === 'rtl' ? 'ar' : 'en',
 }: {
     date: string | Date | undefined
     format: 'short' | 'mid' | 'long'
     isHijri?: boolean
     hasHijriFormat?: boolean
-    lang?: string
 }) => {
-    const isArabic = lang === 'ar'
+    const isArabic = document.dir === 'rtl'
     moment.updateLocale(isArabic ? 'ar-sa' : 'en', {})
     switch (format) {
         case 'short':
