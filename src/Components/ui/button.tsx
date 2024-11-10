@@ -6,20 +6,21 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const buttonVariants = cva(
-    'inline-flex items-center  justify-center ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed ',
+    'inline-flex items-center font-medium justify-center ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed ',
     {
         variants: {
             variant: {
-                default: 'disabled:bg-disabled disabled:text-card font-bold',
+                default: 'disabled:bg-disabled disabled:text-card  ',
                 outline: 'border border-input disabled:text-disabled ',
                 ghost: ' border-none disabled:text-disabled ',
                 link: ' text-current underline-offset-4 hover:underline ',
             },
             size: {
-                default: 'py-space-02 px-space-04 h-[4rem] text-body-02',
+                default: 'py-space-02 px-space-04 h-[40px] text-body-02',
                 sm: 'py-[6px] px-space-03 h-[32px] text-body-01',
                 // lg: 'px-8',
-                icon: 'md:p-space-03 px-space-02 py-space-03 h-[4rem] text-body-02',
+                icon: 'p-space-02 h-[40px] text-body-02',
+                'icon-sm': 'p-space-01 h-[32px] text-body-01',
             },
             rounded: {
                 default: 'rounded-2',
