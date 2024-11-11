@@ -50,6 +50,7 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
             <PaginationContent>
                 <PaginationItem>
                     <PaginationPrevious
+                        data-testid="paginationPrevius"
                         hasText={!withoutText}
                         className={classNames({
                             'cursor-pointer': true,
@@ -64,6 +65,7 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                     {pages?.map(i => (
                         <PaginationItem key={i}>
                             <PaginationLink
+                                data-testid={`pagination${i}`}
                                 isActive={selectedPage === i + 1}
                                 className={classNames({
                                     'cursor-pointer': true,
@@ -82,6 +84,7 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                             <ShouldRender shouldRender={(selectedPage < 5 && i < 5) || i + 1 === pageCount || i === 0}>
                                 <PaginationItem key={i}>
                                     <PaginationLink
+                                        data-testid={`pagination${i}`}
                                         isActive={selectedPage === i + 1}
                                         className={classNames({
                                             'cursor-pointer': true,
@@ -102,6 +105,7 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                                 }>
                                 <PaginationItem key={i}>
                                     <PaginationLink
+                                        data-testid={`pagination${i}`}
                                         isActive={selectedPage === i + 1}
                                         className={classNames({
                                             'cursor-pointer': true,
@@ -129,6 +133,7 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
 
                 <PaginationItem>
                     <PaginationNext
+                        data-testid="paginationNext"
                         hasText={!withoutText}
                         className={classNames({
                             'cursor-pointer': true,
