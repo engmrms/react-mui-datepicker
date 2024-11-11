@@ -76,6 +76,7 @@ export function MultiSelect<T extends ValueType>({
                                     const isSelected = selectedValues.includes(option.value)
                                     return (
                                         <CommandItem
+                                            data-testid={option?.value}
                                             className="flex gap-space-02"
                                             key={option.value}
                                             onSelect={() => {
