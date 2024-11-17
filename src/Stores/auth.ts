@@ -56,6 +56,9 @@ const authStore = create<Local_DTO.AuthStore>()(
                     state?.user?.roles?.map(role => {
                         localStorage.removeItem(`${role}-evaluationCounter`)
                     })
+                    state?.user?.roles?.map(role => {
+                        localStorage.removeItem(`${role}-evaluationSkipCounter`)
+                    })
 
                     return {
                         isAuthenticated: false,
