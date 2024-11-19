@@ -39,6 +39,7 @@ module.exports = {
                     secondary: 'var(--background-secondary)',
                     overlay: 'var(--overlay)',
                     foreground: 'var(--background-foreground)',
+                    brand: 'var(--background-brand)',
                 },
                 foreground: {
                     DEFAULT: 'var(--foreground)',
@@ -141,7 +142,7 @@ module.exports = {
                 ring: 'hsl(var(--ring))',
                 gray: {
                     50: '#FAFAFA',
-                    100: '#F7F7F7',
+                    100: '#F9f9f9',
                     200: '#7E7E7E0D',
                     300: '#EBEBEB',
                     400: '#353B3A33',
@@ -166,6 +167,7 @@ module.exports = {
                 },
                 lavender: {
                     10: '#FFFFFF',
+                    25: '#F9F8FC',
                     50: '#F7F6FB',
                     100: '#F0EEF9',
                     200: '#E3DFF5',
@@ -179,6 +181,7 @@ module.exports = {
                 },
                 middleBlue: {
                     10: '#FFFFFF',
+                    25: '#F8FBFC',
                     50: '#F3FAFC',
                     100: '#E2F6FC',
                     200: '#D1EFF8',
@@ -266,6 +269,7 @@ module.exports = {
                 },
                 cyan: {
                     50: '#EEFBF6',
+                    25: '#F8FCFB',
                     100: '#D6F5E7',
                     200: '#B0EAD3',
                     300: '#7CD9BA',

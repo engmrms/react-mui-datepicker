@@ -6,6 +6,7 @@
         --background: theme(colors.gray.100);
         --background-foreground: theme(colors.gray.900);
         --background-secondary: theme(colors.gray.300);
+        --background-brand: theme(colors.cyan.25);
         --foreground: theme(colors.gray.900);
         --overlay: theme(colors.gray.800);
         --foreground-secondary: theme(colors.gray.800);
@@ -97,6 +98,7 @@
         --background: theme(colors.grayDark.800);
         --background-foreground: theme(colors.grayDark.10);
         --background-secondary: theme(colors.grayDark.700);
+        --background-brand: theme(colors.grayDark.800);
         --foreground: theme(colors.white);
         --overlay: theme(colors.grayDark.50);
         --foreground-secondary: theme(colors.grayDark.50);
@@ -185,6 +187,7 @@
     }
 
     [data-theme='parent'] {
+        --background-brand: theme(colors.middleBlue.25);
         --primary: theme(colors.middleBlue.600);
         --primary-foreground: theme(colors.middleBlue.10);
         --primary-light: theme(colors.middleBlue.300);
@@ -231,6 +234,7 @@
     }
 
     [data-theme='student'] {
+        --background-brand: theme(colors.lavender.25);
         --primary: theme(colors.lavender.600);
         --primary-foreground: theme(colors.lavender.10);
         --primary-light: theme(colors.lavender.300);
