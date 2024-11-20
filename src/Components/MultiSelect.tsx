@@ -22,6 +22,7 @@ interface MultiSelectProps<T extends ValueType> {
     onChange: (values: T[]) => void
     disabled?: boolean
     size?: 'sm' | 'default'
+    dataTestId?: string
 }
 
 export function MultiSelect<T extends ValueType>({
@@ -31,6 +32,7 @@ export function MultiSelect<T extends ValueType>({
     onChange,
     disabled,
     size = 'default',
+    dataTestId = '',
 }: MultiSelectProps<T>) {
     const [isOpen, toggle] = useToggle(false)
 
@@ -40,7 +42,7 @@ export function MultiSelect<T extends ValueType>({
             onOpenChange={() => {
                 toggle()
             }}>
-            <PopoverTrigger asChild disabled={disabled}>
+            <PopoverTrigger asChild disabled={disabled} data-testid={dataTestId}>
                 <Button size={size} colors="gray" variant="outline" className="gap-space-01 py-space-02 pl-space-03 pr-space-04">
                     <span className="text-body-02">{placeholder}</span>
                     {selectedValues.length > 0 && (
@@ -72,11 +74,11 @@ export function MultiSelect<T extends ValueType>({
                         <CommandList>
                             <CommandEmpty>No results found.</CommandEmpty>
                             <CommandGroup>
-                                {options.map(option => {
+                                {options.map((option, index) => {
                                     const isSelected = selectedValues.includes(option.value)
                                     return (
                                         <CommandItem
-                                            data-testid={option?.value}
+                                            data-testid={`${dataTestId}-${index}`}
                                             className="flex gap-space-02"
                                             key={option.value}
                                             onSelect={() => {
