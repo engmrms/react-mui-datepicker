@@ -38,8 +38,9 @@ interface Extra {
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement>, VariantProps<typeof textAreaVariants>, Extra {}
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-    ({ className, variant, rounded, startAdornment, colors, endAdornment, ...props }, ref) => {
+    ({ className, variant, rounded, startAdornment, colors, endAdornment, maxLength, ...props }, ref) => {
         const methods = useFormContext()
+
         return (
             <div className="flex flex-col gap-space-01">
                 <div className={cn(textAreaVariants({ variant, rounded, colors }), className)} aria-invalid={props['aria-invalid']}>
@@ -47,13 +48,15 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
                     <textarea
                         className="w-full resize-none bg-transparent py-space-03 outline-none placeholder:text-foreground-secondary"
                         ref={ref}
+                        maxLength={maxLength}
                         {...props}
                     />
                     {endAdornment && <div className="ml-space-02 h-[2rem] w-[2rem]">{endAdornment}</div>}
                 </div>
-                <ShouldRender shouldRender={!!props?.name && !!methods}>
+                <ShouldRender shouldRender={!!props?.name && !!methods && !!maxLength}>
                     <span className="flex flex-row-reverse text-caption-01 text-foreground">
-                        <span className="text-foreground-secondary">{props?.maxLength}</span>/<span>{methods?.watch(String(props?.name))?.length}</span>
+                        <span className="text-foreground-secondary"> {maxLength}</span>/
+                        <span>{methods?.watch(String(props?.name))?.length}</span>
                     </span>
                 </ShouldRender>
             </div>
