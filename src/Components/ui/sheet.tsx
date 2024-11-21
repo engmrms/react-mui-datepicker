@@ -7,8 +7,6 @@ import Close from 'google-material-icons/outlined/Close'
 import { useMediaQuery } from 'usehooks-ts'
 import { cn } from '../../Lib/utils'
 import accessibilityTools from '../../Stores/accessibilityTools'
-import { ScrollArea } from './scroll-area'
-import useLanguage from '../../Stores/useLanguage'
 
 type SheetFooterContextType = {
     isFooterUsed: boolean
@@ -143,16 +141,17 @@ SheetDescription.displayName = SheetPrimitive.Description.displayName
 
 const SheetBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
     const { isFooterUsed } = useSheetFooter()
-    const { dir } = useLanguage()
 
     return (
-        <ScrollArea dir={dir} className="h-full rounded-4 bg-card">
-            <div
-                ref={ref}
-                className={cn(`${isFooterUsed ? 'mb-space-11' : ''} h-full overflow-auto rounded-4 bg-card p-space-05 text-foreground`, className)}
-                {...props}
-            />
-        </ScrollArea>
+        <div
+            ref={ref}
+            className={cn(
+                'scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-border scrollbar-track-transparent scrollbar-w-2.5 scrollbar-h-2.5',
+                `${isFooterUsed ? 'mb-space-11' : ''} h-full overflow-auto rounded-4 bg-card p-space-05 text-foreground`,
+                className,
+            )}
+            {...props}
+        />
     )
 })
 
