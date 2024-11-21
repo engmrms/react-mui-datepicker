@@ -1,5 +1,5 @@
-const APP_AUTH_URL = 'https://iam-stg.moe.gov.sa/up/sps/oauth/oauth20'
-const APP_BASE_URL = process.env.NODE_ENV === 'production' ? 'https://edugate-stg.moe.gov.sa' : 'https://localhost:5000'
+const APP_AUTH_URL = 'https://iam-dev.moe.gov.sa/mga/sps/oauth/oauth20'
+const APP_BASE_URL = process.env.NODE_ENV === 'production' ? 'https://up-stg.moe.gov.sa' : 'https://localhost:5000'
 
 export const IDENTITY_CONFIG = {
     authority: APP_AUTH_URL, //(string): The URL of the OIDC provider.
@@ -19,7 +19,7 @@ export const IDENTITY_CONFIG = {
 }
 
 export const METADATA_OIDC = {
-    issuer: 'https://iam-stg.moe.gov.sa',
+    issuer: 'https://iam-dev.moe.gov.sa',
     jwks_uri: APP_AUTH_URL + '/jwks/UP_Definition',
     authorization_endpoint: APP_AUTH_URL + '/authorize',
     token_endpoint: APP_AUTH_URL + '/token',

@@ -169,7 +169,7 @@ class AuthService implements IAuthService {
      */
     public async clearSession(): Promise<void> {
         return new Promise((resolve, reject) => {
-            const logoutWindow = window.open('https://iam-stg.moe.gov.sa/pkmslogout', '_blank', 'width=800,height=600')
+            const logoutWindow = window.open('https://iam-dev.moe.gov.sa/pkmslogout', '_blank', 'width=800,height=600')
             if (logoutWindow) {
                 setTimeout(() => {
                     logoutWindow.close()
@@ -192,7 +192,7 @@ class AuthService implements IAuthService {
                     `${METADATA_OIDC.end_session_endpoint}?client_id=${IDENTITY_CONFIG.client_id}&client_secret=${IDENTITY_CONFIG.client_secret}&token=${user?.access_token}`,
                     { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
                 )
-                await fetch('https://iam-stg.moe.gov.sa/up/sps/oauth/oauth20/logout', { method: 'POST' })
+                await fetch('https://iam-dev.moe.gov.sa/up/sps/oauth/oauth20/logout', { method: 'POST' })
                 return user
             })
             .then(async () => {
