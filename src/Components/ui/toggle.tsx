@@ -26,7 +26,7 @@ const toggleVariants = cva(
             colors: {
                 default:
                     'hover:bg-card-hover hover:text-primary data-[state=on]:bg-primary data-[state=on]:text-primary-foreground  hover:data-[state=on]:bg-primary-dark',
-                gray: 'hover:bg-card-hover hover:text-card-foreground data-[state=on]:bg-card-foreground data-[state=on]:text-primary-foreground  hover:data-[state=on]:bg-foreground-secondary',
+                gray: 'hover:bg-card-hover hover:text-card-foreground data-[state=on]:bg-inverted data-[state=on]:text-inverted-foreground  hover:data-[state=on]:bg-foreground-secondary',
             },
         },
 
