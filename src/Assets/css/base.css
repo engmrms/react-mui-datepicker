@@ -169,7 +169,7 @@
         --destructive: theme(colors.red.500);
         --destructive-foreground: theme(colors.white);
 
-        --inverted: theme(colors.white);
+        --inverted: theme(colors.grayDark.10);
         --inverted-secondary: theme(colors.grayDark.50);
         --inverted-foreground: theme(colors.grayDark.900);
 
