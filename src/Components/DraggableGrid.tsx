@@ -32,6 +32,7 @@ interface DraggableGridProps {
     onCancel?: () => void
     onReset?: () => void
     onAdd?: () => void
+    isSidePanelShown?: boolean
 }
 
 export function DraggableGrid({
@@ -44,6 +45,7 @@ export function DraggableGrid({
     onCancel,
     onReset,
     onAdd,
+    isSidePanelShown,
 }: DraggableGridProps) {
     const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
     const [overId, setOverId] = useState<UniqueIdentifier | null>(null)
@@ -167,27 +169,31 @@ export function DraggableGrid({
                 <div
                     className={`fixed bottom-4 left-0 right-0 flex justify-center transition-all duration-300 ${
                         isEditMode ? 'z-[50000] opacity-100' : 'pointer-events-none opacity-0'
-                    }`}>
+                    }
+                    ${isSidePanelShown ? 'hidden xl:flex' : ''}
+                    `}>
                     <div
                         className={`flex transform items-center gap-space-04 rounded-full border bg-background-brand p-space-02 shadow-01 transition-all duration-300 ${
                             isEditMode ? 'translate-y-[-10px]' : 'translate-y-full'
                         }`}>
-                        <Stack gap={4} alignItems="center">
-                            <Button variant="outline" colors="gray" size="icon-sm" onClick={onCancel}>
-                                <Close className="size-space-05" />
+                        <>
+                            <Stack gap={4} alignItems="center">
+                                <Button variant="outline" colors="gray" size="icon-sm" onClick={onCancel}>
+                                    <Close className="size-space-05" />
+                                </Button>
+                                <Button variant="outline" colors="gray" size="icon-sm" onClick={onReset}>
+                                    <Refresh className="size-space-05" />
+                                </Button>
+                                <Separator orientation="vertical" className="h-space-07" />
+                            </Stack>
+                            <Button variant="outline" colors="primary" size="icon-sm" className="xl:hidden" onClick={onAdd}>
+                                <AddBox className="size-space-05" />
                             </Button>
-                            <Button variant="outline" colors="gray" size="icon-sm" onClick={onReset}>
-                                <Refresh className="size-space-05" />
+                            <Button variant="default" onClick={onSave} size="sm" colors="primary" className="gap-space-02">
+                                <DashboardCustomize className="size-space-05" />
+                                {strings.DragAndDrop.SaveCustomization}
                             </Button>
-                            <Separator orientation="vertical" className="h-space-07" />
-                        </Stack>
-                        <Button variant="outline" colors="primary" size="icon-sm" className="xl:hidden" onClick={onAdd}>
-                            <AddBox className="size-space-05" />
-                        </Button>
-                        <Button variant="default" onClick={onSave} size="sm" colors="primary" className="gap-space-02">
-                            <DashboardCustomize className="size-space-05" />
-                            {strings.DragAndDrop.SaveCustomization}
-                        </Button>
+                        </>
                     </div>
                 </div>,
                 document.body,
