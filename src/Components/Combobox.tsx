@@ -44,18 +44,18 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
                 <PopoverTrigger asChild>
                     <Button
                         ref={ref}
-                        rounded="default"
+                        rounded={props?.rounded ?? 'default'}
                         variant="outline"
                         role="combobox"
                         disabled={isLoading}
                         className={cn(
-                            'flex h-[4rem] w-auto items-center justify-between rounded-4 border border-input bg-transparent  !px-space-03    placeholder:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary',
+                            'flex w-auto items-center justify-between border border-input bg-transparent  !px-space-03    placeholder:text-foreground-secondary aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled',
                             className,
                         )}
                         {...props}>
                         {placeholder && !children && <span className="text-body-01 text-foreground-secondary">{placeholder}</span>}
                         <span className="flex-1 truncate text-ellipsis text-right">{children}</span>
-                        {isLoading ? <ActionLoader /> : <ExpandMore className="  h-space-05 w-space-05 shrink-0 text-primary-oncontainer" />}
+                        {isLoading ? <ActionLoader /> : <ExpandMore className="  h-space-05 w-space-05 shrink-0 text-background-foreground" />}
                     </Button>
                 </PopoverTrigger>
             )
@@ -64,13 +64,13 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
             <PopoverTrigger asChild>
                 <FormControl>
                     <Button
-                        rounded="default"
+                        rounded={props?.rounded ?? 'default'}
                         ref={ref}
                         variant="outline"
                         role="combobox"
                         disabled={isLoading}
                         className={cn(
-                            'flex  w-full items-center justify-between rounded-2 border border-input bg-transparent !px-space-03  placeholder:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary',
+                            'flex  w-full items-center justify-between border border-input bg-transparent !px-space-03  placeholder:text-foreground-secondary aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled',
                             className,
                         )}
                         {...props}>

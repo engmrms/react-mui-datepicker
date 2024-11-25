@@ -358,6 +358,8 @@ module.exports = {
                 '01': '0px 10px 16px 0px rgba(38, 36, 36, 0.04), 0px 1px 0px 0px rgba(5, 6, 12, 0.02), 0px 0px 8px 0px rgba(5, 6, 12, 0.02)',
                 '03': '0px 10px 16px 0px rgba(38, 36, 36, 0.04), 0px 1px 0px 0px rgba(5, 6, 12, 0.02), 0px 0px 8px 0px rgba(5, 6, 12, 0.02)',
                 'surface-01': '0px 0px 8px 0px rgba(0,0,0,0.10)',
+                'card-shadow': '0px 0px 2px -1px rgba(0,0,0,0.10), 0px 1px 3px 0px rgba(0,0,0,0.10)',
+                'card-hover-02': '0px 0px 8px 0px rgba(0, 0, 0, 0.12), 0px 1px 3px 0px rgba(0, 0, 0, 0.10)',
             },
             fontFamily: {
                 IBMReguler: ['IBM Reguler', 'ui-sans-serif', 'system-ui'],
