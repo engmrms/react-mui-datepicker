@@ -62,4 +62,13 @@ export const en = {
         VoiceCommands: 'Voice Commands',
         CopyRights: 'All rights reserved ',
     },
+    DragAndDrop: {
+        SaveCustomization: 'Save customization',
+        Delete: 'Delete',
+        Half: 'Half',
+        Full: 'Full',
+        Width: 'Width',
+        Show: 'Show',
+        AddToDashboard: 'Add to dashboard',
+    },
 }

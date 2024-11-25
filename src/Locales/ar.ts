@@ -62,4 +62,13 @@ export const ar = {
         VoiceCommands: 'الأوامر الصوتية',
         CopyRights: 'جميع الحقوق محفوظة ',
     },
+    DragAndDrop: {
+        SaveCustomization: 'حفظ التخصيص',
+        Delete: 'حذف',
+        Half: 'نصف',
+        Full: 'كامل',
+        Width: 'العرض',
+        Show: 'اظهار',
+        AddToDashboard: 'اضف إلى لوحة المعلومات',
+    },
 }
