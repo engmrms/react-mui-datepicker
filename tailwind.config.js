@@ -127,6 +127,7 @@ module.exports = {
                     DEFAULT: 'var(--card)',
                     foreground: 'var(--card-foreground)',
                     hover: 'var(--card-hover)',
+                    active: 'var(--card-active)',
                 },
                 inverted: {
                     DEFAULT: 'var(--inverted)',

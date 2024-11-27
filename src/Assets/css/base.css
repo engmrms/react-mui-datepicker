@@ -15,7 +15,7 @@
         --card: theme(colors.white);
         --card-foreground: theme(colors.gray.900);
         --card-hover: theme(colors.gray.200);
-
+        --card-active: theme(colors.gray.50);
         --popover: theme(colors.white);
         --popover-foreground: theme(colors.gray.900);
 
@@ -107,7 +107,7 @@
         --card: theme(colors.grayDark.900);
         --card-foreground: theme(colors.white);
         --card-hover: theme(colors.grayDark.700);
-
+        --card-active: theme(colors.grayDark.800);
         --popover: theme(colors.grayDark.900);
         --popover-foreground: theme(colors.white);
 
