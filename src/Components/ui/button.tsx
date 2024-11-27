@@ -11,7 +11,7 @@ const buttonVariants = cva(
         variants: {
             variant: {
                 default: 'disabled:bg-disabled disabled:text-card  ',
-                outline: 'border border-input disabled:text-disabled ',
+                outline: 'border border-input disabled:text-disabled !bg-card',
                 ghost: ' border-none disabled:text-disabled ',
                 link: ' text-current underline-offset-4 hover:underline ',
             },
@@ -42,19 +42,17 @@ const buttonVariants = cva(
             {
                 colors: 'secondary',
                 variant: 'outline',
-                className:
-                    'text-secondary bg-transparent hover:text-secondary hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
+                className: 'text-secondary hover:text-secondary hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 colors: 'primary',
                 variant: 'outline',
-                className: 'text-primary bg-transparent hover:text-primary hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
+                className: 'text-primary hover:text-primary hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
                 colors: 'tertiary',
-                className:
-                    'text-tertiary bg-transparent hover:text-tertiary  hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
+                className: 'text-tertiary hover:text-tertiary  hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
@@ -64,27 +62,27 @@ const buttonVariants = cva(
             {
                 variant: 'outline',
                 colors: 'info',
-                className: 'text-info bg-transparent hover:text-info hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
+                className: 'text-info hover:text-info hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
                 colors: 'error',
-                className: 'text-error bg-transparent hover:text-error hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
+                className: 'text-error hover:text-error hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
                 colors: 'warning',
-                className: 'text-warning bg-transparent hover:text-warning hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
+                className: 'text-warning hover:text-warning hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
                 colors: 'success',
-                className: 'text-success bg-transparent hover:text-success hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
+                className: 'text-success hover:text-success hover:bg-card-hover active:text-primary-oncontainer active:bg-card-hover',
             },
             {
                 variant: 'outline',
                 colors: 'gray',
-                className: 'bg-transparent border-border hover:bg-card-hover active:bg-card-hover active:text-primary-oncontainer',
+                className: 'border-border hover:bg-card-hover active:bg-card-hover active:text-primary-oncontainer',
             },
 
             {
