@@ -28,6 +28,7 @@ module.exports = {
         extend: {
             backgroundImage: theme => ({
                 gradientPrimary: `linear-gradient(0deg, ${theme('colors.primary.dark')} 0%, ${theme('colors.primary.DEFAULT')} 100%)`,
+                HeaderGradient: `linear-gradient(180deg, ${theme('colors.primary.container')} -15%, ${theme('colors.card.DEFAULT')} 80%)`,
             }),
             colors: {
                 border: {

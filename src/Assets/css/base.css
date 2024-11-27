@@ -211,6 +211,7 @@
     }
 
     [data-theme='parent'].dark {
+        --background-brand: theme(colors.grayDark.800);
         --primary: theme(colors.blue.500);
         --primary-foreground: theme(colors.middleBlue.10);
         --primary-light: theme(colors.blue.400);
@@ -258,6 +259,7 @@
     }
 
     [data-theme='student'].dark {
+        --background-brand: theme(colors.grayDark.800);
         --primary: theme(colors.lavender.500);
         --primary-foreground: theme(colors.lavender.10);
         --primary-light: theme(colors.lavender.400);
