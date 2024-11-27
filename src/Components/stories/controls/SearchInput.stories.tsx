@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { SearchInput } from '../../ui/SearchInput'
 
 const meta: Meta<typeof SearchInput> = {
-    title: 'Components/SearchInput',
+    title: 'Design System/Controls//SearchInput',
     component: SearchInput,
-    tags: ['autodocs'], // Enables autodocs in Storybook
+    tags: ['autodocs'],
     argTypes: {
         type: {
             control: 'radio',
-            options: ['onType', 'onButton'], // Toggle between the two behaviors
+            options: ['onType', 'onButton'],
             description: 'Determines the search behavior',
         },
         placeholder: {
