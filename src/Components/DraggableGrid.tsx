@@ -221,6 +221,7 @@ const Placeholder = ({ id, isEditMode, activeId, overId, draggedWidgetSize }: Pl
             {...(canAcceptWidget ? attributes : {})}
             {...(canAcceptWidget ? listeners : {})}
             className={cn(
+                'hidden sm:block',
                 'h-[440px] rounded-3 border-2 border-dashed transition-all duration-200',
                 showHighlight ? 'border-primary' : 'border-border',
                 !canAcceptWidget && activeId ? 'cursor-not-allowed' : 'cursor-default',
