@@ -54,7 +54,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps & InputP
         }
 
         return (
-            <div className="w-full space-y-space-01">
+            <div className="space-y-space-01">
                 <Input
                     rounded={'full'}
                     type="text"
