@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { debounce } from '../../Lib/utils'
 import { Input } from './input'
 import { Stack } from './Layout'
+import { Button } from './button'
 
 interface SearchInputProps {
     placeholder?: string
@@ -61,12 +62,15 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                         )}
                         {inputValue && type === 'onButton' && <span className="mx-space-01 block h-space-05 border" />}
                         {type === 'onButton' && (
-                            <button
+                            <Button
+                                variant={'outline'}
+                                colors={'success'}
+                                rounded={'full'}
                                 type="button"
-                                className="rounded-full border !p-space-01 text-foreground-tertiary hover:text-success"
+                                className="h-auto rounded-full border !p-space-01"
                                 onClick={handleSearch}>
                                 <Search />
-                            </button>
+                            </Button>
                         )}
                     </Stack>
                 }
