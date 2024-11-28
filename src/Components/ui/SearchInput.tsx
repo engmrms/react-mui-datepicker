@@ -54,7 +54,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps & InputP
         }
 
         return (
-            <div className="space-y-space-01">
+            <div className="w-full space-y-space-01">
                 <Input
                     rounded={'full'}
                     type="text"
@@ -66,7 +66,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps & InputP
                     {...props}
                     onKeyDown={handleKeyDown}
                     onChange={handleInputChange}
-                    className={cn('w-auto pe-space-01 transition-all duration-200 focus-within:border-success hover:border-success', className)}
+                    className={cn('w-full pe-space-01 transition-all duration-200 focus-within:border-success hover:border-success', className)}
                     aria-invalid={!!validationMessage}
                     data-testid="search-input"
                     startAdornment={type === 'onType' && <Search className="text-foreground-tertiary" />}
