@@ -3,9 +3,19 @@ import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
 
-const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('rounded-4 border bg-card p-space-03 text-card-foreground hover:shadow-xsm', className)} {...props} />
-))
+const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & { isClickable?: boolean }>(
+    ({ className, isClickable = true, ...props }, ref) => (
+        <div
+            ref={ref}
+            className={cn(
+                'flex flex-col gap-space-04 rounded-2 border bg-card p-space-04 text-card-foreground transition-all duration-200 hover:shadow-card-hover-02',
+                className,
+                isClickable && 'active:bg-card-active',
+            )}
+            {...props}
+        />
+    ),
+)
 Card.displayName = 'Card'
 
 const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
