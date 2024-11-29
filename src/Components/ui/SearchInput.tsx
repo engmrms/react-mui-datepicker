@@ -1,5 +1,5 @@
 import { Close, Search } from 'google-material-icons/outlined'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { cn, debounce } from '../../Lib/utils'
 import { Button } from './button'
 import { Input, InputProps } from './input'
@@ -22,11 +22,17 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps & InputP
         ref,
     ) => {
         const [inputValue, setInputValue] = useState(value)
-
+        const debouncedOnSearch = useRef<(value: string) => void>()
+        // effects
         useEffect(() => {
             setInputValue(value)
         }, [value])
 
+        useEffect(() => {
+            // Update the debounced function whenever `onSearch` or `debounceTime` changes
+            debouncedOnSearch.current = debounce((value: string) => onSearch(value), debounceTime)
+        }, [onSearch, debounceTime])
+        // methods
         const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
             if (e.key === 'Enter') {
                 onSearch(inputValue.trim())
@@ -37,8 +43,8 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps & InputP
             const value = e.target.value
             setInputValue(value)
 
-            if (type === 'onType') {
-                debounce(() => onSearch(value), debounceTime) // Trigger search immediately
+            if (type === 'onType' && debouncedOnSearch.current) {
+                debouncedOnSearch.current(value)
             }
         }
 
