@@ -350,8 +350,13 @@
 .MuiButtonBase-root.MuiPickersDay-root {
     @apply rounded-1 text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground ltr:font-NotoSans rtl:font-NotoKufiArabic;
 }
+.MuiPickersCalendarHeader-label,
+.MuiDayCalendar-header .MuiTypography-caption.MuiDayCalendar-weekDayLabel{
+    @apply ltr:font-NotoSans rtl:font-NotoKufiArabic
+}
 
-.MuiButtonBase-root.MuiPickersDay-root.Mui-selected {
+.MuiButtonBase-root.MuiPickersDay-root.Mui-selected,
+.MuiButtonBase-root.MuiPickersDay-root:focus.Mui-selected {
     @apply bg-primary;
 }
 .MuiDayCalendar-header .MuiTypography-caption {
@@ -364,7 +369,7 @@
     @apply m-0 text-body-01;
 }
 .MuiButtonBase-root.MuiIconButton-root {
-    @apply text-body-01 dark:text-foreground rtl:rotate-180;
+    @apply text-body-01 dark:text-foreground rtl:rotate-180 ltr:!rotate-0;
 }
 
 .MuiPickersYear-root .MuiPickersYear-yearButton {
@@ -376,4 +381,16 @@
 
 .Mui-disabled.MuiPickersDay-today {
     @apply !border-transparent;
+}
+.MuiButtonBase-root.MuiPickersDay-root.Mui-selected:hover{
+    @apply !bg-primary-dark;
+
+}
+
+html[dir="ltr"] .MuiDateCalendar-root {
+    direction: ltr;
+    }
+
+html[dir="rtl"] .MuiDateCalendar-root {
+direction: rtl;
 }
