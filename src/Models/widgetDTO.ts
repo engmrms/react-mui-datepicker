@@ -13,6 +13,7 @@ export interface WidgetConfig {
     isEditable: boolean
     isMandatory: boolean
     isResizable: boolean
+    containerValue?: string
 }
 
 export interface WidgetProps extends React.HTMLAttributes<HTMLDivElement> {
