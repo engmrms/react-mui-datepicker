@@ -13,11 +13,12 @@ module.exports = {
     plugins: ['react-refresh', 'react'],
     settings: {
         react: {
-          version: 'detect', // Automatically detect the React version
+            version: 'detect', // Automatically detect the React version
         },
-      },
+    },
     rules: {
         'no-undef': 0,
+        'react/prop-types': 'off', // Add this line
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },
 }
