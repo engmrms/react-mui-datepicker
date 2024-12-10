@@ -42,7 +42,7 @@ export const en = {
         Total: 'Total',
         YearTitle: 'Year',
         MonthTitle: 'Month',
-        PaginationDesc: 'Showing {0} to {1} of {2} results',
+        PaginationDesc: 'Page {0} of {1}',
         LinesPerPage: 'Lines per page',
         Actions: 'Actions',
         ViewDetails: 'View Details',
