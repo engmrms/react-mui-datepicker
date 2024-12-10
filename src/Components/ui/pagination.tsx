@@ -2,8 +2,7 @@
 import { MoreHorizontal } from 'lucide-react'
 import * as React from 'react'
 
-import ChevronLeft from 'google-material-icons/outlined/ChevronLeft'
-import ChevronRight from 'google-material-icons/outlined/ChevronRight'
+import { ChevronLeft, ChevronRight } from 'google-material-icons/outlined'
 import { ButtonProps } from '../../Components/ui/button'
 import { cn } from '../../Lib/utils'
 import { strings } from '../../Locales'
@@ -34,7 +33,7 @@ const PaginationLink = ({ className, isActive, ...props }: PaginationLinkProps) 
     <button
         aria-current={isActive ? 'page' : undefined}
         className={cn(
-            'w-16 h-16 flex items-center justify-center border rounded-1 gap-space-01',
+            'flex h-16 w-16 items-center justify-center gap-space-01 rounded-1 border',
             `${isActive ? 'border-primary text-primary' : 'border-transparent hover:bg-card-hover'}`,
             className,
         )}
@@ -44,7 +43,7 @@ const PaginationLink = ({ className, isActive, ...props }: PaginationLinkProps) 
 PaginationLink.displayName = 'PaginationLink'
 
 const PaginationPrevious = ({ className, hasText, ...props }: React.ComponentProps<typeof PaginationLink> & hasText) => (
-    <PaginationLink aria-label="Go to previous page" size="default" className={cn('sm:pl-space-04 w-auto', className)} {...props}>
+    <PaginationLink aria-label="Go to previous page" size="default" className={cn('w-auto sm:pl-space-04', className)} {...props}>
         <ChevronRight className="h-space-05 w-space-05 ltr:rotate-180" />
         {hasText && <span className="hidden sm:inline-block">{strings.Shared.previous}</span>}
     </PaginationLink>
@@ -52,7 +51,7 @@ const PaginationPrevious = ({ className, hasText, ...props }: React.ComponentPro
 PaginationPrevious.displayName = 'PaginationPrevious'
 
 const PaginationNext = ({ className, hasText, ...props }: React.ComponentProps<typeof PaginationLink> & hasText) => (
-    <PaginationLink aria-label="Go to next page" size="default" className={cn('sm:pr-space-04 w-auto', className)} {...props}>
+    <PaginationLink aria-label="Go to next page" size="default" className={cn('w-auto sm:pr-space-04', className)} {...props}>
         {hasText && <span className="hidden sm:inline-block">{strings.Shared.next}</span>}
         <ChevronLeft className="h-space-05 w-space-05 ltr:rotate-180" />
     </PaginationLink>

@@ -3,7 +3,7 @@ import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { cva, type VariantProps } from 'class-variance-authority'
 import React, { Dispatch, SetStateAction, createContext, useContext, useEffect, useState } from 'react'
 
-import Close from 'google-material-icons/outlined/Close'
+import { Close } from 'google-material-icons/outlined'
 import { useMediaQuery } from 'usehooks-ts'
 import { cn } from '../../Lib/utils'
 import accessibilityTools from '../../Stores/accessibilityTools'
@@ -146,7 +146,7 @@ const SheetBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivE
         <div
             ref={ref}
             className={cn(
-                'scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-border scrollbar-track-transparent scrollbar-w-2.5 scrollbar-h-2.5',
+                'scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-w-2.5 scrollbar-h-2.5 scrollbar scrollbar-track-transparent scrollbar-thumb-border',
                 `${isFooterUsed ? 'mb-space-11' : ''} h-full overflow-auto rounded-4 bg-card p-space-05 text-foreground`,
                 className,
             )}

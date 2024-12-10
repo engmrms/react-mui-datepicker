@@ -2,13 +2,13 @@
 /* eslint-disable react/prop-types */
 import { DialogProps } from '@radix-ui/react-dialog'
 import { Command as CommandPrimitive } from 'cmdk'
-import Search from 'google-material-icons/outlined/Search'
+import { Search } from 'google-material-icons/outlined'
 import * as React from 'react'
 
 import { Dialog, DialogContent } from '../../Components/ui/dialog'
 import { cn } from '../../Lib/utils'
-import { ScrollArea } from './scroll-area'
 import useLanguage from '../../Stores/useLanguage'
+import { ScrollArea } from './scroll-area'
 
 const Command = React.forwardRef<React.ElementRef<typeof CommandPrimitive>, React.ComponentPropsWithoutRef<typeof CommandPrimitive>>(
     ({ className, ...props }, ref) => (

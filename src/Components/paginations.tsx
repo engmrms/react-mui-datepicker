@@ -1,6 +1,5 @@
 import classNames from 'classnames'
-import ChevronLeft from 'google-material-icons/outlined/ChevronLeft'
-import ChevronRight from 'google-material-icons/outlined/ChevronRight'
+import { ChevronLeft, ChevronRight } from 'google-material-icons/outlined'
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { cn } from '../Lib/utils'

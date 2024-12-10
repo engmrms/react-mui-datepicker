@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
-import Close from 'google-material-icons/outlined/Close'
+import { Close } from 'google-material-icons/outlined'
 import React from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import { cn } from '../Lib/utils'
@@ -35,7 +35,7 @@ SheetFormContent.displayName = 'SheetFormContent'
 
 const SheetFormHeader = ({ className, title, ...props }: React.ComponentPropsWithoutRef<typeof SheetHeader>) => (
     <SheetHeader className={cn('flex flex-row items-center justify-between border-b border-input px-space-05 py-space-04', className)} {...props}>
-        <h1 className="font-bold text-subtitle-02">{title}</h1>
+        <h1 className="text-subtitle-02 font-bold">{title}</h1>
         <SheetClose>
             <Close />
         </SheetClose>

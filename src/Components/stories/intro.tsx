@@ -1,8 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import AccessibilityNew from 'google-material-icons/filled/AccessibilityNew'
-import Hub from 'google-material-icons/filled/Hub'
-import ViewCarousel from 'google-material-icons/filled/ViewCarousel'
-import Visibility from 'google-material-icons/filled/Visibility'
+import { GoogleMaterialIcon } from 'google-material-icons'
+import { AccessibilityNew, Hub, ViewCarousel, Visibility } from 'google-material-icons/filled'
 
 const introInfo = [
     {
@@ -61,14 +59,14 @@ const Intro = () => {
     )
 }
 
-const IntroCard = ({ Icon, title, desc }: { Icon: (props: React.ComponentProps<'svg'>) => JSX.Element; title: string; desc: string }) => {
+const IntroCard = ({ Icon, title, desc }: { Icon: GoogleMaterialIcon; title: string; desc: string }) => {
     return (
         <div className=" space-y-space-03">
             <div className="flex items-center justify-center bg-background p-space-05 text-primary-dark">
                 <Icon width={88} height={88} />
             </div>
             <div className="space-y-space-02">
-                <h4 className="font-bold text-xl">{title}</h4>
+                <h4 className="text-xl font-bold">{title}</h4>
                 <p className="text-body-01 text-foreground-secondary">{desc}</p>
             </div>
         </div>

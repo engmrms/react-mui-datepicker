@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
 import classNames from 'classnames'
-import ExpandMore from 'google-material-icons/outlined/ExpandMore'
+import {ExpandMore} from 'google-material-icons/outlined'
 import { cn, dateFormatter } from '../Lib/utils'
 import useLanguage from '../Stores/useLanguage'
 import { Button, ButtonProps, buttonVariants } from './ui/button'

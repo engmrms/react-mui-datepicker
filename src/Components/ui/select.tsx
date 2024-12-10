@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react'
 
-import CheckIcon from 'google-material-icons/outlined/Check'
-import ChevronUpIcon from 'google-material-icons/outlined/ExpandLess'
-import { default as ChevronDownIcon, default as ExpandMore } from 'google-material-icons/outlined/ExpandMore'
+import { Check, ExpandMore, KeyboardArrowDown, KeyboardArrowUp } from 'google-material-icons/outlined'
 
 import * as SelectPrimitive from '@radix-ui/react-select'
 
@@ -22,7 +20,7 @@ const SelectTrigger = React.forwardRef<
     <SelectPrimitive.Trigger
         ref={ref}
         className={cn(
-            'flex h-space-08 w-full items-center justify-between gap-space-01 whitespace-nowrap rounded-2 border border-input bg-transparent px-space-04  py-space-03 text-base  placeholder:text-foreground-secondary hover:border-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-foreground-secondary [&>span]:line-clamp-1',
+            'flex h-space-08 w-full items-center justify-between gap-space-01 whitespace-nowrap rounded-2 border border-input bg-transparent px-space-04  py-space-03 text-base  placeholder:text-foreground-secondary data-[placeholder]:text-foreground-secondary hover:border-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
             className,
         )}
         {...props}>
@@ -39,7 +37,7 @@ const SelectScrollUpButton = React.forwardRef<
     React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>
 >(({ className, ...props }, ref) => (
     <SelectPrimitive.ScrollUpButton ref={ref} className={cn('flex cursor-default items-center justify-center py-1', className)} {...props}>
-        <ChevronUpIcon />
+        <KeyboardArrowUp />
     </SelectPrimitive.ScrollUpButton>
 ))
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
@@ -49,7 +47,7 @@ const SelectScrollDownButton = React.forwardRef<
     React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton>
 >(({ className, ...props }, ref) => (
     <SelectPrimitive.ScrollDownButton ref={ref} className={cn('flex cursor-default items-center justify-center py-1', className)} {...props}>
-        <ChevronDownIcon />
+        <KeyboardArrowDown />
     </SelectPrimitive.ScrollDownButton>
 ))
 SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName
@@ -84,9 +82,7 @@ const SelectContent = React.forwardRef<
 SelectContent.displayName = SelectPrimitive.Content.displayName
 
 const SelectLabel = React.forwardRef<React.ElementRef<typeof SelectPrimitive.Label>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>>(
-    ({ className, ...props }, ref) => (
-        <SelectPrimitive.Label ref={ref} className={cn('py-1.5 pl-8 pr-2 font-bold text-xs ', className)} {...props} />
-    ),
+    ({ className, ...props }, ref) => <SelectPrimitive.Label ref={ref} className={cn('py-1.5 pl-8 pr-2 text-xs font-bold ', className)} {...props} />,
 )
 SelectLabel.displayName = SelectPrimitive.Label.displayName
 
@@ -95,13 +91,13 @@ const SelectItem = React.forwardRef<React.ElementRef<typeof SelectPrimitive.Item
         <SelectPrimitive.Item
             ref={ref}
             className={cn(
-                'relative flex w-full cursor-default select-none items-center rounded-2 py-space-02 pe-space-01 ps-space-04 text-sm leading-[2.2rem] outline-none hover:bg-card-hover focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+                'relative flex w-full cursor-default select-none items-center rounded-2 py-space-02 pe-space-01 ps-space-04 text-sm leading-[2.2rem] outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-card-hover focus:bg-accent focus:text-accent-foreground',
                 className,
             )}
             {...props}>
             <span className="absolute -start-space-00 flex h-space-04 w-space-04 items-center justify-center">
                 <SelectPrimitive.ItemIndicator>
-                    <CheckIcon className="h-space-03 w-space-03" />
+                    <Check className="h-space-03 w-space-03" />
                 </SelectPrimitive.ItemIndicator>
             </span>
             <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

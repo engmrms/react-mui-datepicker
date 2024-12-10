@@ -11,7 +11,7 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
 
 type ValueType = string | number
 
-interface MultiSelectProps<T extends ValueType> {
+export interface MultiSelectProps<T extends ValueType> {
     placeholder: string
     options: {
         label: string
@@ -45,16 +45,16 @@ export function MultiSelect<T extends ValueType>({
             <PopoverTrigger asChild disabled={disabled} data-testid={dataTestId}>
                 <Button size={size} colors="gray" variant="outline" className="gap-space-01 py-space-02 pl-space-03 pr-space-04">
                     <span className="text-body-02">{placeholder}</span>
-                    {selectedValues.length > 0 && (
+                    {selectedValues?.length > 0 && (
                         <>
-                            {selectedValues.length > 1 ? (
+                            {selectedValues?.length > 1 ? (
                                 <label className="flex size-space-05 items-center justify-center rounded-full bg-background-secondary text-caption-01">
                                     {selectedValues.length}
                                 </label>
                             ) : (
                                 options
-                                    .filter(option => selectedValues.includes(option.value))
-                                    .map(option => (
+                                    ?.filter(option => selectedValues?.includes(option.value))
+                                    ?.map(option => (
                                         <Badge colors="gray" variant="ghost" size="sm" key={option.value}>
                                             {option.label}
                                         </Badge>
@@ -74,8 +74,8 @@ export function MultiSelect<T extends ValueType>({
                         <CommandList>
                             <CommandEmpty>No results found.</CommandEmpty>
                             <CommandGroup>
-                                {options.map((option, index) => {
-                                    const isSelected = selectedValues.includes(option.value)
+                                {options?.map((option, index) => {
+                                    const isSelected = selectedValues?.includes(option.value)
                                     return (
                                         <CommandItem
                                             data-testid={`${dataTestId}-${index}`}

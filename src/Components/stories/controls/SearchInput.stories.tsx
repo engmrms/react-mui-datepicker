@@ -25,6 +25,13 @@ const meta: Meta<typeof SearchInput> = {
             description: 'Disables the search input',
         },
     },
+    parameters:{
+        docs:{
+            description:{
+                component:'<h4>A flexible search input component with a search icon and clear button functionality.</h4>'
+            }
+        }
+    }
 }
 
 export default meta

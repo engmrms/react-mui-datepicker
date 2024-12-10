@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 import { Combobox, ComboboxControl, ComboboxGroup, ComboboxItem } from '../../Combobox'
 
-import ExpandMore from 'google-material-icons/outlined/ExpandMore'
+import { ExpandMore } from 'google-material-icons/outlined'
 import { Button } from '../../ui/button'
 import { Form, FormField, FormItem, FormLabel, useForm } from '../../ui/form'
 import { PopoverTrigger } from '../../ui/popover'

@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { filled, outlined } from 'google-material-icons'
+import * as Outlined from 'google-material-icons/outlined'
 //import debounce from 'lodash/debounce'
-import React, { useCallback, useState } from 'react'
+import { filledIcons, outlinedIcons } from 'google-material-icons'
+import React, { useMemo, useState } from 'react'
 import { debounce } from '../../../Lib/utils'
 import { Input } from '../../ui/input'
+import { Stack } from '../../ui/Layout'
 import { Switch } from '../../ui/switch'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../ui/tooltip'
 
 function SVGIcons() {
     const [search, setSearch] = useState('')
@@ -15,40 +18,61 @@ function SVGIcons() {
         setSearch(event?.target.value)
     }
 
-    const searchFilter = useCallback(() => {
-        return Object.keys(toggle ? outlined : filled).filter(icon => icon.toLowerCase().includes(search) && icon !== 'default')
+    const icons = useMemo(() => {
+        return Object.entries(toggle ? outlinedIcons : filledIcons).filter(
+            ([name]) => name !== 'createIcon' && name.toLowerCase().includes(search.toLowerCase()),
+        )
     }, [search, toggle])
 
     return (
-        <>
-            <div className="visible mb-4 w-full">
-                <h3 className="title-01">Icons</h3>
-                <div className="flex w-full items-end    justify-between">
-                    <span className="flex items-center gap-x-space-02">
-                        Filled <Switch onCheckedChange={() => setToggle(!toggle)} /> Outlined{' '}
-                    </span>
-                    <div className="flex flex-col lg:flex-row lg:items-center">
-                        <Input
-                            variant="outline"
-                            rounded="full"
-                            type="text"
-                            placeholder="Search icon"
-                            //onChange={debounce(changeHandler, 600)}
-                            onChange={debounce(changeHandler, 600)}
-                            endAdornment={<outlined.Search />}
-                        />
-                    </div>
+        <Stack direction={'col'}>
+            <h3 className="title-02">Icons</h3>
+            <Stack alignItems={'center'}>
+                <div className="flex flex-col lg:flex-row lg:items-center">
+                    <Input
+                        variant="outline"
+                        rounded="full"
+                        type="text"
+                        placeholder="Search icon"
+                        //onChange={debounce(changeHandler, 600)}
+                        onChange={debounce(changeHandler, 600)}
+                        endAdornment={<Outlined.Search />}
+                    />
                 </div>
+                <span className="flex items-center gap-x-space-02">
+                    Filled <Switch onCheckedChange={() => setToggle(!toggle)} /> Outlined{' '}
+                </span>
+            </Stack>
+
+            <div className="grid grid-cols-4 gap-4 md:grid-cols-8 lg:grid-cols-12">
+                <TooltipProvider>
+                    {icons.map(([name, Icon]) => (
+                        <Tooltip key={name}>
+                            <TooltipTrigger>
+                                <Stack
+                                    key={name}
+                                    direction={'col'}
+                                    gap={3}
+                                    justifyItems={'center'}
+                                    alignItems={'center'}
+                                    className="cursor-pointer rounded-1 border p-space-04 hover:bg-card-hover hover:shadow-01"
+                                    onClick={() => {
+                                        navigator.clipboard.writeText(name).catch(err => console.error('Failed to copy to clipboard:', err))
+                                    }}
+                                    title="Click to copy icon name">
+                                    {React.createElement(Icon as any, {
+                                        className: 'size-space-3 ',
+                                    })}
+                                </Stack>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <span className="break-all text-center text-body-01 text-foreground-secondary ">{name}</span>
+                            </TooltipContent>
+                        </Tooltip>
+                    ))}
+                </TooltipProvider>
             </div>
-            <div className="grid grid-cols-5 gap-space-02">
-                {searchFilter().map(icon => (
-                    <div key={icon} className="flex flex-col items-center gap-4 border border-gray-300 p-4">
-                        {React.createElement((toggle ? (outlined as unknown as any) : (filled as unknown as any))[icon])}{' '}
-                        <p className="text-wrap border-t border-t-border pt-2 text-body-01 text-foreground-secondary">{icon}</p>
-                    </div>
-                ))}
-            </div>
-        </>
+        </Stack>
     )
 }
 
