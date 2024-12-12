@@ -91,7 +91,9 @@ export function DraggableGrid({
         const newConfigs = arrayMove(configs, oldIndex, newIndex)
         onOrderChange(newConfigs)
     }
-    const visibleConfigs = configs.filter(config => config?.isVisible)
+    const visibleConfigs = configs.filter(config => {
+        return config?.isVisible && componentMap[config.alias]
+    })
     const placeholderIds = Array(visibleConfigs.length)
         .fill(0)
         .map((_, i) => `placeholder-${i}`)
@@ -112,6 +114,10 @@ export function DraggableGrid({
                             for (let i = 0; i < visibleConfigs.length; i++) {
                                 const currentWidget = visibleConfigs[i]
                                 const Component = componentMap[currentWidget.alias]
+                                if (!Component) {
+                                    console.warn(`No component found for widget: ${currentWidget.alias}`)
+                                    continue
+                                }
                                 gridElements.push(
                                     <Component
                                         key={currentWidget.alias}
@@ -152,8 +158,10 @@ export function DraggableGrid({
                             const config = configs.find(c => c.alias === activeId)
                             if (!config) return null
                             const Component = componentMap[config.alias]
+                            if (!Component) return null // Add this check
                             return (
                                 <Component
+                                    key={config.alias}
                                     config={config}
                                     isEditMode={isEditMode}
                                     onConfigChange={onConfigChange}
@@ -176,24 +184,22 @@ export function DraggableGrid({
                         className={`flex transform items-center gap-space-04 rounded-full border bg-background-brand p-space-02 shadow-01 transition-all duration-300 ${
                             isEditMode ? 'translate-y-[-10px]' : 'translate-y-full'
                         }`}>
-                        <>
-                            <Stack gap={4} alignItems="center">
-                                <Button variant="outline" colors="gray" size="icon-sm" onClick={onCancel}>
-                                    <Close className="size-space-05" />
-                                </Button>
-                                <Button variant="outline" colors="gray" size="icon-sm" onClick={onReset}>
-                                    <Refresh className="size-space-05" />
-                                </Button>
-                                <Separator orientation="vertical" className="h-space-07" />
-                            </Stack>
-                            <Button variant="outline" colors="primary" size="icon-sm" className="xl:hidden" onClick={onAdd}>
-                                <AddBox className="size-space-05" />
+                        <Stack gap={4} alignItems="center">
+                            <Button variant="outline" colors="gray" size="icon-sm" onClick={onCancel}>
+                                <Close className="size-space-05" />
                             </Button>
-                            <Button variant="default" onClick={onSave} size="sm" colors="primary" className="gap-space-02">
-                                <DashboardCustomize className="size-space-05" />
-                                {strings.DragAndDrop.SaveCustomization}
+                            <Button variant="outline" colors="gray" size="icon-sm" onClick={onReset}>
+                                <Refresh className="size-space-05" />
                             </Button>
-                        </>
+                            <Separator orientation="vertical" className="h-space-07" />
+                        </Stack>
+                        <Button variant="outline" colors="primary" size="icon-sm" className="xl:hidden" onClick={onAdd}>
+                            <AddBox className="size-space-05" />
+                        </Button>
+                        <Button variant="default" onClick={onSave} size="sm" colors="primary" className="gap-space-02">
+                            <DashboardCustomize className="size-space-05" />
+                            {strings.DragAndDrop.SaveCustomization}
+                        </Button>
                     </div>
                 </div>,
                 document.body,
