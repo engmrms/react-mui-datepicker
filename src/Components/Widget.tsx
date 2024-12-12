@@ -92,7 +92,7 @@ const WidgetHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
 WidgetHeader.displayName = 'WidgetHeader'
 // Widget Title Component
 const WidgetTitle = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLHeadingElement>>(({ className, children, ...props }, ref) => (
-    <h3 ref={ref} className={cn('flex items-center gap-space-01 text-subtitle-01 font-bold text-card-foreground', className)} {...props}>
+    <h3 ref={ref} className={cn('flex items-center gap-space-02 text-subtitle-01 font-bold text-card-foreground', className)} {...props}>
         {children}
     </h3>
 ))
@@ -102,15 +102,22 @@ interface WidgetActionItem extends Partial<ButtonProps> {
     label: string
     icon?: React.ReactNode
     onClick: () => void
+    'data-testid'?: string
 }
 interface WidgetActionsProps extends React.HTMLAttributes<HTMLDivElement> {
     actions: WidgetActionItem[]
 }
 const WidgetActions = ({ actions }: WidgetActionsProps) => {
     if (actions.length === 1) {
-        const { label, icon, onClick, ...buttonProps } = actions[0]
+        const { label, icon, onClick, 'data-testid': dataTestId, ...buttonProps } = actions[0]
         return (
-            <Button onClick={onClick} variant={buttonProps.variant} size={buttonProps.size} {...buttonProps} className={cn(buttonProps.className)}>
+            <Button
+                onClick={onClick}
+                variant={buttonProps.variant}
+                data-testid={dataTestId}
+                size={buttonProps.size}
+                {...buttonProps}
+                className={cn(buttonProps.className)}>
                 {icon}
                 {label}
             </Button>
@@ -124,10 +131,10 @@ const WidgetActions = ({ actions }: WidgetActionsProps) => {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="min-w-[232px]">
-                {actions.map((action, index) => {
-                    const { label, icon, onClick } = action
+                {actions.map(action => {
+                    const { label, icon, 'data-testid': dataTestId, onClick } = action
                     return (
-                        <DropdownMenuItem key={index} onClick={onClick} className="cursor-pointer">
+                        <DropdownMenuItem key={action?.label} onClick={onClick} className="cursor-pointer" data-testid={dataTestId}>
                             {icon && <span className="mr-2">{icon}</span>}
                             {label}
                         </DropdownMenuItem>
@@ -139,7 +146,9 @@ const WidgetActions = ({ actions }: WidgetActionsProps) => {
 }
 WidgetActions.displayName = 'WidgetActions'
 const WidgetContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof widgetContentVariants>>(
-    ({ className, direction, ...props }, ref) => <div ref={ref} className={cn(widgetContentVariants({ direction }), '', className)} {...props} />,
+    ({ className, direction, ...props }, ref) => (
+        <div ref={ref} className={cn(widgetContentVariants({ direction }), 'overflow-hidden', className)} {...props} />
+    ),
 )
 WidgetContent.displayName = 'WidgetContent'
 
