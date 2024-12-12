@@ -11,7 +11,11 @@ const useLanguage = create<Local_DTO.useLanguageStore>()(
                 set(state => {
                     if (value === state.lang) return
                     localStorage.setItem('lang', value)
-                    window.location.reload()
+                    if (window.location.pathname === '/login/verification') {
+                        window.location.replace('/login')
+                    } else {
+                        window.location.reload()
+                    }
                 }),
         }),
         { name: 'lanugage' },
