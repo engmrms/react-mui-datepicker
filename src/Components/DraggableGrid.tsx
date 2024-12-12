@@ -46,7 +46,7 @@ export function DraggableGrid({
     onReset,
     onAdd,
     isSidePanelShown,
-}: DraggableGridProps) {
+}: Readonly<DraggableGridProps>) {
     const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
     const [overId, setOverId] = useState<UniqueIdentifier | null>(null)
     const mouseSensor = useSensor(MouseSensor, {
@@ -104,7 +104,7 @@ export function DraggableGrid({
                 onDragEnd={handleDragEnd}
                 onDragOver={handleDragOver}>
                 <SortableContext items={[...configs.map(config => config.alias), ...placeholderIds]}>
-                    <div className="grid gap-space-05 px-space-04 pt-space-04 sm:grid-cols-2 sm:px-space-06 xl:px-space-05">
+                    <div className="grid items-center justify-center gap-space-05 px-space-04 pt-space-04 sm:grid-cols-2 sm:items-stretch sm:justify-stretch sm:px-space-06 xl:px-space-05">
                         {(() => {
                             let usedColumns = 0
                             const gridElements = []
