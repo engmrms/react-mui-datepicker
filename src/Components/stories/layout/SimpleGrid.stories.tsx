@@ -8,18 +8,18 @@ const SimpleGridTemplate = (arg: any) => {
     return (
         <div className="w-[50vw]">
             <SimpleGrid {...arg}>
-                <div className="bg-red-300">item 1</div>
-                <div className="bg-red-300">item</div>
-                <div className="bg-red-300">item</div>
-                <div className="bg-red-300">item</div>
-                <div className="bg-red-300">item</div>
-                <div className="bg-red-300">item 8</div>
+                <div className="bg-red-300 p-space-02">item 1</div>
+                <div className="bg-red-300 p-space-02">item</div>
+                <div className="bg-red-300 p-space-02">item</div>
+                <div className="bg-red-300 p-space-02">item</div>
+                <div className="bg-red-300 p-space-02">item</div>
+                <div className="bg-red-300 p-space-02">item 8</div>
             </SimpleGrid>
         </div>
     )
 }
 const meta: Meta<typeof SimpleGrid> = {
-    title: 'Design System/layout/SimpleGrid',
+    title: 'Design System/Layout/SimpleGrid',
     component: SimpleGridTemplate,
     tags: ['autodocs'],
     args: {},

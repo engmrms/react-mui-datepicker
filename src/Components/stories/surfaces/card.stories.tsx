@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Check from 'google-material-icons/outlined/Check'
-import Notifications from 'google-material-icons/outlined/Notifications'
+import { Check, Notifications } from 'google-material-icons/outlined'
 import { Button } from '../../ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../ui/card'
 import { Switch } from '../../ui/switch'

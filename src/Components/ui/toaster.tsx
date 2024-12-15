@@ -7,7 +7,7 @@ export function Toaster() {
     const isActive = accessibilityTools(state => state.isActive)
 
     return (
-        <ToastProvider>
+        <ToastProvider >
             {toasts.map(function ({ id, title, description, action, ...props }) {
                 return (
                     <Toast key={id} {...props} className={`${isActive ? 'grayscale' : 'grayscale-0'}`}>

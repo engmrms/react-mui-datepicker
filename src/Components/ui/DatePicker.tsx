@@ -1,16 +1,16 @@
-import DateRange from 'google-material-icons/outlined/DateRange'
 import { DateCalendarProps } from '@mui/x-date-pickers'
+import { DateRange } from 'google-material-icons/outlined'
 import moment, { Moment } from 'moment'
 import { useState } from 'react'
 import { cn } from '../../Lib/utils'
+import useLanguage from '../../Stores/useLanguage'
 import { Button, ButtonProps } from './button'
 import { Calendar } from './calendar'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
-import useLanguage from '../../Stores/useLanguage'
 
 interface Props {
     lang: 'ar' | 'en'
-    placeholder?: string | null 
+    placeholder?: string | null
     value: Date | string | null | undefined
     onChange: (value: string) => void
     rounded?: ButtonProps['rounded']
@@ -54,15 +54,10 @@ const DatePicker = ({ placeholder, value, onChange, lang, rounded, defaultToToda
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
                 <>
-                       {/* <div>
+                    {/* <div>
                 <label htmlFor="">To Hijri</label> <Switch onCheckedChange={() => setIshijri(!ishijri)} dir="rtl" />
             </div> */}
-                    <Calendar
-                        value={selectedDate}
-                        lang={lang}
-                        onChange={handleDateChange}
-                        {...rest}
-                    />
+                    <Calendar value={selectedDate} lang={lang} onChange={handleDateChange} {...rest} />
                 </>
             </PopoverContent>
         </Popover>

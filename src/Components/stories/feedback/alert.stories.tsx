@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import CheckCircle from 'google-material-icons/outlined/CheckCircle'
-import WarningAmber from 'google-material-icons/outlined/WarningAmber'
+import { CheckCircle, WarningAmber } from 'google-material-icons/outlined'
 import { Alert, AlertDescription, AlertTitle } from '../../ui/alert'
 const meta: Meta<typeof Alert> = {
     title: 'Design System/FeedBack/Alert',

@@ -58,11 +58,9 @@ const preview: Preview = {
         options: {
             // storySort: (a, b) => (a.id === b.id ? 0 : a.id.localeCompare(b.id, undefined, { numeric: true })),
         },
-        
     },
     decorators: [
         (Story, context) => {
-            console.log(context.globals)
             return (
                 <div dir={context.globals.dir}>
                     <Story />

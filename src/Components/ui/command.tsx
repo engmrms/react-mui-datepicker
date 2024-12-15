@@ -2,13 +2,13 @@
 /* eslint-disable react/prop-types */
 import { DialogProps } from '@radix-ui/react-dialog'
 import { Command as CommandPrimitive } from 'cmdk'
-import Search from 'google-material-icons/outlined/Search'
+import { Search } from 'google-material-icons/outlined'
 import * as React from 'react'
 
 import { Dialog, DialogContent } from '../../Components/ui/dialog'
 import { cn } from '../../Lib/utils'
-import { ScrollArea } from './scroll-area'
 import useLanguage from '../../Stores/useLanguage'
+import { ScrollArea } from './scroll-area'
 
 const Command = React.forwardRef<React.ElementRef<typeof CommandPrimitive>, React.ComponentPropsWithoutRef<typeof CommandPrimitive>>(
     ({ className, ...props }, ref) => (
@@ -42,14 +42,14 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
 const CommandInput = React.forwardRef<React.ElementRef<typeof CommandPrimitive.Input>, React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>>(
     ({ className, ...props }, ref) => (
         <div
-            className="mb-space-03 flex items-center gap-space-02 rounded-2 border border-border bg-muted px-space-03 py-space-02"
+            className="mb-space-03 flex h-[40px] items-center gap-space-02 rounded-2 border border-border bg-muted px-space-03 py-space-02"
             cmdk-input-wrapper=""
             dir={document.dir}>
-            <Search className="size-[2rem] shrink-0 text-foreground-tertiary" />
+            <Search className="size-[2.2rem] shrink-0 text-foreground-tertiary" />
             <CommandPrimitive.Input
                 ref={ref}
                 className={cn(
-                    'flex h-11 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-body-01 placeholder:text-foreground-secondary disabled:cursor-not-allowed disabled:opacity-50',
+                    'flex h-full  w-full border-none bg-transparent text-sm outline-none placeholder:text-body-01 placeholder:text-foreground-secondary disabled:cursor-not-allowed disabled:opacity-50',
                     className,
                 )}
                 {...props}
@@ -111,7 +111,7 @@ const CommandItem = React.forwardRef<React.ElementRef<typeof CommandPrimitive.It
         <CommandPrimitive.Item
             ref={ref}
             className={cn(
-                'relative flex cursor-default select-none items-center rounded-2 py-space-02 pe-space-01 ps-space-03 text-body-01 outline-none aria-selected:bg-card-hover  data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
+                'pe-space-02 relative flex cursor-default select-none items-center rounded-1 py-space-02 ps-space-03 text-body-01 outline-none aria-selected:bg-card-hover  data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
                 className,
             )}
             {...props}

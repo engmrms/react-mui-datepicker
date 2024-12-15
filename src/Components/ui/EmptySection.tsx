@@ -47,10 +47,10 @@ const EmptySection: React.FC<EmptySectionProps> = ({
                     'gap-space-02': layout === 'horizontal',
                 })}>
                 <div
-                    className={classnames('', {
+                    className={classnames('space-y-space-01', {
                         'text-center': layout === 'vertical',
                     })}>
-                    <h3 className="font-bold text-body-02 text-card-foreground">{title}</h3>
+                    <h3 className="text-body-02 font-bold text-card-foreground">{title}</h3>
                     {message && (
                         <p className={classnames('text-body-01 text-foreground', { 'text-foreground-secondary': background === 'gray' })}>
                             {message}

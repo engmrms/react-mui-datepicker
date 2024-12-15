@@ -1,14 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { SheetForm, SheetFormBody, SheetFormContent, SheetFormFooter, SheetFormHeader } from '../../SheetForm'
 import { Button } from '../../ui/button'
 import { Input } from '../../ui/input'
 import { Label } from '../../ui/label'
-import { SheetClose, SheetTrigger } from '../../ui/sheet'
+import { Sheet, SheetBody, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTrigger } from '../../ui/sheet'
 
-const meta: Meta<typeof SheetForm> = {
+const meta: Meta<typeof Sheet> = {
     title: 'Design System/Navigation/Sheet',
-    component: SheetForm,
+    component: Sheet,
     tags: ['autodocs'],
     argTypes: {},
     parameters: {
@@ -22,17 +21,17 @@ const meta: Meta<typeof SheetForm> = {
 }
 
 export default meta
-type Story = StoryObj<typeof SheetForm>
+type Story = StoryObj<typeof Sheet>
 export const Default: Story = {
     render: arg => (
-        <SheetForm {...arg}>
+        <Sheet {...arg}>
             <SheetTrigger asChild>
                 <Button variant="outline">Open</Button>
             </SheetTrigger>
-            <SheetFormContent>
-                <SheetFormHeader title="Edit profile" />
+            <SheetContent>
+                <SheetHeader title="Edit profile" />
 
-                <SheetFormBody>
+                <SheetBody>
                     <div className="grid gap-4 py-4">
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="name" className="text-right">
@@ -47,15 +46,15 @@ export const Default: Story = {
                             <Input id="username" value="@peduarte" className="col-span-3" />
                         </div>
                     </div>
-                </SheetFormBody>
-                <SheetFormFooter>
+                </SheetBody>
+                <SheetFooter>
                     <SheetClose asChild>
                         <Button type="submit" variant="default" colors="primary" className="w-full" rounded={'full'}>
                             Save changes
                         </Button>
                     </SheetClose>
-                </SheetFormFooter>
-            </SheetFormContent>
-        </SheetForm>
+                </SheetFooter>
+            </SheetContent>
+        </Sheet>
     ),
 }

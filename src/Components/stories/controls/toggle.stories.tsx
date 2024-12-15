@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import FormatBold from 'google-material-icons/outlined/FormatBold'
-import FormatItalic from 'google-material-icons/outlined/FormatItalic'
-import FormatUnderlined from 'google-material-icons/outlined/FormatUnderlined'
+import { FormatBold, FormatItalic, FormatUnderlined } from 'google-material-icons/outlined'
 import { ToggleGroup, ToggleGroupItem } from '../../ui/toggle-group'
 
 const ToggleGroupDemo = (arg: any) => {

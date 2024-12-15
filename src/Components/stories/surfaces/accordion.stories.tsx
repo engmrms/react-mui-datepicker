@@ -2,8 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Add from 'google-material-icons/outlined/Add'
-import Minimize from 'google-material-icons/outlined/Minimize'
+import { Add, Minimize } from 'google-material-icons/outlined'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../../ui/accordion'
 
 function AccordionDemo(arg: any) {

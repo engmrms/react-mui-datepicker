@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Slot } from '@radix-ui/react-slot'
-import ChevronRight from 'google-material-icons/outlined/ChevronRight'
-import MoreHoriz from 'google-material-icons/outlined/MoreHoriz'
+import { ChevronRight, MoreHoriz } from 'google-material-icons/outlined'
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
