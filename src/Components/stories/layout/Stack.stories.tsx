@@ -19,7 +19,7 @@ const StackSample = (arg: any) => {
     )
 }
 const meta: Meta<typeof Stack> = {
-    title: 'Design System/layout/Stack',
+    title: 'Design System/Layout/Stack',
     component: StackSample,
     tags: ['autodocs'],
     args: {

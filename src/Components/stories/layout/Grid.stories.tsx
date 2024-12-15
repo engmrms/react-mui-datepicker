@@ -24,7 +24,7 @@ const GridSample = (arg: any) => {
     )
 }
 const meta: Meta<typeof Grid> = {
-    title: 'Design System/layout/Grid',
+    title: 'Design System/Layout/Grid',
     component: GridSample,
     tags: ['autodocs'],
     args: {

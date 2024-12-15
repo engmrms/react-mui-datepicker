@@ -19,7 +19,7 @@ const SimpleGridTemplate = (arg: any) => {
     )
 }
 const meta: Meta<typeof SimpleGrid> = {
-    title: 'Design System/layout/SimpleGrid',
+    title: 'Design System/Layout/SimpleGrid',
     component: SimpleGridTemplate,
     tags: ['autodocs'],
     args: {},
