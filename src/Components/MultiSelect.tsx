@@ -23,6 +23,7 @@ export interface MultiSelectProps<T extends ValueType> {
     disabled?: boolean
     size?: 'sm' | 'default'
     dataTestId?: string
+    rounded?: 'default' | 'full'
 }
 
 export function MultiSelect<T extends ValueType>({
@@ -33,6 +34,7 @@ export function MultiSelect<T extends ValueType>({
     disabled,
     size = 'default',
     dataTestId = '',
+    rounded = 'default',
 }: MultiSelectProps<T>) {
     const [isOpen, toggle] = useToggle(false)
 
@@ -43,7 +45,7 @@ export function MultiSelect<T extends ValueType>({
                 toggle()
             }}>
             <PopoverTrigger asChild disabled={disabled} data-testid={dataTestId}>
-                <Button size={size} colors="gray" variant="outline" className="gap-space-01 py-space-02 pl-space-03 pr-space-04">
+                <Button size={size} rounded={rounded} colors="gray" variant="outline" className="gap-space-01 py-space-02 pl-space-03 pr-space-04">
                     <span className="text-body-02">{placeholder}</span>
                     {selectedValues?.length > 0 && (
                         <>
@@ -65,9 +67,9 @@ export function MultiSelect<T extends ValueType>({
                     <ExpandMore className="size-space-05" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="min-h-space-07 !w-[360x] min-w-[360px] p-space-00" align="start">
+            <PopoverContent className="min-h-space-07 min-w-[var(--radix-popover-trigger-width)]   p-space-00" align="start">
                 <Command className="w-full">
-                    <div className="p-space-04">
+                    <div className="p-space-02">
                         <ShouldRender shouldRender={options?.length > 7}>
                             <CommandInput placeholder={placeholder} />
                         </ShouldRender>
@@ -79,7 +81,7 @@ export function MultiSelect<T extends ValueType>({
                                     return (
                                         <CommandItem
                                             data-testid={`${dataTestId}-${index}`}
-                                            className="flex gap-space-02"
+                                            className="flex gap-space-02 "
                                             key={option.value}
                                             onSelect={() => {
                                                 const newSelectedValues = isSelected
@@ -97,7 +99,7 @@ export function MultiSelect<T extends ValueType>({
                         </CommandList>
                     </div>
                     <ShouldRender shouldRender={!!selectedValues?.length}>
-                        <div className="flex items-center gap-space-04 border-t border-t-border bg-background px-space-04 py-space-03">
+                        <div className="flex items-center gap-space-04 border-t border-t-border bg-background px-space-04 py-space-02">
                             <Button
                                 colors="gray"
                                 variant="ghost"

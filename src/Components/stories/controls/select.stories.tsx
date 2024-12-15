@@ -26,7 +26,7 @@ export const Default: Story = {
             <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Theme" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent position='popper'>
                 <SelectItem value="light">Light</SelectItem>
                 <SelectItem value="dark">Dark</SelectItem>
                 <SelectItem value="system">System</SelectItem>

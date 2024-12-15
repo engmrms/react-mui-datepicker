@@ -8,12 +8,19 @@ const meta: Meta<typeof Heading> = {
     title: 'Design System/Data Display/Heading',
     tags: ['autodocs'],
     parameters: {
+        new: true, 
         layout: 'centered',
+        options: {
+            hidden: true
+          },
         docs: {
+            disable: true,
             description: {
                 component: '<h4>A flexible typography component for displaying headings with different sizes and styles.</h4>',
             },
         },
+
+    story: { disable: true },
     },
 }
 

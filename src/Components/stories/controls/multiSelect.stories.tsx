@@ -37,6 +37,7 @@ export const Default: Story = {
         size: 'default',
         options: mockData,
         selectedValues: [],
+        rounded: 'default',
     },
     render: arg => {
         const [storyArgs, updateArgs] = useArgs()

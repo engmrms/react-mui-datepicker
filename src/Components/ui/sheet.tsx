@@ -100,7 +100,7 @@ const SheetHeader = ({ className, title, children, ...props }: React.HTMLAttribu
     <div className={cn('flex flex-row items-center gap-space-02 px-space-05 py-space-04', className)} {...props}>
         {children}
         <h1 className="text-subtitle-02 font-bold">{title}</h1>
-        <SheetClose className="mr-auto p-space-02" data-testid="sheetClose">
+        <SheetClose className="ms-auto p-space-02" data-testid="sheetClose">
             <Close />
         </SheetClose>
     </div>

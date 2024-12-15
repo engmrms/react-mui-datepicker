@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import * as outlined from 'google-material-icons/outlined'
 import { Description, DescriptionItem, DescriptionProps } from '../../Description'
 import { Stack } from '../../ui/Layout'
 
@@ -25,15 +26,30 @@ export const Default: Story = {
         variant: 'default',
         orientation: 'horizental',
         lastItem: true,
+        title: 'Title',
+        stretch: false,
     },
-    render: () => (
-        <Stack direction={"col"} className='p-space-08'>
+    argTypes: {
+        variant: {
+            control: 'radio',
+            options: ['default', 'list'],
+        },
+        orientation: {
+            control: 'radio',
+            options: ['horizental', 'vertical'],
+        },
+        icon:{
+            control:"select",
+            options:outlined,
+            description:"Google Material Icon (Outlined | Filled) "
+        }
+    },
 
-        <Description className="">
-            <DescriptionItem variant={'default'} title="title1" orientation={'horizental'}>
-                Item 1
-            </DescriptionItem>
-        </Description>
+    render: arg => (
+        <Stack direction={'col'} className="p-space-08">
+            <Description>
+                <DescriptionItem {...arg}>description</DescriptionItem>
+            </Description>
         </Stack>
     ),
 }

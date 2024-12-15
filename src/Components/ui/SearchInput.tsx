@@ -92,6 +92,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps & InputP
                                     variant={'outline'}
                                     colors={'success'}
                                     rounded={'full'}
+                                    size={'icon-sm'}
                                     type="button"
                                     className="h-auto rounded-full border !p-space-01"
                                     onClick={handleSearch}>

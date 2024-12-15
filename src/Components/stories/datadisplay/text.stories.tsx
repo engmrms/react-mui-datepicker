@@ -21,5 +21,17 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+    args: {
+        children: 'this is text sample',
+        as: 'span',
+    },
+    argTypes: {
+        as: {
+            control: 'select',
+            options: ['span', 'label', 'p'],
+            description: 'span | label | p',
+        },
+    },
+
     render: arg => <Text {...arg}> the text sample </Text>,
 }

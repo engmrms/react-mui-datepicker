@@ -7,14 +7,14 @@ import { Stack } from '../../ui/Layout'
 const StackSample = (arg: any) => {
     return (
         <Stack {...arg}>
-            <div className="bg-red-300">item 1</div>
-            <div className="bg-red-300">item</div>
-            <div className="bg-red-300">item</div>
-            <div className="bg-red-300">item</div>
-            <div className="bg-red-300">item</div>
-            <div className="bg-red-300">item</div>
-            <div className="bg-red-300">item</div>
-            <div className="bg-red-300">item 8</div>
+            <div className="bg-red-300 p-space-02">item 1</div>
+            <div className="bg-red-300 p-space-02">item</div>
+            <div className="bg-red-300 p-space-02">item</div>
+            <div className="bg-red-300 p-space-02">item</div>
+            <div className="bg-red-300 p-space-02">item</div>
+            <div className="bg-red-300 p-space-02">item</div>
+            <div className="bg-red-300 p-space-02">item</div>
+            <div className="bg-red-300 p-space-02">item 8</div>
         </Stack>
     )
 }
@@ -31,8 +31,25 @@ const meta: Meta<typeof Stack> = {
             control: { type: 'inline-radio' },
         },
         gap: {
-            options: ['none', 'small', 'medium'],
-            control: { type: 'inline-radio' },
+            options: ['none', 'small', 'medium', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            control: { type: 'select' },
+            description: 'also you can use gapX,gapY',
+        },
+        justifyItems: {
+            control: { type: 'select' },
+            options: ['start', 'center', 'end', 'stretch'],
+        },
+        alignItems: {
+            control: { type: 'select' },
+            options: ['start', 'center', 'end', 'stretch'],
+        },
+        alignContent: {
+            control: { type: 'select' },
+            options: ['start', 'center', 'end', 'between', 'around', 'evenly'],
+        },
+        justifyContent: {
+            control: { type: 'select' },
+            options: ['start', 'center', 'end', 'between', 'around', 'evenly'],
         },
     },
     parameters: {
@@ -48,5 +65,20 @@ const meta: Meta<typeof Stack> = {
 export default meta
 type Story = StoryObj<typeof Stack>
 export const Default: Story = {
+    args: {
+        direction: 'row',
+        gap: 4,
+        justifyItems: 'start',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+    },
+    argTypes: {
+        justifyItems: {
+            control: { type: 'select' },
+            options: ['start', 'center', 'end', 'stretch'],
+        },
+    },
+
     render: StackSample,
 }

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
 import classNames from 'classnames'
-import {ExpandMore} from 'google-material-icons/outlined'
+import { ExpandMore } from 'google-material-icons/outlined'
 import { cn, dateFormatter } from '../Lib/utils'
 import useLanguage from '../Stores/useLanguage'
 import { Button, ButtonProps, buttonVariants } from './ui/button'
@@ -25,7 +25,7 @@ const ComboboxEmpty = CommandEmpty
 const ComboboxItem = CommandItem
 
 const ComboboxContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, children, ...props }, ref) => (
-    <PopoverContent className="w-[var(--radix-popover-trigger-width)] min-w-[36rem] p-space-03" ref={ref} {...props}>
+    <PopoverContent className="min-w-[var(--radix-popover-trigger-width)]  p-space-02" ref={ref} {...props}>
         <Command>{children}</Command>
     </PopoverContent>
 ))
@@ -132,7 +132,7 @@ const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, o
             <ComboboxTrigger {...triggerProps} placeholder={placeholder} isLoading={isLoading} disabled={rest?.disabled} {...rest}>
                 {currentValue.toString()}
             </ComboboxTrigger>
-            <ComboboxGroup placeholder={placeholder}>
+            <ComboboxGroup placeholder={placeholder} className="w-space-10">
                 {!!options?.length &&
                     options?.map(opt => (
                         <ComboboxItem

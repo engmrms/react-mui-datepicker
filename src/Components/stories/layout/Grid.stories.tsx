@@ -8,18 +8,18 @@ import { Grid, GridItem } from '../../ui/Layout'
 const GridSample = (arg: any) => {
     return (
         <Grid {...arg}>
-            <GridItem className="bg-red-300">col-1</GridItem>
-            <GridItem className="bg-red-300">col-1</GridItem>
-            <GridItem columns={{ sm: 1, md: 3, xl: 6 }} className="bg-red-300">
+            <GridItem className="bg-red-300 p-space-02">col-1</GridItem>
+            <GridItem className="bg-red-300 p-space-02">col-1</GridItem>
+            <GridItem columns={{ sm: 1, md: 3, xl: 6 }} className="bg-red-300 p-space-02">
                 responsive
             </GridItem>
-            <GridItem columns={5} className="bg-red-300">
+            <GridItem columns={5} className="bg-red-300 p-space-02">
                 col-5
             </GridItem>
-            <GridItem columns={6} className="bg-red-300">
+            <GridItem columns={6} className="bg-red-300 p-space-02">
                 col-6
             </GridItem>
-            <GridItem className="bg-red-300">col-1</GridItem>
+            <GridItem className="bg-red-300 p-space-02">col-1</GridItem>
         </Grid>
     )
 }
