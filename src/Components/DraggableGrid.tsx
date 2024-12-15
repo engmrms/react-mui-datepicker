@@ -18,10 +18,10 @@ import { createPortal } from 'react-dom'
 import { cn } from '../Lib/utils'
 import { strings } from '../Locales'
 import { WidgetBaseProps, WidgetConfig, WidgetSize } from '../Models/widgetDTO'
+import ActionLoader from './ActionLoader'
 import { Button } from './ui/button'
 import { Stack } from './ui/Layout'
 import { Separator } from './ui/separator'
-import ActionLoader from './ActionLoader'
 
 interface DraggableGridProps {
     configs: WidgetConfig[]
@@ -204,7 +204,7 @@ export function DraggableGrid({
                             <Button variant="outline" colors="gray" size="icon-sm" onClick={onReset}>
                                 <Refresh className="size-space-05" />
                             </Button>
-                            <Separator orientation="vertical" className="h-space-07" />
+                            <Separator orientation="vertical" className="h-space-06" />
                         </Stack>
                         <Button variant="outline" colors="primary" size="icon-sm" className="xl:hidden" onClick={onAdd}>
                             <AddBox className="size-space-05" />
