@@ -4,6 +4,9 @@ import * as outlined from 'google-material-icons/outlined'
 import { Description, DescriptionItem, DescriptionProps } from '../../Description'
 import { Stack } from '../../ui/Layout'
 
+const icons = Object.entries(outlined).filter(([name]) => name !== 'createIcon')
+const iconsName = Object.keys(outlined).filter(([name]) => name !== 'createIcon')
+
 const meta: Meta<DescriptionProps> = {
     title: 'Design System/Data Display/Description',
     component: DescriptionItem,
@@ -38,18 +41,25 @@ export const Default: Story = {
             control: 'radio',
             options: ['horizental', 'vertical'],
         },
-        icon:{
-            control:"select",
-            options:outlined,
-            description:"Google Material Icon (Outlined | Filled) "
-        }
+        icon: {
+            control: 'select',
+            options: iconsName,
+            description: 'Google Material Icon (Outlined | Filled) ',
+        },
     },
 
-    render: arg => (
-        <Stack direction={'col'} className="p-space-08">
-            <Description>
-                <DescriptionItem {...arg}>description</DescriptionItem>
-            </Description>
-        </Stack>
-    ),
+    render: arg => {
+        const iconName = arg.icon as unknown as string
+        const icon = icons.find(([name]) => name === iconName)?.[1] as outlined.GoogleMaterialIcon | undefined
+
+        return (
+            <Stack direction={'col'} className="p-space-08">
+                <Description>
+                    <DescriptionItem {...arg} icon={icon}>
+                        description
+                    </DescriptionItem>
+                </Description>
+            </Stack>
+        )
+    },
 }
