@@ -21,6 +21,7 @@ import { WidgetBaseProps, WidgetConfig, WidgetSize } from '../Models/widgetDTO'
 import { Button } from './ui/button'
 import { Stack } from './ui/Layout'
 import { Separator } from './ui/separator'
+import ActionLoader from './ActionLoader'
 
 interface DraggableGridProps {
     configs: WidgetConfig[]
@@ -33,6 +34,7 @@ interface DraggableGridProps {
     onReset?: () => void
     onAdd?: () => void
     isSidePanelShown?: boolean
+    isSaving?: boolean
 }
 
 export function DraggableGrid({
@@ -46,6 +48,7 @@ export function DraggableGrid({
     onReset,
     onAdd,
     isSidePanelShown,
+    isSaving,
 }: Readonly<DraggableGridProps>) {
     const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
     const [overId, setOverId] = useState<UniqueIdentifier | null>(null)
@@ -99,6 +102,16 @@ export function DraggableGrid({
         .map((_, i) => `placeholder-${i}`)
     return (
         <>
+            {isSaving &&
+                createPortal(
+                    <div
+                        className={cn(
+                            'fixed inset-0 z-[60000] bg-black transition-all duration-200',
+                            isSaving ? 'opacity-50' : 'pointer-events-none opacity-0',
+                        )}
+                    />,
+                    document.body,
+                )}
             <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}
@@ -196,9 +209,10 @@ export function DraggableGrid({
                         <Button variant="outline" colors="primary" size="icon-sm" className="xl:hidden" onClick={onAdd}>
                             <AddBox className="size-space-05" />
                         </Button>
-                        <Button variant="default" onClick={onSave} size="sm" colors="primary" className="gap-space-02">
+                        <Button variant="default" onClick={onSave} size="sm" colors="primary" className="gap-space-02" disabled={isSaving}>
                             <DashboardCustomize className="size-space-05" />
                             {strings.DragAndDrop.SaveCustomization}
+                            {isSaving && <ActionLoader />}
                         </Button>
                     </div>
                 </div>,

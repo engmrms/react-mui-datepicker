@@ -15,7 +15,7 @@ const ToastViewport = React.forwardRef<
     <ToastPrimitives.Viewport
         ref={ref}
         className={cn(
-            'fixed bottom-space-05 z-[100] flex max-h-screen w-full flex-col p-4 sm:bottom-10 sm:left-1/2  sm:top-auto lg:max-w-fit ltr:sm:translate-x-1/2 rtl:sm:-translate-x-1/2',
+            'fixed bottom-space-05 z-[10000000000000] flex max-h-screen w-full flex-col p-4 sm:bottom-10 sm:left-1/2  sm:top-auto lg:max-w-fit ltr:sm:translate-x-1/2 rtl:sm:-translate-x-1/2',
             className,
         )}
         {...props}
@@ -52,7 +52,7 @@ const ToastAction = React.forwardRef<React.ElementRef<typeof ToastPrimitives.Act
         <ToastPrimitives.Action
             ref={ref}
             className={cn(
-                'group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive',
+                'group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 group-[.destructive]:focus:ring-destructive disabled:pointer-events-none disabled:opacity-50',
                 className,
             )}
             {...props}
@@ -66,7 +66,7 @@ const ToastClose = React.forwardRef<React.ElementRef<typeof ToastPrimitives.Clos
         <ToastPrimitives.Close
             ref={ref}
             className={cn(
-                'text-foreground/50 flex h-space-06 w-space-06 items-center justify-center rounded-md transition-opacity focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 ',
+                'text-foreground/50 flex h-space-06 w-space-06 items-center justify-center rounded-md transition-opacity group-hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 ',
                 className,
             )}
             toast-close=""
