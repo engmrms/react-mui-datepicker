@@ -63,12 +63,12 @@ export const ar = {
         CopyRights: 'جميع الحقوق محفوظة ',
     },
     DragAndDrop: {
-        SaveCustomization: 'حفظ التخصيص',
-        Delete: 'حذف',
-        Half: 'نصف',
-        Full: 'كامل',
+        SaveCustomization: 'حفظ',
+        Delete: 'إزالة',
+        Half: 'تصغير',
+        Full: 'توسيع',
         Width: 'العرض',
         Show: 'اظهار',
-        AddToDashboard: 'اضف إلى لوحة المعلومات',
+        AddToDashboard: 'تخصيص العرض',
     },
 }
