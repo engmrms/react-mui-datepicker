@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Heading from '../../ui/Heading'
+import Heading from '../../Heading'
 
 const meta: Meta<typeof Heading> = {
     component: Heading,
     title: 'Design System/Data Display/Heading',
     tags: ['autodocs'],
     parameters: {
-        new: true, 
+        new: true,
         layout: 'centered',
         options: {
-            hidden: true
-          },
+            hidden: true,
+        },
         docs: {
             disable: true,
             description: {
@@ -20,7 +20,7 @@ const meta: Meta<typeof Heading> = {
             },
         },
 
-    story: { disable: true },
+        story: { disable: true },
     },
 }
 

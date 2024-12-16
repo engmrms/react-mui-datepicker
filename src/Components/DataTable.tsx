@@ -50,7 +50,7 @@ function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent, ite
 
     return (
         <>
-            <div className="overflow-hidden rounded-2 border">
+            <div className="overflow-hidden rounded-t-3">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map(headerGroup => (
@@ -92,14 +92,14 @@ function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent, ite
                 </Table>
             </div>
             {!!table.getFilteredRowModel().rows.length && (
-                <div className="flex items-center justify-end ">
+                <div className="flex items-center justify-end  px-space-04 py-space-02">
                     <PaginationDescription
                         currentPage={currentPage}
                         limit={pageSize}
                         totalCount={rest?.totalItems ?? table.getFilteredRowModel().rows.length}
                     />
 
-                    <div className="flex items-center space-x-space-03 space-x-reverse">
+                    <div className="flex items-center gap-x-space-03">
                         <LinesPerPage
                             value={pageSize}
                             onChange={value => {

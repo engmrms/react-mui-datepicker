@@ -161,7 +161,7 @@ const Break = () => (
 
 const PaginationDescription = ({ currentPage, totalCount, limit = 10 }: { currentPage: number; totalCount: number; limit: number }) => {
     const pageCount = Math.ceil(totalCount / limit)
-    return <div className="flex-1 text-body-02">{strings.formatString(strings.Shared.PaginationDesc, currentPage, pageCount)}</div>
+    return <div className="flex-1 text-body-01">{strings.formatString(strings.Shared.PaginationDesc, currentPage, pageCount)}</div>
 }
 const LinesPerPage = ({ value, onChange }: { value: number; onChange: (value: string) => void }) => {
     const { dir } = useLanguage()
@@ -169,10 +169,10 @@ const LinesPerPage = ({ value, onChange }: { value: number; onChange: (value: st
         <>
             <span className="block whitespace-nowrap text-body-01">{strings.Shared.LinesPerPage} :</span>
             <Select dir={dir} value={value.toString()} onValueChange={val => onChange(val)}>
-                <SelectTrigger className="!px-space-03 !py-space-02">
+                <SelectTrigger>
                     <SelectValue placeholder={strings.Shared.Select} />
                 </SelectTrigger>
-                <SelectContent className="!min-w-fit">
+                <SelectContent >
                     <SelectGroup>
                         <SelectItem value="5">5</SelectItem>
                         <SelectItem value="10">10</SelectItem>
