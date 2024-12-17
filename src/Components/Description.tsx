@@ -44,7 +44,7 @@ const dlVariants = cva('grid border-b border-border-secondary', {
     },
 })
 
-type DescriptionProps = {
+export type DescriptionProps = {
     title: string
     icon?: GoogleMaterialIcon
 } & VariantProps<typeof dlVariants>
