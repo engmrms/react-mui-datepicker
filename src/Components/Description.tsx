@@ -3,11 +3,15 @@ import { GoogleMaterialIcon } from 'google-material-icons/outlined'
 import React, { forwardRef, PropsWithChildren } from 'react'
 import { cn } from '../Lib/utils'
 
-const dlVariants = cva('grid  border-b border-border-secondary text-body-01 ', {
+const dlVariants = cva('grid border-b border-border-secondary', {
     variants: {
         variant: {
             default: '[&>dt]:text-foreground-secondary  [&>dd]:font-medium',
             list: '[&>dd]:text-foreground-secondary  [&>dt]:font-medium',
+        },
+        size: {
+            default: 'text-body-01',
+            sm: 'text-caption-01',
         },
         orientation: {
             vertical: 'grid-cols-1 gap-space-01',
@@ -36,10 +40,11 @@ const dlVariants = cva('grid  border-b border-border-secondary text-body-01 ', {
         orientation: 'horizental',
         variant: 'default',
         padding: 'default',
+        size: 'default',
     },
 })
 
-export type DescriptionProps = {
+type DescriptionProps = {
     title: string
     icon?: GoogleMaterialIcon
 } & VariantProps<typeof dlVariants>
@@ -54,14 +59,14 @@ const Description = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEleme
 Description.displayName = 'Description'
 
 const DescriptionItem = forwardRef<HTMLDListElement, React.HTMLAttributes<HTMLDListElement> & PropsWithChildren<DescriptionProps>>(
-    ({ icon: Icon, variant, title, children, orientation, stretch, lastItem, padding, className, ...props }, ref) => {
+    ({ icon: Icon, variant, title, children, orientation, stretch, lastItem, size, padding, className, ...props }, ref) => {
         return (
-            <dl ref={ref} className={cn(dlVariants({ variant, orientation, stretch, lastItem, padding }), className)} {...props}>
+            <dl ref={ref} className={cn(dlVariants({ variant, orientation, size, stretch, lastItem, padding }), className)} {...props}>
                 <dt className="col-start-1 inline-flex items-center gap-space-01 after:relative after:-start-1 after:-top-[0.5px] after:content-[':']">
                     {Icon && <Icon className="h-8 w-8 shrink-0" />}
                     {title}
                 </dt>
-                <dd>{children}</dd>
+                <dd className="line-clamp-1">{children}</dd>
             </dl>
         )
     },
