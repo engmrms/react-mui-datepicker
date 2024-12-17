@@ -15,9 +15,18 @@ interface DataTableProps<TData, TValue> {
     pageNumber?: number
     itemsPerPage?: number
     setLimit?: (number: number) => void
+    hasPagination?: boolean
 }
 
-function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent, itemsPerPage, ...rest }: DataTableProps<TData, TValue>) {
+function DataTable<TData, TValue>({
+    columns,
+    data,
+    loading,
+    NoDataComponent,
+    itemsPerPage,
+    hasPagination = true,
+    ...rest
+}: DataTableProps<TData, TValue>) {
     const tableData = React.useMemo(() => (loading ? Array(itemsPerPage || 10).fill({}) : data), [loading, data])
     const [pageSize, setPageSize] = useState(itemsPerPage || 10)
 
@@ -67,13 +76,17 @@ function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent, ite
                     </TableHeader>
                     <TableBody>
                         {table.getRowModel().rows?.length ? (
-                            table.getRowModel().rows.map(row => {
+                            table.getRowModel().rows.map((row, i) => {
                                 return (
                                     <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                                         {row.getVisibleCells().map(cell => {
                                             const item = flexRender(cell.column.columnDef.cell, cell.getContext())
                                             return (
-                                                <TableCell className="" data-title={cell.column.columnDef.header?.toString()} key={cell.id}>
+                                                <TableCell
+                                                    className=""
+                                                    data-title={cell.column.columnDef.header?.toString()}
+                                                    key={cell.id}
+                                                    isLast={table?.getRowModel()?.rows?.length - 1 === i}>
                                                     {item}
                                                 </TableCell>
                                             )
@@ -91,7 +104,7 @@ function DataTable<TData, TValue>({ columns, data, loading, NoDataComponent, ite
                     </TableBody>
                 </Table>
             </div>
-            {!!table.getFilteredRowModel().rows.length && (
+            {!!table.getFilteredRowModel().rows.length && hasPagination && (
                 <div className="flex items-center justify-end  px-space-04 py-space-02">
                     <PaginationDescription
                         currentPage={currentPage}
