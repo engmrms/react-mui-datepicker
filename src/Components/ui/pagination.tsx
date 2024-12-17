@@ -43,7 +43,7 @@ const PaginationLink = ({ className, isActive, ...props }: PaginationLinkProps) 
 PaginationLink.displayName = 'PaginationLink'
 
 const PaginationPrevious = ({ className, hasText, ...props }: React.ComponentProps<typeof PaginationLink> & hasText) => (
-    <PaginationLink aria-label="Go to previous page" size="default" className={cn('w-auto sm:pl-space-04', className)} {...props}>
+    <PaginationLink aria-label="Go to previous page" size="default" className={cn(className)} {...props}>
         <ChevronRight className="h-space-05 w-space-05 ltr:rotate-180" />
         {hasText && <span className="hidden sm:inline-block">{strings.Shared.previous}</span>}
     </PaginationLink>
@@ -51,7 +51,7 @@ const PaginationPrevious = ({ className, hasText, ...props }: React.ComponentPro
 PaginationPrevious.displayName = 'PaginationPrevious'
 
 const PaginationNext = ({ className, hasText, ...props }: React.ComponentProps<typeof PaginationLink> & hasText) => (
-    <PaginationLink aria-label="Go to next page" size="default" className={cn('w-auto sm:pr-space-04', className)} {...props}>
+    <PaginationLink aria-label="Go to next page" size="default" className={cn(className)} {...props}>
         {hasText && <span className="hidden sm:inline-block">{strings.Shared.next}</span>}
         <ChevronLeft className="h-space-05 w-space-05 ltr:rotate-180" />
     </PaginationLink>
