@@ -42,16 +42,19 @@ const TableHead = React.forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<
 ))
 TableHead.displayName = 'TableHead'
 
-const TableCell = React.forwardRef<HTMLTableCellElement, React.TdHTMLAttributes<HTMLTableCellElement>>(({ className, ...props }, ref) => (
-    <td
-        ref={ref}
-        className={cn(
-            'border-b border-border p-space-03 py-space-04 text-center align-middle text-body-01 font-normal text-foreground [&:has([role=checkbox])]:pr-0',
-            className,
-        )}
-        {...props}
-    />
-))
+const TableCell = React.forwardRef<HTMLTableCellElement, React.TdHTMLAttributes<HTMLTableCellElement> & { isLast?: boolean }>(
+    ({ isLast, className, ...props }, ref) => (
+        <td
+            ref={ref}
+            className={cn(
+                'border-b border-border p-space-03 py-space-04 text-center align-middle text-body-01 font-normal text-foreground [&:has([role=checkbox])]:pr-0',
+                className,
+                isLast && 'border-b-transparent',
+            )}
+            {...props}
+        />
+    ),
+)
 TableCell.displayName = 'TableCell'
 
 const TableCaption = React.forwardRef<HTMLTableCaptionElement, React.HTMLAttributes<HTMLTableCaptionElement>>(({ className, ...props }, ref) => (
