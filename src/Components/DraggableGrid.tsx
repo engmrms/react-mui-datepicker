@@ -194,20 +194,20 @@ export function DraggableGrid({
                     ${isSidePanelShown ? 'hidden xl:flex' : ''}
                     `}>
                     <div
-                        className={`flex transform items-center gap-space-04 rounded-full border bg-background-brand p-space-02 shadow-01 transition-all duration-300 ${
+                        className={`flex transform items-center gap-space-04 rounded-full border-t bg-background-brand p-space-02 shadow-card-shadow transition-all duration-300 ${
                             isEditMode ? 'translate-y-[-10px]' : 'translate-y-full'
                         }`}>
                         <Stack gap={4} alignItems="center">
-                            <Button variant="outline" colors="gray" size="icon-sm" onClick={onCancel}>
-                                <Close className="size-space-05" />
+                            <Button variant="outline" colors="gray" size="icon" className="!w-space-07" onClick={onCancel}>
+                                <Close />
                             </Button>
-                            <Button variant="outline" colors="gray" size="icon-sm" onClick={onReset}>
-                                <Refresh className="size-space-05" />
+                            <Button variant="outline" colors="gray" size="icon" className="!w-space-07" onClick={onReset}>
+                                <Refresh />
                             </Button>
                             <Separator orientation="vertical" className="h-space-06" />
                         </Stack>
-                        <Button variant="outline" colors="primary" size="icon-sm" className="xl:hidden" onClick={onAdd}>
-                            <AddBox className="size-space-05" />
+                        <Button variant="outline" colors="primary" size="icon" className="!w-space-07 xl:hidden" onClick={onAdd}>
+                            <AddBox />
                         </Button>
                         <Button variant="default" onClick={onSave} size="sm" colors="primary" className="gap-space-02" disabled={isSaving}>
                             <DashboardCustomize className="size-space-05" />
