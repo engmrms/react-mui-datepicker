@@ -22,7 +22,7 @@ data-[state=active]:font-semibold`,
                 underline:
                     'hover:bg-card-hover py-space-02 px-space-04 data-[state=active]:text-primary border-b-2 border-b-transparent data-[state=active]:border-b-primary data-[state=active]:hover:border-b-primary-dark data-[state=active]:hover:text-primary-dark data-[state=active]:disabled:border-b-disabled',
                 transparent:
-                    'hover:bg-card-hover rounded-full py-space-03 focus-visible:outline-none data-[state=active]:bg-background data-[state=active]:text-card-foreground data-[state=active]:shadow-sm hover:data-[state=active]:bg-background',
+                    'hover:bg-card-hover hover:data-[state=inactive]:text-card-foreground rounded-full py-space-02 px-space-04  focus-visible:outline-none data-[state=active]:bg-background data-[state=active]:text-card-foreground data-[state=active]:shadow-sm hover:data-[state=active]:bg-background data-[state=active]:disabled:bg-disabled',
             },
         },
     },
