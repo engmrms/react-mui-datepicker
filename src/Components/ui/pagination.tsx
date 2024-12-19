@@ -33,7 +33,7 @@ const PaginationLink = ({ className, isActive, ...props }: PaginationLinkProps) 
     <button
         aria-current={isActive ? 'page' : undefined}
         className={cn(
-            'flex h-16 min-w-16 items-center justify-center gap-space-01 rounded-1 border text-body-01',
+            'flex h-16 min-w-16 items-center justify-center gap-space-01 rounded-1 border py-space-01 text-body-01',
             `${isActive ? 'border-primary text-primary' : 'border-transparent hover:bg-card-hover'}`,
             className,
         )}
@@ -43,7 +43,7 @@ const PaginationLink = ({ className, isActive, ...props }: PaginationLinkProps) 
 PaginationLink.displayName = 'PaginationLink'
 
 const PaginationPrevious = ({ className, hasText, ...props }: React.ComponentProps<typeof PaginationLink> & hasText) => (
-    <PaginationLink aria-label="Go to previous page" size="default" className={cn(className)} {...props}>
+    <PaginationLink aria-label="Go to previous page" size="default" className={cn('px-space-01', className)} {...props}>
         <ChevronRight className="h-space-05 w-space-05 ltr:rotate-180" />
         {hasText && <span className="hidden sm:inline-block">{strings.Shared.previous}</span>}
     </PaginationLink>
@@ -51,7 +51,7 @@ const PaginationPrevious = ({ className, hasText, ...props }: React.ComponentPro
 PaginationPrevious.displayName = 'PaginationPrevious'
 
 const PaginationNext = ({ className, hasText, ...props }: React.ComponentProps<typeof PaginationLink> & hasText) => (
-    <PaginationLink aria-label="Go to next page" size="default" className={cn(className)} {...props}>
+    <PaginationLink aria-label="Go to next page" size="default" className={cn('px-space-01', className)} {...props}>
         {hasText && <span className="hidden sm:inline-block">{strings.Shared.next}</span>}
         <ChevronLeft className="h-space-05 w-space-05 ltr:rotate-180" />
     </PaginationLink>
