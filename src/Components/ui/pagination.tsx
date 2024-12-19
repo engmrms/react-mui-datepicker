@@ -33,7 +33,7 @@ const PaginationLink = ({ className, isActive, ...props }: PaginationLinkProps) 
     <button
         aria-current={isActive ? 'page' : undefined}
         className={cn(
-            'flex h-16 w-16 items-center justify-center gap-space-01 rounded-1 border text-body-01',
+            'flex h-16 min-w-16 items-center justify-center gap-space-01 rounded-1 border text-body-01',
             `${isActive ? 'border-primary text-primary' : 'border-transparent hover:bg-card-hover'}`,
             className,
         )}

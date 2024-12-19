@@ -62,9 +62,9 @@ const DescriptionItem = forwardRef<HTMLDListElement, React.HTMLAttributes<HTMLDL
     ({ icon: Icon, variant, title, children, orientation, stretch, lastItem, size, padding, className, ...props }, ref) => {
         return (
             <dl ref={ref} className={cn(dlVariants({ variant, orientation, size, stretch, lastItem, padding }), className)} {...props}>
-                <dt className="col-start-1 inline-flex items-center gap-space-01 after:relative after:-start-1 after:-top-[0.5px] after:content-[':']">
+                <dt className="col-start-1 inline-flex items-center gap-space-01">
                     {Icon && <Icon className="h-8 w-8 shrink-0" />}
-                    {title}
+                    {title}:
                 </dt>
                 <dd className="line-clamp-1">{children}</dd>
             </dl>
