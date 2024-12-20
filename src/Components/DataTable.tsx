@@ -18,7 +18,7 @@ interface DataTableProps<TData, TValue> {
     hasPagination?: boolean
 }
 
-function DataTable<TData, TValue>({
+export function DataTable<TData, TValue>({
     columns,
     data,
     loading,
