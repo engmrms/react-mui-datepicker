@@ -198,15 +198,15 @@ export function DraggableGrid({
                             isEditMode ? 'translate-y-[-10px]' : 'translate-y-full'
                         }`}>
                         <Stack gap={4} alignItems="center">
-                            <Button variant="outline" colors="gray" size="icon" className="!w-space-07" onClick={onCancel}>
+                            <Button variant="outline" colors="gray" size="icon-sm" onClick={onCancel}>
                                 <Close />
                             </Button>
-                            <Button variant="outline" colors="gray" size="icon" className="!w-space-07" onClick={onReset}>
+                            <Button variant="outline" colors="gray" size="icon-sm" onClick={onReset}>
                                 <Refresh />
                             </Button>
                             <Separator orientation="vertical" className="h-space-06" />
                         </Stack>
-                        <Button variant="outline" colors="primary" size="icon" className="!w-space-07 xl:hidden" onClick={onAdd}>
+                        <Button variant="outline" colors="primary" size="icon-sm" className="xl:hidden" onClick={onAdd}>
                             <AddBox />
                         </Button>
                         <Button variant="default" onClick={onSave} size="sm" colors="primary" className="gap-space-02" disabled={isSaving}>
