@@ -6,7 +6,7 @@ type ShouldRenderProps = {
     other?: ReactNode
 }
 
-const ShouldRender: FC<ShouldRenderProps> = ({ other, children, shouldRender }) => {
+export const ShouldRender: FC<ShouldRenderProps> = ({ other, children, shouldRender }) => {
     return shouldRender ? children : other ?? null
 }
 export default ShouldRender
