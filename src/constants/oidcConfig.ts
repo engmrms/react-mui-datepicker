@@ -1,10 +1,10 @@
-const APP_AUTH_URL = 'https://iam-dev.moe.gov.sa/mga/sps/oauth/oauth20'
-const APP_BASE_URL = process.env.NODE_ENV === 'production' ? 'https://up-stg.moe.gov.sa' : 'https://localhost:5000'
+const APP_AUTH_URL = import.meta.env.VITE_APP_AUTH_URL
+const APP_BASE_URL = process.env.NODE_ENV === 'production' ? import.meta.env.VITE_APP_BASE_URL : 'https://localhost:5000'
 
 export const IDENTITY_CONFIG = {
     authority: APP_AUTH_URL, //(string): The URL of the OIDC provider.
-    client_id: '0mqDXZrMaKXRJpaFOYpZ', //(string): Your client application's identifier as registered with the OIDC provider.
-    client_secret: 'O96gU0ffQUG6TGoes1OW', //(string): Your client application's identifier as registered with the OIDC provider.
+    client_id: import.meta.env.VITE_OIDC_CLIENT_ID, //(string): Your client application's identifier as registered with the OIDC provider.
+    client_secret: import.meta.env.VITE_OIDC_CLIENT_SECRET, //(string): Your client application's identifier as registered with the OIDC provider.
     redirect_uri: `${APP_BASE_URL}/login/sso/callback`, //The URI of your client application to receive a response from the OIDC provider.
     login: APP_AUTH_URL,
     automaticSilentRenew: true, //(boolean, default: false): Flag to indicate if there should be an automatic attempt to renew the access token prior to its expiration.
