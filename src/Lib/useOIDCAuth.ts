@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import AuthOIDCService, { IAuthService } from './AuthOIDCService'
 
-export default function useOidcAuth() {
+export function useOidcAuth() {
     const [user, setUser] = useState<IAuthService['user'] | null>(AuthOIDCService.user)
     const [isLoading, setIsLoading] = useState<boolean>(AuthOIDCService.isLoading)
     const [error, setError] = useState<Error | undefined>(AuthOIDCService.error)
@@ -31,3 +31,4 @@ export default function useOidcAuth() {
         isAuthenticated: !!user && !user?.expired,
     }
 }
+export default useOidcAuth

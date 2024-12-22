@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { Local_DTO } from '../Models/dto'
 import DevtoolsMiddlewares from '../Stores/middleware'
 
-const useLanguage = create<Local_DTO.useLanguageStore>()(
+export const useLanguage = create<Local_DTO.useLanguageStore>()(
     DevtoolsMiddlewares(
         set => ({
             lang: localStorage.getItem('lang') ?? 'ar',
