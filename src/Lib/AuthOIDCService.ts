@@ -203,5 +203,6 @@ class AuthService implements IAuthService {
     }
 }
 
-const authService = AuthService.getInstance()
+export const authService = AuthService.getInstance()
+
 export default authService
