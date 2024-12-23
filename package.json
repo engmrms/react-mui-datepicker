@@ -2,6 +2,7 @@
     "name": "portal-starter",
     "private": true,
     "version": "0.0.0",
+    "main": "./src/index.ts",
     "scripts": {
         "dev": "vite --open",
         "old-build": "tsc && vite build",
