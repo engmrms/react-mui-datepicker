@@ -1,4 +1,4 @@
-import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from '@tanstack/react-table'
+import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, Row, useReactTable } from '@tanstack/react-table'
 import { Skeleton } from './ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 
@@ -16,6 +16,7 @@ interface DataTableProps<TData, TValue> {
     itemsPerPage?: number
     setLimit?: (number: number) => void
     hasPagination?: boolean
+    onClickRow?: (data: Row<TData>) => void
 }
 
 export function DataTable<TData, TValue>({
@@ -25,9 +26,10 @@ export function DataTable<TData, TValue>({
     NoDataComponent,
     itemsPerPage,
     hasPagination = true,
+    onClickRow,
     ...rest
 }: DataTableProps<TData, TValue>) {
-    const tableData = React.useMemo(() => (loading ? Array(itemsPerPage || 10).fill({}) : data), [loading, data])
+    const tableData = React.useMemo(() => (loading ? Array(itemsPerPage || 10).fill({}) : data), [loading, itemsPerPage, data])
     const [pageSize, setPageSize] = useState(itemsPerPage || 10)
 
     const tableColumns = React.useMemo(
@@ -57,6 +59,12 @@ export function DataTable<TData, TValue>({
     }, [table, pageSize])
     if (!matches) return null
 
+    const rowClick = (row: Row<TData>) => {
+        table.resetRowSelection()
+        row.toggleSelected(!row.getIsSelected())
+        onClickRow && onClickRow(row)
+    }
+
     return (
         <>
             <div className="overflow-hidden rounded-t-3">
@@ -78,7 +86,7 @@ export function DataTable<TData, TValue>({
                         {table.getRowModel().rows?.length ? (
                             table.getRowModel().rows.map((row, i) => {
                                 return (
-                                    <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                                    <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} onClick={() => rowClick(row)}>
                                         {row.getVisibleCells().map(cell => {
                                             const item = flexRender(cell.column.columnDef.cell, cell.getContext())
                                             return (
