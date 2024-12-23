@@ -1,6 +1,6 @@
-import { IDENTITY_CONFIG, METADATA_OIDC } from '../constants/oidcConfig'
-import { UserManager, Log } from 'oidc-client-ts'
 import type { User } from 'oidc-client-ts'
+import { Log, UserManager } from 'oidc-client-ts'
+import { createIdentityConfig, createMetadataConfig, OIDCConfig } from '../constants/oidcConfig'
 
 /**
  * @public
@@ -36,15 +36,17 @@ export interface IAuthService {
 class AuthService implements IAuthService {
     private static instance: AuthService | null = null
     private userManager: UserManager
+    private config: OIDCConfig
     public user?: User | null
     public isLoading: boolean
     public isAuthenticated: boolean
     public error?: Error
 
-    private constructor() {
+    private constructor(config: OIDCConfig) {
+        this.config = config
         this.userManager = new UserManager({
-            ...IDENTITY_CONFIG,
-            metadata: { ...METADATA_OIDC },
+            ...createIdentityConfig(config),
+            metadata: createMetadataConfig(config.authUrl),
         })
         this.isAuthenticated = false
         this.isLoading = false
@@ -57,9 +59,9 @@ class AuthService implements IAuthService {
         this.setupEventListeners()
     }
 
-    public static getInstance(): AuthService {
+    public static getInstance(config: OIDCConfig): AuthService {
         if (!AuthService.instance) {
-            AuthService.instance = new AuthService()
+            AuthService.instance = new AuthService(config)
         }
         return AuthService.instance
     }
@@ -185,24 +187,30 @@ class AuthService implements IAuthService {
     public signout = async () => {
         this.isLoading = false
         await this.clearSession()
+
         return this.userManager
             .getUser()
             .then(async user => {
-                await fetch(
-                    `${METADATA_OIDC.end_session_endpoint}?client_id=${IDENTITY_CONFIG.client_id}&client_secret=${IDENTITY_CONFIG.client_secret}&token=${user?.access_token}`,
-                    { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
-                )
-                await fetch('https://iam-dev.moe.gov.sa/up/sps/oauth/oauth20/logout', { method: 'POST' })
+                if (user?.access_token) {
+                    const metadata = this.userManager.settings.metadata
+                    const config = this.config
+
+                    await fetch(
+                        `${metadata?.end_session_endpoint}?client_id=${config.clientId}&client_secret=${config.clientSecret}&token=${user.access_token}`,
+                        { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
+                    )
+
+                    if (config.oauth20LogoutUrl) {
+                        await fetch(config.oauth20LogoutUrl, { method: 'POST' })
+                    }
+                }
                 return user
             })
             .then(async () => {
                 await this.userManager.removeUser()
                 await this.userManager.clearStaleState()
-                return
             })
     }
 }
 
-export const authService = AuthService.getInstance()
-
-export default authService
+export { AuthService }
