@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, Row, useReactTable } from '@tanstack/react-table'
 import { Skeleton } from './ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
@@ -16,6 +17,7 @@ interface DataTableProps<TData, TValue> {
     itemsPerPage?: number
     setLimit?: (number: number) => void
     hasPagination?: boolean
+    isFirstRowSelected?: boolean
     onClickRow?: (data: Row<TData>) => void
 }
 
@@ -27,6 +29,7 @@ export function DataTable<TData, TValue>({
     itemsPerPage,
     hasPagination = true,
     onClickRow,
+    isFirstRowSelected = false,
     ...rest
 }: DataTableProps<TData, TValue>) {
     const tableData = React.useMemo(() => (loading ? Array(itemsPerPage || 10).fill({}) : data), [loading, itemsPerPage, data])
@@ -54,16 +57,26 @@ export function DataTable<TData, TValue>({
 
     const currentPage = table.getState().pagination.pageIndex + 1
 
-    useEffect(() => {
-        table.setPageSize(pageSize)
-    }, [table, pageSize])
-    if (!matches) return null
-
     const rowClick = (row: Row<TData>) => {
         table.resetRowSelection()
         row.toggleSelected(!row.getIsSelected())
         onClickRow && onClickRow(row)
     }
+
+    useEffect(() => {
+        const rows = table.getRowModel().rows
+        if (!isFirstRowSelected || !rows.length || !data.length) return
+        const firstRow = rows[0]
+        table.resetRowSelection()
+        firstRow.toggleSelected(true)
+        onClickRow && onClickRow(firstRow)
+    }, [isFirstRowSelected, table, data])
+
+    useEffect(() => {
+        table.setPageSize(pageSize)
+    }, [table, pageSize])
+
+    if (!matches) return null
 
     return (
         <>
