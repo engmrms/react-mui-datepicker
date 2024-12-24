@@ -137,9 +137,6 @@ dependencies:
   input-otp:
     specifier: ^1.2.0
     version: 1.2.4(react-dom@18.2.0)(react@18.2.0)
-  lucide-react:
-    specifier: ^0.284.0
-    version: 0.284.0(react@18.2.0)
   moment:
     specifier: ^2.30.1
     version: 2.30.1
@@ -8344,14 +8341,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
-
-  /lucide-react@0.284.0(react@18.2.0):
-    resolution: {integrity: sha512-dVSMHYAya/TeY3+vsk+VQJEKNQN2AhIo0+Dp09B2qpzvcBuu93H98YZykFcjIAfmanFiDd8nqfXFR38L757cyQ==}
-    peerDependencies:
-      react: ^16.5.1 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
