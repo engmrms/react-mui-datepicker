@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import * as ToastPrimitives from '@radix-ui/react-toast'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { XCircle } from 'lucide-react'
+import { Cancel } from 'google-material-icons/outlined'
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
@@ -71,7 +71,7 @@ const ToastClose = React.forwardRef<React.ElementRef<typeof ToastPrimitives.Clos
             )}
             toast-close=""
             {...props}>
-            <XCircle className="size-[18px] text-foreground" />
+            <Cancel className="size-[18px] text-foreground" />
         </ToastPrimitives.Close>
     ),
 )

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { MoreHorizontal } from 'lucide-react'
+import { MoreHoriz } from 'google-material-icons/outlined'
 import * as React from 'react'
 
 import { ChevronLeft, ChevronRight } from 'google-material-icons/outlined'
@@ -59,7 +59,7 @@ const PaginationNext = ({ className, hasText, ...props }: React.ComponentProps<t
 
 const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => (
     <span aria-hidden className={cn('flex h-9 w-9 items-center justify-center', className)} {...props}>
-        <MoreHorizontal className="h-4 w-4" />
+        <MoreHoriz className="h-4 w-4" />
         <span className="sr-only">{strings.Shared.morePages}</span>
     </span>
 )

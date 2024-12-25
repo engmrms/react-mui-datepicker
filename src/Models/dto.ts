@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-namespace */
 
-import { LucideIcon } from 'lucide-react'
+
 import React, { ReactNode } from 'react'
 import { UserTypes } from './enums'
 
@@ -107,7 +107,7 @@ export namespace Local_DTO {
         Link?: string
         onClick?: () => void
         Id?: number
-        Icon: ((props: React.SVGProps<SVGSVGElement>) => React.JSX.Element) | LucideIcon
+        Icon: ((props: React.SVGProps<SVGSVGElement>) => React.JSX.Element) 
     }
 
     export interface UserInfoProps {
