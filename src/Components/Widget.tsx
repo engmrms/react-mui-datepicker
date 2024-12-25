@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useSortable } from '@dnd-kit/sortable'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { Cancel, DragIndicator } from 'google-material-icons/outlined'
-import { MoreHorizontal } from 'lucide-react'
+import { Cancel, DragIndicator, MoreHoriz } from 'google-material-icons/outlined'
 import * as React from 'react'
 import { cn } from '../Lib/utils'
 import { strings } from '../Locales'
@@ -127,7 +126,7 @@ const WidgetActions = ({ actions }: WidgetActionsProps) => {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon">
-                    <MoreHorizontal className="h-5 w-5" />
+                    <MoreHoriz className="h-5 w-5" />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="min-w-[232px]">
