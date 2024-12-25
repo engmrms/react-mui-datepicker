@@ -1,8 +1,8 @@
 import { Slot } from '@radix-ui/react-slot'
 import { VariantProps, cva } from 'class-variance-authority'
-import { PanelLeft } from 'lucide-react'
 import * as React from 'react'
 
+import { PanoramaVerticalSelect } from 'google-material-icons/outlined'
 import { useIsMobile } from '../../Hooks/use-mobile'
 import { cn } from '../../Lib/utils'
 import { Button } from './button'
@@ -223,7 +223,7 @@ const SidebarTrigger = React.forwardRef<React.ElementRef<typeof Button>, React.C
                     toggleSidebar()
                 }}
                 {...props}>
-                <PanelLeft />
+                <PanoramaVerticalSelect />
                 <span className="sr-only">Toggle Sidebar</span>
             </Button>
         )
