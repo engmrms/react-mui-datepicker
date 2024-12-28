@@ -33,7 +33,7 @@ const dlVariants = cva('grid border-b border-border-secondary', {
         {
             orientation: 'horizental',
             stretch: true,
-            className: 'sm:grid-cols-2 [&>dd]:text-end',
+            className: 'sm:grid-cols-2 sm:[&>dd]:text-end',
         },
     ],
     defaultVariants: {
