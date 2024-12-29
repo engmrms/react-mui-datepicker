@@ -3,6 +3,7 @@ import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, Row, use
 import { Skeleton } from './ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 
+import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import { LinesPerPage, Pagination, PaginationDescription } from './paginations'
@@ -99,7 +100,11 @@ export function DataTable<TData, TValue>({
                         {table.getRowModel().rows?.length ? (
                             table.getRowModel().rows.map((row, i) => {
                                 return (
-                                    <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} onClick={() => rowClick(row)}>
+                                    <TableRow
+                                        key={row.id}
+                                        data-state={row.getIsSelected() && 'selected'}
+                                        onClick={() => rowClick(row)}
+                                        className={clsx(onClickRow && 'cursor-pointer')}>
                                         {row.getVisibleCells().map(cell => {
                                             const item = flexRender(cell.column.columnDef.cell, cell.getContext())
                                             return (
