@@ -99,9 +99,9 @@ SheetContent.displayName = SheetPrimitive.Content.displayName
 const SheetHeader = ({ className, title, children, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
     <div className={cn('flex flex-row items-center gap-space-02 px-space-05 py-space-04', className)} {...props}>
         {children}
-        <h1 className="text-subtitle-02 font-bold">{title}</h1>
-        <SheetClose className="ms-auto p-space-02" data-testid="sheetClose">
-            <Close />
+        <h1 className="text-body-01 font-semibold">{title}</h1>
+        <SheetClose className="ms-auto p-space-01" data-testid="sheetClose">
+            <Close className="size-[20px]" />
         </SheetClose>
     </div>
 )
