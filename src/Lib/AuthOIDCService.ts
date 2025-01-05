@@ -186,30 +186,30 @@ class AuthService implements IAuthService {
 
     public signout = async () => {
         this.isLoading = false
-        await this.clearSession()
+        window.location.href = this.config?.oauth20LogoutUrl ?? ''
 
-        return this.userManager
-            .getUser()
-            .then(async user => {
-                if (user?.access_token) {
-                    const metadata = this.userManager.settings.metadata
-                    const config = this.config
+        // return this.userManager
+        //     .getUser()
+        //     .then(async user => {
+        //         if (user?.access_token) {
+        //             const metadata = this.userManager.settings.metadata
+        //             const config = this.config
 
-                    await fetch(
-                        `${metadata?.end_session_endpoint}?client_id=${config.clientId}&client_secret=${config.clientSecret}&token=${user.access_token}`,
-                        { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
-                    )
+        //             await fetch(
+        //                 `${metadata?.end_session_endpoint}?client_id=${config.clientId}&client_secret=${config.clientSecret}&token=${user.access_token}`,
+        //                 { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
+        //             )
 
-                    if (config.oauth20LogoutUrl) {
-                        await fetch(config.oauth20LogoutUrl, { method: 'POST' })
-                    }
-                }
-                return user
-            })
-            .then(async () => {
-                await this.userManager.removeUser()
-                await this.userManager.clearStaleState()
-            })
+        //             if (config.oauth20LogoutUrl) {
+        //                 await fetch(config.oauth20LogoutUrl, { method: 'POST' })
+        //             }
+        //         }
+        //         return user
+        //     })
+        //     .then(async () => {
+        //         await this.userManager.removeUser()
+        //         await this.userManager.clearStaleState()
+        //     })
     }
 }
 
