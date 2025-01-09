@@ -66,10 +66,12 @@ const sheetVariants = cva(
     },
 )
 
-interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>, VariantProps<typeof sheetVariants> {}
+interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>, VariantProps<typeof sheetVariants> {
+    ignoreInteractOutside?: boolean
+}
 
 const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Content>, SheetContentProps>(
-    ({ className, side, children, ...props }, ref) => {
+    ({ className, side, ignoreInteractOutside = false, children, ...props }, ref) => {
         const isActive = accessibilityTools(state => state.isActive)
         const matches = useMediaQuery('(min-width: 600px)')
 
@@ -78,6 +80,7 @@ const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Con
                 <SheetPortal>
                     <SheetOverlay>
                         <SheetPrimitive.Content
+                            onInteractOutside={e => ignoreInteractOutside && e.preventDefault()}
                             ref={ref}
                             className={cn(sheetVariants({ side: side ? side : !matches ? 'bottom' : 'left' }), { grayscale: isActive }, className)}
                             data-side={side ? side : !matches ? 'bottom' : 'left'}
