@@ -26,7 +26,7 @@ const SelectTrigger = React.forwardRef<
         {...props}>
         {children}
         <SelectPrimitive.Icon asChild>
-            <ExpandMore className="!size-space-05 shrink-0 text-foreground" />
+            <ExpandMore className="!size-[20px] shrink-0 text-foreground" />
         </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
 ))
