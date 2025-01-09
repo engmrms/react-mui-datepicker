@@ -169,10 +169,10 @@ const LinesPerPage = ({ value, onChange }: { value: number; onChange: (value: st
         <>
             <span className="block whitespace-nowrap text-body-01">{strings.Shared.LinesPerPage} :</span>
             <Select dir={dir} value={value.toString()} onValueChange={val => onChange(val)}>
-                <SelectTrigger>
+                <SelectTrigger className="!h-space-06">
                     <SelectValue placeholder={strings.Shared.Select} />
                 </SelectTrigger>
-                <SelectContent >
+                <SelectContent>
                     <SelectGroup>
                         <SelectItem value="5">5</SelectItem>
                         <SelectItem value="10">10</SelectItem>
