@@ -1,31 +1,28 @@
 /* eslint-disable react/prop-types */
 import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { cva, type VariantProps } from 'class-variance-authority'
-import React, { Dispatch, SetStateAction, createContext, useContext, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
-import { Close } from 'google-material-icons/outlined'
+import { Close, ViewSidebar, WidthFull } from 'google-material-icons/outlined'
 import { useMediaQuery } from 'usehooks-ts'
+import { create } from 'zustand'
 import { cn } from '../../Lib/utils'
 import accessibilityTools from '../../Stores/accessibilityTools'
+import { Button } from './button'
 
-type SheetFooterContextType = {
+type SheetStore = {
+    isCenter: boolean
     isFooterUsed: boolean
-    setIsFooterUsed: Dispatch<SetStateAction<boolean>>
+    setIsCenter: (center?: boolean) => void
+    setIsFooterUsed: (state: boolean) => void
 }
 
-// Create the context with initial values
-const SheetFooterContext = createContext<SheetFooterContextType>({
+const useSheet = create<SheetStore>(set => ({
+    isCenter: false,
     isFooterUsed: false,
-    setIsFooterUsed: () => {}, // Provide a default function to prevent undefined
-})
-const useSheetFooter = () => useContext(SheetFooterContext)
-
-// Create the provider component
-const SheetProvider = ({ children }: React.PropsWithChildren) => {
-    const [isFooterUsed, setIsFooterUsed] = useState(false)
-
-    return <SheetFooterContext.Provider value={{ isFooterUsed, setIsFooterUsed }}>{children}</SheetFooterContext.Provider>
-}
+    setIsCenter: center => set(state => ({ isCenter: center ?? !state.isCenter })),
+    setIsFooterUsed: state => set(() => ({ isFooterUsed: state })),
+}))
 
 const Sheet = SheetPrimitive.Root
 
@@ -54,6 +51,7 @@ const sheetVariants = cva(
     {
         variants: {
             side: {
+                center: 'top-space-03 md:!rounded-4 inset-1/2 w-3/4 h-[calc(100%_-_24px)] ltr:-translate-x-1/2 rtl:translate-x-1/2',
                 top: 'inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',
                 bottom: 'inset-x-0 bottom-0 h-full border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
                 left: 'inset-y-0 left-0 h-full w-3/4 border-r ltr:data-[state=closed]:slide-out-to-right data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left ltr:data-[state=open]:slide-in-from-right ',
@@ -74,44 +72,57 @@ const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Con
     ({ className, side, ignoreInteractOutside = false, children, ...props }, ref) => {
         const isActive = accessibilityTools(state => state.isActive)
         const matches = useMediaQuery('(min-width: 600px)')
+        const { isCenter, setIsCenter } = useSheet()
 
         return (
-            <SheetProvider>
-                <SheetPortal>
-                    <SheetOverlay>
-                        <SheetPrimitive.Content
-                            onInteractOutside={e => ignoreInteractOutside && e.preventDefault()}
-                            ref={ref}
-                            className={cn(sheetVariants({ side: side ? side : !matches ? 'bottom' : 'left' }), { grayscale: isActive }, className)}
-                            data-side={side ? side : !matches ? 'bottom' : 'left'}
-                            {...props}>
-                            {children}
-                            {/* <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+            <SheetPortal>
+                <SheetOverlay>
+                    <SheetPrimitive.Content
+                        onInteractOutside={e => ignoreInteractOutside && e.preventDefault()}
+                        onCloseAutoFocus={() => setIsCenter(false)}
+                        ref={ref}
+                        className={cn(
+                            sheetVariants({ side: side ? side : !matches ? 'bottom' : !isCenter ? 'left' : 'center' }),
+                            { grayscale: isActive },
+                            className,
+                        )}
+                        data-side={side ? side : !matches ? 'bottom' : !isCenter ? 'left' : 'center'}
+                        {...props}>
+                        {children}
+                        {/* <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
                         <X className="h-4 w-4" />
                         <span className="sr-only">Close</span>
                         </SheetPrimitive.Close> */}
-                        </SheetPrimitive.Content>
-                    </SheetOverlay>
-                </SheetPortal>
-            </SheetProvider>
+                    </SheetPrimitive.Content>
+                </SheetOverlay>
+            </SheetPortal>
         )
     },
 )
 SheetContent.displayName = SheetPrimitive.Content.displayName
 
-const SheetHeader = ({ className, title, children, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-    <div className={cn('flex flex-row items-center gap-space-02 px-space-05 py-space-04', className)} {...props}>
-        {children}
-        <h1 className="text-body-01 font-semibold">{title}</h1>
-        <SheetClose className="ms-auto p-space-01" data-testid="sheetClose">
-            <Close className="size-[20px]" />
-        </SheetClose>
-    </div>
-)
+const SheetHeader = ({ className, title, children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+    const { setIsCenter, isCenter } = useSheet()
+    return (
+        <div className={cn('flex flex-row items-center gap-space-02 px-space-05 py-space-04', className)} {...props}>
+            {children}
+            <h1 className="text-body-01 font-semibold">{title}</h1>
+            <div className="ms-auto ">
+                <Button variant={'ghost'} size={'icon-sm'} onClick={() => setIsCenter()} className="hidden sm:inline-flex">
+                    {!isCenter && <ViewSidebar size={20} className="-scale-100" />}
+                    {isCenter && <WidthFull size={20} />}
+                </Button>
+                <SheetClose className="p-space-01" data-testid="sheetClose">
+                    <Close className="size-[20px]" />
+                </SheetClose>
+            </div>
+        </div>
+    )
+}
 SheetHeader.displayName = 'SheetHeader'
 
 const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-    const { setIsFooterUsed } = useSheetFooter()
+    const { setIsFooterUsed } = useSheet()
 
     useEffect(() => {
         setIsFooterUsed(true)
@@ -143,7 +154,7 @@ const SheetDescription = React.forwardRef<
 SheetDescription.displayName = SheetPrimitive.Description.displayName
 
 const SheetBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
-    const { isFooterUsed } = useSheetFooter()
+    const { isFooterUsed } = useSheet()
 
     return (
         <div
