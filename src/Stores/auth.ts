@@ -19,6 +19,7 @@ const authStore = create<Local_DTO.AuthStore>()(
                 Id: '',
                 roles: [],
                 email: '',
+                ssoEmail: '',
                 defaultRole: localStorage.getItem('defaultRole') as UserTypes,
             },
             login: nationalId =>
