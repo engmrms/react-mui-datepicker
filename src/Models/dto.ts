@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-namespace */
 
-
 import React, { ReactNode } from 'react'
 import { UserTypes } from './enums'
 
@@ -24,6 +23,7 @@ export namespace Local_DTO {
         refNationalityCountryCode?: string
         refNationalityCountryName?: string
         email: string
+        ssoEmail?: string
         mobile?: string
     }
     export type AuthStore = {
@@ -107,7 +107,7 @@ export namespace Local_DTO {
         Link?: string
         onClick?: () => void
         Id?: number
-        Icon: ((props: React.SVGProps<SVGSVGElement>) => React.JSX.Element) 
+        Icon: (props: React.SVGProps<SVGSVGElement>) => React.JSX.Element
     }
 
     export interface UserInfoProps {
