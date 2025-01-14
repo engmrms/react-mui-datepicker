@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --background: theme(colors.gray.100);
+    --background-foreground: theme(colors.gray.900);
+    --background-secondary: theme(colors.gray.300);
+    --background-brand: theme(colors.cyan.25);
+    --foreground: theme(colors.gray.900);
+    --overlay: theme(colors.gray.800);
+    --foreground-secondary: theme(colors.gray.800);
+    --foreground-tertiary: theme(colors.gray.700);
+
+    --card: theme(colors.white);
+    --card-foreground: theme(colors.gray.900);
+    --card-hover: theme(colors.gray.200);
+    --card-active: theme(colors.gray.50);
+    --popover: theme(colors.white);
+    --popover-foreground: theme(colors.gray.900);
+
+    --primary: theme(colors.cyan.600);
+    --primary-foreground: theme(colors.white);
+    --primary-light: theme(colors.cyan.300);
+    --primary-dark: theme(colors.cyan.700);
+    --primary-oncontainer: theme(colors.cyan.900);
+    --primary-container: theme(colors.cyan.100);
+
+    --secondary: theme(colors.lavender.600);
+    --secondary-foreground: theme(colors.white);
+    --secondary-light: theme(colors.lavender.300);
+    --secondary-dark: theme(colors.lavender.700);
+    --secondary-oncontainer: theme(colors.lavender.900);
+    --secondary-container: theme(colors.lavender.100);
+
+    --tertiary: theme(colors.blue.600);
+    --tertiary-foreground: theme(colors.white);
+    --tertiary-light: theme(colors.blue.300);
+    --tertiary-dark: theme(colors.blue.700);
+    --tertiary-oncontainer: theme(colors.blue.900);
+    --tertiary-container: theme(colors.blue.100);
+
+    --error: theme(colors.red.600);
+    --error-foreground: theme(colors.white);
+    --error-light: theme(colors.red.300);
+    --error-dark: theme(colors.red.700);
+    --error-oncontainer: theme(colors.red.900);
+    --error-container: theme(colors.red.100);
+
+    --sucess: theme(colors.green.600);
+    --sucess-foreground: theme(colors.white);
+    --sucess-light: theme(colors.green.300);
+    --sucess-dark: theme(colors.green.700);
+    --sucess-oncontainer: theme(colors.green.900);
+    --sucess-container: theme(colors.green.100);
+
+    --warning: theme(colors.marigold.600);
+    --warning-foreground: theme(colors.white);
+    --warning-light: theme(colors.marigold.300);
+    --warning-dark: theme(colors.marigold.700);
+    --warning-oncontainer: theme(colors.marigold.900);
+    --warning-container: theme(colors.marigold.100);
+
+    --info: theme(colors.blue.600);
+    --info-foreground: theme(colors.white);
+    --info-light: theme(colors.blue.300);
+    --info-dark: theme(colors.blue.700);
+    --info-oncontainer: theme(colors.blue.900);
+    --info-container: theme(colors.blue.100);
+
+    --muted: theme(colors.gray.100);
+    --muted-foreground: theme(colors.gray.900);
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: theme(colors.red.500);
+    --destructive-foreground: theme(colors.white);
+
+    --inverted: theme(colors.gray.900);
+    --inverted-secondary: theme(colors.gray.700);
+    --inverted-foreground: theme(colors.white);
+
+    --border: theme(colors.gray.300);
+    --border-secondary: theme(colors.gray.300);
+
+    --disabled: theme(colors.gray.600);
+    --disabled-foreground: theme(colors.gray.50);
+
+    --input: theme(colors.gray.500);
+    --ring: theme(colors.gray.900);
+    --divider: theme(colors.gray.500);
+    --skeleton: theme(colors.gray.400);
+    --radius: 12px;
+}
+
+.dark {
+    --background: theme(colors.grayDark.800);
+    --background-foreground: theme(colors.grayDark.10);
+    --background-secondary: theme(colors.grayDark.700);
+    --background-brand: theme(colors.grayDark.800);
+    --foreground: theme(colors.white);
+    --overlay: theme(colors.grayDark.50);
+    --foreground-secondary: theme(colors.grayDark.50);
+    --foreground-tertiary: theme(colors.grayDark.100);
+
+    --card: theme(colors.grayDark.900);
+    --card-foreground: theme(colors.white);
+    --card-hover: theme(colors.grayDark.700);
+    --card-active: theme(colors.grayDark.800);
+    --popover: theme(colors.grayDark.900);
+    --popover-foreground: theme(colors.white);
+
+    --primary: theme(colors.cyan.500);
+    --primary-foreground: theme(colors.white);
+    --primary-light: theme(colors.cyan.400);
+    --primary-dark: theme(colors.cyan.600);
+    --primary-oncontainer: theme(colors.cyan.50);
+    --primary-container: theme(colors.cyan.900);
+
+    --secondary: theme(colors.lavender.500);
+    --secondary-foreground: theme(colors.white);
+    --secondary-light: theme(colors.lavender.400);
+    --secondary-dark: theme(colors.lavender.600);
+    --secondary-oncontainer: theme(colors.lavender.50);
+    --secondary-container: theme(colors.lavender.900);
+
+    --tertiary: theme(colors.blue.500);
+    --tertiary-foreground: theme(colors.white);
+    --tertiary-light: theme(colors.blue.400);
+    --tertiary-dark: theme(colors.blue.600);
+    --tertiary-oncontainer: theme(colors.blue.50);
+    --tertiary-container: theme(colors.blue.900);
+
+    --error: theme(colors.red.500);
+    --error-foreground: theme(colors.white);
+    --error-light: theme(colors.red.400);
+    --error-dark: theme(colors.red.600);
+    --error-oncontainer: theme(colors.red.50);
+    --error-container: theme(colors.red.900);
+
+    --sucess: theme(colors.green.500);
+    --sucess-foreground: theme(colors.white);
+    --sucess-light: theme(colors.green.400);
+    --sucess-dark: theme(colors.green.600);
+    --sucess-oncontainer: theme(colors.green.50);
+    --sucess-container: theme(colors.green.900);
+
+    --warning: theme(colors.marigold.500);
+    --warning-foreground: theme(colors.white);
+    --warning-light: theme(colors.marigold.400);
+    --warning-dark: theme(colors.marigold.600);
+    --warning-oncontainer: theme(colors.marigold.50);
+    --warning-container: theme(colors.marigold.900);
+
+    --info: theme(colors.blue.500);
+    --info-foreground: theme(colors.white);
+    --info-light: theme(colors.blue.400);
+    --info-dark: theme(colors.blue.600);
+    --info-oncontainer: theme(colors.blue.50);
+    --info-container: theme(colors.blue.900);
+
+    --muted: theme(colors.grayDark.800);
+    --muted-foreground: theme(colors.white);
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: theme(colors.red.500);
+    --destructive-foreground: theme(colors.white);
+
+    --inverted: theme(colors.grayDark.10);
+    --inverted-secondary: theme(colors.grayDark.50);
+    --inverted-foreground: theme(colors.grayDark.900);
+
+    --border: theme(colors.grayDark.500);
+    --border-secondary: theme(colors.grayDark.600);
+
+    --disabled: theme(colors.grayDark.400);
+    --disabled-foreground: theme(colors.grayDark.50);
+
+    --input: theme(colors.grayDark.500);
+    --ring: theme(colors.gray.900);
+    --divider: theme(colors.grayDark.500);
+    --skeleton: theme(colors.grayDark.400);
+    --radius: 12px;
+}
+
+* {
+    @apply border-border;
+}
+
+html {
+    @apply scroll-smooth text-[55%] sm:text-[62.5%];
+}
+
+body {
+    @apply bg-card text-base text-foreground ltr:font-NotoSans rtl:font-NotoKufiArabic;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition:
+        background-color 0s 600000s,
+        color 0s 600000s !important;
+}
+
+.title-01 {
+    @apply text-[2rem] leading-[2.8rem] lg:text-[2.4rem] lg:leading-[3.2rem];
+}
+.title-02 {
+    @apply text-[2.4rem] font-bold leading-[3.2rem] lg:text-[3.2rem] lg:leading-[4rem];
+}
+.title-03 {
+    @apply text-[2.8rem] leading-[3.6rem] md:text-[4rem]  md:leading-[5.2rem]  lg:text-[4.8rem] lg:leading-[6rem];
+}
+.display-01 {
+    @apply text-[4rem] font-bold leading-[5.2rem] lg:text-[4.8rem] lg:leading-[6.2rem]  xl:text-[6.4rem] xl:leading-[8.8rem];
+}
+.display-02 {
+    @apply text-[4.2rem] font-bold leading-[5.4rem] md:text-[5.4rem] md:leading-[7rem]  lg:text-[8.4rem] lg:leading-[9.8rem];
+}
+.dsgrid {
+    @apply grid grid-cols-4 gap-space-04 md:grid-cols-8 lg:grid-cols-12 lg:gap-space-05;
+}
+
+.MuiButtonBase-root.MuiPickersDay-root {
+    @apply rounded-1 text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground ltr:font-NotoSans rtl:font-NotoKufiArabic;
+}
+.MuiPickersCalendarHeader-label,
+.MuiDayCalendar-header .MuiTypography-caption.MuiDayCalendar-weekDayLabel {
+    @apply ltr:font-NotoSans rtl:font-NotoKufiArabic;
+}
+
+.MuiButtonBase-root.MuiPickersDay-root.Mui-selected,
+.MuiButtonBase-root.MuiPickersDay-root:focus.Mui-selected {
+    @apply bg-primary;
+}
+.MuiDayCalendar-header .MuiTypography-caption {
+    @apply text-xs text-foreground-secondary;
+}
+.MuiPickersCalendarHeader-root {
+    @apply justify-between;
+}
+.MuiPickersCalendarHeader-root > div {
+    @apply m-0 text-body-01;
+}
+.MuiButtonBase-root.MuiIconButton-root {
+    @apply text-body-01 dark:text-foreground ltr:!rotate-0 rtl:rotate-180;
+}
+
+.MuiPickersYear-root .MuiPickersYear-yearButton {
+    @apply text-body-01 hover:bg-primary-container;
+}
+.MuiPickersYear-root .MuiPickersYear-yearButton.Mui-selected {
+    @apply !bg-primary;
+}
+
+.Mui-disabled.MuiPickersDay-today {
+    @apply !border-transparent;
+}
+.MuiButtonBase-root.MuiPickersDay-root.Mui-selected:hover {
+    @apply !bg-primary-dark;
+}
+
+html[dir='ltr'] .MuiDateCalendar-root {
+    direction: ltr;
+}
+
+html[dir='rtl'] .MuiDateCalendar-root {
+    direction: rtl;
+}

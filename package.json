@@ -1,8 +1,36 @@
 {
-    "name": "portal-starter",
-    "private": true,
-    "version": "0.0.0",
-    "main": "./src/index.ts",
+
+    "name": "mada-design-system",
+    "version": "0.0.5",
+    "sideEffects": false,
+    "private": false,
+    "main": "dist/index.es.js",
+    "module": "dist/index.es.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.es.js",
+            "require": "./dist/index.cjs.js",
+            "types": "./dist/index.d.ts"
+        },
+        "./tailwind": {
+            "import": "./dist/tailwind.config.js",
+            "require": "./dist/tailwind.config.cjs"
+        },
+        "./eslint": "./dist/.eslintrc.js",
+        "./prettier": "./dist/.prettierrc.js",
+        "./tsconfig": "./dist/tsconfig.json",
+        "./style": "./dist/style.css",
+        "./dist/style.css": "./dist/style.css"
+    },
+    "files": [
+        "dist",
+        ".eslintrc.js",
+        ".prettierrc.js",
+        "tsconfig.json",
+        "index.css"
+    ],
+
     "scripts": {
         "dev": "vite --open",
         "old-build": "tsc && vite build",
@@ -11,8 +39,16 @@
         "preview": "vite preview",
         "start": "storybook dev -p 6006",
         "build-storybook": "tsc && storybook build",
+        "build:pckg": "tsc && vite build -o  && pnpm run build:config",
+        "build:config": "node  build-tailwind",
         "sonar": "node ./src/Lib/sonar.ts"
     },
+
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+
     "dependencies": {
         "@date-io/moment": "2.17.0",
         "@dnd-kit/core": "^6.2.0",
