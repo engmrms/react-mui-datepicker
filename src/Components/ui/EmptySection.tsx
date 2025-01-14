@@ -27,7 +27,7 @@ export interface EmptySectionProps extends VariantProps<typeof emptySectionVaria
     bordered?: boolean
 }
 
-const EmptySection: React.FC<EmptySectionProps> = ({
+export const EmptySection: React.FC<EmptySectionProps> = ({
     className = '',
     title = 'No results found',
     message,

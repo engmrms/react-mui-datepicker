@@ -17,7 +17,15 @@ interface Props {
     defaultToToday?: boolean
 }
 
-const DatePicker = ({ placeholder, value, onChange, lang, rounded, defaultToToday, ...rest }: Props & Omit<DateCalendarProps<Moment>, 'value'>) => {
+export const DatePicker = ({
+    placeholder,
+    value,
+    onChange,
+    lang,
+    rounded,
+    defaultToToday,
+    ...rest
+}: Props & Omit<DateCalendarProps<Moment>, 'value'>) => {
     const { lang: portalLang } = useLanguage()
     const [isOpen, setIsOpen] = useState(false)
 

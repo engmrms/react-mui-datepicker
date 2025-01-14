@@ -1,5 +1,4 @@
 {
-
     "name": "mada-design-system",
     "version": "0.0.5",
     "sideEffects": false,
@@ -30,25 +29,20 @@
         "tsconfig.json",
         "index.css"
     ],
-
     "scripts": {
         "dev": "vite --open",
-        "old-build": "tsc && vite build",
-        "build": "tsc && storybook build -o ./dist",
+        "build:storybook": "tsc && storybook build",
+        "build:lib": "tsc && vite build  && pnpm run build:config",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview",
         "start": "storybook dev -p 6006",
-        "build-storybook": "tsc && storybook build",
-        "build:pckg": "tsc && vite build -o  && pnpm run build:config",
         "build:config": "node  build-tailwind",
         "sonar": "node ./src/Lib/sonar.ts"
     },
-
     "peerDependencies": {
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
-
     "dependencies": {
         "@date-io/moment": "2.17.0",
         "@dnd-kit/core": "^6.2.0",
@@ -73,6 +67,7 @@
         "@radix-ui/react-scroll-area": "^1.0.5",
         "@radix-ui/react-select": "^2.0.0",
         "@radix-ui/react-separator": "^1.0.3",
+        "@radix-ui/react-slider": "^1.2.2",
         "@radix-ui/react-slot": "^1.0.2",
         "@radix-ui/react-switch": "^1.0.3",
         "@radix-ui/react-tabs": "^1.0.4",
@@ -150,6 +145,7 @@
         "storybook": "^8.0.5",
         "tailwindcss": "^3.4.3",
         "typescript": "^5.0.2",
-        "vite": "^4.4.8"
+        "vite": "^4.4.8",
+        "vite-plugin-dts": "^4.5.0"
     }
 }

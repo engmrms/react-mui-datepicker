@@ -2,17 +2,28 @@ import { esbuildCommonjs } from '@originjs/vite-plugin-commonjs'
 import inject from '@rollup/plugin-inject'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 import react from '@vitejs/plugin-react'
+import { join, resolve } from 'path'
 import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 export const hash = Math.floor(Math.random() * 90000) + 10000
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    publicDir: false,
     build: {
+        lib: {
+            entry: resolve(__dirname, join('src', 'package.ts')),
+            formats: ['cjs', 'es'],
+            fileName: format => `index.${format}.js`,
+        },
         rollupOptions: {
             output: {
-                entryFileNames: `Assets/[name]${hash}.js`,
-                chunkFileNames: `Assets/[name]${hash}.js`,
-                assetFileNames: `Assets/[name]${hash}.[ext]`,
+                globals: {
+                    react: 'React',
+                    'react-dom': 'ReactDOM',
+                },
+                preserveModules: false,
+                //sourcemap: true,
             },
             plugins: [
                 inject({
@@ -20,10 +31,13 @@ export default defineConfig({
                     exclude: 'src/**',
                 }),
             ],
+
+            external: ['react/jsx-runtime', 'react', 'react-dom', /^@radix-ui/, 'framer-motion'],
         },
         commonjsOptions: { requireReturnsDefault: 'preferred' },
+        assetsInlineLimit: 0,
     },
-    plugins: [react(), basicSsl()],
+    plugins: [react(), basicSsl(), dts({ tsconfigPath: './tsconfig.json', rollupTypes: true })],
 
     server: {
         https: true,
