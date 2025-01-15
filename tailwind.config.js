@@ -365,8 +365,8 @@ module.exports = {
             },
             fontFamily: {
                 IBMReguler: ['IBM Reguler', 'ui-sans-serif', 'system-ui'],
-                NotoSans: ['NotoSans', 'ui-sans-serif', 'system-ui'],
-                NotoKufiArabic: ['NotoKufiArabic', 'ui-sans-serif', 'system-ui'],
+                NotoSans: ['Noto Sans', 'ui-sans-serif', 'system-ui'],
+                NotoKufiArabic: ['Noto Kufi Arabic', 'ui-sans-serif', 'system-ui'],
                 IBMBold: ['IBM Bold', 'ui-sans-serif', 'system-ui'],
             },
         },

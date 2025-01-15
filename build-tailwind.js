@@ -33,12 +33,12 @@ try {
                 import: './tailwind.config.js',
                 require: './tailwind.config.cjs',
             },
-            './eslint': './.eslintrc.js',
-            './prettier': './.prettierrc.js',
+            './eslint': './.eslintrc.cjs',
+            './prettier': './.prettierrc.json',
             './tsconfig': './tsconfig.json',
             './style': './style.css',
         },
-        files: ['dist', '.eslintrc.js', '.prettierrc.js', 'tsconfig.json', 'index.css'],
+        files: ['*'],
     }
 
     fs.copyFileSync(path.join('tailwind.config.js'), path.join(distDir, 'tailwind.config.js'))

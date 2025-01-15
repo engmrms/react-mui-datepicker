@@ -41,7 +41,7 @@ export default defineConfig({
 
     server: {
         https: true,
-        port: 5000,
+        port: 3000,
     },
     optimizeDeps: {
         esbuildOptions: {
