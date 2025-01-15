@@ -6,17 +6,18 @@ import { cn } from '../../Lib/utils'
 interface ProgressProps extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
     colors?: 'bg-primary' | 'bg-secondary' | 'bg-tertiary' | 'bg-error' | 'bg-warning' | 'bg-success' | 'bg-info' | 'bg-secondary-light'
     icon?: React.ReactNode
+    rounded?: boolean
 }
 
 const Progress = React.forwardRef<React.ElementRef<typeof ProgressPrimitive.Root>, ProgressProps>(
-    ({ className, value, colors = 'bg-primary', icon, ...props }, ref) => (
+    ({ className, value, colors = 'bg-primary', rounded, icon, ...props }, ref) => (
         <div className="relative w-full">
             <ProgressPrimitive.Root
                 ref={ref}
-                className={cn('relative h-space-02 w-full overflow-hidden bg-background-secondary', className)}
+                className={cn('relative h-space-02 w-full overflow-hidden bg-background-secondary', rounded && 'rounded-full', className)}
                 {...props}>
                 <ProgressPrimitive.Indicator
-                    className={cn('h-full w-full flex-1 transition-all', colors)}
+                    className={cn('h-full w-full flex-1 transition-all', rounded && 'rounded-full', colors)}
                     style={{
                         transform: props?.dir === 'rtl' ? `translateX(${100 - (value || 0)}%)` : `translateX(-${100 - (value || 0)}%)`,
                     }}
