@@ -3,32 +3,7 @@
     "version": "0.0.5",
     "sideEffects": false,
     "private": false,
-    "main": "dist/index.es.js",
-    "module": "dist/index.es.js",
-    "types": "dist/index.d.ts",
-    "exports": {
-        ".": {
-            "import": "./dist/index.es.js",
-            "require": "./dist/index.cjs.js",
-            "types": "./dist/index.d.ts"
-        },
-        "./tailwind": {
-            "import": "./dist/tailwind.config.js",
-            "require": "./dist/tailwind.config.cjs"
-        },
-        "./eslint": "./dist/.eslintrc.js",
-        "./prettier": "./dist/.prettierrc.js",
-        "./tsconfig": "./dist/tsconfig.json",
-        "./style": "./dist/style.css",
-        "./dist/style.css": "./dist/style.css"
-    },
-    "files": [
-        "dist",
-        ".eslintrc.js",
-        ".prettierrc.js",
-        "tsconfig.json",
-        "index.css"
-    ],
+    "main": "./src/index.ts",
     "scripts": {
         "dev": "vite --open",
         "build:storybook": "tsc && storybook build",
