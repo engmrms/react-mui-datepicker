@@ -8,14 +8,14 @@ const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitives.Root>, 
     ({ className, ...props }, ref) => (
         <SwitchPrimitives.Root
             className={cn(
-                'peer inline-flex h-space-05 w-16 shrink-0 cursor-pointer items-center rounded-full border border-border transition-colors hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:border-border disabled:!bg-disabled data-[state=checked]:bg-primary data-[state=unchecked]:bg-gray-300 hover:data-[state=checked]:bg-primary-dark hover:data-[state=unchecked]:bg-primary-container ',
+                'peer inline-flex h-space-05 w-16 shrink-0 cursor-pointer items-center rounded-full border border-border transition-colors data-[state=checked]:bg-primary data-[state=unchecked]:bg-background-secondary hover:border-primary hover:data-[state=checked]:bg-primary-dark hover:data-[state=unchecked]:bg-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:border-border disabled:!bg-disabled ',
                 className,
             )}
             {...props}
             ref={ref}>
             <SwitchPrimitives.Thumb
                 className={cn(
-                    'pointer-events-none flex h-8 w-8 items-center justify-center rounded-full bg-card text-xs shadow-lg ring-0 transition-transform data-[state=checked]:-translate-x-7 data-[state=unchecked]:translate-x-0 data-[state=checked]:text-primary ltr:data-[state=checked]:translate-x-7',
+                    'pointer-events-none flex h-8 w-8 items-center justify-center rounded-full bg-white text-xs shadow-[0px_0px_1px_0px_rgba(34,35,35,0.20)] ring-0 transition-transform data-[state=checked]:-translate-x-7 data-[state=unchecked]:translate-x-0 data-[state=checked]:text-primary ltr:data-[state=checked]:translate-x-7',
                 )}>
                 {props?.checked && '✓'}
             </SwitchPrimitives.Thumb>

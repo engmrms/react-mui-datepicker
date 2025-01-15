@@ -24,7 +24,7 @@ workspace:
 steps:
     - template: GitVersion.yml@templates
       parameters:
-        useDotnet: true
+          useDotnet: true
 
     - task: NodeTool@0
       inputs:
@@ -63,7 +63,7 @@ steps:
 
     - task: ArchiveFiles@2
       inputs:
-          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist'
+          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/storybook-static'
           includeRootFolder: false
           archiveType: 'zip'
           archiveFile: '$(Build.ArtifactStagingDirectory)/Portal.zip'

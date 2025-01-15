@@ -30,7 +30,7 @@ const EmojiVariants = cva(
 
 export interface EmojiProps extends React.SVGProps<SVGSVGElement>, VariantProps<typeof EmojiVariants> {}
 
-const Emoji = ({ variant, size, disabled, className, ...props }: EmojiProps) => {
+export const Emoji = ({ variant, size, disabled, className, ...props }: EmojiProps) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
