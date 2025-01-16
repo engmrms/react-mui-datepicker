@@ -46,7 +46,7 @@ class AuthService implements IAuthService {
         this.config = config
         this.userManager = new UserManager({
             ...createIdentityConfig(config),
-            metadata: createMetadataConfig(config.authUrl),
+            metadata: createMetadataConfig(config.authUrl, config?.jwks ?? 'UP_Definition'),
         })
         this.isAuthenticated = false
         this.isLoading = false

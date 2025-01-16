@@ -3,6 +3,7 @@ export interface OIDCConfig {
     clientSecret: string
     baseUrl: string
     authUrl: string
+    jwks: string
     oauth20LogoutUrl: string // Required (no ?)
 }
 
@@ -23,9 +24,9 @@ export const createIdentityConfig = (config: OIDCConfig) => ({
     webAuthResponseType: 'id_token token',
 })
 
-export const createMetadataConfig = (authUrl: string) => ({
+export const createMetadataConfig = (authUrl: string, jwks: string) => ({
     issuer: 'https://iam-dev.moe.gov.sa',
-    jwks_uri: `${authUrl}/jwks/UP_Definition`,
+    jwks_uri: `${authUrl}/jwks/${jwks}`,
     authorization_endpoint: `${authUrl}/authorize`,
     token_endpoint: `${authUrl}/token`,
     userinfo_endpoint: `${authUrl}/userinfo`,
