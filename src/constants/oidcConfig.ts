@@ -3,7 +3,7 @@ export interface OIDCConfig {
     clientSecret: string
     baseUrl: string
     authUrl: string
-    jwks: string
+    jwks?: string
     oauth20LogoutUrl: string // Required (no ?)
 }
 
