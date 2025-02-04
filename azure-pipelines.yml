@@ -50,9 +50,8 @@ steps:
           cd '$(System.DefaultWorkingDirectory)/'
           corepack enable
           corepack prepare pnpm@latest-9 --activate
-
-          node --max-old-space-size=4096 pnpm   install
-          node --max-old-space-size=4096 pnpm  run build:storybook
+          pnpm  install
+          pnpm  run build:storybook
       displayName: 'npm install and build'
 
     - script: |
