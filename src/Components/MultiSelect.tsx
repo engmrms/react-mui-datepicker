@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { ExpandMore } from 'google-material-icons/outlined'
 import { ComponentType } from 'react'
 import { useToggle } from 'usehooks-ts'
@@ -46,7 +47,14 @@ export function MultiSelect<T extends ValueType>({
             }}>
             <PopoverTrigger asChild disabled={disabled} data-testid={dataTestId}>
                 <Button size={size} rounded={rounded} colors="gray" variant="outline" className="gap-space-01 py-space-02 pl-space-03 pr-space-04">
-                    <span className="text-body-02">{placeholder}</span>
+                    <span
+                        className={classNames({
+                            'text-body-01': size === 'sm',
+                            'text-body-02': size === 'default',
+                            'text-foreground-secondary': !selectedValues?.length,
+                        })}>
+                        {placeholder}
+                    </span>
                     {selectedValues?.length > 0 && (
                         <>
                             {selectedValues?.length > 1 ? (
@@ -64,7 +72,13 @@ export function MultiSelect<T extends ValueType>({
                             )}
                         </>
                     )}
-                    <ExpandMore className="size-space-05" />
+                    <ExpandMore
+                        className={classNames({
+                            'size-8': size === 'sm',
+                            'size-space-05': size === 'default',
+                            'text-foreground-secondary': !selectedValues?.length,
+                        })}
+                    />
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="min-h-space-07 min-w-[var(--radix-popover-trigger-width)]   p-space-00" align="start">
