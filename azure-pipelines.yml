@@ -48,8 +48,7 @@ steps:
 
     - script: |
           cd '$(System.DefaultWorkingDirectory)/'
-          corepack enable
-          corepack prepare pnpm@latest-9 --activate
+          npm install -g pnpm@latest-10 --force
           pnpm  install
           pnpm  run build:storybook
       displayName: 'npm install and build'
