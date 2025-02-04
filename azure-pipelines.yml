@@ -51,8 +51,8 @@ steps:
           corepack enable
           corepack prepare pnpm@latest-9 --activate
           pnpm config set store-dir $(Pipeline.Workspace)/.pnpm-store
-          node --max-old-space-size=4096 $(which pnpm) install
-          node --max-old-space-size=4096 $(which pnpm) run build:storybook
+          node --max-old-space-size=4096 pnpm run install
+          node --max-old-space-size=4096 pnpm run build:storybook
       displayName: 'npm install and build'
 
     - script: |
