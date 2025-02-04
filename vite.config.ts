@@ -11,7 +11,7 @@ export const hash = Math.floor(Math.random() * 90000) + 10000
 export default defineConfig({
     publicDir: false,
     build: {
-        minify:"esbuild",
+        minify: 'esbuild',
         lib: {
             entry: resolve(__dirname, join('src', 'package.ts')),
             formats: ['cjs', 'es'],
@@ -34,7 +34,7 @@ export default defineConfig({
                 }),
             ],
 
-            external: ['react/jsx-runtime', 'react', 'react-dom', /^@radix-ui/, '@tanstack/react-query', 'framer-motion'],
+            external: ['react/jsx-runtime', 'react', 'react-dom', /^@radix-ui/, '@tanstack/react-query', 'react-localization', 'framer-motion'],
         },
         commonjsOptions: { requireReturnsDefault: 'preferred' },
         assetsInlineLimit: 0,
