@@ -52,7 +52,7 @@ steps:
           corepack prepare pnpm@latest-9 --activate
           pnpm config set store-dir $(Pipeline.Workspace)/.pnpm-store
           pnpm install
-          pnpm run build
+          pnpm run build:storybook
       displayName: 'npm install and build'
 
     - script: |
