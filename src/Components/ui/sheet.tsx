@@ -66,35 +66,37 @@ const sheetVariants = cva(
 
 interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>, VariantProps<typeof sheetVariants> {
     ignoreInteractOutside?: boolean
+    hideOverlay?: boolean
 }
 
 const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Content>, SheetContentProps>(
-    ({ className, side, ignoreInteractOutside = false, children, ...props }, ref) => {
+    ({ className, side, ignoreInteractOutside = false, hideOverlay = false, children, ...props }, ref) => {
         const isActive = accessibilityTools(state => state.isActive)
         const matches = useMediaQuery('(min-width: 600px)')
         const { isCenter, setIsCenter } = useSheet()
 
         return (
             <SheetPortal>
-                <SheetOverlay>
-                    <SheetPrimitive.Content
-                        onInteractOutside={e => ignoreInteractOutside && e.preventDefault()}
-                        onCloseAutoFocus={() => setIsCenter(false)}
-                        ref={ref}
-                        className={cn(
-                            sheetVariants({ side: side ? side : !matches ? 'bottom' : !isCenter ? 'left' : 'center' }),
-                            { grayscale: isActive },
-                            className,
-                        )}
-                        data-side={side ? side : !matches ? 'bottom' : !isCenter ? 'left' : 'center'}
-                        {...props}>
-                        {children}
-                        {/* <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+                {!hideOverlay && <SheetOverlay />}
+                <SheetPrimitive.Content
+                    aria-describedby={undefined}
+                    onInteractOutside={e => ignoreInteractOutside && e.preventDefault()}
+                    onCloseAutoFocus={() => setIsCenter(false)}
+                    ref={ref}
+                    className={cn(
+                        sheetVariants({ side: side ? side : !matches ? 'bottom' : !isCenter ? 'left' : 'center' }),
+                        { grayscale: isActive },
+                        className,
+                    )}
+                    data-side={side ? side : !matches ? 'bottom' : !isCenter ? 'left' : 'center'}
+                    {...props}>
+                    {children}
+
+                    {/* <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
                         <X className="h-4 w-4" />
                         <span className="sr-only">Close</span>
                         </SheetPrimitive.Close> */}
-                    </SheetPrimitive.Content>
-                </SheetOverlay>
+                </SheetPrimitive.Content>
             </SheetPortal>
         )
     },
@@ -143,7 +145,7 @@ const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
 SheetFooter.displayName = 'SheetFooter'
 
 const SheetTitle = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Title>, React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>>(
-    ({ className, ...props }, ref) => <SheetPrimitive.Title ref={ref} className={cn('text-lg font-bold text-foreground', className)} {...props} />,
+    ({ className, ...props }, ref) => <SheetPrimitive.Title ref={ref} className={cn('text-body-01 font-semibold', className)} {...props} />,
 )
 SheetTitle.displayName = SheetPrimitive.Title.displayName
 
