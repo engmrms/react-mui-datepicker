@@ -28,10 +28,10 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
 const DialogContent = React.forwardRef<
     React.ElementRef<typeof DialogPrimitive.Content>,
-    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { ignoreInteractOutside?: boolean }
->(({ className, ignoreInteractOutside, children, ...props }, ref) => (
+    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { ignoreInteractOutside?: boolean; hideOverlay?: boolean }
+>(({ className, ignoreInteractOutside, hideOverlay, children, ...props }, ref) => (
     <DialogPortal>
-        <DialogOverlay />
+        {!hideOverlay && <DialogOverlay />}
         <DialogPrimitive.Content
             onInteractOutside={e => {
                 ignoreInteractOutside && e.preventDefault()

@@ -6,7 +6,7 @@ trigger:
             - master
 
 pool:
-    name: ubuntu-22.04
+    name: linux
     demands: java
 
 variables:
@@ -48,11 +48,9 @@ steps:
 
     - script: |
           cd '$(System.DefaultWorkingDirectory)/'
-          corepack enable
-          corepack prepare pnpm@latest-9 --activate
-          pnpm config set store-dir $(Pipeline.Workspace)/.pnpm-store
-          pnpm install
-          pnpm run build
+          npm install -g pnpm@latest-10 --force
+          pnpm  install
+          pnpm  run build:storybook
       displayName: 'npm install and build'
 
     - script: |

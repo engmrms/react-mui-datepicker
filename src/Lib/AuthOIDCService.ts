@@ -184,9 +184,9 @@ class AuthService implements IAuthService {
         })
     }
 
-    public signout = async () => {
+    public signout = async (redirectUrl: string = '') => {
         this.isLoading = false
-        window.location.href = this.config?.oauth20LogoutUrl ?? ''
+        window.location.href = `${this.config?.oauth20LogoutUrl}${redirectUrl}`
 
         // return this.userManager
         //     .getUser()

@@ -11,6 +11,7 @@ export const hash = Math.floor(Math.random() * 90000) + 10000
 export default defineConfig({
     publicDir: false,
     build: {
+        minify: 'esbuild',
         lib: {
             entry: resolve(__dirname, join('src', 'package.ts')),
             formats: ['cjs', 'es'],
@@ -22,7 +23,8 @@ export default defineConfig({
                     react: 'React',
                     'react-dom': 'ReactDOM',
                 },
-                preserveModules: false,
+                preserveModules: true, // Enable tree-shaking
+                preserveModulesRoot: 'src', // Preserve module structure
                 //sourcemap: true,
             },
             plugins: [
@@ -32,11 +34,16 @@ export default defineConfig({
                 }),
             ],
 
-            external: ['react/jsx-runtime', 'react', 'react-dom', /^@radix-ui/, 'framer-motion'],
+            external: ['react/jsx-runtime', 'react', 'react-dom', /^@radix-ui/, '@tanstack/react-query', 'react-localization', 'framer-motion'],
         },
         commonjsOptions: { requireReturnsDefault: 'preferred' },
         assetsInlineLimit: 0,
     },
+    esbuild: {
+        legalComments: 'none',
+        drop: ['console', 'debugger'],
+    },
+
     plugins: [react(), basicSsl(), dts({ tsconfigPath: './tsconfig.json', rollupTypes: true })],
 
     server: {
