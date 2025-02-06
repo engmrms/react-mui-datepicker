@@ -68,7 +68,6 @@ class AuthService implements IAuthService {
 
     private setupEventListeners() {
         this.userManager.events.addUserLoaded((user: User) => {
-            console.log('loaded => ', user)
             this.user = user
             this.isAuthenticated = !user?.expired
             this.error = undefined
@@ -126,8 +125,6 @@ class AuthService implements IAuthService {
         return this.userManager
             .signinRedirectCallback()
             .then(async (user: void | User) => {
-                console.log('completeSignIn: ', user)
-
                 this.isLoading = false
                 if (user) {
                     this.user = user
