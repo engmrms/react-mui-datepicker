@@ -3,6 +3,7 @@ import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { cva, type VariantProps } from 'class-variance-authority'
 import React, { useEffect } from 'react'
 
+import clsx from 'clsx'
 import { Close, ViewSidebar, WidthFull } from 'google-material-icons/outlined'
 import { useMediaQuery } from 'usehooks-ts'
 import { create } from 'zustand'
@@ -77,7 +78,11 @@ const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Con
 
         return (
             <SheetPortal>
-                {!hideOverlay && <SheetOverlay />}
+                <SheetOverlay
+                    className={clsx({
+                        'opacity-0': hideOverlay,
+                    })}
+                />
                 <SheetPrimitive.Content
                     aria-describedby={undefined}
                     onInteractOutside={e => ignoreInteractOutside && e.preventDefault()}

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('tailwindcss').Config} */
 const plugin = require('tailwindcss/plugin')
+const { dgaToken } = require('./dga.config')
 module.exports = {
     darkMode: ['class'],
     content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx,mdx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx,mdx}'],
@@ -31,17 +32,6 @@ module.exports = {
                 HeaderGradient: `linear-gradient(180deg, ${theme('colors.primary.container')} -15%, ${theme('colors.card.DEFAULT')} 80%)`,
             }),
             colors: {
-                border: {
-                    DEFAULT: 'var(--border)',
-                    secondary: 'var(--border-secondary)',
-                },
-                background: {
-                    DEFAULT: 'var(--background)',
-                    secondary: 'var(--background-secondary)',
-                    overlay: 'var(--overlay)',
-                    foreground: 'var(--background-foreground)',
-                    brand: 'var(--background-brand)',
-                },
                 foreground: {
                     DEFAULT: 'var(--foreground)',
                     secondary: 'var(--foreground-secondary)',
@@ -142,6 +132,9 @@ module.exports = {
                 },
                 input: 'var(--input)',
                 ring: 'hsl(var(--ring))',
+
+                ...dgaToken,
+
                 gray: {
                     50: '#FAFAFA',
                     100: '#F9f9f9',
@@ -381,6 +374,16 @@ module.exports = {
                     'red-20': '#D92D2033',
                     'marigold-10': '#DC680319',
                     'marigold-20': '#DC680333',
+                    'Alpha-primary-10': '#1B83541A',
+                    'Alpha-primary-20': '#1B835433',
+                    'Alpha-warning-10': '#DC68031A',
+                    'Alpha-warning-20': '#DC680333',
+                    'Alpha-error-10': '#D92D201A',
+                    'Alpha-error-20': '#D92D2033',
+                    'Alpha-info-10': '#1570EF1A',
+                    'Alpha-info-20': '#1570EF33',
+                    'Alpha-success-10': '#0794551A',
+                    'Alpha-success-20': '#07945533',
                 },
             },
             borderRadius: {

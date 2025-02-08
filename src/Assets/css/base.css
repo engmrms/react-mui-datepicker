@@ -94,6 +94,245 @@
         --divider: theme(colors.gray.500);
         --skeleton: theme(colors.gray.400);
         --radius: 12px;
+
+        /* dga */
+        --primary-10: theme(colors.cyan.10);
+        --primary-25: theme(colors.cyan.25);
+        --primary-50: theme(colors.cyan.50);
+        --primary-100: theme(colors.cyan.100);
+        --primary-200: theme(colors.cyan.200);
+        --primary-300: theme(colors.cyan.300);
+        --primary-400: theme(colors.cyan.400);
+        --primary-500: theme(colors.cyan.500);
+        --primary-600: theme(colors.cyan.600);
+        --primary-700: theme(colors.cyan.700);
+        --primary-800: theme(colors.cyan.800);
+        --primary-900: theme(colors.cyan.900);
+        --primary-950: theme(colors.cyan.950);
+
+        --secondary-10: theme(colors.gold.10);
+        --secondary-25: theme(colors.gold.25);
+        --secondary-50: theme(colors.gold.50);
+        --secondary-100: theme(colors.gold.100);
+        --secondary-200: theme(colors.gold.200);
+        --secondary-300: theme(colors.gold.300);
+        --secondary-400: theme(colors.gold.400);
+        --secondary-500: theme(colors.gold.500);
+        --secondary-600: theme(colors.gold.600);
+        --secondary-700: theme(colors.gold.700);
+        --secondary-800: theme(colors.gold.800);
+        --secondary-900: theme(colors.gold.900);
+        --secondary-950: theme(colors.gold.950);
+
+        --tertiary-10: theme(colors.lavender.10);
+        --tertiary-25: theme(colors.lavender.25);
+        --tertiary-50: theme(colors.lavender.50);
+        --tertiary-100: theme(colors.lavender.100);
+        --tertiary-200: theme(colors.lavender.200);
+        --tertiary-300: theme(colors.lavender.300);
+        --tertiary-400: theme(colors.lavender.400);
+        --tertiary-500: theme(colors.lavender.500);
+        --tertiary-600: theme(colors.lavender.600);
+        --tertiary-700: theme(colors.lavender.700);
+        --tertiary-800: theme(colors.lavender.800);
+        --tertiary-900: theme(colors.lavender.900);
+        --tertiary-950: theme(colors.lavender.950);
+
+        /* Text */
+        --text-default: theme(colors.black);
+        --text-primary: var(--primary-600);
+        --text-secondary: var(--secondary-600);
+        --text-tertiary: var(--tertiary-600);
+        --text-primary-sa-flag: var(--primary-800);
+        --text-display: theme(colors.neutral.800);
+        --text-paragraph-primary: theme(colors.neutral.700);
+        --text-paragraph-secondary: theme(colors.neutral.500);
+        --text-oncolor-primary: theme(colors.white);
+        --text-oncolor-secondary: theme(colors.alpha.white-80);
+        --text-oncolor-tertiary: theme(colors.alpha.white-70);
+        --text-success: theme(colors.green.700);
+        --text-info: theme(colors.blue.700);
+        --text-warning: theme(colors.marigold.700);
+        --text-error: theme(colors.red.700);
+        --text-primary-light: var(--primary-300);
+        --text-secondary-light: var(--secondary-300);
+        --text-tertiary-light: var(--tertiary-300);
+
+        /* border */
+        --border-primary: theme(colors.neutral.200);
+        --border-secondary: theme(colors.neutral.300);
+        --border-white: theme(colors.white);
+        --border-white-40: theme(colors.alpha.white-40);
+        --border-black: theme(colors.black);
+        --border-primary-default: var(var(--primary-600));
+        --border-primary-light: var(--primary-200);
+        --border-secondary-default: var(--secondary-600);
+        --border-secondary-light: var(--secondary-200);
+        --border-tertiary: var(--tertiary-500);
+        --border-tertiary-light: var(--tertiary-200);
+        --border-neutral-primary: theme(colors.neutral.300);
+        --border-neutral-secondary: theme(colors.neutral.200);
+        --border-neutral-tertiary: theme(colors.neutral.100);
+        --border-background-white: theme(colors.neutral.100);
+        --border-background-neutral: theme(colors.neutral.300);
+        --border-transparent-10: theme(colors.alpha.white-10);
+        --border-oncolor-transparent-30: theme(colors.alpha.white-30);
+        --border-success: theme(colors.green.700);
+        --border-success-light: theme(colors.green.200);
+        --border-info: theme(colors.blue.700);
+        --border-info-light: theme(colors.blue.200);
+        --border-warning: theme(colors.marigold.700);
+        --border-warning-light: theme(colors.marigold.200);
+        --border-error: theme(colors.red.700);
+        --border-error-light: theme(colors.red.200);
+        --border-disabled: theme(colors.neutral.300);
+
+        /* control */
+        --control-primary: theme(colors.white);
+        --control-primary-checked: var(--primary-600);
+        --control-primary-hovered: var(--primary-800);
+        --control-primary-pressed: var(--primary-900);
+        --control-primary-focused: var(--primary-600);
+        --control-neutral-checked: theme(colors.neutral.950);
+        --control-neutral-hovered: theme(colors.neutral.600);
+        --control-neutral-pressed: theme(colors.neutral.500);
+        --control-neutral-focused: theme(colors.neutral.950);
+        --control-primary--readonly: theme(colors.white);
+        --control-pressed: theme(colors.neutral.300);
+        --control-ripple-effect: theme(colors.neutral.100);
+        --control-border: theme(colors.neutral.500);
+        --Control-icon-hovered: theme(colors.white);
+        --Control-icon-pressed: theme(colors.white);
+        --Control-icon-disabled: theme(colors.white);
+        --Control-boarder-disabled: theme(colors.neutral.400);
+        --control-disabled: theme(colors.neutral.300);
+
+        /* tag */
+        --tag-background-neutral: theme(colors.neutral.600);
+        --tag-background-neutral-light: theme(colors.neutral.50);
+        --tag-background-on-color: theme(colors.alpha.white-20);
+        --tag-text-neutral: theme(colors.neutral.800);
+        --tag-text-success: theme(colors.green.800);
+        --tag-text-info: theme(colors.blue.800);
+        --tag-text-warning: theme(colors.marigold.800);
+        --tag-text-error: theme(colors.red.800);
+        --tag-text-primary: var(--primary-800);
+        --tag-text-secondary: var(--secondary-800);
+        --tag-icon-primary: var(--primary-800);
+        --tag-icon-secondary: var(--secondary-800);
+        --tag-icon-tertiary: var(--tertiary-800);
+        --tag-text-tertiary: var(--tertiary-800);
+        --tag-icon-neutral: theme(colors.neutral.800);
+        --tag-icon-success: theme(colors.green.800);
+        --tag-icon-info: theme(colors.blue.800);
+        --tag-icon-warning: theme(colors.marigold.800);
+        --tag-icon-error: theme(colors.red.800);
+        --tag-background-success: theme(colors.green.700);
+        --tag-background-success-light: theme(colors.green.50);
+        --tag-background-info: theme(colors.blue.600);
+        --tag-background-info-light: theme(colors.blue.50);
+        --tag-background-warning: theme(colors.marigold.700);
+        --tag-background-warning-light: theme(colors.marigold.50);
+        --tag-background-error: theme(colors.red.600);
+        --tag-background-error-light: theme(colors.red.50);
+        --tag-background-primary: var(--primary-600);
+        --tag-background-primary-light: var(--primary-50);
+        --tag-background-secondary: var(--secondary-600);
+        --tag-background-secondary-light: var(--secondary-50);
+        --tag-background-tertiary: var(--tertiary-600);
+        --tag-background-tertiary-light: var(--tertiary-50);
+        --tag-border-neutral: theme(colors.neutral.600);
+        --tag-border-neutral-light: theme(colors.neutral.50);
+        --tag-border-on-color: theme(colors.alpha.white-60);
+        --tag-border-success: theme(colors.green.700);
+        --tag-border-success-light: theme(colors.green.200);
+        --tag-border-info: theme(colors.blue.700);
+        --tag-border-info-light: theme(colors.blue.200);
+        --tag-border-warning: theme(colors.marigold.700);
+        --tag-border-warning-light: theme(colors.marigold.200);
+        --tag-border-error: theme(colors.red.700);
+        --tag-border-error-light: theme(colors.red.200);
+        --tag-border-primary: var(--primary-700);
+        --tag-border-primary-light: var(--primary-200);
+        --tag-border-secondary: var(--secondary-700);
+        --tag-border-secondary-light: var(--secondary-200);
+        --tag-border-tertiary: var(--tertiary-700);
+        --tag-border-tertiary-light: var(--tertiary-200);
+        --tag-dot: theme(colors.alpha.white-60);
+
+        /* icon */
+        --icon-oncolor: theme(colors.white);
+        --icon-default: theme(colors.black);
+        --icon-default-500: theme(colors.neutral.500);
+        --icon-default-400: theme(colors.neutral.400);
+        --icon-primary: var(--primary-600);
+        --icon-primary-light: var(--primary-50);
+        --icon-primary-400: var(--primary-400);
+        --icon-neutral: theme(colors.neutral.700);
+        --icon-neutral-light: theme(colors.neutral.50);
+        --icon-secondary: var(--secondary-600);
+        --icon-secondary-light: var(--secondary-50);
+        --icon-tertiary: var(--tertiary-500);
+        --icon-tertiary-light: var(--tertiary-50);
+        --icon-success: theme(colors.green.700);
+        --icon-success-light: theme(colors.green.50);
+        --icon-info: theme(colors.blue.700);
+        --icon-info-light: theme(colors.blue.50);
+        --icon-warning: theme(colors.marigold.700);
+        --icon-warning-light: theme(colors.marigold.50);
+        --icon-error: theme(colors.red.700);
+        --icon-error-light: theme(colors.red.50);
+        --background-warning-light: var(--background-warning-50);
+        --background-error-light: var(--background-error-50);
+        --background-primary-light: var(--background-primary-50);
+        --background-info-light: var(--background-info-50);
+        --background-success-light: var(--background-success-50);
+        --unselected-tab-icon: theme(colors.neutral.700);
+
+        /* background  */
+        --background-white: theme(colors.white);
+        --background-body: theme(colors.neutral.50);
+        --background-menu: theme(colors.white);
+        --background-card: theme(colors.white);
+        --surface-oncolor: theme(colors.black);
+        --background-black: theme(colors.black);
+        --background-neutral-800: theme(colors.neutral.800);
+        --background-neutral-400: theme(colors.neutral.400);
+        --background-neutral-300: theme(colors.neutral.300);
+        --background-neutral-200: theme(colors.neutral.200);
+        --background-neutral-100: theme(colors.neutral.100);
+        --background-neutral-50: theme(colors.neutral.50);
+        --background-neutral-25: theme(colors.neutral.25);
+
+        --background-primary: var(--primary-600);
+        --background-primary-400: var(--primary-400);
+        --background-primary-200: var(--primary-200);
+        --background-primary-50: var(--primary-50);
+        --background-primary-25: var(--primary-25);
+        --background-secondary-default: var(--secondary-600);
+        --background-secondary-50: var(--secondary-50);
+        --background-secondary-25: var(--secondary-25);
+        --background-tertiary: var(--tertiary-600);
+        --background-tertiary-50: var(--tertiary-50);
+        --background-tertiary-25: var(--tertiary-25);
+        --background-success: theme(colors.green.600);
+        --background-success-50: theme(colors.green.50);
+        --background-success-25: theme(colors.green.25);
+        --background-info: theme(colors.blue.600);
+        --background-info-50: theme(colors.blue.50);
+        --background-info-25: theme(colors.blue.25);
+        --background-warning: theme(colors.marigold.600);
+        --background-warning-50: theme(colors.marigold.50);
+        --background-warning-25: theme(colors.marigold.25);
+        --background-error: theme(colors.red.600);
+        --background-error-50: theme(colors.red.50);
+        --background-error-25: theme(colors.red.25);
+
+        --background-SA-Flag: theme(colors.green.900);
+        --background-SA-Flag-50: theme(colors.green.50);
+        --background-SA-Flag-25: theme(colors.green.25);
+        --background-notification-white: theme(colors.white);
+        --background-nav-header: var(--primary-800);
     }
 
     .dark {
@@ -186,6 +425,205 @@
         --divider: theme(colors.grayDark.500);
         --skeleton: theme(colors.grayDark.400);
         --radius: 12px;
+
+        /* dga */
+
+        /* Text */
+        --text-default: theme(colors.white);
+        --text-primary: var(--primary-400);
+        --text-secondary: var(--secondary-400);
+        --text-tertiary: var(--tertiary-400);
+        --text-primary-sa-flag: var(--primary-100);
+        --text-display: theme(colors.neutral.50);
+        --text-paragraph-primary: theme(colors.neutral.100);
+        --text-paragraph-secondary: theme(colors.neutral.200);
+        --text-oncolor-primary: theme(colors.white);
+        --text-oncolor-secondary: theme(colors.alpha.black-80);
+        --text-oncolor-tertiary: theme(colors.alpha.black-70);
+        --text-success: theme(colors.green.400);
+        --text-info: theme(colors.blue.400);
+        --text-warning: theme(colors.marigold.400);
+        --text-error: theme(colors.red.400);
+        --text-primary-light: var(--primary-300);
+        --text-secondary-light: var(--secondary-400);
+        --text-tertiary-light: var(--tertiary-400);
+
+        /* border */
+        --border-primary: theme(colors.neutral.500);
+        --border-secondary: theme(colors.neutral.600);
+        --border-white: theme(colors.black);
+        --border-white-40: theme(colors.alpha.black-40);
+        --border-black: theme(colors.white);
+        --border-primary-default: var(var(--primary-600));
+        --border-primary-light: var(--primary-200);
+        --border-secondary-default: var(--secondary-600);
+        --border-secondary-light: var(--secondary-200);
+        --border-tertiary: var(--tertiary-500);
+        --border-tertiary-light: var(--tertiary-200);
+        --border-neutral-primary: theme(colors.neutral.500);
+        --border-neutral-secondary: theme(colors.neutral.700);
+        --border-neutral-tertiary: theme(colors.neutral.800);
+        --border-background-white: theme(colors.neutral.600);
+        --border-background-neutral: theme(colors.neutral.600);
+        --border-transparent-10: theme(colors.alpha.black-10);
+        --border-oncolor-transparent-30: theme(colors.alpha.white-30);
+        --border-success: theme(colors.green.500);
+        --border-success-light: theme(colors.green.200);
+        --border-info: theme(colors.blue.700);
+        --border-info-light: theme(colors.blue.200);
+        --border-warning: theme(colors.marigold.700);
+        --border-warning-light: theme(colors.marigold.200);
+        --border-error: theme(colors.red.700);
+        --border-error-light: theme(colors.red.200);
+        --border-disabled: theme(colors.neutral.500);
+
+        /* control */
+        --control-primary: theme(colors.alpha.black-0);
+        --control-primary-checked: var(--primary-600);
+        --control-primary-hovered: var(--primary-300);
+        --control-primary-pressed: var(--primary-400);
+        --control-primary-focused: var(--primary-600);
+        --control-neutral-checked: theme(colors.neutral.600);
+        --control-neutral-hovered: theme(colors.neutral.400);
+        --control-neutral-pressed: theme(colors.neutral.400);
+        --control-neutral-focused: theme(colors.neutral.600);
+        --control-primary--readonly: theme(colors.alpha.black-0);
+        --control-pressed: theme(colors.neutral.600);
+        --control-ripple-effect: theme(colors.neutral.900);
+        --control-border: theme(colors.neutral.400);
+        --Control-icon-hovered: var(--primary-800);
+        --Control-icon-pressed: var(--primary-800);
+        --Control-icon-disabled: theme(colors.neutral.400);
+        --Control-boarder-disabled: theme(colors.alpha.black-30);
+        --control-disabled: theme(colors.neutral.300);
+
+        /* tag */
+        --tag-background-neutral: var(--primary-600);
+        --tag-background-neutral-light: theme(colors.neutral.800);
+        --tag-background-on-color: theme(colors.alpha.white-20);
+        --tag-text-neutral: theme(colors.neutral.100);
+        --tag-text-success: theme(colors.green.800);
+        --tag-text-info: theme(colors.blue.800);
+        --tag-text-warning: theme(colors.marigold.800);
+        --tag-text-error: theme(colors.red.800);
+        --tag-text-primary: var(--primary-800);
+        --tag-text-secondary: var(--secondary-800);
+        --tag-icon-primary: var(--primary-800);
+        --tag-icon-secondary: var(--secondary-800);
+        --tag-icon-tertiary: var(--tertiary-800);
+        --tag-text-tertiary: var(--tertiary-800);
+        --tag-icon-neutral: theme(colors.neutral.100);
+        --tag-icon-success: theme(colors.green.800);
+        --tag-icon-info: theme(colors.blue.800);
+        --tag-icon-warning: theme(colors.marigold.800);
+        --tag-icon-error: theme(colors.red.800);
+        --tag-background-success: theme(colors.green.700);
+        --tag-background-success-light: theme(colors.green.50);
+        --tag-background-info: theme(colors.blue.600);
+        --tag-background-info-light: theme(colors.blue.50);
+        --tag-background-warning: theme(colors.marigold.700);
+        --tag-background-warning-light: theme(colors.marigold.50);
+        --tag-background-error: theme(colors.red.600);
+        --tag-background-error-light: theme(colors.red.50);
+        --tag-background-primary: var(--primary-600);
+        --tag-background-primary-light: var(--primary-50);
+        --tag-background-secondary: var(--secondary-600);
+        --tag-background-secondary-light: var(--secondary-50);
+        --tag-background-tertiary: var(--tertiary-600);
+        --tag-background-tertiary-light: var(--tertiary-50);
+        --tag-border-neutral: theme(colors.neutral.300);
+        --tag-border-neutral-light: theme(colors.neutral.800);
+        --tag-border-on-color: theme(colors.alpha.white-60);
+        --tag-border-success: theme(colors.green.700);
+        --tag-border-success-light: theme(colors.green.200);
+        --tag-border-info: theme(colors.blue.700);
+        --tag-border-info-light: theme(colors.blue.200);
+        --tag-border-warning: theme(colors.marigold.700);
+        --tag-border-warning-light: theme(colors.marigold.200);
+        --tag-border-error: theme(colors.red.700);
+        --tag-border-error-light: theme(colors.red.200);
+        --tag-border-primary: var(--primary-700);
+        --tag-border-primary-light: var(--primary-200);
+        --tag-border-secondary: var(--secondary-700);
+        --tag-border-secondary-light: var(--secondary-200);
+        --tag-border-tertiary: var(--tertiary-700);
+        --tag-border-tertiary-light: var(--tertiary-200);
+        --tag-dot: theme(colors.alpha.white-60);
+
+        /* icon */
+        --icon-oncolor: theme(colors.white);
+        --icon-default: theme(colors.white);
+        --icon-default-500: theme(colors.neutral.200);
+        --icon-default-400: theme(colors.neutral.500);
+        --icon-primary: var(--primary-400);
+        --icon-primary-light: var(--primary-50);
+        --icon-primary-400: var(--primary-200);
+        --icon-neutral: theme(colors.neutral.400);
+        --icon-neutral-light: theme(colors.neutral.950);
+        --icon-secondary: var(--secondary-400);
+        --icon-secondary-light: var(--secondary-50);
+        --icon-tertiary: var(--tertiary-400);
+        --icon-tertiary-light: var(--tertiary-50);
+        --icon-success: theme(colors.green.400);
+        --icon-success-light: theme(colors.green.50);
+        --icon-info: theme(colors.blue.400);
+        --icon-info-light: theme(colors.blue.50);
+        --icon-warning: theme(colors.marigold.400);
+        --icon-warning-light: theme(colors.marigold.50);
+        --icon-error: theme(colors.red.400);
+        --icon-error-light: theme(colors.red.50);
+        --background-warning-light: var(--background-warning-10);
+        --background-error-light: var(--background-error-10);
+        --background-primary-light: var(--background-primary-10);
+        --background-info-light: var(--background-info-10);
+        --background-success-light: var(--background-success-10);
+        --unselected-tab-icon: theme(colors.neutral.100);
+
+        /* background  */
+
+        --background-white: theme(colors.neutral.950);
+        --background-body: theme(colors.neutral.900);
+        --background-menu: theme(colors.neutral.800);
+        --background-card: theme(colors.neutral.800);
+        --surface-oncolor: theme(colors.white);
+        --background-black: theme(colors.white);
+        --background-neutral-800: theme(colors.neutral.600);
+        --background-neutral-400: theme(colors.neutral.400);
+        --background-neutral-300: theme(colors.neutral.500);
+        --background-neutral-200: theme(colors.neutral.600);
+        --background-neutral-100: theme(colors.neutral.800);
+        --background-neutral-50: theme(colors.neutral.900);
+        --background-neutral-25: theme(colors.neutral.950);
+
+        --background-primary: var(--primary-600);
+        --background-primary-400: var(--primary-400);
+        --background-primary-200: theme(colors.neutral.700);
+        --background-primary-50: theme(colors.alpha.Alpha-primary-10);
+        --background-primary-25: var(--primary-950);
+        --background-secondary-default: var(--secondary-600);
+        --background-secondary-50: theme(colors.neutral.800);
+        --background-secondary-25: theme(colors.neutral.900);
+        --background-tertiary: var(--tertiary-600);
+        --background-tertiary-50: theme(colors.neutral.800);
+        --background-tertiary-25: theme(colors.neutral.900);
+        --background-success: theme(colors.green.600);
+        --background-success-50: theme(colors.alpha.Alpha-success-20);
+        --background-success-25: theme(colors.alpha.Alpha-primary-10);
+        --background-info: theme(colors.blue.600);
+        --background-info-50: theme(colors.blue.50);
+        --background-info-25: theme(colors.blue.25);
+        --background-warning: theme(colors.marigold.600);
+        --background-warning-50: theme(colors.alpha.Alpha-warning-20);
+        --background-warning-25: theme(colors.alpha.Alpha-warning-10);
+        --background-error: theme(colors.red.600);
+        --background-error-50: theme(colors.alpha.Alpha-error-20);
+        --background-error-25: theme(colors.alpha.Alpha-error-10);
+
+        --background-SA-Flag: theme(colors.green.600);
+        --background-SA-Flag-50: theme(colors.neutral.800);
+        --background-SA-Flag-25: theme(colors.neutral.900);
+        --background-notification-white: theme(colors.neutral.900);
+        --background-nav-header: var(--primary-800);
     }
 
     [data-theme='parent'] {
@@ -293,7 +731,7 @@
     }
 
     body {
-        @apply font-IBMPlexSans bg-card text-base text-foreground;
+        @apply bg-card font-IBMPlexSans text-base text-foreground;
     }
     input:-webkit-autofill,
     input:-webkit-autofill:focus {
@@ -304,7 +742,7 @@
 }
 
 .MuiButtonBase-root.MuiPickersDay-root {
-    @apply font-IBMPlexSans rounded-1 text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground;
+    @apply rounded-1 font-IBMPlexSans text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground;
 }
 .MuiPickersCalendarHeader-label,
 .MuiDayCalendar-header .MuiTypography-caption.MuiDayCalendar-weekDayLabel {
