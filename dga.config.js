@@ -319,4 +319,102 @@ export const dgaToken = {
             },
         },
     },
+    button: {
+        background: {
+            disabled: {
+                oncolor: 'var(--background-disabled-oncolor)',
+            },
+            neutral: {
+                DEFAULT: 'var(--background-neutral-default)',
+                hovered: 'var(--background-neutral-hovered)',
+                pressed: 'var(--background-neutral-pressed)',
+                selected: 'var(--background-neutral-selected)',
+                focused: 'var(--background-neutral-focused)',
+            },
+            black: {
+                DEFAULT: 'var(--background-black-default)',
+                hovered: 'var(--background-black-hovered)',
+                pressed: 'var(--background-black-pressed)',
+                selected: 'var(--background-black-selected)',
+                focused: 'var(--background-black-focused)',
+            },
+            primary: {
+                DEFAULT: 'var(--background-primary-default)',
+                hovered: 'var(--background-primary-hovered)',
+                pressed: 'var(--background-primary-pressed)',
+                selected: 'var(--background-primary-selected)',
+                focused: 'var(--background-primary-focused)',
+                secondary: {
+                    DEFAULT: 'var(--background-primary-secondary-default)',
+                    hovered: 'var(--background-primary-secondary-hovered)',
+                    pressed: 'var(--background-primary-secondary-pressed)',
+                    selected: 'var(--background-primary-secondary-selected)',
+                    focused: 'var(--background-primary-secondary-focused)',
+                },
+            },
+            error: {
+                DEFAULT: 'var(--background-error-default)',
+                hovered: 'var(--background-error-hovered)',
+                pressed: 'var(--background-error-pressed)',
+                selected: 'var(--background-error-selected)',
+                focused: 'var(--background-error-focused)',
+                secondary: {
+                    DEFAULT: 'var(--background-error-secondary-default)',
+                    hovered: 'var(--background-error-secondary-hovered)',
+                    pressed: 'var(--background-error-secondary-pressed)',
+                    selected: 'var(--background-error-secondary-selected)',
+                    focused: 'var(--background-error-secondary-focused)',
+                },
+            },
+            oncolor: {
+                DEFAULT: 'var(--background-oncolor-default)',
+                hovered: 'var(--background-oncolor-hovered)',
+                pressed: 'var(--background-oncolor-pressed)',
+                selected: 'var(--background-oncolor-selected)',
+                focused: 'var(--background-oncolor-focused)',
+            },
+            transparent: {
+                DEFAULT: 'var(--background-transparent-default)',
+                hovered: 'var(--background-transparent-hovered)',
+                pressed: 'var(--background-transparent-pressed)',
+                selected: 'var(--background-transparent-selected)',
+                focused: 'var(--background-transparent-focused)',
+            },
+        },
+        label: {
+            error: {
+                primary: {
+                    oncolor: {
+                        1: 'var(--label-error-primary-oncolor-1)',
+                        2: 'var(--label-error-primary-oncolor-2)',
+                        3: 'var(--label-error-primary-oncolor-3)',
+                    },
+                },
+            },
+            transparent: {
+                hover: {
+                    oncolor: 'var(--label-transparent-hover-oncolor)',
+                },
+                pressed: {
+                    oncolor: 'var(--label-transparent-pressed-oncolor)',
+                },
+                selected: {
+                    oncolor: 'var(--label-transparent-selected-oncolor)',
+                },
+            },
+        },
+        icon: {
+            transparent: {
+                hover: {
+                    oncolor: 'var(--icon-transparent-hover-oncolor)',
+                },
+                pressed: {
+                    oncolor: 'var(--icon-transparent-pressed-oncolor)',
+                },
+                selected: {
+                    oncolor: 'var(--icon-transparent-selected-oncolor)',
+                },
+            },
+        },
+    },
 }
