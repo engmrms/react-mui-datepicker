@@ -69,7 +69,7 @@ export const tw = (...classes: string[]) =>
 export const useSwitchData = () => {
     const { lang } = useLanguage(state => state)
     return (arValue: string = '', enValue: string = '') => {
-        return String(lang).toLocaleLowerCase() === 'ar' ? arValue : enValue ?? arValue
+        return String(lang).toLocaleLowerCase() === 'ar' ? arValue : enValue || arValue
     }
 }
 
