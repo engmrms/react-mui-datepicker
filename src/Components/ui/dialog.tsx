@@ -3,6 +3,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { Close } from 'google-material-icons/outlined'
 import * as React from 'react'
 
+import clsx from 'clsx'
 import { cn } from '../../Lib/utils'
 
 const Dialog = DialogPrimitive.Root
@@ -31,7 +32,11 @@ const DialogContent = React.forwardRef<
     React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { ignoreInteractOutside?: boolean; hideOverlay?: boolean }
 >(({ className, ignoreInteractOutside, hideOverlay, children, ...props }, ref) => (
     <DialogPortal>
-        {!hideOverlay && <DialogOverlay />}
+        <DialogOverlay
+            className={clsx({
+                'opacity-0': hideOverlay,
+            })}
+        />
         <DialogPrimitive.Content
             onInteractOutside={e => {
                 ignoreInteractOutside && e.preventDefault()
