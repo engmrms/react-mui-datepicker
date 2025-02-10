@@ -6,12 +6,12 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const buttonVariants = cva(
-    'inline-flex items-center font-medium justify-center ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed ',
+    'inline-flex items-center gap-space-01 font-medium justify-center  focus:outline-border-black   focus:outline focus:outline-2 focus:outline-offset-1 transition-colors  focus: disabled:pointer-events-none disabled:cursor-not-allowed ',
     {
         variants: {
             variant: {
                 default: 'disabled:bg-disabled disabled:text-card  ',
-                outline: 'border border-input disabled:text-disabled !bg-card',
+                outline: 'border border-border-neutral-primary disabled:text-disabled !bg-card',
                 ghost: ' border-none disabled:text-disabled ',
                 link: ' text-current underline-offset-4 hover:underline ',
             },
@@ -23,19 +23,24 @@ const buttonVariants = cva(
                 'icon-sm': 'p-space-01 h-[32px] text-body-01',
             },
             rounded: {
-                default: 'rounded-2',
+                default: 'rounded-[4px]',
                 full: 'rounded-full',
             },
             colors: {
                 default: 'text-foreground hover:bg-card-hover hover:text-primary active:bg-card-hover active:text-primary-oncontainer',
-                primary: 'bg-primary text-primary-foreground hover:bg-primary-dark active:bg-primary-oncontainer',
+                primary:
+                    'bg-button-background-primary text-text-oncolor-primary hover:bg-button-background-primary-hovered active:bg-button-background-primary-pressed focus:bg-button-background-primary-focused',
                 secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary-dark active:bg-secondary-oncontainer',
                 tertiary: 'bg-tertiary text-tertiary-foreground hover:bg-tertiary-dark active:bg-tertiary-oncontainer',
-                error: 'bg-error text-error-foreground hover:bg-error-dark active:bg-error-oncontainer',
+                error: 'bg-button-background-error text-text-oncolor-primary hover:bg-button-background-error-hovered active:bg-button-background-error-pressed focus:bg-button-background-error-focused',
                 warning: 'bg-warning text-warning-foreground hover:bg-warning-dark active:bg-warning-oncontainer',
                 success: 'bg-success text-success-foreground hover:bg-success-dark active:bg-success-oncontainer',
                 info: 'bg-info text-info-foreground hover:bg-info-dark active:bg-info-oncontainer',
                 gray: 'bg-transparent text-background-foreground hover:bg-card-hover active:bg-card-hover active:text-primary-oncontainer',
+                neutral:
+                    'bg-button-background-black text-text-oncolor-primary hover:bg-button-background-black-hovered active:bg-button-background-black-pressed focus:bg-button-background-black-focused',
+                oncolor:
+                    'bg-button-background-oncolor text-text-default hover:bg-button-background-oncolor-hovered active:bg-button-background-oncolor-pressed focus:bg-button-background-oncolor-focused',
             },
         },
         compoundVariants: [
@@ -165,7 +170,7 @@ const buttonVariants = cva(
         defaultVariants: {
             variant: 'default',
             size: 'default',
-            rounded: 'full',
+            rounded: 'default',
             colors: 'default',
         },
     },
@@ -177,7 +182,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant, size, rounded, colors, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button'
-    return <Comp className={cn(buttonVariants({ variant, size, rounded, colors, className }))} ref={ref} {...props} />
+    return <Comp className={cn('text- bg-disabled', buttonVariants({ variant, size, rounded, colors, className }))} ref={ref} {...props} />
 })
 Button.displayName = 'Button'
 

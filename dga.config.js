@@ -116,7 +116,11 @@ export const dgaToken = {
         disabled: 'var(--border-disabled)',
     },
     text: {
-        DEFAULT: 'var(--text-default)',
+        default: {
+            DEFAULT: 'var(--text-default)',
+            disabled: 'var(--text-default-disabled)',
+            oncolor: { disabled: 'var(--text-default-oncolor-disabled)' },
+        },
         primary: {
             DEFAULT: 'var(--text-primary)',
             light: 'var(--text-primary-light)',
@@ -266,6 +270,8 @@ export const dgaToken = {
             DEFAULT: 'var(--icon-default)',
             400: 'var(--icon-default-500)',
             500: 'var(--icon-default-500)',
+            disabled: 'var(--icon-default-disabled)',
+            oncolor: { disabled: 'var(--icon-default-oncolor-disabled)' },
         },
         neutral: {
             DEFAULT: 'var(--icon-neutral)',

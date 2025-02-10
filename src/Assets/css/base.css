@@ -157,6 +157,8 @@
         --text-primary-light: var(--primary-300);
         --text-secondary-light: var(--secondary-300);
         --text-tertiary-light: var(--tertiary-300);
+        --text-default-disabled:theme(colors.neutral.400);
+        --text-default-oncolor-disabled:theme(colors.alpha.white-40);
 
         /* border */
         --border-primary: theme(colors.neutral.200);
@@ -288,6 +290,8 @@
         --background-info-light: var(--background-info-50);
         --background-success-light: var(--background-success-50);
         --unselected-tab-icon: theme(colors.neutral.700);
+        --icon-default-disabled:theme(colors.neutral.400);
+        --icon-default-oncolor-disabled:theme(colors.alpha.white-40);
 
         /* background  */
         --background-white: theme(colors.white);
@@ -333,11 +337,11 @@
         --background-nav-header: var(--primary-800);
 
         /* button  */
-        --background-black-default: var(theme(colors.neutral.950));
-        --background-black-hovered: var(theme(colors.neutral.800));
-        --background-black-pressed: var(theme(colors.neutral.600));
-        --background-black-selected: var(theme(colors.neutral.700));
-        --background-black-focused: var(theme(colors.neutral.950));
+        --background-black-default: theme(colors.neutral.950);
+        --background-black-hovered: theme(colors.neutral.800);
+        --background-black-pressed: theme(colors.neutral.600);
+        --background-black-selected: theme(colors.neutral.700);
+        --background-black-focused: theme(colors.neutral.950);
         /* Primary Background Variables */
         --background-primary-default: var(--primary-600);
         --background-primary-hovered: var(--primary-700);
@@ -345,27 +349,27 @@
         --background-primary-selected: var(--primary-800);
         --background-primary-focused: var(--primary-600);
         /* Neutral Background Variables - Light Theme */
-        --background-neutral-default: var(theme(colors.neutral.100));
-        --background-neutral-hovered: var(theme(colors.neutral.100));
-        --background-neutral-pressed: var(theme(colors.neutral.200));
-        --background-neutral-selected: var(theme(colors.neutral.200));
-        --background-neutral-focused: var(theme(colors.neutral.100));
+        --background-neutral-default: theme(colors.neutral.100);
+        --background-neutral-hovered: theme(colors.neutral.100);
+        --background-neutral-pressed: theme(colors.neutral.200);
+        --background-neutral-selected: theme(colors.neutral.200);
+        --background-neutral-focused: theme(colors.neutral.100);
         /* Error Background Variables */
-        --background-error-default: var(theme(colors.red.600));
-        --background-error-hovered: var(theme(colors.red.700));
-        --background-error-pressed: var(theme(colors.red.900));
-        --background-error-selected: var(theme(colors.red.800));
-        --background-error-focused: var(theme(colors.red.600));
+        --background-error-default:  theme(colors.red.600);
+        --background-error-hovered:  theme(colors.red.700);
+        --background-error-pressed:  theme(colors.red.900);
+        --background-error-selected: theme(colors.red.800);
+        --background-error-focused:  theme(colors.red.600);
         /* Label Error Primary */
-        --label-error-primary-oncolor-1: var(theme(colors.red.200));
-        --label-error-primary-oncolor-2: var(theme(colors.red.300));
-        --label-error-primary-oncolor-3: var(theme(colors.red.400));
+        --label-error-primary-oncolor-1: theme(colors.red.200);
+        --label-error-primary-oncolor-2: theme(colors.red.300);
+        --label-error-primary-oncolor-3: theme(colors.red.400);
         /* Background Error Secondary */
-        --background-error-secondary-default: var(theme(colors.red.50));
-        --background-error-secondary-hovered: var(theme(colors.red.100));
-        --background-error-secondary-pressed: var(theme(colors.red.200));
-        --background-error-secondary-selected: var(theme(colors.red.50));
-        --background-error-secondary-focused: var(theme(colors.red.50));
+        --background-error-secondary-default: theme(colors.red.50);
+        --background-error-secondary-hovered: theme(colors.red.100);
+        --background-error-secondary-pressed: theme(colors.red.200);
+        --background-error-secondary-selected: theme(colors.red.50);
+        --background-error-secondary-focused: theme(colors.red.50);
         /* Background Primary Secondary */
         --background-primary-secondary-default: var(--primary-50);
         --background-primary-secondary-hovered: var(--primary-100);
@@ -373,19 +377,19 @@
         --background-primary-secondary-selected: var(--primary-50);
         --background-primary-secondary-focused: var(--primary-50);
         /* Background Oncolor */
-        --background-oncolor-default: var(theme(colors.white));
-        --background-oncolor-hovered: var(theme(colors.alpha.white-80));
-        --background-oncolor-pressed: var(theme(colors.alpha.white-60));
-        --background-oncolor-selected: var(theme(colors.alpha.white-70));
-        --background-oncolor-focused: var(theme(colors.alpha.white-100));
+        --background-oncolor-default: theme(colors.white);
+        --background-oncolor-hovered: theme(colors.alpha.white-80);
+        --background-oncolor-pressed: theme(colors.alpha.white-60);
+        --background-oncolor-selected: theme(colors.alpha.white-70);
+        --background-oncolor-focused: theme(colors.alpha.white-100);
         /* Background Transparent */
-        --background-transparent-default: var(theme(colors.alpha.white-0));
-        --background-transparent-hovered: var(theme(colors.alpha.white-20));
-        --background-transparent-pressed: var(theme(colors.alpha.white-40));
-        --background-transparent-selected: var(theme(colors.alpha.white-30));
-        --background-transparent-focused: var(theme(colors.alpha.white-0));
+        --background-transparent-default: theme(colors.alpha.white-0);
+        --background-transparent-hovered: theme(colors.alpha.white-20);
+        --background-transparent-pressed: theme(colors.alpha.white-40);
+        --background-transparent-selected: theme(colors.alpha.white-30);
+        --background-transparent-focused: theme(colors.alpha.white-0);
         /* Background Disabled */
-        --background-disabled-oncolor: var(theme(colors.alpha.white-20));
+        --background-disabled-oncolor: theme(colors.alpha.white-20);
         /* Label Transparent */
         --label-transparent-hover-oncolor: var(--primary-400);
         --label-transparent-pressed-oncolor: var(--primary-300);
@@ -508,6 +512,8 @@
         --text-primary-light: var(--primary-300);
         --text-secondary-light: var(--secondary-400);
         --text-tertiary-light: var(--tertiary-400);
+        --text-default-disabled:theme(colors.neutral.400);
+        --text-default-oncolor-disabled:theme(colors.alpha.black-40);
 
         /* border */
         --border-primary: theme(colors.neutral.500);
@@ -639,6 +645,8 @@
         --background-info-light: var(--background-info-10);
         --background-success-light: var(--background-success-10);
         --unselected-tab-icon: theme(colors.neutral.100);
+        --icon-default-disabled:theme(colors.white);
+        --icon-default-oncolor-disabled:theme(colors.white);
 
         /* background  */
 
@@ -686,25 +694,25 @@
 
         /* button */
         /* Neutral Background Variables - Dark Theme */
-        --background-neutral-default: var(theme(colors.neutral.800));
-        --background-neutral-hovered: var(theme(colors.neutral.700));
-        --background-neutral-pressed: var(theme(colors.neutral.600));
-        --background-neutral-selected: var(theme(colors.neutral.700));
-        --background-neutral-focused: var(theme(colors.neutral.800));
+        --background-neutral-default: theme(colors.neutral.800);
+        --background-neutral-hovered: theme(colors.neutral.700);
+        --background-neutral-pressed: theme(colors.neutral.600);
+        --background-neutral-selected: theme(colors.neutral.700);
+        --background-neutral-focused: theme(colors.neutral.800);
         /* Background Oncolor - Dark Theme */
-        --background-oncolor-default: var(theme(colors.black));
-        --background-oncolor-hovered: var(theme(colors.alpha.black-80));
-        --background-oncolor-pressed: var(theme(colors.alpha.black-60));
-        --background-oncolor-selected: var(theme(colors.alpha.black-70));
-        --background-oncolor-focused: var(theme(colors.alpha.black-100));
+        --background-oncolor-default: theme(colors.black);
+        --background-oncolor-hovered: theme(colors.alpha.black-80);
+        --background-oncolor-pressed: theme(colors.alpha.black-60);
+        --background-oncolor-selected: theme(colors.alpha.black-70);
+        --background-oncolor-focused: theme(colors.alpha.black-100);
         /* Background Transparent - Dark Theme */
-        --background-transparent-default: var(theme(colors.alpha.black-0));
-        --background-transparent-hovered: var(theme(colors.alpha.black-20));
-        --background-transparent-pressed: var(theme(colors.alpha.black-40));
-        --background-transparent-selected: var(theme(colors.alpha.black-30));
-        --background-transparent-focused: var(theme(colors.alpha.black-0));
+        --background-transparent-default: theme(colors.alpha.black-0);
+        --background-transparent-hovered: theme(colors.alpha.black-20);
+        --background-transparent-pressed: theme(colors.alpha.black-40);
+        --background-transparent-selected: theme(colors.alpha.black-30);
+        --background-transparent-focused: theme(colors.alpha.black-0);
         /* Background Disabled - Dark Theme */
-        --background-disabled-oncolor: var(theme(colors.alpha.black-20));
+        --background-disabled-oncolor: theme(colors.alpha.black-20);
     }
 
     [data-theme='parent'] {
@@ -812,7 +820,7 @@
     }
 
     body {
-        @apply bg-card font-IBMPlexSans text-base text-foreground;
+        @apply font-IBMPlexSans bg-card text-base text-foreground;
     }
     input:-webkit-autofill,
     input:-webkit-autofill:focus {
@@ -823,7 +831,7 @@
 }
 
 .MuiButtonBase-root.MuiPickersDay-root {
-    @apply rounded-1 font-IBMPlexSans text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground;
+    @apply font-IBMPlexSans rounded-1 text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground;
 }
 .MuiPickersCalendarHeader-label,
 .MuiDayCalendar-header .MuiTypography-caption.MuiDayCalendar-weekDayLabel {

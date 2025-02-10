@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './Assets/css/Shared.css'
 
+import { Check } from 'google-material-icons/outlined'
 import { Stack, Switch } from './Components'
 import { Button } from './Components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Components/ui/tooltip'
@@ -10,7 +11,25 @@ const App = () => {
     return (
         <Stack direction={'col'}>
             <h1 className="shadow-md">Tetco Design System</h1>
-            <Switch/>
+            <Stack className="p-space-03">
+                <Button variant={'default'} colors={'primary'}>
+                    <Check />
+                    <span>Button</span>
+                </Button>
+                <Button variant={'default'} colors={'error'}>
+                    <Check />
+                    <span>Button</span>
+                </Button>
+                <Button variant={'default'} colors={'oncolor'}>
+                    <Check />
+                    <span>Button</span>
+                </Button>
+                <Button variant={'default'} colors={'neutral'}>
+                    <Check />
+                    <span>Button</span>
+                </Button>
+            </Stack>
+            <Switch />
             <div className="mt-space-05 p-space-06">
                 <TooltipProvider>
                     <Tooltip>
@@ -27,4 +46,8 @@ const App = () => {
     )
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>)
+ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+)
