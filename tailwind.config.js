@@ -40,6 +40,7 @@ module.exports = {
                 disabled: {
                     DEFAULT: 'var(--disabled)',
                     secondary: 'var(--disabled-foreground)',
+                    foreground: 'var(--disabled-foreground)',
                 },
                 primary: {
                     DEFAULT: 'var(--primary)',

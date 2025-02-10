@@ -64,6 +64,13 @@ export const dgaToken = {
             50: 'var(--background-SA-Flag-50)',
             25: 'var(--background-SA-Flag-25)',
         },
+        disabled: {
+            DEFAULT: 'var(--background-disabled)',
+            primary: 'var(--background-disabled-primary)',
+        },
+        inverse: {
+            disabled: 'var(--background-inverse-disabled)',
+        },
     },
 
     border: {

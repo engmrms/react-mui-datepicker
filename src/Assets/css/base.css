@@ -335,6 +335,9 @@
         --background-SA-Flag-25: theme(colors.green.25);
         --background-notification-white: theme(colors.white);
         --background-nav-header: var(--primary-800);
+        --background-disabled:theme(colors.neutral.200);
+        --background-disabled-primary:var(--primary-200);
+        --background-inverse-disabled:theme(colors.neutral.100);
 
         /* button  */
         --background-black-default: theme(colors.neutral.950);
@@ -691,6 +694,9 @@
         --background-SA-Flag-25: theme(colors.neutral.900);
         --background-notification-white: theme(colors.neutral.900);
         --background-nav-header: var(--primary-800);
+        --background-disabled:theme(colors.neutral.700);
+        --background-disabled-primary:var(--primary-200);
+        --background-inverse-disabled:theme(colors.neutral.700);
 
         /* button */
         /* Neutral Background Variables - Dark Theme */
