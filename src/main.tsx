@@ -12,21 +12,25 @@ const App = () => {
         <Stack direction={'col'}>
             <h1 className="shadow-md">Tetco Design System</h1>
             <Stack className="p-space-03">
-                <Button variant={'default'} colors={'primary'}>
+                <Button variant={'text'} size={'sm'} colors={'primary'}>
                     <Check />
                     <span>Button</span>
+                    <Check />
                 </Button>
-                <Button variant={'default'} colors={'error'}>
+                <Button variant={'text'} size={'sm'} colors={'error'}>
                     <Check />
                     <span>Button</span>
+                    <Check />
                 </Button>
-                <Button variant={'default'} colors={'oncolor'}>
+                <Button variant={'text'} size={'sm'} colors={'oncolor'}>
                     <Check />
                     <span>Button</span>
+                    <Check />
                 </Button>
-                <Button variant={'default'} colors={'neutral'}>
+                <Button variant={'text'} size={'sm'} colors={'neutral'}>
                     <Check />
                     <span>Button</span>
+                    <Check />
                 </Button>
             </Stack>
             <Switch />

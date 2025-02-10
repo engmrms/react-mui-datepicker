@@ -1,4 +1,36 @@
 export const dgaToken = {
+    disabled: {
+        DEFAULT: 'var(--disabled)',
+        secondary: 'var(--disabled-foreground)',
+        foreground: 'var(--disabled-foreground)',
+        border: {
+            disabled: 'var(--disabled-control-disabled)',
+        },
+        control: {
+            disabled: 'var(--disabled-border-disabled)',
+        },
+        background: {
+            disabled: {
+                DEFAULT: 'var(--background-disabled)',
+                primary: 'var(--background-disabled-primary)',
+            },
+            inverse: {
+                disabled: 'var(--background-inverse-disabled)',
+            },
+        },
+        text: {
+            default: {
+                disabled: 'var(--text-default-disabled)',
+                oncolor: { disabled: 'var(--text-default-oncolor-disabled)' },
+            },
+        },
+        icon: {
+            default: {
+                disabled: 'var(--icon-default-disabled)',
+                oncolor: { disabled: 'var(--icon-default-oncolor-disabled)' },
+            },
+        },
+    },
     background: {
         DEFAULT: 'var(--background)',
         overlay: 'var(--overlay)',
@@ -12,6 +44,7 @@ export const dgaToken = {
         'surface-oncolor': 'var(--surface-oncolor)',
         'notification-white': 'var(--background-notification-white)',
         'nav-header': 'var(--background-nav-header)',
+
         neutral: {
             800: 'var(--background-neutral-800)',
             400: 'var(--background-neutral-400)',
@@ -63,13 +96,6 @@ export const dgaToken = {
             DEFAULT: 'var(--background-SA-Flag)',
             50: 'var(--background-SA-Flag-50)',
             25: 'var(--background-SA-Flag-25)',
-        },
-        disabled: {
-            DEFAULT: 'var(--background-disabled)',
-            primary: 'var(--background-disabled-primary)',
-        },
-        inverse: {
-            disabled: 'var(--background-inverse-disabled)',
         },
     },
 
@@ -125,8 +151,6 @@ export const dgaToken = {
     text: {
         default: {
             DEFAULT: 'var(--text-default)',
-            disabled: 'var(--text-default-disabled)',
-            oncolor: { disabled: 'var(--text-default-oncolor-disabled)' },
         },
         primary: {
             DEFAULT: 'var(--text-primary)',
@@ -277,8 +301,6 @@ export const dgaToken = {
             DEFAULT: 'var(--icon-default)',
             400: 'var(--icon-default-500)',
             500: 'var(--icon-default-500)',
-            disabled: 'var(--icon-default-disabled)',
-            oncolor: { disabled: 'var(--icon-default-oncolor-disabled)' },
         },
         neutral: {
             DEFAULT: 'var(--icon-neutral)',
@@ -357,12 +379,12 @@ export const dgaToken = {
                 pressed: 'var(--background-primary-pressed)',
                 selected: 'var(--background-primary-selected)',
                 focused: 'var(--background-primary-focused)',
-                secondary: {
-                    DEFAULT: 'var(--background-primary-secondary-default)',
-                    hovered: 'var(--background-primary-secondary-hovered)',
-                    pressed: 'var(--background-primary-secondary-pressed)',
-                    selected: 'var(--background-primary-secondary-selected)',
-                    focused: 'var(--background-primary-secondary-focused)',
+                light: {
+                    DEFAULT: 'var(--background-primary-light-default)',
+                    hovered: 'var(--background-primary-light-hovered)',
+                    pressed: 'var(--background-primary-light-pressed)',
+                    selected: 'var(--background-primary-light-selected)',
+                    focused: 'var(--background-primary-light-focused)',
                 },
             },
             error: {

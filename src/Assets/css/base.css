@@ -86,8 +86,10 @@
         --border: theme(colors.gray.300);
         --border-secondary: theme(colors.gray.300);
 
-        --disabled: theme(colors.gray.600);
-        --disabled-foreground: theme(colors.gray.50);
+        --disabled: theme(colors.neutral.400);
+        --disabled-foreground: theme(colors.neutral.50);
+        --disabled-control-disabled: theme(colors.neutral.400);
+        --disabled-border-disabled: theme(colors.neutral.400);
 
         --input: theme(colors.gray.500);
         --ring: theme(colors.gray.900);
@@ -157,8 +159,8 @@
         --text-primary-light: var(--primary-300);
         --text-secondary-light: var(--secondary-300);
         --text-tertiary-light: var(--tertiary-300);
-        --text-default-disabled:theme(colors.neutral.400);
-        --text-default-oncolor-disabled:theme(colors.alpha.white-40);
+        --text-default-disabled: theme(colors.neutral.400);
+        --text-default-oncolor-disabled: theme(colors.alpha.white-40);
 
         /* border */
         --border-primary: theme(colors.neutral.200);
@@ -290,8 +292,8 @@
         --background-info-light: var(--background-info-50);
         --background-success-light: var(--background-success-50);
         --unselected-tab-icon: theme(colors.neutral.700);
-        --icon-default-disabled:theme(colors.neutral.400);
-        --icon-default-oncolor-disabled:theme(colors.alpha.white-40);
+        --icon-default-disabled: theme(colors.neutral.400);
+        --icon-default-oncolor-disabled: theme(colors.alpha.white-40);
 
         /* background  */
         --background-white: theme(colors.white);
@@ -335,9 +337,9 @@
         --background-SA-Flag-25: theme(colors.green.25);
         --background-notification-white: theme(colors.white);
         --background-nav-header: var(--primary-800);
-        --background-disabled:theme(colors.neutral.200);
-        --background-disabled-primary:var(--primary-200);
-        --background-inverse-disabled:theme(colors.neutral.100);
+        --background-disabled: theme(colors.neutral.200);
+        --background-disabled-primary: var(--primary-200);
+        --background-inverse-disabled: theme(colors.neutral.100);
 
         /* button  */
         --background-black-default: theme(colors.neutral.950);
@@ -358,11 +360,11 @@
         --background-neutral-selected: theme(colors.neutral.200);
         --background-neutral-focused: theme(colors.neutral.100);
         /* Error Background Variables */
-        --background-error-default:  theme(colors.red.600);
-        --background-error-hovered:  theme(colors.red.700);
-        --background-error-pressed:  theme(colors.red.900);
+        --background-error-default: theme(colors.red.600);
+        --background-error-hovered: theme(colors.red.700);
+        --background-error-pressed: theme(colors.red.900);
         --background-error-selected: theme(colors.red.800);
-        --background-error-focused:  theme(colors.red.600);
+        --background-error-focused: theme(colors.red.600);
         /* Label Error Primary */
         --label-error-primary-oncolor-1: theme(colors.red.200);
         --label-error-primary-oncolor-2: theme(colors.red.300);
@@ -373,12 +375,12 @@
         --background-error-secondary-pressed: theme(colors.red.200);
         --background-error-secondary-selected: theme(colors.red.50);
         --background-error-secondary-focused: theme(colors.red.50);
-        /* Background Primary Secondary */
-        --background-primary-secondary-default: var(--primary-50);
-        --background-primary-secondary-hovered: var(--primary-100);
-        --background-primary-secondary-pressed: var(--primary-200);
-        --background-primary-secondary-selected: var(--primary-50);
-        --background-primary-secondary-focused: var(--primary-50);
+        /* Background Primary  */
+        --background-primary-light-default: var(--primary-50);
+        --background-primary-light-hovered: var(--primary-100);
+        --background-primary-light-pressed: var(--primary-200);
+        --background-primary-light-selected: var(--primary-50);
+        --background-primary-light-focused: var(--primary-50);
         /* Background Oncolor */
         --background-oncolor-default: theme(colors.white);
         --background-oncolor-hovered: theme(colors.alpha.white-80);
@@ -485,8 +487,10 @@
         --border: theme(colors.grayDark.500);
         --border-secondary: theme(colors.grayDark.600);
 
-        --disabled: theme(colors.grayDark.400);
-        --disabled-foreground: theme(colors.grayDark.50);
+        --disabled: theme(colors.neutral.400);
+        --disabled-foreground: theme(colors.neutral.50);
+        --disabled-control-disabled: theme(colors.alpha.white-30);
+        --disabled-border-disabled: theme(colors.neutral.400);
 
         --input: theme(colors.grayDark.500);
         --ring: theme(colors.gray.900);
@@ -515,8 +519,8 @@
         --text-primary-light: var(--primary-300);
         --text-secondary-light: var(--secondary-400);
         --text-tertiary-light: var(--tertiary-400);
-        --text-default-disabled:theme(colors.neutral.400);
-        --text-default-oncolor-disabled:theme(colors.alpha.black-40);
+        --text-default-disabled: theme(colors.neutral.400);
+        --text-default-oncolor-disabled: theme(colors.alpha.black-40);
 
         /* border */
         --border-primary: theme(colors.neutral.500);
@@ -648,8 +652,8 @@
         --background-info-light: var(--background-info-10);
         --background-success-light: var(--background-success-10);
         --unselected-tab-icon: theme(colors.neutral.100);
-        --icon-default-disabled:theme(colors.white);
-        --icon-default-oncolor-disabled:theme(colors.white);
+        --icon-default-disabled: theme(colors.white);
+        --icon-default-oncolor-disabled: theme(colors.white);
 
         /* background  */
 
@@ -694,9 +698,9 @@
         --background-SA-Flag-25: theme(colors.neutral.900);
         --background-notification-white: theme(colors.neutral.900);
         --background-nav-header: var(--primary-800);
-        --background-disabled:theme(colors.neutral.700);
-        --background-disabled-primary:var(--primary-200);
-        --background-inverse-disabled:theme(colors.neutral.700);
+        --background-disabled: theme(colors.neutral.700);
+        --background-disabled-primary: var(--primary-200);
+        --background-inverse-disabled: theme(colors.neutral.700);
 
         /* button */
         /* Neutral Background Variables - Dark Theme */

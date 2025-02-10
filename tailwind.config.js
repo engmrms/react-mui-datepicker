@@ -37,11 +37,6 @@ module.exports = {
                     secondary: 'var(--foreground-secondary)',
                     tertiary: 'var(--foreground-tertiary)',
                 },
-                disabled: {
-                    DEFAULT: 'var(--disabled)',
-                    secondary: 'var(--disabled-foreground)',
-                    foreground: 'var(--disabled-foreground)',
-                },
                 primary: {
                     DEFAULT: 'var(--primary)',
                     foreground: 'var(--primary-foreground)',
@@ -240,7 +235,7 @@ module.exports = {
                     25: '#FFFBFA',
                     50: '#FEF3F2',
                     100: '#FEE4E2',
-                    200: '#FDA29B',
+                    200: '#FECDCA',
                     300: '#FDA29B',
                     400: '#F97066',
                     500: '#F04438',
@@ -391,6 +386,7 @@ module.exports = {
                 lg: 'var(--radius)',
                 md: 'calc(var(--radius) - 2px)',
                 sm: 'calc(var(--radius) - 4px)',
+                0: '4px',
                 1: '8px',
                 2: '12px',
                 3: '16px',

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
- 
+
 
 import { Button } from '../../ui/button'
 
@@ -28,7 +28,7 @@ type Story = StoryObj<typeof Button>
 export const Default: Story = {
     args: {
         variant: 'default',
-        colors: 'default',
+        colors: 'primary',
         size: 'default',
         rounded: 'default',
         children: 'Button',
