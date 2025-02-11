@@ -124,7 +124,7 @@ const badgeVariants = cva(
             {
                 variant: 'ghost',
                 colors: 'gray',
-                className: 'text-tag-text-neutral bg-tag-background-neutral-light border-tag-border-neutral-light',
+                className: 'text-tag-text-neutral bg-tag-background-neutral-light border-border-neutral-secondary',
             },
             {
                 variant: 'ghost',

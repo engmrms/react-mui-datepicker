@@ -205,10 +205,10 @@
         --control-pressed: theme(colors.neutral.300);
         --control-ripple-effect: theme(colors.neutral.100);
         --control-border: theme(colors.neutral.500);
-        --Control-icon-hovered: theme(colors.white);
-        --Control-icon-pressed: theme(colors.white);
-        --Control-icon-disabled: theme(colors.white);
-        --Control-boarder-disabled: theme(colors.neutral.400);
+        --control-icon-hovered: theme(colors.white);
+        --control-icon-pressed: theme(colors.white);
+        --control-icon-disabled: theme(colors.white);
+        --control-border-disabled: theme(colors.neutral.400);
         --control-disabled: theme(colors.neutral.300);
 
         /* tag */
@@ -565,10 +565,10 @@
         --control-pressed: theme(colors.neutral.600);
         --control-ripple-effect: theme(colors.neutral.900);
         --control-border: theme(colors.neutral.400);
-        --Control-icon-hovered: var(--primary-800);
-        --Control-icon-pressed: var(--primary-800);
-        --Control-icon-disabled: theme(colors.neutral.400);
-        --Control-boarder-disabled: theme(colors.alpha.black-30);
+        --control-icon-hovered: var(--primary-800);
+        --control-icon-pressed: var(--primary-800);
+        --control-icon-disabled: theme(colors.neutral.400);
+        --control-border-disabled: theme(colors.alpha.black-30);
         --control-disabled: theme(colors.neutral.300);
 
         /* tag */

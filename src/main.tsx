@@ -35,13 +35,13 @@ const App = () => {
             </Stack>
 
             <Stack className="p-space-03">
-                <Badge variant={'ghost'} size={'sm'} colors={'primary'}>
+                <Badge variant={'ghost'} size={'sm'} colors={'gray'}>
                     <Check />
                     <span>Badge</span>
                     <Check />
                 </Badge>
             </Stack>
-            <Switch />
+            <Switch  disabled/>
             <div className="mt-space-05 p-space-06">
                 <TooltipProvider>
                     <Tooltip>
