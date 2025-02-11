@@ -7,17 +7,17 @@ import { cva, VariantProps } from 'class-variance-authority'
 import { cn } from '../../Lib/utils'
 
 const radioGroupVariants = cva(
-    'flex aspect-square h-space-05 w-space-05 rounded-full active:data-[state=unchecked]:bg-control-pressed border border-control-border hover:bg-control-ripple-effect focus:ring-2 focus:ring-border-black focus:ring-offset-2 disabled:cursor-not-allowed disabled:border-border-disabled disabled:data-[state=checked]:text-control-disabled',
+    'flex aspect-square h-space-05 w-space-05 rounded-full enabled:active:data-[state=unchecked]:bg-control-pressed border border-control-border enabled:hover:bg-control-ripple-effect focus:ring-2 focus:ring-border-black focus:ring-offset-2 disabled:cursor-not-allowed disabled:border-border-disabled disabled:data-[state=checked]:text-control-disabled',
     {
         variants: {
             colors: {
                 primary: `data-[state=checked]:border-control-primary-checked data-[state=checked]:text-control-primary-checked
-                hover:data-[state=checked]:border-control-primary-hovered hover:data-[state=checked]:text-control-primary-hovered
-                active:data-[state=checked]:border-control-primary-pressed active:data-[state=checked]:text-control-primary-pressed
+                enabled:hover:data-[state=checked]:border-control-primary-hovered enabled:hover:data-[state=checked]:text-control-primary-hovered
+                enabled:active:data-[state=checked]:border-control-primary-pressed active:data-[state=checked]:text-control-primary-pressed
                 `,
                 neutral: `data-[state=checked]:border-control-neutral-checked data-[state=checked]:text-control-neutral-checked
-                hover:data-[state=checked]:border-control-neutral-hovered hover:data-[state=checked]:text-control-neutral-hovered
-                active:data-[state=checked]:border-control-neutral-pressed active:data-[state=checked]:text-control-neutral-pressed
+                enabled:hover:data-[state=checked]:border-control-neutral-hovered enabled:hover:data-[state=checked]:text-control-neutral-hovered
+                enabled:active:data-[state=checked]:border-control-neutral-pressed enabled:active:data-[state=checked]:text-control-neutral-pressed
                 `,
             },
         },
