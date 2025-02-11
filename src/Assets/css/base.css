@@ -747,6 +747,48 @@
         --tertiary-dark: theme(colors.cyan.700);
         --tertiary-oncontainer: theme(colors.cyan.900);
         --tertiary-container: theme(colors.cyan.100);
+
+        --primary-10: theme(colors.middleBlue.10);
+        --primary-25: theme(colors.middleBlue.25);
+        --primary-50: theme(colors.middleBlue.50);
+        --primary-100: theme(colors.middleBlue.100);
+        --primary-200: theme(colors.middleBlue.200);
+        --primary-300: theme(colors.middleBlue.300);
+        --primary-400: theme(colors.middleBlue.400);
+        --primary-500: theme(colors.middleBlue.500);
+        --primary-600: theme(colors.middleBlue.600);
+        --primary-700: theme(colors.middleBlue.700);
+        --primary-800: theme(colors.middleBlue.800);
+        --primary-900: theme(colors.middleBlue.900);
+        --primary-950: theme(colors.middleBlue.900);
+
+        --secondary-10: theme(colors.puertoRico.10);
+        --secondary-25: theme(colors.puertoRico.50);
+        --secondary-50: theme(colors.puertoRico.50);
+        --secondary-100: theme(colors.puertoRico.100);
+        --secondary-200: theme(colors.puertoRico.200);
+        --secondary-300: theme(colors.puertoRico.300);
+        --secondary-400: theme(colors.puertoRico.400);
+        --secondary-500: theme(colors.puertoRico.500);
+        --secondary-600: theme(colors.puertoRico.600);
+        --secondary-700: theme(colors.puertoRico.700);
+        --secondary-800: theme(colors.puertoRico.800);
+        --secondary-900: theme(colors.puertoRico.900);
+        --secondary-950: theme(colors.puertoRico.900);
+
+        --tertiary-10: theme(colors.olivine.10);
+        --tertiary-25: theme(colors.olivine.10);
+        --tertiary-50: theme(colors.olivine.50);
+        --tertiary-100: theme(colors.olivine.100);
+        --tertiary-200: theme(colors.olivine.200);
+        --tertiary-300: theme(colors.olivine.300);
+        --tertiary-400: theme(colors.olivine.400);
+        --tertiary-500: theme(colors.olivine.500);
+        --tertiary-600: theme(colors.olivine.600);
+        --tertiary-700: theme(colors.olivine.700);
+        --tertiary-800: theme(colors.olivine.800);
+        --tertiary-900: theme(colors.olivine.900);
+        --tertiary-950: theme(colors.olivine.900);
     }
 
     [data-theme='parent'].dark {
@@ -795,6 +837,48 @@
         --tertiary-dark: theme(colors.cyan.700);
         --tertiary-oncontainer: theme(colors.cyan.900);
         --tertiary-container: theme(colors.cyan.100);
+
+        --primary-10: theme(colors.lavender.10);
+        --primary-25: theme(colors.lavender.25);
+        --primary-50: theme(colors.lavender.50);
+        --primary-100: theme(colors.lavender.100);
+        --primary-200: theme(colors.lavender.200);
+        --primary-300: theme(colors.lavender.300);
+        --primary-400: theme(colors.lavender.400);
+        --primary-500: theme(colors.lavender.500);
+        --primary-600: theme(colors.lavender.600);
+        --primary-700: theme(colors.lavender.700);
+        --primary-800: theme(colors.lavender.800);
+        --primary-900: theme(colors.lavender.900);
+        --primary-950: theme(colors.lavender.950);
+
+        --secondary-10: theme(colors.olivine.10);
+        --secondary-25: theme(colors.olivine.10);
+        --secondary-50: theme(colors.olivine.50);
+        --secondary-100: theme(colors.olivine.100);
+        --secondary-200: theme(colors.olivine.200);
+        --secondary-300: theme(colors.olivine.300);
+        --secondary-400: theme(colors.olivine.400);
+        --secondary-500: theme(colors.olivine.500);
+        --secondary-600: theme(colors.olivine.600);
+        --secondary-700: theme(colors.olivine.700);
+        --secondary-800: theme(colors.olivine.800);
+        --secondary-900: theme(colors.olivine.900);
+        --secondary-950: theme(colors.olivine.900);
+
+        --tertiary-10: theme(colors.middleBlue.10);
+        --tertiary-25: theme(colors.middleBlue.25);
+        --tertiary-50: theme(colors.middleBlue.50);
+        --tertiary-100: theme(colors.middleBlue.100);
+        --tertiary-200: theme(colors.middleBlue.200);
+        --tertiary-300: theme(colors.middleBlue.300);
+        --tertiary-400: theme(colors.middleBlue.400);
+        --tertiary-500: theme(colors.middleBlue.500);
+        --tertiary-600: theme(colors.middleBlue.600);
+        --tertiary-700: theme(colors.middleBlue.700);
+        --tertiary-800: theme(colors.middleBlue.800);
+        --tertiary-900: theme(colors.middleBlue.900);
+        --tertiary-950: theme(colors.middleBlue.900);
     }
 
     [data-theme='student'].dark {
@@ -830,7 +914,7 @@
     }
 
     body {
-        @apply font-IBMPlexSans bg-card text-base text-foreground;
+        @apply bg-card font-IBMPlexSans text-base text-foreground;
     }
     input:-webkit-autofill,
     input:-webkit-autofill:focus {
@@ -841,7 +925,7 @@
 }
 
 .MuiButtonBase-root.MuiPickersDay-root {
-    @apply font-IBMPlexSans rounded-1 text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground;
+    @apply rounded-1 font-IBMPlexSans text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground;
 }
 .MuiPickersCalendarHeader-label,
 .MuiDayCalendar-header .MuiTypography-caption.MuiDayCalendar-weekDayLabel {
