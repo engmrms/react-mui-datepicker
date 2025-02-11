@@ -27,6 +27,8 @@ export const Default: Story = {
     args: {
         asChild: false,
         disabled: false,
+        colors: 'primary',
+
         dir: 'ltr',
     },
 
@@ -34,7 +36,7 @@ export const Default: Story = {
         //const { dir } = useLanguage()
 
         return (
-            <RadioGroup defaultValue="comfortable" {...arg}  dir={dir}>
+            <RadioGroup defaultValue="comfortable" {...arg} dir={dir}>
                 <div className="flex items-center gap-x-space-02">
                     <RadioGroupItem value="default" id="r1" />
                     <Label htmlFor="r1">Default</Label>

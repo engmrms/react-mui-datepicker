@@ -200,6 +200,7 @@ export const dgaToken = {
         },
         disabled: 'var(--control-disabled)',
         'ripple-effect': 'var(--control-ripple-effect)',
+        pressed: 'var(--control-pressed)',
     },
     tag: {
         background: {
