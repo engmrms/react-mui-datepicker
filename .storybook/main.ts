@@ -11,20 +11,21 @@ const config: StorybookConfig = {
         '@storybook/addon-interactions',
         '@storybook/addon-a11y',
         '@storybook/addon-mdx-gfm',
+        '@chromatic-com/storybook',
     ],
     typescript: {
-        reactDocgenTypescriptOptions: {
-            compilerOptions: {
-                allowSyntheticDefaultImports: true,
-                esModuleInterop: true,
-            },
-            propFilter: (prop, component) => {
-                const isExcludedProp = excludedPropNames.includes(prop.name)
-                const isHTMLElementProp = (prop.parent && prop.parent.fileName.includes('node_modules/@types/react/')) || false
+        // reactDocgenTypescriptOptions: {
+        //     compilerOptions: {
+        //         allowSyntheticDefaultImports: true,
+        //         esModuleInterop: true,
+        //     },
+        //     propFilter: (prop, component) => {
+        //         const isExcludedProp = excludedPropNames.includes(prop.name)
+        //         const isHTMLElementProp = (prop.parent && prop.parent.fileName.includes('node_modules/@types/react/')) || false
 
-                return !(isExcludedProp || isHTMLElementProp)
-            },
-        },
+        //         return !(isExcludedProp || isHTMLElementProp)
+        //     },
+        // },
 
         reactDocgen: 'react-docgen-typescript',
     },
@@ -33,7 +34,6 @@ const config: StorybookConfig = {
         options: {},
     },
     docs: {
-        autodocs: 'tag',
         defaultName: 'Documentation',
     },
     staticDirs: ['../public'],

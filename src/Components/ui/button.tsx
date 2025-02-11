@@ -6,7 +6,7 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const buttonVariants = cva(
-    'inline-flex items-center gap-space-01 font-medium justify-center  focus:outline-border-black focus:outline focus:outline-2 focus:outline-offset-1 transition-colors  disabled:pointer-events-none disabled:cursor-not-allowed ',
+    'inline-flex items-center gap-space-01 font-medium justify-center focus:outline-border-black focus:outline focus:outline-2 focus:outline-offset-1 transition-colors  disabled:pointer-events-none disabled:cursor-not-allowed ',
     {
         variants: {
             variant: {
@@ -23,8 +23,8 @@ const buttonVariants = cva(
                 xs: 'py-space-01 px-space-02 h-space-05 text-caption-01 [&>svg]:size-space-04',
 
                 // lg: 'px-8',
-                icon: 'p-space-02 h-[40px] text-body-02',
-                'icon-sm': 'p-space-01 h-[32px] text-body-01',
+                icon: 'p-space-02 h-[40px] text-body-02 [&>svg]:size-space-05',
+                'icon-sm': 'p-space-01 h-[32px] text-body-01 [&>svg]:size-[20px]',
             },
             rounded: {
                 default: 'rounded-0',
