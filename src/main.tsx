@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './Assets/css/Shared.css'
 
 import { Check } from 'google-material-icons/outlined'
-import { Stack, Switch } from './Components'
+import { Badge, Stack, Switch } from './Components'
 import { Button } from './Components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Components/ui/tooltip'
 
@@ -32,6 +32,14 @@ const App = () => {
                     <span>Button</span>
                     <Check />
                 </Button>
+            </Stack>
+
+            <Stack className="p-space-03">
+                <Badge variant={'ghost'} size={'sm'} colors={'primary'}>
+                    <Check />
+                    <span>Badge</span>
+                    <Check />
+                </Badge>
             </Stack>
             <Switch />
             <div className="mt-space-05 p-space-06">
