@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Checkbox } from '../../ui/checkbox'
@@ -27,14 +28,16 @@ export const Default: Story = {
         asChild: false,
         disabled: false,
     },
-    render: (arg, { globals: { dir } }) => (
-        <div className="flex items-center gap-space-01">
-            <Checkbox {...arg} id="terms" dir={dir} />
-            <label htmlFor="terms" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                Accept terms and conditions
-            </label>
-        </div>
-    ),
+    render: (arg, { globals: { dir } }) => {
+        return (
+            <div className="flex items-center gap-space-01">
+                <Checkbox {...arg} id="terms" dir={dir} />
+                <label htmlFor="terms" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                    Accept terms and conditions
+                </label>
+            </div>
+        )
+    },
 }
 
 export const Indeterminate: Story = {
@@ -42,12 +45,14 @@ export const Indeterminate: Story = {
         asChild: false,
         disabled: false,
     },
-    render: (arg, { globals: { dir } }) => (
-        <div className="flex items-center gap-space-01">
-            <Checkbox {...arg} id="terms" dir={dir} checked={'indeterminate'} />
-            <label htmlFor="terms" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                Accept terms and conditions
-            </label>
-        </div>
-    ),
+    render: (arg, { globals: { dir } }) => {
+        return (
+            <div className="flex items-center gap-space-01">
+                <Checkbox {...arg} id="terms" dir={dir} checked={'indeterminate'} />
+                <label htmlFor="terms" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                    Accept terms and conditions
+                </label>
+            </div>
+        )
+    },
 }

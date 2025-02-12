@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './Assets/css/Shared.css'
 
 import { Check } from 'google-material-icons/outlined'
-import { Badge, Stack, Switch } from './Components'
+import { Badge, Link, Stack, Switch } from './Components'
 import { Button } from './Components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Components/ui/tooltip'
 
@@ -42,6 +42,7 @@ const App = () => {
                 </Badge>
             </Stack>
             <Switch  disabled/>
+            <Link colors={"primary"} href='#' disabled  >link sample</Link>
             <div className="mt-space-05 p-space-06">
                 <TooltipProvider>
                     <Tooltip>

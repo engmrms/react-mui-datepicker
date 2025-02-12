@@ -231,7 +231,7 @@ const buttonVariants = cva(
             {
                 variant: 'link',
                 colors: 'primary',
-                className: 'text-primary !bg-transparent',
+                className: 'text-link !bg-transparent',
             },
             {
                 variant: 'link',
@@ -254,7 +254,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant, size, rounded, colors, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button'
-    return <Comp className={cn(' ', buttonVariants({ variant, size, rounded, colors, className }))} ref={ref} {...props} />
+    return <Comp className={cn('text-link ', buttonVariants({ variant, size, rounded, colors, className }))} ref={ref} {...props} />
 })
 Button.displayName = 'Button'
 

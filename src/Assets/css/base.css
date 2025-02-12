@@ -403,6 +403,76 @@
         --icon-transparent-hover-oncolor: var(--primary-400);
         --icon-transparent-pressed-oncolor: var(--primary-300);
         --icon-transparent-selected-oncolor: var(--primary-400);
+
+
+        /* link */
+        /* Primary Link Colors */
+        --link-primary: var(--primary-600);
+        --link-primary-hovered: var(--primary-400);
+        --link-primary-pressed: var(--primary-300);
+        --link-primary-focused: var(--primary-600);
+        --link-primary-visited: var(--primary-800);
+
+        /* Primary Icon Link Colors */
+        --link-icon-primary-hovered: var(--primary-400);
+        --link-icon-primary-pressed: var(--primary-300);
+        --link-icon-primary-focused: var(--primary-600);
+        --link-icon-primary-visited: var(--primary-800);
+
+        /* Neutral Link Colors */
+        --link-neutral: theme(colors.neutral.700);
+        --link-neutral-hovered: theme(colors.neutral.500);
+        --link-neutral-pressed: theme(colors.neutral.400);
+        --link-neutral-focused: theme(colors.neutral.700);
+        --link-neutral-visited: theme(colors.neutral.600);
+
+        /* Neutral Icon Link Colors */
+        --link-icon-neutral-hovered: theme(colors.neutral.500);
+        --link-icon-neutral-pressed: theme(colors.neutral.400);
+        --link-icon-neutral-focused: theme(colors.neutral.700);
+        --link-icon-neutral-visited: theme(colors.neutral.600);
+
+        /* On-Color Link Colors */
+        --link-oncolor: theme(colors.white);
+        --link-oncolor-hovered: theme(colors.alpha.white-80);
+        --link-icon-oncolor-hovered: theme(colors.alpha.white-80);
+        --link-oncolor-pressed: theme(colors.alpha.white-60);
+        --link-icon-oncolor-pressed: theme(colors.alpha.white-60);
+        --link-oncolor-focused: theme(colors.white);
+        --link-oncolor-visited: theme(colors.alpha.white-90);
+        --link-icon-oncolor-visited: theme(colors.alpha.white-90);
+        --link-oncolor-disabled: theme(colors.alpha.white-30);
+        --link-icon-oncolor-disabled: theme(colors.alpha.white-30);
+
+        /* Error Link States */
+        --link-error: theme(colors.red.600);
+        --link-error-hovered: theme(colors.red.700);
+        --link-icon-error-hovered: theme(colors.red.700);
+        --link-error-pressed: theme(colors.red.900);
+        --link-icon-error-pressed: theme(colors.red.900);
+        --link-error-focused: theme(colors.red.800);
+        --link-icon-error-focused: theme(colors.red.800);
+        --link-error-visited: theme(colors.red.600);
+        --link-icon-error-visited: theme(colors.red.600);
+
+        /* Secondary Link States */
+        --link-secondary: var(--secondary-600);
+        --link-secondary-hovered: var(--secondary-400);
+        --link-secondary-pressed: var(--secondary-300);
+        --link-secondary-focused: var(--secondary-600);
+        --link-secondary-visited: var(--secondary-900);
+
+        /* Tertiary Link States */
+        --link-tertiary: var(--tertiary-500);
+        --link-tertiary-hovered: var(--tertiary-400);
+        --link-tertiary-pressed: var(--tertiary-300);
+        --link-tertiary-focused: var(--tertiary-500);
+        --link-tertiary-visited: var(--tertiary-800);
+
+
+
+
+
     }
 
     .dark {
@@ -723,6 +793,21 @@
         --background-transparent-focused: theme(colors.alpha.black-0);
         /* Background Disabled - Dark Theme */
         --background-disabled-oncolor: theme(colors.alpha.black-20);
+
+        /* link */
+        --link-neutral: theme(colors.neutral.200);
+        --link-neutral-hovered: theme(colors.neutral.400);
+        --link-neutral-visited: theme(colors.neutral.300);
+        --link-neutral-focused: theme(colors.neutral.200);
+        --link-neutral-pressed: theme(colors.neutral.500);
+        --link-icon-neutral-hovered: theme(colors.neutral.400);
+        --link-icon-neutral-pressed: theme(colors.neutral.500);
+        --link-icon-neutral-focused: theme(colors.neutral.200);
+        --link-icon-neutral-visited: theme(colors.neutral.300);
+        --link-icon-oncolor-hovered: theme(colors.alpha.black-80);
+        --link-icon-oncolor-pressed: theme(colors.alpha.black-60);
+        --link-icon-oncolor-visited: theme(colors.alpha.black-90);
+        --link-icon-oncolor-disabled: theme(colors.alpha.black-30);
     }
 
     [data-theme='parent'] {

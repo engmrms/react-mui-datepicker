@@ -8,7 +8,7 @@ import { cn } from '../../Lib/utils'
 const checkBoxVariants = cva(
     `flex aspect-square justify-center items-center data-[state=checked]:text-icon-oncolor enabled:active:data-[state=unchecked]:bg-control-pressed border border-control-border enabled:hover:bg-control-ripple-effect enabled:focus:ring-2 enabled:focus:ring-border-black enabled:focus:ring-offset-2 disabled:cursor-not-allowed
     disabled:border-border-disabled disabled:data-[state=checked]:text-control-disabled disabled:data-[state=checked]:border-none disabled:bg-disabled-background-disabled
-    read-only:border-border-disabled read-only:data-[state=checked]:bg-transparent`,
+     `,
     {
         variants: {
             colors: {
