@@ -50,7 +50,7 @@ export const Default: Story = {
 }
 
 export const BreadcrumbWithCustomSeparator: Story = {
-    render: (_, { globals: { dir } })  => (
+    render: (_, { globals: { dir } }) => (
         <Breadcrumb dir={dir}>
             <BreadcrumbList>
                 <BreadcrumbItem>
@@ -70,7 +70,7 @@ export const BreadcrumbWithCustomSeparator: Story = {
 }
 
 export const BreadcrumbCollapsed: Story = {
-    render: (_, { globals: { dir } })  => (
+    render: (_, { globals: { dir } }) => (
         <Breadcrumb dir={dir}>
             <BreadcrumbList>
                 <BreadcrumbItem>

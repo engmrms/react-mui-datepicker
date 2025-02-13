@@ -23,8 +23,9 @@ const buttonVariants = cva(
                 xs: 'py-space-01 px-space-02 h-space-05 text-caption-01 [&>svg]:size-space-04',
 
                 // lg: 'px-8',
-                icon: 'p-space-02 h-[40px] text-body-02 [&>svg]:size-space-05',
-                'icon-sm': 'p-space-01 h-[32px] text-body-01 [&>svg]:size-[20px]',
+                icon: 'p-space-02 size-[40px] [&>svg]:size-space-05',
+                'icon-sm': 'p-space-01 size-[32px] [&>svg]:size-[20px]',
+                'icon-xs': 'p-space-01 size-space-05 [&>svg]:size-space-04',
             },
             rounded: {
                 default: 'rounded-0',

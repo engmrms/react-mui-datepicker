@@ -6,20 +6,21 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const linkVariants = cva(
-    'inline-flex items-center gap-space-02 text-body-02  font-medium justify-center transition-colors  focus:outline focus:outline-2 focus:outline-offset-1  focus:outline-border-black',
+    'inline-flex items-center gap-space-02 text-body-02 font-medium justify-center transition-colors focus:outline focus:outline-2 focus:outline-offset-1',
     {
         variants: {
             size: {
-                default: 'h-space-05 text-caption-01 [&>svg]:size-space-04',
+                default: 'text-body-02 [&>svg]:size-[20px]',
+                sm: 'text-body-01 [&>svg]:size-space-04',
             },
 
             colors: {
                 primary:
-                    'text-link-primary hover:text-link-primary-hovered focus:text-link-primary-focused active:text-link-primary-pressed visited:text-link-primary-visited',
+                    'text-link-primary hover:text-link-primary-hovered focus:text-link-primary-focused active:text-link-primary-pressed visited:text-link-primary-visited focus:outline-border-black',
                 neutral:
-                    'text-link-neutral hover:text-link-neutral-hovered focus:text-link-neutral-focused active:text-link-neutral-pressed visited:text-link-neutral-visited',
+                    'text-link-neutral hover:text-link-neutral-hovered focus:text-link-neutral-focused active:text-link-neutral-pressed visited:text-link-neutral-visited focus:outline-border-black',
                 oncolor:
-                    'text-link-oncolor hover:text-link-oncolor-hovered focus:text-link-oncolor-focused active:text-link-oncolor-pressed visited:text-link-oncolor-visited',
+                    'text-link-oncolor hover:text-link-oncolor-hovered focus:text-link-oncolor-focused active:text-link-oncolor-pressed visited:text-link-oncolor-visited focus:outline-border-white',
             },
             underline: {
                 hover: 'underline-offset-2 hover:underline',
@@ -43,7 +44,7 @@ export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement>
 }
 
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
-    ({ className, size, underline, target, colors, disabled=false, asChild = false, ...props }, ref) => {
+    ({ className, size, underline, target, colors, disabled = false, asChild = false, ...props }, ref) => {
         const Comp = asChild ? Slot : 'a'
         const appendrel = target === '_blank' ? 'noopener noreferrer' : ''
         return (
