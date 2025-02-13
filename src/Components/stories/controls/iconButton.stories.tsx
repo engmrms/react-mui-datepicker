@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Air } from 'google-material-icons/outlined'
+import { Accessibility } from 'google-material-icons/outlined'
 
 import { Button } from '../../ui/button'
 
@@ -38,8 +38,8 @@ export const Default: Story = {
         size: { control: 'select', options: ['icon', 'icon-sm', 'icon-xs'], description: 'for icon button use only: icon, icon-sm,icon-xs' },
     },
     render: args => (
-        <Button {...args}>
-            <Air />
+        <Button {...args} tooltip="set an Accessibility">
+            <Accessibility />
         </Button>
     ),
 }

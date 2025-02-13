@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import {Air } from 'google-material-icons/outlined'
 
 import { Button } from '../../ui/button'
 
@@ -35,36 +34,4 @@ export const Default: Story = {
         asChild: false,
         disabled: false,
     },
-}
-
-export const IconButton: Story = {
-    args: {
-        variant: 'default',
-        colors: 'primary',
-        size: 'icon',
-        rounded: 'default',
-        asChild: false,
-        disabled: false,
-    },
-    render: () => (
-        <Button size={"icon"} >
-            <Air />
-        </Button>
-    ),
-}
-
-export const IconButtonRounded: Story = {
-    args: {
-        variant: 'default',
-        colors: 'primary',
-        size: 'icon',
-        rounded: 'default',
-        asChild: false,
-        disabled: false,
-    },
-    render: () => (
-        <Button>
-            <Air />
-        </Button>
-    ),
 }

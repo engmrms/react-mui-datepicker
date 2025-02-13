@@ -4,6 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip'
 
 const buttonVariants = cva(
     'inline-flex items-center gap-space-01 font-medium justify-center focus:outline-border-black focus:outline focus:outline-2 focus:outline-offset-1 transition-colors  disabled:pointer-events-none disabled:cursor-not-allowed ',
@@ -251,12 +252,29 @@ const buttonVariants = cva(
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
     asChild?: boolean
+    tooltip?: string
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant, size, rounded, colors, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button'
-    return <Comp className={cn('text-link ', buttonVariants({ variant, size, rounded, colors, className }))} ref={ref} {...props} />
-})
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+    ({ className, variant, size, rounded, colors, tooltip, asChild = false, ...props }, ref) => {
+        const Comp = asChild ? Slot : 'button'
+        const Component = <Comp className={cn('text-link ', buttonVariants({ variant, size, rounded, colors, className }))} ref={ref} {...props} />
+
+        if (tooltip) {
+            return (
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger asChild>{Component}</TooltipTrigger>
+                        <TooltipContent>
+                            <p>{tooltip}</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+            )
+        }
+        return Component
+    },
+)
 Button.displayName = 'Button'
 
 export { Button, buttonVariants }
