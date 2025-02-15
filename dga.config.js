@@ -39,6 +39,7 @@ export const dgaToken = {
         white: 'var(--background-white)',
         body: 'var(--background-body)',
         menu: 'var(--background-menu)',
+        muted: 'var(--background-muted)',
         card: 'var(--background-card)',
         black: 'var(--background-black)',
         'surface-oncolor': 'var(--surface-oncolor)',

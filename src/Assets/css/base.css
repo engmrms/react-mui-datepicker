@@ -168,7 +168,7 @@
         --border-white: theme(colors.white);
         --border-white-40: theme(colors.alpha.white-40);
         --border-black: theme(colors.black);
-        --border-primary-default: var(var(--primary-600));
+        --border-primary-default: var(--primary-600);
         --border-primary-light: var(--primary-200);
         --border-secondary-default: var(--secondary-600);
         --border-secondary-light: var(--secondary-200);
@@ -299,6 +299,7 @@
         --background-white: theme(colors.white);
         --background-body: theme(colors.neutral.50);
         --background-menu: theme(colors.white);
+        --background-muted: theme(colors.neutral.25);
         --background-card: theme(colors.white);
         --surface-oncolor: theme(colors.black);
         --background-black: theme(colors.black);
@@ -404,7 +405,6 @@
         --icon-transparent-pressed-oncolor: var(--primary-300);
         --icon-transparent-selected-oncolor: var(--primary-400);
 
-
         /* link */
         /* Primary Link Colors */
         --link-primary: var(--primary-600);
@@ -468,11 +468,6 @@
         --link-tertiary-pressed: var(--tertiary-300);
         --link-tertiary-focused: var(--tertiary-500);
         --link-tertiary-visited: var(--tertiary-800);
-
-
-
-
-
     }
 
     .dark {
@@ -598,7 +593,7 @@
         --border-white: theme(colors.black);
         --border-white-40: theme(colors.alpha.black-40);
         --border-black: theme(colors.white);
-        --border-primary-default: var(var(--primary-600));
+        --border-primary-default: var(--primary-600);
         --border-primary-light: var(--primary-200);
         --border-secondary-default: var(--secondary-600);
         --border-secondary-light: var(--secondary-200);
@@ -730,6 +725,7 @@
         --background-white: theme(colors.neutral.950);
         --background-body: theme(colors.neutral.900);
         --background-menu: theme(colors.neutral.800);
+        --background-muted: theme(colors.neutral.700);
         --background-card: theme(colors.neutral.800);
         --surface-oncolor: theme(colors.white);
         --background-black: theme(colors.white);

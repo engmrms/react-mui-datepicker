@@ -41,7 +41,7 @@ export default defineConfig({
     },
     esbuild: {
         legalComments: 'none',
-        drop: ['console', 'debugger'],
+       // drop: ['console', 'debugger'],
     },
 
     plugins: [react(), basicSsl(), dts({ tsconfigPath: './tsconfig.json', rollupTypes: true })],

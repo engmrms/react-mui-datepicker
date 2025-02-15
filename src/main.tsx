@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './Assets/css/Shared.css'
 
-import { Check } from 'google-material-icons/outlined'
-import { Badge, Link, Stack, Switch } from './Components'
+import { Check, Home } from 'google-material-icons/outlined'
+import { Badge, Link, Stack, Switch, Tabs, TabsContent, TabsList, TabsTrigger } from './Components'
 import { Button } from './Components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Components/ui/tooltip'
 
@@ -41,8 +41,50 @@ const App = () => {
                     <Check />
                 </Badge>
             </Stack>
-            <Switch  disabled/>
-            <Link colors={"primary"} href='#' disabled  >link sample</Link>
+            <Switch disabled />
+
+            <Tabs dir={'ltr'} defaultValue="tab1" className="w-[400px]">
+                <TabsList variant={'underline'} breakpoints={{ 768: 3, 1024: 4 }}>
+                    <TabsTrigger value="tab1">
+                        <Home />
+                        tab1
+                    </TabsTrigger>
+                    <TabsTrigger value="tab2">
+                        <Home />
+                        tab2
+                    </TabsTrigger>
+                    <TabsTrigger value="tab3">
+                        <Home />
+                        tab3
+                    </TabsTrigger>
+                    <TabsTrigger value="tab4">
+                        <Home />
+                        tab4
+                    </TabsTrigger>
+                    <TabsTrigger value="tab5">
+                        <Home />
+                        tab5
+                    </TabsTrigger>
+                    <TabsTrigger value="tab6">
+                        <Home />
+                        tab6
+                    </TabsTrigger>
+                    <TabsTrigger value="tab7">
+                        <Home />
+                        tab7
+                    </TabsTrigger>
+                </TabsList>
+                <TabsContent value="tab1">...</TabsContent>
+                <TabsContent value="tab2">...</TabsContent>
+                <TabsContent value="tab3">...</TabsContent>
+                <TabsContent value="tab4">...</TabsContent>
+                <TabsContent value="tab5">...</TabsContent>
+                <TabsContent value="tab6">... tab6</TabsContent>
+                <TabsContent value="tab7">...</TabsContent>
+            </Tabs>
+            <Link colors={'primary'} href="#" disabled>
+                link sample
+            </Link>
             <div className="mt-space-05 p-space-06">
                 <TooltipProvider>
                     <Tooltip>
