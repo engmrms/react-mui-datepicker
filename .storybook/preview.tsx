@@ -1,4 +1,5 @@
-import type { Preview } from '@storybook/react'
+import { withThemeByClassName } from '@storybook/addon-themes'
+import type { Preview, Renderer } from '@storybook/react'
 import React from 'react'
 import '/src/Assets/css/Shared.css'
 
@@ -61,12 +62,28 @@ const preview: Preview = {
     },
     decorators: [
         (Story, context) => {
+            console.log(context.globals)
+            React.useEffect(() => {
+                const html = document.documentElement
+                if (context.globals.theme === 'dark') {
+                    html.classList.add('dark')
+                } else {
+                    html.classList.remove('dark')
+                }
+            }, [context.globals.theme])
             return (
-                <div dir={context.globals.dir}>
+                <div dir={context.globals.dir} className="bg-background-white">
                     <Story />
                 </div>
             )
         },
+        withThemeByClassName<Renderer>({
+            themes: {
+                light: 'light',
+                dark: 'dark',
+            },
+            defaultTheme: 'light',
+        }),
     ],
 }
 

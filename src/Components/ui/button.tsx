@@ -4,6 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
+import ActionLoader from '../ActionLoader'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip'
 
 const buttonVariants = cva(
@@ -253,12 +254,18 @@ const buttonVariants = cva(
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
     asChild?: boolean
     tooltip?: string
+    isLoading?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant, size, rounded, colors, tooltip, asChild = false, ...props }, ref) => {
+    ({ className, variant, size, rounded, colors, tooltip, children, isLoading = false, asChild = false, ...props }, ref) => {
         const Comp = asChild ? Slot : 'button'
-        const Component = <Comp className={cn('text-link ', buttonVariants({ variant, size, rounded, colors, className }))} ref={ref} {...props} />
+        const Component = (
+            <Comp className={cn('text-link ', buttonVariants({ variant, size, rounded, colors, className }))} ref={ref} {...props}>
+                {isLoading && <ActionLoader />}
+                {children}
+            </Comp>
+        )
 
         if (tooltip) {
             return (

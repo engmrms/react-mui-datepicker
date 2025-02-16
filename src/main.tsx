@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom/client'
 import './Assets/css/Shared.css'
 
 import { Check, Home } from 'google-material-icons/outlined'
-import { Badge, Link, Stack, Switch, Tabs, TabsContent, TabsList, TabsTrigger } from './Components'
+import { ActionLoader, Badge, Link, Stack, Switch, Tabs, TabsContent, TabsList, TabsTrigger } from './Components'
 import { Button } from './Components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Components/ui/tooltip'
 
 const App = () => {
     return (
-        <Stack direction={'col'}>
+        <Stack direction={'col'} className='p-space-06'>
+            <ActionLoader/>
             <h1 className="shadow-md">Tetco Design System</h1>
             <Stack className="p-space-03">
                 <Button variant={'text'} size={'sm'} colors={'primary'}>
@@ -33,6 +34,7 @@ const App = () => {
                     <Check />
                 </Button>
             </Stack>
+
 
             <Stack className="p-space-03">
                 <Badge variant={'ghost'} size={'sm'} colors={'gray'}>
