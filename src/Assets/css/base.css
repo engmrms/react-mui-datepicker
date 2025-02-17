@@ -28,19 +28,19 @@
         --primary-oncontainer: theme(colors.cyan.900);
         --primary-container: theme(colors.cyan.100);
 
-        --secondary: theme(colors.lavender.600);
+        --secondary: theme(colors.gold.600);
         --secondary-foreground: theme(colors.white);
-        --secondary-light: theme(colors.lavender.300);
-        --secondary-dark: theme(colors.lavender.700);
-        --secondary-oncontainer: theme(colors.lavender.900);
-        --secondary-container: theme(colors.lavender.100);
+        --secondary-light: theme(colors.gold.300);
+        --secondary-dark: theme(colors.gold.700);
+        --secondary-oncontainer: theme(colors.gold.900);
+        --secondary-container: theme(colors.gold.100);
 
-        --tertiary: theme(colors.blue.600);
+        --tertiary: theme(colors.lavender.600);
         --tertiary-foreground: theme(colors.white);
-        --tertiary-light: theme(colors.blue.300);
-        --tertiary-dark: theme(colors.blue.700);
-        --tertiary-oncontainer: theme(colors.blue.900);
-        --tertiary-container: theme(colors.blue.100);
+        --tertiary-light: theme(colors.lavender.300);
+        --tertiary-dark: theme(colors.lavender.700);
+        --tertiary-oncontainer: theme(colors.lavender.900);
+        --tertiary-container: theme(colors.lavender.100);
 
         --error: theme(colors.red.600);
         --error-foreground: theme(colors.white);
