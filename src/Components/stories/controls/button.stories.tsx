@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Button } from '../../ui/button'
 import { School } from 'google-material-icons/outlined'
+import { Button } from '../../ui/button'
 
 const meta: Meta<typeof Button> = {
     title: 'Design System/Controls/Button',
@@ -37,7 +37,6 @@ export const Default: Story = {
     },
 }
 
-
 export const ButtonWithIcon: Story = {
     args: {
         variant: 'default',
@@ -47,7 +46,11 @@ export const ButtonWithIcon: Story = {
         children: 'Button',
         asChild: false,
         disabled: false,
-
+        tooltip: '',
     },
-    render:(args)=><Button {...args}><School/> {args.children}</Button>
+    render: args => (
+        <Button {...args}>
+            <School /> {args.children}
+        </Button>
+    ),
 }

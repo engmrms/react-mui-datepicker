@@ -33,12 +33,13 @@ export const Default: Story = {
         rounded: 'default',
         asChild: false,
         disabled: false,
+        tooltip: 'set an Accessibility',
     },
     argTypes: {
         size: { control: 'select', options: ['icon', 'icon-sm', 'icon-xs'], description: 'for icon button use only: icon, icon-sm,icon-xs' },
     },
     render: args => (
-        <Button {...args} tooltip="set an Accessibility">
+        <Button {...args}>
             <Accessibility />
         </Button>
     ),
