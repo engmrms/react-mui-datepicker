@@ -98,7 +98,7 @@ export const BreadcrumbCollapsed: Story = {
     ),
 }
 
-export const DynamicBreadcrumb: Story = {
+export const BreadcrumbResponsive: Story = {
     render: () => (
         <Breadcrumbs
             items={[
