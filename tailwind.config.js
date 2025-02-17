@@ -149,6 +149,7 @@ module.exports = {
 
                 ...dgaToken,
 
+                black:"#161616",
                 gray: {
                     50: '#FAFAFA',
                     100: '#F9f9f9',

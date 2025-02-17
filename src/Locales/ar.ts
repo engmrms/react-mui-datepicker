@@ -52,6 +52,8 @@ export const ar = {
         NoDataFound: 'لا توجد بيانات',
         showResults: 'عرض النتائج',
         reset: 'إعادة التعيين',
+        CopiedSuccessfully: 'تم النسخ بنجاح',
+        
     },
 
     Footer: {

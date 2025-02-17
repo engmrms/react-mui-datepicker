@@ -8,6 +8,7 @@ import {
     BreadcrumbLink,
     BreadcrumbList,
     BreadcrumbPage,
+    Breadcrumbs,
     BreadcrumbSeparator,
 } from '../../ui/breadcrumb'
 
@@ -94,5 +95,56 @@ export const BreadcrumbCollapsed: Story = {
                 </BreadcrumbItem>
             </BreadcrumbList>
         </Breadcrumb>
+    ),
+}
+
+export const DynamicBreadcrumb: Story = {
+    render: () => (
+        <Breadcrumbs
+            items={[
+                { render: <a href="/">Home</a>, title: 'Home' },
+                { path: '/Link1', title: 'Link1' },
+                {
+                    render: (
+                        <a className="block" href="/Link2">
+                            Link2
+                        </a>
+                    ),
+                    title: 'Link2',
+                },
+                {
+                    render: (
+                        <a className="block" href="/Link3">
+                            Link3
+                        </a>
+                    ),
+                    title: 'Link3',
+                },
+                {
+                    render: (
+                        <a className="block" href="/Link4">
+                            Link4
+                        </a>
+                    ),
+                    title: 'Link4',
+                },
+                {
+                    render: (
+                        <a className="block" href="/Link5">
+                            Link5
+                        </a>
+                    ),
+                    title: 'Link5',
+                },
+                {
+                    render: (
+                        <a className="block" href="/Link6">
+                            Link6
+                        </a>
+                    ),
+                    title: 'Link6',
+                },
+            ]}
+        />
     ),
 }

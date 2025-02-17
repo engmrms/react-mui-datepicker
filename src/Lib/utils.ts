@@ -3,6 +3,8 @@ import { clsx, type ClassValue } from 'clsx'
 import moment from 'moment'
 import momentHijri from 'moment-hijri'
 import { extendTailwindMerge } from 'tailwind-merge'
+import { useToast } from '../Components'
+import { strings } from '../Locales'
 import { DateFormat } from '../Models/enums'
 import useLanguage from '../Stores/useLanguage'
 import './ar-sa'
@@ -49,13 +51,6 @@ export const handleArabicNumbers = (e: React.ChangeEvent<HTMLInputElement>, watc
     return e
 }
 
-export const formatter = (dir: string) => {
-    return new Intl.DateTimeFormat(dir === 'rtl' ? 'ar' : 'en', { day: '2-digit', month: 'short', year: 'numeric' })
-}
-export const formatterTime = (dir: string) => {
-    return new Intl.DateTimeFormat(dir === 'ar' ? 'ar' : 'en', { timeStyle: 'short' })
-}
-
 export const tw = (...classes: string[]) =>
     classes
         .map(cls =>
@@ -65,13 +60,6 @@ export const tw = (...classes: string[]) =>
                 .join(' '),
         )
         .join(' ')
-
-export const useSwitchData = () => {
-    const { lang } = useLanguage(state => state)
-    return (arValue: string = '', enValue: string = '') => {
-        return String(lang).toLocaleLowerCase() === 'ar' ? arValue : enValue ?? arValue
-    }
-}
 
 export function debounce<T extends (...args: any[]) => void>(func: T, wait: number): T {
     let timeout: ReturnType<typeof setTimeout> | null = null
@@ -88,6 +76,13 @@ export function debounce<T extends (...args: any[]) => void>(func: T, wait: numb
 
         timeout = setTimeout(later, wait)
     } as T
+}
+
+export const formatter = (dir: string) => {
+    return new Intl.DateTimeFormat(dir === 'rtl' ? 'ar' : 'en', { day: '2-digit', month: 'short', year: 'numeric' })
+}
+export const formatterTime = (dir: string) => {
+    return new Intl.DateTimeFormat(dir === 'ar' ? 'ar' : 'en', { timeStyle: 'short' })
 }
 
 export const dateFormatter = ({
@@ -112,4 +107,20 @@ export const dateFormatter = ({
             if (isHijri) return momentHijri(date, hasHijriFormat ? 'iDD/iMM/iYYYY' : undefined).format(isArabic ? 'iYYYY/iM/iD' : 'iD/iM/iYYYY')
             return moment(new Date(date ?? ''), 'DD-MM-YYYY').format(isArabic ? 'YYYY/M/D' : 'D/M/YYYY')
     }
+}
+
+export const useSwitchData = () => {
+    const { lang } = useLanguage(state => state)
+    return (arValue: string = '', enValue: string = '') => {
+        return String(lang).toLocaleLowerCase() === 'ar' ? arValue : (enValue ?? arValue)
+    }
+}
+
+export const useShareLink = (text: string) => {
+    const { toast } = useToast()
+    navigator.clipboard.writeText(text).then(() => {
+        toast({
+            description: strings.Shared.CopiedSuccessfully,
+        })
+    })
 }

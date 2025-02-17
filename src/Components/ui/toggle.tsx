@@ -7,15 +7,15 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const toggleVariants = cva(
-    `group inline-flex items-center justify-center rounded-full font-medium ring-offset-background transition-colors
-    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
-    disabled:bg-transparent  disabled:text-disabled disabled:border-disabled disabled:pointer-events-none disabld:data-[state=on]:bg-disabled
+    `group inline-flex items-center justify-center gap-space-01 rounded-full transition-colors
+     disabled:text-disabled-text-default-disabled  disabled:pointer-events-none disabled:cursor-not-allowed
      `,
     {
         variants: {
             variant: {
-                default: 'bg-transparent',
-                outline: 'border border-input bg-transparent ',
+                default: '',
+                outline:
+                    'border border-border-neutral-primary disabled:border-disabled disabled:data-[state=on]:bg-disabled-background-disabled disabled:data-[state=on]:border-none',
             },
             size: {
                 default: 'px-space-04 py-space-02 h-[4rem] text-body-02',
@@ -25,8 +25,8 @@ const toggleVariants = cva(
             },
             colors: {
                 default:
-                    'hover:bg-card-hover  data-[state=on]:bg-primary data-[state=on]:text-primary-foreground  hover:data-[state=on]:bg-primary-dark',
-                gray: 'hover:bg-card-hover hover:text-card-foreground data-[state=on]:bg-inverted data-[state=on]:text-inverted-foreground  hover:data-[state=on]:bg-foreground-secondary',
+                    'hover:bg-button-background-primary-light-hovered hover:text-text-primary  enabled:data-[state=on]:bg-button-background-primary data-[state=on]:text-text-oncolor-primary  hover:data-[state=on]:bg-button-background-primary-hovered hover:data-[state=on]:text-text-oncolor-primary',
+                gray: 'hover:bg-button-background-black-light-hovered hover:text-text-black  enabled:data-[state=on]:bg-button-background-black data-[state=on]:text-text-oncolor-primary  hover:data-[state=on]:bg-button-background-black-hovered hover:data-[state=on]:text-text-oncolor-primary',
             },
         },
 

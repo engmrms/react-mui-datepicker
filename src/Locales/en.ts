@@ -53,6 +53,7 @@ export const en = {
         NoDataFound: 'No data found',
         showResults: 'Show results',
         reset: 'Reset',
+        CopiedSuccessfully: 'Copied successfully',
     },
     Footer: {
         TermsOfUse: 'Terms Of Use',

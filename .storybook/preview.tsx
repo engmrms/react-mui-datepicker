@@ -1,5 +1,5 @@
 import { withThemeByClassName } from '@storybook/addon-themes'
-import type { Preview, Renderer } from '@storybook/react'
+import type { Preview } from '@storybook/react'
 import React from 'react'
 import '/src/Assets/css/Shared.css'
 
@@ -62,7 +62,6 @@ const preview: Preview = {
     },
     decorators: [
         (Story, context) => {
-            console.log(context.globals)
             React.useEffect(() => {
                 const html = document.documentElement
                 if (context.globals.theme === 'dark') {
@@ -77,7 +76,7 @@ const preview: Preview = {
                 </div>
             )
         },
-        withThemeByClassName<Renderer>({
+        withThemeByClassName({
             themes: {
                 light: 'light',
                 dark: 'dark',

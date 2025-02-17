@@ -6,8 +6,8 @@ import { ToggleGroup, ToggleGroupItem } from '../../ui/toggle-group'
 
 const ToggleGroupDemo = (arg: any) => {
     return (
-        <ToggleGroup type="multiple" {...arg}>
-            <ToggleGroupItem value="bold" aria-label="Toggle bold">
+        <ToggleGroup type="multiple" {...arg}  >
+            <ToggleGroupItem value="bold" aria-label="Toggle bold" >
                 <FormatBold className="h-space-05 w-space-05" />
             </ToggleGroupItem>
             <ToggleGroupItem value="italic" aria-label="Toggle italic">
@@ -63,6 +63,7 @@ export const Default: Story = {
         asChild: false,
         variant: 'default',
         size: 'default',
+        colors:"default",
         dir: 'ltr',
     },
     render: ToggleGroupDemo,

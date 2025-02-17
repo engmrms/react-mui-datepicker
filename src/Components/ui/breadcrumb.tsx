@@ -3,7 +3,10 @@ import { Slot } from '@radix-ui/react-slot'
 import { ChevronRight, MoreHoriz } from 'google-material-icons/outlined'
 import * as React from 'react'
 
+import { useMediaQuery } from 'usehooks-ts'
 import { cn } from '../../Lib/utils'
+import ShouldRender from '../ShouldRender'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './dropdown-menu'
 
 const Breadcrumb = React.forwardRef<
     HTMLElement,
@@ -31,6 +34,7 @@ const BreadcrumbLink = React.forwardRef<
     HTMLAnchorElement,
     React.ComponentPropsWithoutRef<'a'> & {
         asChild?: boolean
+        as?: typeof Slot
         style?: React.CSSProperties
     }
 >(({ asChild, className, style, ...props }, ref) => {
@@ -67,4 +71,83 @@ const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<'span'
 )
 BreadcrumbEllipsis.displayName = 'BreadcrumbElipssis'
 
-export { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator }
+type Item = { title: string | string[]; path?: string; state?: unknown; render?: React.ReactNode }
+type PropsBreadcrumb = {
+    items: Item[]
+    dir?: 'rtl'|'ltr'
+}
+
+const renderItem = ({ item }: { item: Item }) => {
+    return (
+        <>
+            <ShouldRender shouldRender={!!item.render}>
+                <BreadcrumbLink asChild>{item.render}</BreadcrumbLink>
+            </ShouldRender>
+            <ShouldRender shouldRender={!item.render}>
+                <BreadcrumbLink href={item.path}>{item.title}</BreadcrumbLink>
+            </ShouldRender>
+        </>
+    )
+}
+
+const Breadcrumbs = ({ items, dir }: PropsBreadcrumb) => {
+    const isMobile = useMediaQuery('(max-width: 768px)')
+
+    return (
+        <Breadcrumb dir={dir}>
+            <BreadcrumbList>
+                <ShouldRender shouldRender={isMobile}>
+                    <>
+                        {/* First Item */}
+                        <BreadcrumbItem>
+                            <BreadcrumbLink asChild>{renderItem({ item: items[0] })}</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        {items.length >= 2 && <BreadcrumbSeparator />}
+
+                        {/* Dropdown for Intermediate Items */}
+                        {items.length > 2 && (
+                            <>
+                                <BreadcrumbItem>
+                                    <DropdownMenu dir={dir}>
+                                        <DropdownMenuTrigger>
+                                            <BreadcrumbEllipsis />
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent>
+                                            {items.slice(1, -1).map((item, idx) => (
+                                                <DropdownMenuItem key={idx} asChild>
+                                                    {renderItem({ item })}
+                                                </DropdownMenuItem>
+                                            ))}
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </BreadcrumbItem>
+                                <BreadcrumbSeparator />
+                            </>
+                        )}
+
+                        {/* Last Item */}
+                        <BreadcrumbItem>
+                            <BreadcrumbPage>{items[items.length - 1].title}</BreadcrumbPage>
+                        </BreadcrumbItem>
+                    </>
+                </ShouldRender>
+                <ShouldRender shouldRender={!isMobile}>
+                    {
+                        // Desktop View: Render All Items
+                        items.map((item, idx) => (
+                            <React.Fragment key={`${item.title}`}>
+                                <BreadcrumbItem>
+                                    {items.length - 1 !== idx ? renderItem({ item }) : <BreadcrumbPage>{item.title}</BreadcrumbPage>}
+                                </BreadcrumbItem>
+                                {items.length - 1 !== idx && <BreadcrumbSeparator />}
+                            </React.Fragment>
+                        ))
+                    }
+                </ShouldRender>
+            </BreadcrumbList>
+        </Breadcrumb>
+    )
+}
+Breadcrumbs.displayName = 'Breadcrumbs'
+
+export { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, Breadcrumbs, BreadcrumbSeparator }

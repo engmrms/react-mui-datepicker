@@ -1,16 +1,16 @@
+import { Check, Home } from 'google-material-icons/outlined'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Link } from 'react-router-dom'
 import './Assets/css/Shared.css'
-
-import { Check, Home } from 'google-material-icons/outlined'
-import { ActionLoader, Badge, Link, Stack, Switch, Tabs, TabsContent, TabsList, TabsTrigger } from './Components'
+import { ActionLoader, Badge, Breadcrumbs, Stack, Switch, Tabs, TabsContent, TabsList, TabsTrigger } from './Components'
 import { Button } from './Components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Components/ui/tooltip'
 
 const App = () => {
     return (
-        <Stack direction={'col'} className='p-space-06'>
-            <ActionLoader/>
+        <Stack direction={'col'} className="p-space-06">
+            <ActionLoader />
             <h1 className="shadow-md">Tetco Design System</h1>
             <Stack className="p-space-03">
                 <Button variant={'text'} size={'sm'} colors={'primary'}>
@@ -35,6 +35,17 @@ const App = () => {
                 </Button>
             </Stack>
 
+            <Breadcrumbs
+                items={[
+                    { render: <Link to="dd">link</Link>, title: 'sdfds' },
+                    { path: 'dsdssfsd', title: 'sdfds' },
+                    { render: <p>dsdfdsfsdfs</p>, title: 'sdfds' },
+                    { render: <p>dsdfdsfsdfs</p>, title: 'sdfds' },
+                    { render: <p>dsdfdsfsdfs</p>, title: 'sdfds' },
+                    { render: <p>dsdfdsfsdfs</p>, title: 'sdfds' },
+                    { render: <p>dsdfdsfsdfs</p>, title: 'sdfds' },
+                ]}
+            />
 
             <Stack className="p-space-03">
                 <Badge variant={'ghost'} size={'sm'} colors={'gray'}>
@@ -84,9 +95,7 @@ const App = () => {
                 <TabsContent value="tab6">... tab6</TabsContent>
                 <TabsContent value="tab7">...</TabsContent>
             </Tabs>
-            <Link colors={'primary'} href="#" disabled>
-                link sample
-            </Link>
+
             <div className="mt-space-05 p-space-06">
                 <TooltipProvider>
                     <Tooltip>
@@ -105,6 +114,8 @@ const App = () => {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </React.StrictMode>,
 )
