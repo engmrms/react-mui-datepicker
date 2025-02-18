@@ -132,11 +132,15 @@ export function DataTable<TData, TValue>({
             </div>
             {!!table.getFilteredRowModel().rows.length && hasPagination && (
                 <div className="flex items-center justify-end  px-space-04 py-space-02">
-                    <PaginationDescription
-                        currentPage={currentPage}
-                        limit={pageSize}
-                        totalCount={rest?.totalItems ?? table.getFilteredRowModel().rows.length}
-                    />
+                    {loading ? (
+                        <Skeleton className="ml-auto h-[20px] w-space-12" />
+                    ) : (
+                        <PaginationDescription
+                            currentPage={rest?.pageNumber ?? currentPage}
+                            limit={pageSize}
+                            totalCount={rest?.totalItems ?? table.getFilteredRowModel().rows.length}
+                        />
+                    )}
 
                     <div className="flex items-center gap-x-space-03">
                         <LinesPerPage
@@ -152,7 +156,7 @@ export function DataTable<TData, TValue>({
                         <Pagination
                             withoutText
                             className="justify-center"
-                            totalItems={rest?.totalItems ? rest?.totalItems : table.getFilteredRowModel().rows.length ?? 0}
+                            totalItems={rest?.totalItems ? rest?.totalItems : (table.getFilteredRowModel().rows.length ?? 0)}
                             selectedPage={rest?.pageNumber ?? currentPage}
                             itemsPerPage={Number(pageSize)}
                             onPageChange={page => {
