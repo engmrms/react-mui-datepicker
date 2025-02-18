@@ -1,6 +1,7 @@
 import { Close, Search } from 'google-material-icons/outlined'
 import React, { useEffect, useRef, useState } from 'react'
 import { cn, debounce } from '../../Lib/utils'
+import { strings } from '../../Locales'
 import { Button } from './button'
 import { Input, InputProps } from './input'
 import { Stack } from './Layout'
@@ -90,10 +91,10 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps & InputP
                             {type === 'onButton' && (
                                 <Button
                                     variant={'outline'}
-                                    colors={'success'}
                                     rounded={'full'}
                                     size={'icon-sm'}
                                     type="button"
+                                    tooltip={strings.Shared.Search}
                                     className="h-auto rounded-full border !p-space-01"
                                     onClick={handleSearch}>
                                     <Search />

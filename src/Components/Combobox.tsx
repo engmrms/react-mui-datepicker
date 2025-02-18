@@ -45,13 +45,10 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
                     <Button
                         ref={ref}
                         rounded={props?.rounded ?? 'default'}
-                        variant="outline"
+                        variant="field"
                         role="combobox"
                         disabled={isLoading}
-                        className={cn(
-                            'flex w-auto items-center justify-between border border-input bg-transparent  !px-space-03    placeholder:text-foreground-secondary aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled',
-                            className,
-                        )}
+                        className={cn(` w-auto justify-between `, className)}
                         {...props}>
                         {placeholder && !children && <span className="text-body-01 text-foreground-secondary">{placeholder}</span>}
                         <span className="flex-1 truncate text-ellipsis text-right">{children}</span>
@@ -66,13 +63,10 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
                     <Button
                         rounded={props?.rounded ?? 'default'}
                         ref={ref}
-                        variant="outline"
+                        variant="field"
                         role="combobox"
                         disabled={isLoading}
-                        className={cn(
-                            'flex  w-full items-center justify-between border border-input bg-transparent !px-space-03  placeholder:text-foreground-secondary aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled',
-                            className,
-                        )}
+                        className={cn('w-full', className)}
                         {...props}>
                         {placeholder && !children && <span className="text-body-01 text-foreground-secondary">{placeholder}</span>}
                         <span className="line-clamp-1 flex-1 text-right">{children}</span>

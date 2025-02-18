@@ -180,7 +180,7 @@
         --field-border-default: theme(colors.neutral.400);
         --field-border-hovered: theme(colors.neutral.700);
         --field-border-pressed: theme(colors.neutral.950);
-        --field-border-error:var(--border-error)
+        --field-border-error:var(--border-error);
 
         /* border */
         --border-primary: theme(colors.neutral.200);

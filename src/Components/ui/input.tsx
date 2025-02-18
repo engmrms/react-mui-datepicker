@@ -3,9 +3,9 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const inputVariants = cva(
-    `relative inline-flex items-center h-[4rem] w-full border px-space-04  text-base  hover:border-form-field-border-hovered disabled:cursor-not-allowed disabled:text-disabled
-      aria-[invalid=true]:border-form-field-border-error after:bg-form-field-border-error
-     after:absolute after:bottom-0 after:w-0 after:h-[2px] after:-translate-x-1/2 after:start-1/2 after:bg-form-field-border-pressed after:ease-in-out after:transition-all focus-within:after:w-full
+    `relative inline-flex items-center h-[4rem] w-full border px-space-04  text-base  hover:border-form-field-border-hovered disabled:cursor-not-allowed disabled:text-disabled overflow-hidden
+     aria-[invalid=true]:border-form-field-border-error  focus-within:aria-[invalid=true]:after:bg-form-field-border-error
+     after:absolute after:bottom-0 after:w-0 after:h-[2px] ltr:after:-translate-x-1/2 rtl:after:translate-x-1/2 after:start-1/2 after:bg-form-field-border-pressed after:ease-in-out after:transition-all focus-within:after:w-full
     `,
     {
         variants: {
