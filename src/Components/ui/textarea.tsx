@@ -5,28 +5,31 @@ import ShouldRender from '../ShouldRender'
 import { useFormContext } from '../ui/form'
 
 const textAreaVariants = cva(
-    `flex relative overflow-hidden min-h-[10rem] w-full border ps-space-04 text-base hover:border-foreground disabled:cursor-not-allowed disabled:text-disabled
+    `flex relative overflow-hidden min-h-[10rem] w-full   ps-space-04 text-body-02 overflow-hidden text-form-field-text-filled
+     aria-[disabled=true]:cursor-not-allowed aria-[disabled=true]:text-disabled-text-default-disabled
      aria-[invalid=true]:border-form-field-border-error  focus-within:aria-[invalid=true]:after:bg-form-field-border-error
      after:absolute after:bottom-0 after:w-0 after:h-[2px] ltr:after:-translate-x-1/2 rtl:after:translate-x-1/2 after:start-1/2 after:bg-form-field-border-pressed after:ease-in-out after:transition-all focus-within:after:w-full
     `,
     {
         variants: {
             variant: {
-                default: 'bg-muted',
-                outline: 'bg-transparent',
+                default: 'bg-form-field-background-darker  hover:aria-[disabled=false]:border-form-field-border-default',
+                outline:
+                    'bg-form-field-background-default aria-[disabled=false]:hover:border-form-field-border-hovered border border-form-field-border-default aria-[disabled=true]:border-border-disabled',
+                lighter: 'bg-form-field-background-lighter  aria-[disabled=false]:hover:border-form-field-border-default',
             },
             rounded: {
                 default: 'rounded-0',
                 full: 'rounded-4',
             },
             colors: {
-                default: 'border-input',
+                default: 'hover:aria-[disabled=false]:border',
                 success: 'border-success',
-                destructive: 'border-error',
+                destructive: 'border-form-field-border-error ',
             },
         },
         defaultVariants: {
-            variant: 'default',
+            variant: 'outline',
             rounded: 'default',
             colors: 'default',
         },
@@ -46,10 +49,13 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
         return (
             <div className="relative flex flex-col gap-space-01">
-                <div className={cn(textAreaVariants({ variant, rounded, colors }), className)} aria-invalid={props['aria-invalid']}>
+                <div
+                    className={cn(textAreaVariants({ variant, rounded, colors }), className)}
+                    aria-invalid={props['aria-invalid']}
+                    aria-disabled={props.disabled}>
                     {startAdornment && <div className="mr-space-02 mt-space-04 h-[2rem] w-[2rem] ">{startAdornment}</div>}
                     <textarea
-                        className="w-full resize-none bg-transparent py-space-03 outline-none placeholder:text-foreground-secondary"
+                        className="placeholder:text-form-field-text-placeholder w-full resize-none bg-transparent py-space-02 outline-none"
                         ref={ref}
                         maxLength={maxLength}
                         {...props}

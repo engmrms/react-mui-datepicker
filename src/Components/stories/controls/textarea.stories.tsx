@@ -38,6 +38,7 @@ export const Default: Story = {
         colors: 'default',
         rounded: 'default',
         disabled: false,
+        placeholder:"Enter new text"
     },
 }
 export const From: Story = {
