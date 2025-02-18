@@ -525,4 +525,36 @@ export const dgaToken = {
             },
         },
     },
+    form: {
+        field: {
+            text: {
+                label: 'var(--field-text-label)',
+                placeholder: 'var(--field-text-placeholder)',
+                hovered: 'var(--field-text-hovered)',
+                focused: 'var(--field-text-focused)',
+                pressed: 'var(--field-text-pressed)',
+                filled: 'var(--field-text-filled)',
+                readonly: 'var(--field-text-readonly)',
+                helper: 'var(--field-text-helper)',
+            },
+            background: {
+                default: 'var(--field-background-default)',
+                lighter: 'var(--field-background-lighter)',
+                darker: 'var(--field-background-darker)',
+                pressed: 'var(--field-background-pressed)',
+            },
+            border: {
+                default: 'var(--field-border-default)',
+                hovered: 'var(--field-border-hovered)',
+                pressed: 'var(--field-border-pressed)',
+                error: 'var(--field-border-error)',
+            },
+        },
+        text: {
+            form: {
+                title: 'var(--text-form-title)',
+                paragraph: 'var(--text-form-paragraph)',
+            },
+        },
+    },
 }

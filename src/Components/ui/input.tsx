@@ -3,7 +3,10 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const inputVariants = cva(
-    'inline-flex items-center h-[4rem] w-full border px-space-04  text-base  hover:border-foreground disabled:cursor-not-allowed disabled:text-disabled aria-[invalid=true]:border-error',
+    `relative inline-flex items-center h-[4rem] w-full border px-space-04  text-base  hover:border-form-field-border-hovered disabled:cursor-not-allowed disabled:text-disabled
+      aria-[invalid=true]:border-form-field-border-error after:bg-form-field-border-error
+     after:absolute after:bottom-0 after:w-0 after:h-[2px] after:-translate-x-1/2 after:start-1/2 after:bg-form-field-border-pressed after:ease-in-out after:transition-all focus-within:after:w-full
+    `,
     {
         variants: {
             variant: {
@@ -11,11 +14,11 @@ const inputVariants = cva(
                 outline: 'bg-transparent',
             },
             rounded: {
-                default: 'rounded-2',
+                default: 'rounded-0',
                 full: 'rounded-4',
             },
             colors: {
-                default: 'border-input',
+                default: 'border-form-field-border-default',
                 success: 'border-success',
                 destructive: 'border-error',
             },
@@ -42,7 +45,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 {startAdornment && <div className=" me-space-02 ">{startAdornment}</div>}
                 <input
                     type={type}
-                    className="outline-none py-space-03 w-full bg-transparent file:border-0 file:bg-transparent  file:text-sm file:font-mdium placeholder:text-foreground-secondary  "
+                    className="file:font-mdium w-full bg-transparent py-space-03 outline-none file:border-0  file:bg-transparent file:text-sm placeholder:text-foreground-secondary  "
                     ref={ref}
                     {...props}
                 />

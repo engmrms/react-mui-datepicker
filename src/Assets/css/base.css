@@ -162,6 +162,26 @@
         --text-default-disabled: theme(colors.neutral.400);
         --text-default-oncolor-disabled: theme(colors.alpha.white-40);
 
+        /* form */
+        --text-form-title: var(--text-default);
+        --text-form-paragraph: var(--text-paragraph-secondary);
+        --field-text-label: var(--text-default);
+        --field-text-placeholder: var(--text-paragraph-secondary);
+        --field-text-hovered: var(--text-default);
+        --field-text-focused: var(--text-paragraph-primary);
+        --field-text-pressed: var(--text-paragraph-primary);
+        --field-text-filled: var(--text-default);
+        --field-text-readonly: var(--text-default);
+        --field-text-helper: var(--text-paragraph-secondary);
+        --field-background-default: var(--background-card);
+        --field-background-lighter: theme(colors.neutral.25);
+        --field-background-darker: theme(colors.neutral.100);
+        --field-background-pressed: theme(colors.neutral.100);
+        --field-border-default: theme(colors.neutral.400);
+        --field-border-hovered: theme(colors.neutral.700);
+        --field-border-pressed: theme(colors.neutral.950);
+        --field-border-error:var(--border-error)
+
         /* border */
         --border-primary: theme(colors.neutral.200);
         --border-secondary: theme(colors.neutral.300);
@@ -412,26 +432,22 @@
         --link-primary-pressed: var(--primary-300);
         --link-primary-focused: var(--primary-600);
         --link-primary-visited: var(--primary-800);
-
         /* Primary Icon Link Colors */
         --link-icon-primary-hovered: var(--primary-400);
         --link-icon-primary-pressed: var(--primary-300);
         --link-icon-primary-focused: var(--primary-600);
         --link-icon-primary-visited: var(--primary-800);
-
         /* Neutral Link Colors */
         --link-neutral: theme(colors.neutral.700);
         --link-neutral-hovered: theme(colors.neutral.500);
         --link-neutral-pressed: theme(colors.neutral.400);
         --link-neutral-focused: theme(colors.neutral.700);
         --link-neutral-visited: theme(colors.neutral.600);
-
         /* Neutral Icon Link Colors */
         --link-icon-neutral-hovered: theme(colors.neutral.500);
         --link-icon-neutral-pressed: theme(colors.neutral.400);
         --link-icon-neutral-focused: theme(colors.neutral.700);
         --link-icon-neutral-visited: theme(colors.neutral.600);
-
         /* On-Color Link Colors */
         --link-oncolor: theme(colors.white);
         --link-oncolor-hovered: theme(colors.alpha.white-80);
@@ -443,7 +459,6 @@
         --link-icon-oncolor-visited: theme(colors.alpha.white-90);
         --link-oncolor-disabled: theme(colors.alpha.white-30);
         --link-icon-oncolor-disabled: theme(colors.alpha.white-30);
-
         /* Error Link States */
         --link-error: theme(colors.red.600);
         --link-error-hovered: theme(colors.red.700);
@@ -454,14 +469,12 @@
         --link-icon-error-focused: theme(colors.red.800);
         --link-error-visited: theme(colors.red.600);
         --link-icon-error-visited: theme(colors.red.600);
-
         /* Secondary Link States */
         --link-secondary: var(--secondary-600);
         --link-secondary-hovered: var(--secondary-400);
         --link-secondary-pressed: var(--secondary-300);
         --link-secondary-focused: var(--secondary-600);
         --link-secondary-visited: var(--secondary-900);
-
         /* Tertiary Link States */
         --link-tertiary: var(--tertiary-500);
         --link-tertiary-hovered: var(--tertiary-400);
@@ -586,6 +599,26 @@
         --text-tertiary-light: var(--tertiary-400);
         --text-default-disabled: theme(colors.neutral.400);
         --text-default-oncolor-disabled: theme(colors.alpha.black-40);
+
+        /* form */
+        --text-form-title: var(--text-default);
+        --text-form-paragraph: var(--text-paragraph-secondary);
+        --field-text-label: var(--text-default);
+        --field-text-placeholder: var(--text-paragraph-secondary);
+        --field-text-hovered: var(--text-default);
+        --field-text-focused: var(--text-paragraph-primary);
+        --field-text-pressed: var(--text-paragraph-primary);
+        --field-text-filled: var(--text-default);
+        --field-text-readonly: var(--text-default);
+        --field-text-helper: var(--text-paragraph-secondary);
+        --field-background-default: theme(colors.neutral.800);
+        --field-background-lighter: theme(colors.neutral.600);
+        --field-background-darker: theme(colors.neutral.800);
+        --field-background-pressed: theme(colors.neutral.600);
+        --field-border-default: theme(colors.neutral.500);
+        --field-border-hovered: theme(colors.neutral.200);
+        --field-border-pressed: theme(colors.neutral.25);
+
 
         /* border */
         --border-primary: theme(colors.neutral.500);
