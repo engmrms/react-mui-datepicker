@@ -61,6 +61,13 @@ export const tw = (...classes: string[]) =>
         )
         .join(' ')
 
+export const useSwitchData = () => {
+    const { lang } = useLanguage(state => state)
+    return (arValue: string = '', enValue: string = '') => {
+        return String(lang).toLocaleLowerCase() === 'ar' ? arValue : enValue || arValue
+    }
+}
+
 export function debounce<T extends (...args: any[]) => void>(func: T, wait: number): T {
     let timeout: ReturnType<typeof setTimeout> | null = null
 
@@ -109,12 +116,7 @@ export const dateFormatter = ({
     }
 }
 
-export const useSwitchData = () => {
-    const { lang } = useLanguage(state => state)
-    return (arValue: string = '', enValue: string = '') => {
-        return String(lang).toLocaleLowerCase() === 'ar' ? arValue : (enValue ?? arValue)
-    }
-}
+ 
 
 export const useShareLink = (text: string) => {
     const { toast } = useToast()
