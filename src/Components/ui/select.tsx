@@ -5,9 +5,63 @@ import { Check, ExpandMore, KeyboardArrowDown, KeyboardArrowUp } from 'google-ma
 
 import * as SelectPrimitive from '@radix-ui/react-select'
 
+import { cva, VariantProps } from 'class-variance-authority'
 import { cn } from '../../Lib/utils'
 
-const Select = SelectPrimitive.Root
+const selectVariants = cva(
+    ` placeholder:text-form-field-text-placeholder data-[placeholder]:text-form-field-text-placeholder  text-form-field-text-filled after:bg-form-field-border-pressed group relative
+    flex w-full items-center justify-between gap-space-01 whitespace-nowrap
+    aria-[invalid=true]:border-form-field-border-error  focus-within:aria-[invalid=true]:after:bg-form-field-border-error
+    ps-space-03  after:absolute after:bottom-0 after:start-1/2 after:h-[2px]
+    after:w-0 after:transition-all after:ease-in-out focus-within:after:w-full focus-visible:outline-none disabled:cursor-not-allowed disabled:border-border-disabled disabled:text-disabled-text-default-disabled ltr:after:-translate-x-1/2 rtl:after:translate-x-1/2 [&>span]:line-clamp-1
+    `,
+    {
+        variants: {
+            variant: {
+                default: 'bg-form-field-background-darker  enabled:hover:border-form-field-border-default',
+                outline:
+                    'bg-form-field-background-default enabled:hover:border-form-field-border-hovered border border-form-field-border-default disabled:border-border-disabled',
+                lighter: 'bg-form-field-background-lighter  enabled:hover:border-form-field-border-default',
+            },
+            rounded: {
+                default: 'rounded-0',
+                full: 'rounded-4',
+            },
+            colors: {
+                default: 'hover:enabled:border',
+                success: 'border-success',
+                destructive: 'border-form-field-border-error ',
+            },
+            size: {
+                default: 'py-space-02 text-body-02 h-[40px]',
+                sm: 'py-space-01 text-body-01 h-[32px]',
+            },
+        },
+        defaultVariants: {
+            variant: 'outline',
+            rounded: 'default',
+            colors: 'default',
+            size: 'default',
+        },
+    },
+)
+
+const SelectContext = React.createContext<VariantProps<typeof selectVariants>>({
+    variant: 'outline',
+    rounded: 'default',
+    colors: 'default',
+    size: 'default',
+})
+
+const Select = React.forwardRef<
+    React.ElementRef<typeof SelectPrimitive.Root>,
+    React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root> & VariantProps<typeof selectVariants>
+>(({ variant, size, colors, rounded, children, ...props }) => (
+    <SelectPrimitive.Root {...props}>
+        <SelectContext.Provider value={{ variant, size, colors, rounded }}>{children}</SelectContext.Provider>
+    </SelectPrimitive.Root>
+))
+Select.displayName = SelectPrimitive.Root.displayName
 
 const SelectGroup = SelectPrimitive.Group
 
@@ -16,20 +70,23 @@ const SelectValue = SelectPrimitive.Value
 const SelectTrigger = React.forwardRef<
     React.ElementRef<typeof SelectPrimitive.Trigger>,
     React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-    <SelectPrimitive.Trigger
-        ref={ref}
-        className={cn(
-            'flex h-space-07 w-full items-center justify-between gap-space-01 whitespace-nowrap rounded-2 border border-form-field-border-default bg-transparent py-space-01 pe-space-02 ps-space-03 text-body-01 placeholder:text-foreground-secondary data-[placeholder]:text-foreground-secondary hover:border-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
-            className,
-        )}
-        {...props}>
-        {children}
-        <SelectPrimitive.Icon asChild>
-            <ExpandMore className="!size-[20px] shrink-0 text-foreground" />
-        </SelectPrimitive.Icon>
-    </SelectPrimitive.Trigger>
-))
+>(({ className, children, ...props }, ref) => {
+    const context = React.useContext(SelectContext)
+
+    return (
+        <SelectPrimitive.Trigger
+            ref={ref}
+            className={cn(
+                selectVariants({ variant: context.variant, size: context.size, colors: context.colors, rounded: context.rounded, className }),
+            )}
+            {...props}>
+            {children}
+            <SelectPrimitive.Icon asChild>
+                <ExpandMore className="!size-[20px] shrink-0  transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180" />
+            </SelectPrimitive.Icon>
+        </SelectPrimitive.Trigger>
+    )
+})
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
 
 const SelectScrollUpButton = React.forwardRef<
