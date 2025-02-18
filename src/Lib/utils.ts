@@ -11,7 +11,7 @@ import './ar-sa'
 
 export const twMerge = extendTailwindMerge({
     classGroups: {
-        'font-size': ['text-caption-01', 'text-subtitle-01', 'text-subtitle-02', 'text-body-01', 'text-body-02'],
+        'font-size': ['text-caption-01','text-caption-02', 'text-subtitle-01', 'text-subtitle-02', 'text-body-01', 'text-body-02'],
     },
 })
 
@@ -116,7 +116,7 @@ export const dateFormatter = ({
     }
 }
 
- 
+
 
 export const useShareLink = (text: string) => {
     const { toast } = useToast()

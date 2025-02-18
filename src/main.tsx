@@ -63,7 +63,7 @@ const App = () => {
             />
 
             <Stack className="p-space-03">
-                <Badge variant={'ghost'} size={'sm'} colors={'gray'}>
+                <Badge variant={'ghost'} size={'xs'} colors={'gray'}>
                     <Check />
                     <span>Badge</span>
                     <Check />
