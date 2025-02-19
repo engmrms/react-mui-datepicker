@@ -180,4 +180,5 @@ export {
     SelectSeparator,
     SelectTrigger,
     SelectValue,
+    selectVariants,
 }

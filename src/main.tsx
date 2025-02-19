@@ -6,6 +6,7 @@ import {
     ActionLoader,
     Badge,
     Breadcrumbs,
+    ComboboxControl,
     Form,
     FormControl,
     FormDescription,
@@ -46,7 +47,27 @@ const FormSchema = z.object({
             required_error: 'Please select an email to display.',
         })
         .email(),
+        language:z.string()
 })
+interface Languages {
+    label: string
+    value: string
+}
+
+const languages: Languages[] = [
+    { label: 'English', value: 'en' },
+    { label: 'French', value: 'fr' },
+    { label: 'German', value: 'de' },
+    { label: 'Spanish', value: 'es' },
+    { label: 'Portuguese', value: 'pt' },
+    { label: 'Russian', value: 'ru' },
+    { label: 'Japanese', value: 'ja' },
+    { label: 'Korean', value: 'ko' },
+    { label: 'Chinese', value: 'zh' },
+    { label: 'Arabic', value: 'ar' },
+    { label: 'Ordo', value: 'or' },
+
+]
 
 const App = () => {
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -300,6 +321,25 @@ const App = () => {
                             </FormItem>
                         )}
                     />
+                     <FormField
+            control={form.control}
+            name="language"
+            render={({ field }) => (
+                <FormItem className="flex flex-col">
+                    <FormLabel>Language</FormLabel>
+
+                    <ComboboxControl
+                        options={languages}
+                        optionLabel="label"
+                        optionValue="value"
+                        placeholder="select"
+                        onChange={vale => field.onChange(vale)}
+                        value={field.value}
+
+                    />
+                </FormItem>
+            )}
+        />
                     <Button type="submit">Submit</Button>
                 </form>
             </Form>

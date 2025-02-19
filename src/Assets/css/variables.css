@@ -193,7 +193,7 @@ html {
 }
 
 body {
-    @apply bg-card text-base text-foreground ltr:font-NotoSans rtl:font-NotoKufiArabic;
+    @apply bg-card font-IBMPlexSans text-base text-foreground;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
@@ -222,11 +222,11 @@ input:-webkit-autofill:focus {
 }
 
 .MuiButtonBase-root.MuiPickersDay-root {
-    @apply rounded-1 text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground ltr:font-NotoSans rtl:font-NotoKufiArabic;
+    @apply rounded-1 font-IBMPlexSans text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground;
 }
 .MuiPickersCalendarHeader-label,
 .MuiDayCalendar-header .MuiTypography-caption.MuiDayCalendar-weekDayLabel {
-    @apply ltr:font-NotoSans rtl:font-NotoKufiArabic;
+    @apply font-IBMPlexSans;
 }
 
 .MuiButtonBase-root.MuiPickersDay-root.Mui-selected,

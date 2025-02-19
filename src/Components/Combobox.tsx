@@ -4,7 +4,6 @@ import classNames from 'classnames'
 import { ExpandMore } from 'google-material-icons/outlined'
 import { cn, dateFormatter } from '../Lib/utils'
 import useLanguage from '../Stores/useLanguage'
-import { Button, ButtonProps, buttonVariants } from './ui/button'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command'
 import { FormControl } from './ui/form'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
@@ -13,6 +12,7 @@ import { ScrollArea } from './ui/scroll-area'
 import { VariantProps } from 'class-variance-authority'
 import React, { useState } from 'react'
 import { strings } from '../Locales'
+import { selectVariants } from '../package'
 import ActionLoader from './ActionLoader'
 import ShouldRender from './ShouldRender'
 
@@ -32,46 +32,42 @@ const ComboboxContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
 
 ComboboxContent.displayName = 'ComboboxContent'
 
-interface ButtonPropsExtend extends ButtonProps {
+interface ButtonPropsExtend extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof selectVariants> {
     isLoading?: boolean
     isForm?: boolean
 }
 
 const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
-    ({ className, children, placeholder, isLoading, isForm = true, ...props }, ref) => {
+    ({ className, children, variant, colors, size, rounded, placeholder, isLoading, isForm = true, ...props }, ref) => {
         if (!isForm)
             return (
                 <PopoverTrigger asChild>
-                    <Button
+                    <button
                         ref={ref}
-                        rounded={props?.rounded ?? 'default'}
-                        variant="field"
                         role="combobox"
                         disabled={isLoading}
-                        className={cn(` w-auto justify-between `, className)}
+                        className={cn(selectVariants({ variant, colors, size, rounded }), className)}
                         {...props}>
                         {placeholder && !children && <span className="text-body-01 text-foreground-secondary">{placeholder}</span>}
                         <span className="flex-1 truncate text-ellipsis text-right">{children}</span>
-                        {isLoading ? <ActionLoader /> : <ExpandMore className="  h-space-05 w-space-05 shrink-0 text-background-foreground" />}
-                    </Button>
+                        {isLoading ? <ActionLoader /> : <ExpandMore className="h-space-05 w-space-05 shrink-0 text-background-foreground" />}
+                    </button>
                 </PopoverTrigger>
             )
 
         return (
             <PopoverTrigger asChild>
                 <FormControl>
-                    <Button
-                        rounded={props?.rounded ?? 'default'}
+                    <button
                         ref={ref}
-                        variant="field"
                         role="combobox"
                         disabled={isLoading}
-                        className={cn('w-full', className)}
+                        className={cn(selectVariants({ variant, colors, size, rounded }), className)}
                         {...props}>
                         {placeholder && !children && <span className="text-body-01 text-foreground-secondary">{placeholder}</span>}
                         <span className="line-clamp-1 flex-1 text-right">{children}</span>
                         {isLoading ? <ActionLoader /> : <ExpandMore className="  h-space-05 w-space-05 shrink-0 text-primary-oncontainer" />}
-                    </Button>
+                    </button>
                 </FormControl>
             </PopoverTrigger>
         )
@@ -104,7 +100,7 @@ const ComboboxGroup = React.forwardRef<React.ElementRef<typeof CommandGroup>, Re
 )
 ComboboxGroup.displayName = 'ComboboxGroup'
 
-interface Props<T> extends VariantProps<typeof buttonVariants> {
+interface Props<T> extends VariantProps<typeof selectVariants> {
     options?: T[]
     optionLabel: keyof T
     optionValue: keyof T
