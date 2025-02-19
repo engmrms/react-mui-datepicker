@@ -1,17 +1,20 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { ToasterToast, useToast } from '../../ui/use-toast'
+import { useToast } from '../../ui/use-toast'
 
 import { Button } from '../../ui/button'
 import { Toast, ToastAction } from '../../ui/toast'
 import { Toaster } from '../../ui/toaster'
 
-const meta: Meta<typeof Toast & ToasterToast> = {
+const meta: Meta<typeof Toast> = {
     title: 'Design System/FeedBack/Toast',
     component: Toast,
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        variant: { control: 'select', options: ['default', 'destructive', 'success', 'info', 'warning'] },
+    },
+
     decorators: [
         Story => (
             <div className="min-h-space-12">
@@ -30,20 +33,18 @@ const meta: Meta<typeof Toast & ToasterToast> = {
 }
 
 export default meta
-type Story = StoryObj<ToasterToast>
+type Story = StoryObj<typeof Toast>
 
 /*
  *👇 Render functions are a framework specific feature to allow you control on how the component renders.
  * See https://storybook.js.org/docs/api/csf
  * to learn how to use render functions.
  */
-const args = {
-    asChild: false,
-    showClose: true,
-}
 
 export const Default: Story = {
-    args,
+    args: {
+        variant: 'default',
+    },
     render: arg => {
         const { toast } = useToast()
         return (
@@ -63,7 +64,9 @@ export const Default: Story = {
 }
 
 export const WithAction: Story = {
-    args,
+    args: {
+        variant: 'default',
+    },
     render: arg => {
         const { toast } = useToast()
         return (
@@ -84,7 +87,9 @@ export const WithAction: Story = {
 }
 
 export const WithoutTitle: Story = {
-    args,
+    args: {
+        variant: 'default',
+    },
     render: arg => {
         const { toast } = useToast()
         return (

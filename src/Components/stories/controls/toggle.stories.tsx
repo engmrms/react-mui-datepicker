@@ -36,6 +36,23 @@ const ToggleGroupDemoSingle = (arg: any) => {
     )
 }
 
+
+const ToggleGroupDemoText = (arg: any) => {
+    return (
+        <ToggleGroup type="single" {...arg}>
+            <ToggleGroupItem value="bold" aria-label="Toggle bold">
+                <FormatBold /> Bold
+            </ToggleGroupItem>
+            <ToggleGroupItem value="italic" aria-label="Toggle italic">
+                <FormatItalic /> Italic
+            </ToggleGroupItem>
+            <ToggleGroupItem value="strikethrough" aria-label="Toggle strikethrough">
+                <FormatUnderlined /> Underlined
+            </ToggleGroupItem>
+        </ToggleGroup>
+    )
+}
+
 const meta: Meta<typeof ToggleGroup> = {
     title: 'Design System/Controls/Toggle Group',
     component: ToggleGroup,
@@ -77,4 +94,15 @@ export const Single: Story = {
         size: 'icon',
     },
     render: ToggleGroupDemoSingle,
+}
+
+export const Text: Story = {
+    args: {
+        disabled: false,
+        asChild: false,
+        variant: 'outline',
+        colors: 'default',
+        size: 'default',
+    },
+    render: ToggleGroupDemoText
 }

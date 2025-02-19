@@ -1,24 +1,34 @@
-import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from '../../Components/ui/toast'
+import { CheckCircle, Error, Info, WarningAmber } from 'google-material-icons/outlined'
+import { Toast, ToastClose, ToastDescription, ToastIcon, ToastProvider, ToastTitle, ToastViewport } from '../../Components/ui/toast'
 import { useToast } from '../../Components/ui/use-toast'
 import accessibilityTools from '../../Stores/accessibilityTools'
 
+const IconMap = {
+    destructive: <WarningAmber />,
+    success: <CheckCircle />,
+    default: <Info />,
+    info: <Info />,
+    warning: <Error />,
+}
 export function Toaster() {
     const { toasts } = useToast()
     const isActive = accessibilityTools(state => state.isActive)
 
     return (
-        <ToastProvider >
+        <ToastProvider>
             {toasts.map(function ({ id, title, description, action, ...props }) {
                 return (
                     <Toast key={id} {...props} className={`${isActive ? 'grayscale' : 'grayscale-0'}`}>
-                        <ToastClose />
-                        <span className="!ml-0 !mr-0 h-space-07 self-center border border-border opacity-20" />
-                        <div className="flex grow flex-col justify-between sm:flex-row">
-                            <div className="grid flex-1 gap-1">
-                                {title && <ToastTitle>{title}</ToastTitle>}
-                                {description && <ToastDescription>{description}</ToastDescription>}
+                        <div className="flex grow flex-col justify-between gap-space-04">
+                            <div className="flex w-full gap-space-03">
+                                <ToastIcon icon={props.variant && IconMap[props.variant]} />
+                                <div className="grid flex-1 gap-space-01">
+                                    {title && <ToastTitle>{title}</ToastTitle>}
+                                    {description && <ToastDescription>{description}</ToastDescription>}
+                                </div>
+                                <ToastClose />
                             </div>
-                            {action}
+                            <div className='mx-space-07'>{action}</div>
                         </div>
                     </Toast>
                 )
