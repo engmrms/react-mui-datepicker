@@ -1,7 +1,8 @@
-import classNames from 'classnames'
+import { VariantProps } from 'class-variance-authority'
 import { ExpandMore } from 'google-material-icons/outlined'
 import { ComponentType } from 'react'
 import { useToggle } from 'usehooks-ts'
+import { cn } from '../Lib'
 import { strings } from '../Locales'
 import ShouldRender from './ShouldRender'
 import { Badge } from './ui/badge'
@@ -9,10 +10,11 @@ import { Button } from './ui/button'
 import { Checkbox } from './ui/checkbox'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from './ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
+import { selectVariants } from './ui/select'
 
 type ValueType = string | number
 
-export interface MultiSelectProps<T extends ValueType> {
+export interface MultiSelectProps<T extends ValueType> extends VariantProps<typeof selectVariants> {
     placeholder: string
     options: {
         label: string
@@ -22,9 +24,8 @@ export interface MultiSelectProps<T extends ValueType> {
     selectedValues: T[]
     onChange: (values: T[]) => void
     disabled?: boolean
-    size?: 'sm' | 'default'
     dataTestId?: string
-    rounded?: 'default' | 'full'
+    className?: string
 }
 
 export function MultiSelect<T extends ValueType>({
@@ -36,6 +37,9 @@ export function MultiSelect<T extends ValueType>({
     size = 'default',
     dataTestId = '',
     rounded = 'default',
+    variant = 'outline',
+    colors = 'default',
+    className,
 }: MultiSelectProps<T>) {
     const [isOpen, toggle] = useToggle(false)
 
@@ -46,15 +50,8 @@ export function MultiSelect<T extends ValueType>({
                 toggle()
             }}>
             <PopoverTrigger asChild disabled={disabled} data-testid={dataTestId}>
-                <Button size={size} rounded={rounded} colors="gray" variant="outline" className="gap-space-01 py-space-02 pl-space-03 pr-space-04">
-                    <span
-                        className={classNames({
-                            'text-body-01': size === 'sm',
-                            'text-body-02': size === 'default',
-                            'text-foreground-secondary': !selectedValues?.length,
-                        })}>
-                        {placeholder}
-                    </span>
+                <button className={cn(selectVariants({ variant, colors, size, rounded }), className)}>
+                    <span className="text-body-01 text-form-field-text-placeholder ">{placeholder}</span>
                     {selectedValues?.length > 0 && (
                         <>
                             {selectedValues?.length > 1 ? (
@@ -73,13 +70,9 @@ export function MultiSelect<T extends ValueType>({
                         </>
                     )}
                     <ExpandMore
-                        className={classNames({
-                            'size-8': size === 'sm',
-                            'size-space-05': size === 'default',
-                            'text-foreground-secondary': !selectedValues?.length,
-                        })}
+                        className={'size-[20px]  shrink-0  transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180'}
                     />
-                </Button>
+                </button>
             </PopoverTrigger>
             <PopoverContent className="min-h-space-07 min-w-[var(--radix-popover-trigger-width)]   p-space-00" align="start">
                 <Command className="w-full">

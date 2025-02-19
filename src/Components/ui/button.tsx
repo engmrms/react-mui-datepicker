@@ -18,9 +18,6 @@ const buttonVariants = cva(
                 ghost: 'border-none disabled:text-disabled ', //text
                 link: 'text-current underline-offset-4 hover:underline ',
                 text: 'border-none  disabled:text-disabled-text-default-disabled ',
-                field: `relative border border-form-field-border-default aria-[invalid=true]:border-form-field-border-error hover:border-form-field-border-hovered
-                        focus:aria-[invalid=true]:after:bg-form-field-border-error font-normal
-                        after:absolute after:bottom-0 after:w-0 after:h-[2px] ltr:after:-translate-x-1/2 rtl:after:translate-x-1/2 after:start-1/2 after:bg-form-field-border-pressed after:ease-in-out after:transition-all focus-within:after:w-full`,
             },
             size: {
                 default: 'py-space-02 px-space-04 h-[40px] text-body-02 [&>svg]:size-space-05',
@@ -53,11 +50,6 @@ const buttonVariants = cva(
             },
         },
         compoundVariants: [
-            {
-                colors: 'primary',
-                variant: 'field',
-                className: 'bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent  focus:outline-0 text-form-field-text-readonly focus:text-form-field-text-focused',
-            },
             {
                 colors: 'neutral',
                 variant: 'outline',

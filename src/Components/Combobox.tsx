@@ -12,9 +12,9 @@ import { ScrollArea } from './ui/scroll-area'
 import { VariantProps } from 'class-variance-authority'
 import React, { useState } from 'react'
 import { strings } from '../Locales'
-import { selectVariants } from '../package'
 import ActionLoader from './ActionLoader'
 import ShouldRender from './ShouldRender'
+import { selectVariants } from './ui/select'
 
 const Combobox = Popover
 
@@ -48,9 +48,13 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
                         disabled={isLoading}
                         className={cn(selectVariants({ variant, colors, size, rounded }), className)}
                         {...props}>
-                        {placeholder && !children && <span className="text-body-01 text-foreground-secondary">{placeholder}</span>}
+                        {placeholder && !children && <span className="text-body-01 text-form-field-text-placeholder ">{placeholder}</span>}
                         <span className="flex-1 truncate text-ellipsis text-right">{children}</span>
-                        {isLoading ? <ActionLoader /> : <ExpandMore className="h-space-05 w-space-05 shrink-0 text-background-foreground" />}
+                        {isLoading ? (
+                            <ActionLoader />
+                        ) : (
+                            <ExpandMore className="size-[20px]  shrink-0  transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180" />
+                        )}
                     </button>
                 </PopoverTrigger>
             )
@@ -66,7 +70,11 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
                         {...props}>
                         {placeholder && !children && <span className="text-body-01 text-foreground-secondary">{placeholder}</span>}
                         <span className="line-clamp-1 flex-1 text-right">{children}</span>
-                        {isLoading ? <ActionLoader /> : <ExpandMore className="  h-space-05 w-space-05 shrink-0 text-primary-oncontainer" />}
+                        {isLoading ? (
+                            <ActionLoader />
+                        ) : (
+                            <ExpandMore className="size-[20px] shrink-0  transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180" />
+                        )}
                     </button>
                 </FormControl>
             </PopoverTrigger>
