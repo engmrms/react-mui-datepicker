@@ -53,7 +53,8 @@ export const ar = {
         showResults: 'عرض النتائج',
         reset: 'إعادة التعيين',
         CopiedSuccessfully: 'تم النسخ بنجاح',
-        
+        comma :"،"
+
     },
 
     Footer: {
@@ -72,5 +73,18 @@ export const ar = {
         Width: 'العرض',
         Show: 'اظهار',
         AddToDashboard: 'تخصيص العرض',
+    },
+    Attachments: {
+        error: 'عفوًا، صيغة أو حجم  المرفق غير مسموح بها',
+        Attachments: 'المرفقات',
+        AddAttachment: 'أرفق الملفات',
+        dragFiles: 'اسحب و أفلت الملفات هنا للرفع',
+        browseFile: 'تصفح الملفات',
+        uploadFiles:'رفع المرفقات',
+        allowedFormats: 'وتشمل الصيغ المدعومة {0}',
+        maxSize: 'الحد الأقصى لحجم الملف المسموح به هو {0} ميجابايت',
+        ApplyFile: 'تقديم الملف',
+        maxAcceptedFilesCount: 'أقصى عدد من الملفات التي يمكنك إرفاقها هنا هو {0} ملفات',
+        attachedFile: 'مرفق ملف',
     },
 }

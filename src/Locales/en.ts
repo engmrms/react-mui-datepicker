@@ -54,6 +54,7 @@ export const en = {
         showResults: 'Show results',
         reset: 'Reset',
         CopiedSuccessfully: 'Copied successfully',
+        comma: ',',
     },
     Footer: {
         TermsOfUse: 'Terms Of Use',
@@ -71,5 +72,18 @@ export const en = {
         Width: 'Width',
         Show: 'Show',
         AddToDashboard: 'Custom display',
+    },
+    Attachments: {
+        error: 'Sorry! The format or the size of the attachment is not allowed.',
+        Attachments: 'Attachments',
+        AddAttachment: 'Attach files',
+        dragFiles: 'Drag and drop files here to upload ',
+        browseFile: 'Browse Files',
+        uploadFiles: 'Upload Files',
+        allowedFormats: 'supported file formats include {0}',
+        maxSize: 'Maximum file size allowed is {0}MB',
+        ApplyFile: 'Apply File',
+        maxAcceptedFilesCount: 'the maximum number of files you can drop here {0} files',
+        attachedFile: 'Attached File',
     },
 }

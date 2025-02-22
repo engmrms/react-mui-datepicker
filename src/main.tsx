@@ -1,5 +1,5 @@
 import { Check, Home } from 'google-material-icons/outlined'
-import React from 'react'
+import React, { useCallback } from 'react'
 import ReactDOM from 'react-dom/client'
 import './Assets/css/Shared.css'
 import {
@@ -7,6 +7,8 @@ import {
     Badge,
     Breadcrumbs,
     ComboboxControl,
+    FileInfo,
+    FileUpload,
     Form,
     FormControl,
     FormDescription,
@@ -47,11 +49,16 @@ const FormSchema = z.object({
             required_error: 'Please select an email to display.',
         })
         .email(),
-        language:z.string()
+    language: z.string(),
 })
 interface Languages {
     label: string
     value: string
+}
+const acceptedFormats = {
+    'image/png': ['.png'],
+    'image/jpeg': ['.jpg', '.jpeg'],
+    'application/pdf': ['.pdf'],
 }
 
 const languages: Languages[] = [
@@ -66,10 +73,43 @@ const languages: Languages[] = [
     { label: 'Chinese', value: 'zh' },
     { label: 'Arabic', value: 'ar' },
     { label: 'Ordo', value: 'or' },
-
 ]
 
 const App = () => {
+    const handleFileSelect = useCallback(
+        (
+            selectedFiles: FileInfo[],
+            updateCallback: (id: string, progress: number, status: 'uploading' | 'success' | 'error', error?: string) => void,
+        ) => {
+            // Here you would typically handle the file upload process
+            // For this example, we'll simulate the upload process
+            selectedFiles.forEach(file => {
+                let progress = 0
+                const interval = setInterval(() => {
+                    progress += 10
+                    updateCallback(file.id, progress, 'uploading')
+                    console.log(`Uploading ${file.file.name}: ${progress}%`)
+                    if (progress >= 100) {
+                        clearInterval(interval)
+                        updateCallback(file.id, 100, 'success')
+                        console.log(`${file.file.name} upload complete`)
+                    }
+                }, 500)
+
+                // Simulate random error
+                // if (Math.random() < 0.2) {
+                //     // 20% chance of error
+                //     setTimeout(() => {
+                //         clearInterval(interval)
+                //         updateCallback(fileId, progress, 'error', 'Upload failed')
+                //         console.log(`${file.name} upload failed`)
+                //     }, 2000)
+                // }
+            })
+        },
+        [],
+    )
+
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     })
@@ -84,6 +124,7 @@ const App = () => {
             ),
         })
     }
+
     return (
         <Stack direction={'col'} className="p-space-06">
             <ActionLoader />
@@ -321,28 +362,28 @@ const App = () => {
                             </FormItem>
                         )}
                     />
-                     <FormField
-            control={form.control}
-            name="language"
-            render={({ field }) => (
-                <FormItem className="flex flex-col">
-                    <FormLabel>Language</FormLabel>
+                    <FormField
+                        control={form.control}
+                        name="language"
+                        render={({ field }) => (
+                            <FormItem className="flex flex-col">
+                                <FormLabel>Language</FormLabel>
 
-                    <ComboboxControl
-                        options={languages}
-                        optionLabel="label"
-                        optionValue="value"
-                        placeholder="select"
-                        onChange={vale => field.onChange(vale)}
-                        value={field.value}
-
+                                <ComboboxControl
+                                    options={languages}
+                                    optionLabel="label"
+                                    optionValue="value"
+                                    placeholder="select"
+                                    onChange={vale => field.onChange(vale)}
+                                    value={field.value}
+                                />
+                            </FormItem>
+                        )}
                     />
-                </FormItem>
-            )}
-        />
                     <Button type="submit">Submit</Button>
                 </form>
             </Form>
+            <FileUpload acceptedFormats={acceptedFormats} onFileSelect={handleFileSelect} maxFiles={2} />
         </Stack>
     )
 }
