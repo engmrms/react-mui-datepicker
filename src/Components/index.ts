@@ -39,6 +39,7 @@ export * from './ui/navigation-menu'
 // TODO: check if it's used as we have paginations component
 // export * as Pagination from './ui/pagination'
 export * from './FileUpload'
+export * from './Footer'
 export * from './ui/link'
 export * from './ui/PieChart'
 export * from './ui/popover'
