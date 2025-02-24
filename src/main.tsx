@@ -393,6 +393,17 @@ const App = () => {
                 extraLinks={
                     [{href:"",label:"Terms and conditions"},{href:"",label:"Privacy Policy "}]
                 }
+                bottomImages={[
+                    <div key={"dgacert"} className='w-space-12'>
+                    <a href="http://raqmi.dga.gov.sa/platforms/DigitalStamp/ShowCertificate/6122">
+                  <img
+                    className="raqmi m-0"
+                    src="http://raqmi.dga.gov.sa/platforms/DigitalStamp/GetStampWFile/3523"
+                    alt="raqmi"
+                  />
+                </a>
+                    </div>
+                ]}
             />
         </>
     )

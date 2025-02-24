@@ -138,6 +138,7 @@ const Footer = (props: FooterProps) => {
                         <img src={moe} alt="moe" />
                         <img src={tetcoFull} alt="tetco" />
                         <img src={vision} alt="vision 2030" />
+                        {props.bottomImages}
                     </div>
                 </div>
             </div>
