@@ -39,43 +39,40 @@ interface ButtonPropsExtend extends React.ButtonHTMLAttributes<HTMLButtonElement
 
 const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
     ({ className, children, variant, colors, size, rounded, placeholder, isLoading, isForm = true, ...props }, ref) => {
+        const buttonProps = {
+            ref,
+            role: 'combobox',
+            'aria-expanded': false,
+            'aria-label': placeholder || 'Select an option',
+            title: placeholder || 'Select an option',
+            disabled: isLoading,
+            className: cn(selectVariants({ variant, colors, size, rounded }), className),
+            ...props,
+        }
+        const buttonContent = (
+            <>
+                {placeholder && !children && <span className="pointer-events-none text-body-01 text-form-field-text-placeholder">{placeholder}</span>}
+                <span className="flex-1 truncate text-ellipsis text-right">{children}</span>
+                {isLoading ? (
+                    <ActionLoader />
+                ) : (
+                    <ExpandMore
+                        className="size-[20px]  shrink-0  transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180"
+                        aria-hidden
+                    />
+                )}
+            </>
+        )
         if (!isForm)
             return (
                 <PopoverTrigger asChild>
-                    <button
-                        ref={ref}
-                        role="combobox"
-                        disabled={isLoading}
-                        className={cn(selectVariants({ variant, colors, size, rounded }), className)}
-                        {...props}>
-                        {placeholder && !children && <span className="text-body-01 text-form-field-text-placeholder ">{placeholder}</span>}
-                        <span className="flex-1 truncate text-ellipsis text-right">{children}</span>
-                        {isLoading ? (
-                            <ActionLoader />
-                        ) : (
-                            <ExpandMore className="size-[20px]  shrink-0  transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180" />
-                        )}
-                    </button>
+                    <button {...buttonProps}>{buttonContent}</button>
                 </PopoverTrigger>
             )
-
         return (
             <PopoverTrigger asChild>
                 <FormControl>
-                    <button
-                        ref={ref}
-                        role="combobox"
-                        disabled={isLoading}
-                        className={cn(selectVariants({ variant, colors, size, rounded }), className)}
-                        {...props}>
-                        {placeholder && !children && <span className="text-body-01 text-foreground-secondary">{placeholder}</span>}
-                        <span className="line-clamp-1 flex-1 text-right">{children}</span>
-                        {isLoading ? (
-                            <ActionLoader />
-                        ) : (
-                            <ExpandMore className="size-[20px] shrink-0  transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180" />
-                        )}
-                    </button>
+                    <button {...buttonProps}>{buttonContent}</button>
                 </FormControl>
             </PopoverTrigger>
         )
