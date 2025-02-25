@@ -1,55 +1,42 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/no-unescaped-entities */
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Add, KeyboardArrowDown, Minimize } from 'google-material-icons/outlined'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../../ui/accordion'
 
-type WrapperProps = React.ComponentProps<typeof Accordion> & {
-    size?: 'default' | 'sm' | 'xs'
-    isLeading?: boolean
-}
-
-const AccordionWrapper = ({ size, isLeading, ...props }: WrapperProps) => {
-    // You can use size and isLeading here if needed
-    return <AccordionDemo {...props} />
-}
-
-function AccordionDemo(arg: WrapperProps) {
+function AccordionDemo(arg: React.ComponentProps<typeof Accordion>) {
     console.log(arg.size)
     return (
         <Accordion {...arg} className="w-full">
             <AccordionItem value="item-1">
-                <AccordionTrigger size={arg.size} isLeading={arg?.isLeading}>
+                <AccordionTrigger>
                     Is it accessible?
                     <KeyboardArrowDown className="transition-transform duration-500 ease-in-out group-data-[state=open]:rotate-180" aria-hidden />
                 </AccordionTrigger>
                 <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-                <AccordionTrigger size={arg.size} isLeading={arg?.isLeading}>
+                <AccordionTrigger>
                     Is it styled?
                     <KeyboardArrowDown className="transition-transform duration-500 ease-in-out group-data-[state=open]:rotate-180" aria-hidden />
                 </AccordionTrigger>
                 <AccordionContent>Yes. It comes with default styles that matches the other components&apos; aesthetic.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-                <AccordionTrigger size={arg.size} isLeading={arg?.isLeading}>
+                <AccordionTrigger>
                     Is it animated?
                     <KeyboardArrowDown className="transition-transform duration-500 ease-in-out group-data-[state=open]:rotate-180" aria-hidden />
                 </AccordionTrigger>
-                <AccordionContent>Yes. It's animated by default, but you can disable it if you prefer.</AccordionContent>
+                <AccordionContent>{"Yes. It's animated by default, but you can disable it if you prefer."}</AccordionContent>
             </AccordionItem>
         </Accordion>
     )
 }
 
-function AccordionCustomIcon(arg: WrapperProps) {
+function AccordionCustomIcon(arg: React.ComponentProps<typeof Accordion>) {
     return (
         <Accordion {...arg} className="w-full">
             <AccordionItem value="item-1">
-                <AccordionTrigger size="xs">
+                <AccordionTrigger>
                     Is it accessible?
                     <Add className="group-data-[state=open]:hidden" />
                     <Minimize className="group-data-[state=closed]:hidden" />
@@ -57,7 +44,7 @@ function AccordionCustomIcon(arg: WrapperProps) {
                 <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-                <AccordionTrigger size="xs">
+                <AccordionTrigger>
                     Is it styled?
                     <Add className="group-data-[state=open]:hidden" />
                     <Minimize className="group-data-[state=closed]:hidden" />
@@ -65,20 +52,20 @@ function AccordionCustomIcon(arg: WrapperProps) {
                 <AccordionContent>Yes. It comes with default styles that matches the other components&apos; aesthetic.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-                <AccordionTrigger size="xs">
+                <AccordionTrigger>
                     Is it animated?
                     <Add className="group-data-[state=open]:hidden" />
                     <Minimize className="group-data-[state=closed]:hidden" />
                 </AccordionTrigger>
-                <AccordionContent>Yes. It's animated by default, but you can disable it if you prefer.</AccordionContent>
+                <AccordionContent>{"Yes. It's animated by default, but you can disable it if you prefer."}</AccordionContent>
             </AccordionItem>
         </Accordion>
     )
 }
 
-const meta: Meta<typeof AccordionWrapper> = {
+const meta: Meta<typeof Accordion> = {
     title: 'Design System/Surface/Accordion',
-    component: AccordionWrapper,
+    component: Accordion,
     tags: ['autodocs'],
 
     args: {
@@ -104,7 +91,7 @@ const meta: Meta<typeof AccordionWrapper> = {
 
 export default meta
 
-type Story = StoryObj<typeof AccordionWrapper>
+type Story = StoryObj<typeof Accordion>
 
 export const Default: Story = {
     render: args => <AccordionDemo {...args} />,
