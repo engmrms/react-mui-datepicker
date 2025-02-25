@@ -73,14 +73,10 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps & InputP
                     {...props}
                     onKeyDown={handleKeyDown}
                     onChange={handleInputChange}
-                    className={cn(
-                        'w-full  transition-all duration-200 focus-within:border-success hover:border-success',
-                        { 'pe-space-04': type === 'onType', 'pe-space-01': type === 'onButton' },
-                        className,
-                    )}
+                    className={cn('w-full ', { 'pe-space-04': type === 'onType', 'pe-space-01': type === 'onButton' }, className)}
                     aria-invalid={!!validationMessage}
                     data-testid="search-input"
-                    startAdornment={type === 'onType' && <Search className="text-foreground-tertiary" />}
+                    startAdornment={type === 'onType' && <Search className="text-icon-default" />}
                     endAdornment={
                         <Stack gap={1} alignItems={'center'}>
                             {inputValue && (
