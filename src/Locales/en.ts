@@ -55,14 +55,18 @@ export const en = {
         reset: 'Reset',
         CopiedSuccessfully: 'Copied successfully',
         comma: ',',
+        accessibilityTools: " Accessibility Tools"
     },
+
+
     Footer: {
-        TermsOfUse: 'Terms Of Use',
-        PrivacyPolicy: 'Privacy Policy ',
-        InformationProtection: ' Information Protection ',
-        Colors: 'Colors (On/Off)',
-        VoiceCommands: 'Voice Commands',
-        CopyRights: 'All rights reserved ',
+        KSA: 'Ministry of Education - Saudia Arabia',
+        TermsAndConditions: 'Terms & conditions',
+        PolicyAndPrivacy: '	Privacy policy',
+        RegulationsPolicies: 'Regulations & Policies',
+        Rights: 'All rights reserved to the Ministry of Education © {0}',
+        Version: 'Version ',
+        DevelopedByTetco: 'Developed and operated by Tatweer Educational Technologies Company',
     },
     DragAndDrop: {
         SaveCustomization: 'Save',

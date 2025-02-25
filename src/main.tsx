@@ -43,7 +43,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Comp
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import {Footer} from './Components/Footer'
+import { Footer } from './Components/Footer'
 
 const FormSchema = z.object({
     email: z
@@ -295,8 +295,6 @@ const App = () => {
             </Stack>
 
             <Footer
-                copyright=" All Right Reserved For Digital Government Authority"
-                powerdby="Developed and Maintained by [insert the name of the entity]"
                 socialMediaTitle={' Social Media'}
                 socialMediaLinks={[
                     {
@@ -390,19 +388,18 @@ const App = () => {
                     { label: 'sitemap4', render: <Link to="./about">about</Link> },
                     { label: 'Mobile App', href: '/app' },
                 ]}
-                extraLinks={
-                    [{href:"",label:"Terms and conditions"},{href:"",label:"Privacy Policy "}]
-                }
+                extraLinks={[
+                    { href: '', label: 'Terms and conditions' },
+                    { href: '', label: 'Privacy Policy ' },
+                ]}
+                showGroupLinks
+                colors='default'
                 bottomImages={[
-                    <div key={"dgacert"} className='w-space-12'>
-                    <a href="http://raqmi.dga.gov.sa/platforms/DigitalStamp/ShowCertificate/6122">
-                  <img
-                    className="raqmi m-0"
-                    src="http://raqmi.dga.gov.sa/platforms/DigitalStamp/GetStampWFile/3523"
-                    alt="raqmi"
-                  />
-                </a>
-                    </div>
+                    <div key={'dgacert'} className="w-space-12">
+                        <a href="http://raqmi.dga.gov.sa/platforms/DigitalStamp/ShowCertificate/6122">
+                            <img className="raqmi m-0" src="http://raqmi.dga.gov.sa/platforms/DigitalStamp/GetStampWFile/3523" alt="raqmi" />
+                        </a>
+                    </div>,
                 ]}
             />
         </>

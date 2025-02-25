@@ -53,17 +53,18 @@ export const ar = {
         showResults: 'عرض النتائج',
         reset: 'إعادة التعيين',
         CopiedSuccessfully: 'تم النسخ بنجاح',
-        comma :"،"
-
+        comma: '،',
+        accessibilityTools:"أداة سهولة الوصول"
     },
 
     Footer: {
-        TermsOfUse: 'شروط الاستخدام',
-        PrivacyPolicy: 'سياسة الخصوصية',
-        InformationProtection: 'حماية البيانات',
-        Colors: 'تباين الألوان',
-        VoiceCommands: 'الأوامر الصوتية',
-        CopyRights: 'جميع الحقوق محفوظة ',
+        KSA: 'وزارة التعليم - المملكة العربية السعودية',
+        TermsAndConditions: 'الشروط والأحكام',
+        PolicyAndPrivacy: 'سياسة الخصوصية',
+        RegulationsPolicies: 'اللوائح والسياسات',
+        Rights: '© {0} جميع الحقوق محفوظة لوزارة التعليم',
+        Version: 'نسخة رقم ',
+        DevelopedByTetco: 'تطوير وتشغيل شركة تطوير لتقنيات التعليم',
     },
     DragAndDrop: {
         SaveCustomization: 'حفظ',
@@ -80,7 +81,7 @@ export const ar = {
         AddAttachment: 'أرفق الملفات',
         dragFiles: 'اسحب و أفلت الملفات هنا للرفع',
         browseFile: 'تصفح الملفات',
-        uploadFiles:'رفع المرفقات',
+        uploadFiles: 'رفع المرفقات',
         allowedFormats: 'وتشمل الصيغ المدعومة {0}',
         maxSize: 'الحد الأقصى لحجم الملف المسموح به هو {0} ميجابايت',
         ApplyFile: 'تقديم الملف',

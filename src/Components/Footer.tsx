@@ -1,166 +1,227 @@
+import { HearingDisabled, Visibility, ZoomIn, ZoomOut } from 'google-material-icons/outlined'
 import React, { ReactNode } from 'react'
 import moe from '../Assets/images/logos/moe.svg'
 import tetcoFull from '../Assets/images/logos/tetcoFull.svg'
 import vision from '../Assets/images/logos/vision.svg'
-import { Button, Link } from '../package'
 
+import moeNeutral from '../Assets/images/logos/moe_netural.svg'
+import tetcoNeutral from '../Assets/images/logos/tetco_neutral.svg'
+import visionNeutral from '../Assets/images/logos/vision_neutral.svg'
+import { accessibilityTools, Button, cn, Link, LinkProps, ShouldRender, strings } from '../package'
+
+type Colors = 'default' | 'neutral'
 interface FooterLink {
     label: string
     href?: string
     render?: ReactNode
 }
-
-interface FooterProps {
-    NavLinks?: boolean
-    mainTitle?: string
-    mainDescription?: string
-    mainLinkTilte?: string
-    mainLink?: string
-    mainImage?: string
-    groupLinks?: {
-        title: string
-        links: FooterLink[]
-    }[]
-    socialMediaTitle: string
-    socialMediaLinks: {
-        title?: string
-        target: string
-        icon: React.ReactNode
-    }[]
-    // accessibilityTitle?: string;
-    // accessibilityLinks?: {
-    //     title?: string;
-    //     target: string;
-    //     icon: React.ReactNode;
-    // }[];
+interface GroupLink {
+    title: string
+    links: FooterLink[]
+}
+interface SocialLink {
+    title?: string
+    target: string
+    icon: React.ReactNode
+}
+interface BottomSectionProps {
     basicLinks?: FooterLink[]
     extraLinks?: FooterLink[]
-    copyright?: string
-    powerdby?: string
     bottomImages?: React.ReactNode[]
+    colors?: Colors
+    showBasicLinks?: boolean
 }
-// export interface FooterNavLinksType {
-//     links: {
-//         name: string
-//         target: string
-//     }[]
-// background?: string
-//}
 
-const Footer = (props: FooterProps) => {
+interface FooterProps extends BottomSectionProps {
+    showGroupLinks?: boolean
+    groupLinks?: GroupLink[]
+    socialMediaTitle: string
+    socialMediaLinks: SocialLink[]
+}
+
+const Footer = ({ colors = 'default', ...props }: FooterProps) => {
     return (
-        <footer className="bg-background-SA-Flag px-space-06">
+        <footer
+            className={cn(' px-space-06', {
+                'bg-background-SA-Flag text-text-oncolor-primary': colors === 'default',
+                'bg-background-neutral-100 text-text-default': colors === 'neutral',
+            })}>
             <div className="flex flex-col items-start py-space-05">
                 {/* link groups */}
-                <div className="mb-space-08 grid w-full grid-cols-12 items-stretch gap-space-05 pb-space-07 pt-space-04">
-                    {props.groupLinks?.map(group => (
-                        <div key={group.title} className="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3">
-                            <div className="flex flex-col items-start gap-space-02">
-                                <h3 className="border-b border-x-border-oncolor-transparent-30 pb-space-02 text-body-02 font-medium text-text-oncolor-primary">
-                                    {group.title}
-                                </h3>
-                                <ul className="flex flex-col gap-space-02">
-                                    {group.links?.map(link => (
-                                        <li key={link.label}>
-                                            <FooterLink key={link.label} {...link} />
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    ))}
-                    <div className="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3">
-                        <div className="flex flex-col items-start gap-space-06">
-                            <div className="flex flex-col items-start gap-space-02">
-                                <h3 className="border-b border-x-border-oncolor-transparent-30 pb-space-02 text-body-02 font-medium text-text-oncolor-primary">
-                                    {props.socialMediaTitle}
-                                </h3>
-                                <div className="flex flex-wrap items-center gap-space-02">
-                                    {props.socialMediaLinks?.map(slink => (
-                                        <Button
-                                            key={slink.title}
-                                            variant={'outline'}
-                                            tooltip={slink.title}
-                                            colors={'oncolor'}
-                                            size={'icon-sm'}
-                                            rounded={'default'}>
-                                            <a href={slink.target} target="_blank" rel="noopener noreferrer" title={slink.title}>
-                                                {slink.icon}
-                                            </a>
-                                        </Button>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="flex flex-col items-start gap-space-02">
-                                <h3 className="border-b border-x-border-oncolor-transparent-30 pb-space-02 text-body-02 font-medium text-text-oncolor-primary">
-                                    Accessibility Tools
-                                </h3>
-                                <div className="flex flex-wrap items-center gap-space-02">
-                                    <div className="flex aspect-square w-fit cursor-pointer items-center  justify-center rounded-0 border border-border-white-40 px-space-03 ">
-                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                fillRule="evenodd"
-                                                clipRule="evenodd"
-                                                d="M0.943526 1.21547C1.05038 1.00649 1.2653 0.875 1.5 0.875H5.66667C5.86736 0.875 6.05584 0.971373 6.17334 1.13407L10.2867 6.82945L16.0581 1.05806C16.3021 0.813981 16.6979 0.813981 16.9419 1.05806C17.186 1.30214 17.186 1.69786 16.9419 1.94194L11.028 7.85589L17.0067 16.1341C17.1441 16.3243 17.1633 16.5756 17.0565 16.7845C16.9496 16.9935 16.7347 17.125 16.5 17.125H12.3333C12.1326 17.125 11.9442 17.0286 11.8267 16.8659L7.71333 11.1706L1.94194 16.9419C1.69787 17.186 1.30214 17.186 1.05806 16.9419C0.813983 16.6979 0.813983 16.3021 1.05806 16.0581L6.97201 10.1441L0.993328 1.86593C0.85591 1.67566 0.836676 1.42444 0.943526 1.21547ZM2.72235 2.125L12.6529 15.875H15.2777L5.3471 2.125H2.72235Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                    <div className="flex aspect-square w-fit cursor-pointer items-center  justify-center rounded-0 border border-border-white-40 px-space-03 ">
-                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                fillRule="evenodd"
-                                                clipRule="evenodd"
-                                                d="M0.943526 1.21547C1.05038 1.00649 1.2653 0.875 1.5 0.875H5.66667C5.86736 0.875 6.05584 0.971373 6.17334 1.13407L10.2867 6.82945L16.0581 1.05806C16.3021 0.813981 16.6979 0.813981 16.9419 1.05806C17.186 1.30214 17.186 1.69786 16.9419 1.94194L11.028 7.85589L17.0067 16.1341C17.1441 16.3243 17.1633 16.5756 17.0565 16.7845C16.9496 16.9935 16.7347 17.125 16.5 17.125H12.3333C12.1326 17.125 11.9442 17.0286 11.8267 16.8659L7.71333 11.1706L1.94194 16.9419C1.69787 17.186 1.30214 17.186 1.05806 16.9419C0.813983 16.6979 0.813983 16.3021 1.05806 16.0581L6.97201 10.1441L0.993328 1.86593C0.85591 1.67566 0.836676 1.42444 0.943526 1.21547ZM2.72235 2.125L12.6529 15.875H15.2777L5.3471 2.125H2.72235Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                </div>
+                <ShouldRender shouldRender={props.showGroupLinks}>
+                    <div className="mb-space-08 grid w-full grid-cols-12 items-stretch gap-space-05 pb-space-07 pt-space-04">
+                        {props.groupLinks?.map(group => (
+                            <FooterLinkGroup colors={colors} title={group.title} links={group.links} key={group.title} />
+                        ))}
+                        <div className="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3">
+                            <div className="flex w-full flex-col items-start gap-space-06">
+                                <FooterSocialMedia title={props.socialMediaTitle} colors={colors} links={props.socialMediaLinks} />
+                                <FooterAccessibilityTools colors={colors} />
                             </div>
                         </div>
                     </div>
-                </div>
-
+                </ShouldRender>
                 {/* other links */}
-                <div className="grid w-full grid-cols-12 gap-space-05 py-space-04">
-                    <div className="col-span-12 space-y-space-02 md:col-span-8">
-                        <div className="mb-spacing-05 flex items-center gap-space-04 ">
-                            {props.basicLinks?.map(link => <FooterLink key={link.label} {...link} underline="always" />)}
-                        </div>
-                        <p className="text-body-01 font-semibold text-text-oncolor-primary">
-                            {props.copyright} © {new Date().getFullYear()}
-                        </p>
-                        <p className="text-body-01 text-text-oncolor-primary">{props.powerdby}</p>
-                        <div className="flex items-center gap-space-04 ">
-                            {props.extraLinks?.map(link => <FooterLink key={link.label} {...link} />)}
-                        </div>
-                    </div>
-                    <div className="col-span-12 ms-auto flex flex-wrap items-center gap-space-04 md:col-span-4">
-                        <img src={moe} alt="moe" />
-                        <img src={tetcoFull} alt="tetco" />
-                        <img src={vision} alt="vision 2030" />
-                        {props.bottomImages}
-                    </div>
-                </div>
+                <FooterBottomSection
+                    colors={colors}
+                    basicLinks={props.basicLinks}
+                    bottomImages={props.bottomImages}
+                    extraLinks={props.extraLinks}
+                    showBasicLinks={props.showBasicLinks}
+                />
             </div>
         </footer>
     )
 }
 
-interface FooterLinkProps extends FooterLink {
-    underline?: 'always' | 'hover'
+const FooterHeading = ({ title, colors }: { colors: Colors; title: string }) => {
+    return (
+        <h3
+            className={cn('w-full border-b pb-space-02 text-body-02 font-medium', {
+                'border-border-neutral-primary': colors === 'neutral',
+                'border-border-oncolor-transparent-30': colors === 'default',
+            })}>
+            {title}
+        </h3>
+    )
 }
 
-function FooterLink({ label, href, render, underline }: FooterLinkProps) {
+const FooterLinkGroup = ({ title, links, colors }: GroupLink & { colors: Colors }) => {
+    return (
+        <div className="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3">
+            <div className="flex flex-col items-start gap-space-02">
+                <FooterHeading title={title} colors={colors} />
+                <ul className="flex flex-col gap-space-02">
+                    {links.map(link => (
+                        <li key={link.label}>
+                            <FooterLink {...link} colors={colors === 'neutral' ? 'neutral' : 'oncolor'} />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    )
+}
+
+const FooterSocialMedia = ({ title, links, colors }: { links: SocialLink[]; title: string; colors: Colors }) => {
+    return (
+        <div className="flex w-full flex-col items-start gap-space-02">
+            <FooterHeading title={title} colors={colors} />
+            <div className="flex flex-wrap items-center gap-space-02">
+                {links.map(slink => (
+                    <Button
+                        key={slink.title}
+                        variant={'outline'}
+                        tooltip={slink.title}
+                        colors={colors === 'neutral' ? 'neutral' : 'oncolor'}
+                        size={'icon-sm'}
+                        rounded={'default'}>
+                        <a href={slink.target} target="_blank" rel="noopener noreferrer" title={slink.title}>
+                            {slink.icon}
+                        </a>
+                    </Button>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+const FooterAccessibilityTools = ({ colors }: { colors: Colors }) => {
+    const { toggleColors, increaseSize, decreaseSize } = accessibilityTools(state => state)
+
+    return (
+        <div className="flex w-full flex-col items-start gap-space-02">
+            <FooterHeading title={strings.Shared.accessibilityTools} colors={colors} />
+
+            <div className="flex flex-wrap items-center gap-space-02">
+                <Button
+                    variant={'outline'}
+                    tooltip={'Visibility'}
+                    colors={colors === 'neutral' ? 'neutral' : 'oncolor'}
+                    size={'icon-sm'}
+                    rounded={'default'}
+                    onClick={toggleColors}>
+                    <Visibility />
+                </Button>
+                <Button
+                    variant={'outline'}
+                    tooltip={'Visibility'}
+                    colors={colors === 'neutral' ? 'neutral' : 'oncolor'}
+                    size={'icon-sm'}
+                    rounded={'default'}
+                    onClick={decreaseSize}>
+                    <ZoomOut />
+                </Button>
+                <Button
+                    variant={'outline'}
+                    tooltip={'Visibility'}
+                    colors={colors === 'neutral' ? 'neutral' : 'oncolor'}
+                    size={'icon-sm'}
+                    rounded={'default'}
+                    onClick={increaseSize}>
+                    <ZoomIn />
+                </Button>
+                <Button
+                    variant={'outline'}
+                    tooltip={'Visibility'}
+                    colors={colors === 'neutral' ? 'neutral' : 'oncolor'}
+                    size={'icon-sm'}
+                    rounded={'default'}>
+                    <a href="https://deaf.dga.gov.sa" target="_blank" rel="noreferrer">
+                        <HearingDisabled />
+                    </a>
+                </Button>
+            </div>
+        </div>
+    )
+}
+
+const FooterBottomSection = ({ basicLinks, extraLinks, bottomImages, showBasicLinks, colors }: BottomSectionProps) => {
+    return (
+        <div className="grid w-full grid-cols-12 gap-space-05 py-space-04">
+            <div className="col-span-12 space-y-space-02 md:col-span-8">
+                <ShouldRender shouldRender={showBasicLinks}>
+                    <div className="mb-spacing-05 flex items-center gap-space-04 ">
+                        {basicLinks?.map(link => (
+                            <FooterLink key={link.label} {...link} underline="always" colors={colors === 'neutral' ? 'neutral' : 'oncolor'} />
+                        ))}
+                    </div>
+                </ShouldRender>
+                <p className="text-body-01 font-semibold ">{strings.formatString(strings.Footer.Rights, new Date().getFullYear())}</p>
+                <p className="text-body-01 ">{strings.Footer.DevelopedByTetco}</p>
+                <div className="flex items-center gap-space-04 ">
+                    {extraLinks?.map(link => <FooterLink key={link.label} {...link} colors={colors === 'neutral' ? 'neutral' : 'oncolor'} />)}
+                </div>
+            </div>
+            <div className="col-span-12 ms-auto flex flex-wrap items-center gap-space-04 md:col-span-4">
+                <a href="https://moe.gov.sa/ar/Pages/default.aspx" rel="noopener noreferrer" target="_blank">
+                    <img src={colors === 'default' ? moe : moeNeutral} alt="moe" />
+                </a>
+                <a href="https://tetco.sa/" rel="noopener noreferrer" target="_blank">
+                    <img src={colors === 'default' ? tetcoFull : tetcoNeutral} alt="tetco" />
+                </a>
+                <a href="https://www.vision2030.gov.sa/" rel="noopener noreferrer" target="_blank">
+                    <img src={colors === 'default' ? vision : visionNeutral} alt="vision 2030" />
+                </a>
+                {bottomImages}
+            </div>
+        </div>
+    )
+}
+
+interface FooterLinkProps extends FooterLink, LinkProps {}
+
+function FooterLink({ label, href, render, ...props }: FooterLinkProps) {
     if (render) {
         return (
-            <Link underline={underline} size={'sm'} colors={'oncolor'} asChild>
+            <Link size={'sm'} {...props} asChild>
                 {render}
             </Link>
         )
     }
 
     return (
-        <Link underline={underline} size={'sm'} colors={'oncolor'} target="_blank" href={href}>
+        <Link size={'sm'} {...props} target="_blank" href={href}>
             {label}
         </Link>
     )
