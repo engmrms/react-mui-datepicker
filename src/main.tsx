@@ -1,8 +1,9 @@
 import { Check, Home } from 'google-material-icons/outlined'
 import React, { useCallback } from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Link } from 'react-router-dom'
+import { BrowserRouter, Link, NavLink } from 'react-router-dom'
 import './Assets/css/Shared.css'
+import vission from './Assets/images/logos/vision_neutral.svg'
 import {
     ActionLoader,
     Badge,
@@ -17,6 +18,15 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
+    NavigationHeader,
+    NavigationHeaderLogo,
+    NavigationMain,
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
     Select,
     SelectContent,
     SelectItem,
@@ -77,6 +87,55 @@ const languages: Languages[] = [
     { label: 'Ordo', value: 'or' },
 ]
 
+const menuItems = [
+    {
+        title: 'Item 7',
+        href: '#',
+        items: [
+            {
+                title: 'Sub Item 1',
+                href: '#',
+                description: 'Description for sub item 1',
+            },
+            {
+                title: 'Sub Item 2',
+                href: '#',
+                description: 'Description for sub item 2',
+            },
+        ],
+    },
+    {
+        title: 'Item 6',
+        href: 'item6',
+        items: [],
+    },
+    {
+        title: 'Item 5',
+        href: 'item5',
+        items: [],
+    },
+    {
+        title: 'Item 4',
+        href: 'item4',
+        items: [],
+    },
+    {
+        title: 'Item 3',
+        href: 'item3',
+        items: [],
+    },
+    {
+        title: 'Item 2',
+        href: 'item2',
+        items: [],
+    },
+    {
+        title: 'Item 1',
+        href: 'item1',
+        items: [],
+    },
+]
+
 const App = () => {
     const handleFileSelect = useCallback(
         (
@@ -129,6 +188,47 @@ const App = () => {
 
     return (
         <>
+            <NavigationHeader divider>
+                <NavigationMain>
+                    <NavigationHeaderLogo logoSrc={vission} logoAlt="logo" />
+                    <NavigationMenu className="" dir="ltr">
+                        <NavigationMenuList>
+                            {[...menuItems].reverse().map(m => (
+                                <NavigationMenuItem key={m.title}>
+                                    {m.items.length > 0 ? (
+                                        <>
+                                            <NavigationMenuTrigger>{m.title}</NavigationMenuTrigger>
+                                            <NavigationMenuContent className="w-[800px]">
+                                                <ul className="">
+                                                    {m.items.map(subItem => (
+                                                        <li key={subItem.title}>
+                                                            <NavigationMenuLink asChild>
+                                                                <Link
+                                                                    to={subItem.href}
+                                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                                    <div className="text-sm font-medium leading-none">{subItem.title}</div>
+                                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                                                        {subItem.description}
+                                                                    </p>
+                                                                </Link>
+                                                            </NavigationMenuLink>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </NavigationMenuContent>
+                                        </>
+                                    ) : (
+                                        <NavigationMenuLink asChild>
+                                            <NavLink to={m.href}>{m.title}</NavLink>
+                                        </NavigationMenuLink>
+                                    )}
+                                </NavigationMenuItem>
+                            ))}
+                        </NavigationMenuList>
+                    </NavigationMenu>
+                </NavigationMain>
+            </NavigationHeader>
+
             <Stack direction={'col'} className="p-space-06">
                 <ActionLoader />
                 <h1 className="shadow-md">Tetco Design System</h1>
@@ -393,7 +493,7 @@ const App = () => {
                     { href: '', label: 'Privacy Policy ' },
                 ]}
                 showGroupLinks
-                colors='default'
+                colors="default"
                 bottomImages={[
                     <div key={'dgacert'} className="w-space-12">
                         <a href="http://raqmi.dga.gov.sa/platforms/DigitalStamp/ShowCertificate/6122">

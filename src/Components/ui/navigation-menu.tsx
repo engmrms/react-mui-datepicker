@@ -1,16 +1,17 @@
 /* eslint-disable react/prop-types */
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
 import { cva } from 'class-variance-authority'
-import { KeyboardArrowDown } from 'google-material-icons/outlined'
+import { KeyboardArrowDown, Menu } from 'google-material-icons/outlined'
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
+import { Button } from './button'
 
 const NavigationMenu = React.forwardRef<
     React.ElementRef<typeof NavigationMenuPrimitive.Root>,
     React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
 >(({ className, children, ...props }, ref) => (
-    <NavigationMenuPrimitive.Root ref={ref} className={cn('relative z-10 flex max-w-max flex-1 items-center justify-center', className)} {...props}>
+    <NavigationMenuPrimitive.Root ref={ref} className={cn('relative z-10 hidden flex-1 items-center sm:flex  ', className)} {...props}>
         {children}
         <NavigationMenuViewport />
     </NavigationMenuPrimitive.Root>
@@ -21,11 +22,7 @@ const NavigationMenuList = React.forwardRef<
     React.ElementRef<typeof NavigationMenuPrimitive.List>,
     React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.List>
 >(({ className, ...props }, ref) => (
-    <NavigationMenuPrimitive.List
-        ref={ref}
-        className={cn('group flex flex-1 list-none items-center justify-center space-x-1', className)}
-        {...props}
-    />
+    <NavigationMenuPrimitive.List ref={ref} className={cn('group flex flex-1 list-none items-center justify-center', className)} {...props} />
 ))
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
 
@@ -64,7 +61,20 @@ const NavigationMenuContent = React.forwardRef<
 ))
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
 
-const NavigationMenuLink = NavigationMenuPrimitive.Link
+const NavigationMenuLink = React.forwardRef<
+    React.ElementRef<typeof NavigationMenuPrimitive.Link>,
+    React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Link>
+>(({ className, ...props }, ref) => (
+    <NavigationMenuPrimitive.Link
+        className={cn(
+            'group relative inline-flex h-[72px] items-center justify-center gap-space-01 px-space-05 py-space-02 after:absolute  after:bottom-0  after:start-1/2  after:h-space-02  after:w-[calc(100%_-_16px)]  after:rounded-full  hover:bg-button-background-neutral-hovered hover:after:bg-background-neutral-400 focus:bg-transparent focus:outline focus:outline-2 focus:outline-black active:bg-button-background-neutral-pressed active:after:bg-background-neutral-800 ltr:after:-translate-x-1/2  rtl:after:translate-x-1/2 [&.active]:bg-button-background-primary-hovered [&.active]:text-text-oncolor-primary [&.active]:after:bg-background-primary-400 [&.active]:active:bg-button-background-primary-pressed',
+            className,
+        )}
+        ref={ref}
+        {...props}
+    />
+))
+NavigationMenuLink.displayName = NavigationMenuPrimitive.Link.displayName
 
 const NavigationMenuViewport = React.forwardRef<
     React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
@@ -99,7 +109,53 @@ const NavigationMenuIndicator = React.forwardRef<
 ))
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive.Indicator.displayName
 
+const NavigationHeader = React.forwardRef<HTMLHeadElement, React.HtmlHTMLAttributes<HTMLHeadElement> & { divider?: boolean }>(
+    ({ className, divider = false, children, ...props }, ref) => (
+        <header
+            ref={ref}
+            className={cn(
+                'relative z-[100] flex h-[72px] min-h-[72px] w-full bg-background-menu',
+                {
+                    'after:absolute after:bottom-0 after:start-0 after:block after:h-[1px] after:w-full after:bg-background-neutral-100': divider,
+                },
+                className,
+            )}
+            {...props}>
+            <div className="flex w-full items-center justify-between px-space-06">{children}</div>
+        </header>
+    ),
+)
+
+NavigationHeader.displayName = 'NavigationHeader'
+
+const NavigationHeaderLogo = React.forwardRef<HTMLAnchorElement, React.HtmlHTMLAttributes<HTMLAnchorElement> & { logoSrc: string; logoAlt?: string }>(
+    ({ className, logoAlt, logoSrc, ...props }, ref) => (
+        <a ref={ref} className={cn('shrink-0', className)} {...props}>
+            <img src={logoSrc} alt={logoAlt || 'logo'} />
+        </a>
+    ),
+)
+NavigationHeaderLogo.displayName = 'NavigationHeaderLogo'
+
+const NavigationMain = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttributes<HTMLDivElement>>(({ className, children, ...props }, ref) => (
+    <div ref={ref} className={cn('flex w-full items-center gap-space-04', className)} {...props}>
+        <Button variant={'text'} colors={'neutral'} size={'icon'} rounded={'default'} className="sm:hidden">
+            <Menu />{' '}
+        </Button>
+        {children}
+    </div>
+))
+
+NavigationMain.displayName = 'NavigationMain'
+
+ 
+
+
+
 export {
+    NavigationHeader,
+    NavigationHeaderLogo,
+    NavigationMain,
     NavigationMenu,
     NavigationMenuContent,
     NavigationMenuIndicator,
