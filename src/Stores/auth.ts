@@ -58,6 +58,7 @@ const authStore = create<Local_DTO.AuthStore>()(
                         localStorage.removeItem(`${role}-evaluationCounter`)
                         localStorage.removeItem(`${role}-evaluationSkipCounter`)
                     })
+                    localStorage.removeItem('email')
 
                     return {
                         isAuthenticated: false,

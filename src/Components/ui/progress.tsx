@@ -4,7 +4,16 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 interface ProgressProps extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
-    colors?: 'bg-primary' | 'bg-secondary' | 'bg-tertiary' | 'bg-error' | 'bg-warning' | 'bg-success' | 'bg-info' | 'bg-secondary-light'
+    colors?:
+        | 'bg-primary'
+        | 'bg-secondary'
+        | 'bg-tertiary'
+        | 'bg-error'
+        | 'bg-warning'
+        | 'bg-success'
+        | 'bg-info'
+        | 'bg-secondary-light'
+        | 'bg-disabled'
     icon?: React.ReactNode
     rounded?: boolean
 }
