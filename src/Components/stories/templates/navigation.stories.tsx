@@ -94,9 +94,9 @@ export const Default: Story = {
                                     <>
                                         <NavigationMenuTrigger>{m.title}</NavigationMenuTrigger>
                                         <NavigationMenuContent className="grid w-[400px]">
-                                            <ul className="">
+                                            <ul className="one m-0 grid list-none gap-x-2.5 p-[22px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
                                                 {m.items.map(subItem => (
-                                                    <li key={subItem.title}>
+                                                    <li key={subItem.title} className="row-span-3 grid">
                                                         <NavigationMenuLink asChild>
                                                             <a
                                                                 href={subItem.href}

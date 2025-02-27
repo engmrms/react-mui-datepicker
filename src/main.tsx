@@ -18,15 +18,19 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
+    NavigationAction,
     NavigationHeader,
     NavigationHeaderLogo,
     NavigationMain,
     NavigationMenu,
     NavigationMenuContent,
+    NavigationMenuIndicator,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
+    NavigationMenuViewport,
+    NavigationSearch,
     Select,
     SelectContent,
     SelectItem,
@@ -53,6 +57,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Comp
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { FilterGroup, FilterSelect } from './Components/Filter'
 import { Footer } from './Components/Footer'
 
 const FormSchema = z.object({
@@ -198,10 +203,10 @@ const App = () => {
                                     {m.items.length > 0 ? (
                                         <>
                                             <NavigationMenuTrigger>{m.title}</NavigationMenuTrigger>
-                                            <NavigationMenuContent className="w-[800px]">
-                                                <ul className="">
+                                            <NavigationMenuContent className="">
+                                                <ul className="one m-0 grid list-none gap-x-2.5 p-[22px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
                                                     {m.items.map(subItem => (
-                                                        <li key={subItem.title}>
+                                                        <li key={subItem.title} className="row-span-3 grid">
                                                             <NavigationMenuLink asChild>
                                                                 <Link
                                                                     to={subItem.href}
@@ -224,10 +229,42 @@ const App = () => {
                                     )}
                                 </NavigationMenuItem>
                             ))}
+
+                            <NavigationMenuIndicator />
                         </NavigationMenuList>
+
+                        <NavigationMenuViewport />
                     </NavigationMenu>
                 </NavigationMain>
+
+                <NavigationAction>
+                    <NavigationSearch />
+                </NavigationAction>
             </NavigationHeader>
+
+            <FilterGroup onValueChange={v => console.log(v)} className="grid grid-cols-12 gap-space-03">
+                <FilterSelect
+                    name="test"
+                    placeholder="select"
+                    data={[
+                        { value: '1', label: 'label1' },
+                        { value: '2', label: 'label2' },
+                        { value: '3', label: 'label3' },
+                        { value: '4', label: 'label4' },
+                    ]}
+                />
+                <FilterSelect
+                    name="test2"
+                    multi
+                    placeholder="select"
+                    data={[
+                        { value: '1', label: 'multi1' },
+                        { value: '2', label: 'multi2' },
+                        { value: '3', label: 'multi3' },
+                        { value: '4', label: 'multi4' },
+                    ]}
+                />
+            </FilterGroup>
 
             <Stack direction={'col'} className="p-space-06">
                 <ActionLoader />

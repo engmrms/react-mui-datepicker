@@ -54,7 +54,9 @@ export const ar = {
         reset: 'إعادة التعيين',
         CopiedSuccessfully: 'تم النسخ بنجاح',
         comma: '،',
-        accessibilityTools:"أداة سهولة الوصول"
+        accessibilityTools:"أداة سهولة الوصول",
+        sortBy: 'تصنيف حسب',
+
     },
 
     Footer: {

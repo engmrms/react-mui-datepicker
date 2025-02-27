@@ -55,7 +55,8 @@ export const en = {
         reset: 'Reset',
         CopiedSuccessfully: 'Copied successfully',
         comma: ',',
-        accessibilityTools: " Accessibility Tools"
+        accessibilityTools: " Accessibility Tools",
+        sortBy: 'Sort by',
     },
 
 

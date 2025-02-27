@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
 import { cva } from 'class-variance-authority'
-import { KeyboardArrowDown, Menu } from 'google-material-icons/outlined'
+import { KeyboardArrowDown, Menu, MoreHoriz, Search } from 'google-material-icons/outlined'
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
 import { Button } from './button'
+import { Sheet, SheetBody, SheetContent, SheetHeader, SheetTrigger } from './sheet'
+import { SearchInput } from './SearchInput'
 
 const NavigationMenu = React.forwardRef<
     React.ElementRef<typeof NavigationMenuPrimitive.Root>,
@@ -29,7 +31,9 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
 const NavigationMenuItem = NavigationMenuPrimitive.Item
 
 const navigationMenuTriggerStyle = cva(
-    'group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50',
+    `group relative inline-flex h-[72px] items-center justify-center gap-space-01 px-space-05 py-space-02 after:absolute  after:bottom-0  after:start-1/2  after:h-space-02  after:w-[calc(100%_-_16px)]  after:rounded-full  hover:bg-button-background-neutral-hovered hover:after:bg-background-neutral-400 focus:bg-transparent focus:outline focus:outline-2 focus:outline-black active:bg-button-background-neutral-pressed active:after:bg-background-neutral-800 ltr:after:-translate-x-1/2  rtl:after:translate-x-1/2
+    data-[state=open]:bg-button-background-primary-hovered data-[state=open]:text-text-oncolor-primary data-[state=open]:after:bg-background-primary-400 data-[state=open]:active:bg-button-background-primary-pressed
+    [&.active]:bg-button-background-primary-hovered [&.active]:text-text-oncolor-primary [&.active]:after:bg-background-primary-400 [&.active]:active:bg-button-background-primary-pressed`,
 )
 
 const NavigationMenuTrigger = React.forwardRef<
@@ -39,7 +43,8 @@ const NavigationMenuTrigger = React.forwardRef<
     <NavigationMenuPrimitive.Trigger ref={ref} className={cn(navigationMenuTriggerStyle(), 'group', className)} {...props}>
         {children}{' '}
         <KeyboardArrowDown
-            className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"
+            size={20}
+            className="relative top-[1px] ml-1 transition duration-200 group-data-[state=open]:rotate-180"
             aria-hidden="true"
         />
     </NavigationMenuPrimitive.Trigger>
@@ -53,7 +58,7 @@ const NavigationMenuContent = React.forwardRef<
     <NavigationMenuPrimitive.Content
         ref={ref}
         className={cn(
-            'left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto ',
+            'data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft absolute left-0 top-0 w-full sm:w-auto',
             className,
         )}
         {...props}
@@ -148,11 +153,36 @@ const NavigationMain = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttributes
 
 NavigationMain.displayName = 'NavigationMain'
 
- 
+const NavigationAction = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttributes<HTMLDivElement>>(({ className, children, ...props }, ref) => (
+    <div ref={ref} className={cn('flex items-center gap-space-04', className)} {...props}>
+        <Button variant={'text'} colors={'neutral'} size={'icon'} rounded={'default'} className="sm:hidden">
+            <MoreHoriz />{' '}
+        </Button>
+        {children}
+    </div>
+))
 
+NavigationAction.displayName = 'NavigationAction'
 
+const NavigationSearch = () => {
+    return (
+        <Sheet>
+            <SheetTrigger className={navigationMenuTriggerStyle()}>
+                <Search /> Search
+            </SheetTrigger>
+            <SheetContent ignoreInteractOutside side={'top'} className="top-[72px] w-full sm:max-w-full">
+                <SheetBody>
+                    <SheetHeader />
+                   <SearchInput type={'onType'} onSearch={()=>{} }/>
+                </SheetBody>
+            </SheetContent>
+        </Sheet>
+    )
+}
+const NavigationSwitchLanguage = () => {}
 
 export {
+    NavigationAction,
     NavigationHeader,
     NavigationHeaderLogo,
     NavigationMain,
@@ -165,4 +195,5 @@ export {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
     NavigationMenuViewport,
+    NavigationSearch,
 }
