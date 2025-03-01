@@ -1,16 +1,5 @@
-/* eslint-disable react-refresh/only-export-components */
-// import { strings } from '@/Locales'
-// import { PropsDTO } from '@/Models/dto'
-
 import React, { useState } from 'react'
-// import { useMediaQuery } from 'usehooks-ts'
-// import BeneficiaryType from './BeneficiaryType'
-// import { SubCategory } from './SubCategory'
 
-// import classNames from 'classnames'
-// import { FilterAlt } from 'google-material-icons/filled'
-// import { ExpandLess, HighlightOff } from 'google-material-icons/outlined'
-// import { Else, If, Then, Unless, When } from 'react-if'
 import {
     Button,
     Checkbox,
@@ -18,6 +7,7 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
     ComboboxControlNoForm,
+    MultiSelect,
     RadioGroup,
     RadioGroupItem,
     Sheet,
@@ -30,326 +20,16 @@ import {
     ShouldRender,
 } from './'
 
-// import { useGetBeneficiaryTypes } from '@/Services/lookup'
-
-// import { useFormContext } from '@@/Core/src/Components/ui/form'
-// import { useEffect } from 'react'
-// import { FilterCheckList } from './FilterCheckList'
 import classNames from 'classnames'
 import { FilterAlt } from 'google-material-icons/filled'
 import { ExpandLess, HighlightOff } from 'google-material-icons/outlined'
 import { useMediaQuery } from 'usehooks-ts'
 import { strings } from '../Locales'
-import { MultiSelect } from './'
 
-export const handleNumberDisplay = (num: number) => {
+const handleNumberDisplay = (num: number) => {
     return num < 10 ? '0' + num?.toString() : num?.toString()
 }
 
-// const Filters = ({ onSearch }: { onSearch: (value: string) => void }) => {
-//     const mobileView = useMediaQuery('(max-width: 767px)')
-
-//     return (
-//         <If condition={mobileView}>
-//             <Then>
-//                 <div className="flex w-full justify-between gap-space-03 pl-space-01">
-//                     <FilterMobileView />
-//                 </div>
-//             </Then>
-//             <Else>
-//                 <div className="flex items-center gap-space-03">
-//                     <SubCategory />
-//                     <Unless condition={isAuthenticated}>
-//                         <BeneficiaryType />
-//                     </Unless>
-//                 </div>
-//                 <When condition={!!getValues('BeneficiaryTypeIds')?.length || !!getValues('SubcategoriesIds')?.length}>
-//                     <Button
-//                         colors="gray"
-//                         variant="ghost"
-//                         className="items-center gap-space-01"
-//                         onClick={() => {
-//                             reset()
-//                         }}>
-//                         {strings.GeneralPerformanceIndicator.ClearFilters}
-//                         <HighlightOff />
-//                     </Button>
-//                 </When>
-//             </Else>
-//         </If>
-//     )
-// }
-
-// const FilterMobileView = () => {
-//     const { watch, setValue } = useFormContext<PropsDTO.GetServicesParams>()
-//     const [BeneficiaryTypeIds, SubcategoriesIds] = watch(['BeneficiaryTypeIds', 'SubcategoriesIds'])
-//     const [selecedSubCat, setSelecedSubCat] = useState<string[]>(SubcategoriesIds || [])
-//     const [selecedBenType, setSelecedBenType] = useState<string[]>(BeneficiaryTypeIds || [])
-
-//     const onClickFilter = () => {
-//         setValue('SubcategoriesIds', selecedSubCat)
-//         if (!isAuthenticated) setValue('BeneficiaryTypeIds', selecedBenType)
-//     }
-
-//     const handleReset = () => {
-//         setValue('SubcategoriesIds', [])
-//         setSelecedSubCat([])
-//         if (!isAuthenticated) {
-//             setValue('BeneficiaryTypeIds', [])
-//             setSelecedBenType([])
-//         }
-//     }
-
-//     return (
-//         <>
-//             <Sheet>
-//                 <div className="flex justify-between">
-//                     <SheetTrigger asChild>
-//                         <Button
-//                             id="servicesFilter"
-//                             variant="ghost"
-//                             className={classNames({
-//                                 '!px-space-00': true,
-//                             })}>
-//                             <FilterAlt className="me-space-01" />
-//                             <Unless condition={isAuthenticated}>{strings.Shared.filter}</Unless>
-//                             <When condition={!!SubcategoriesIds?.length || !!BeneficiaryTypeIds?.length}>
-//                                 <span className="ms-space-01 flex h-[24px] w-[24px] items-center justify-center rounded-full bg-background-secondary text-caption-01 text-primary">
-//                                     {BeneficiaryTypeIds && SubcategoriesIds
-//                                         ? handleNumberDisplay(BeneficiaryTypeIds?.length + SubcategoriesIds?.length)
-//                                         : ''}
-//                                     {!BeneficiaryTypeIds && SubcategoriesIds ? handleNumberDisplay(SubcategoriesIds?.length) : ''}
-//                                 </span>
-//                             </When>
-//                         </Button>
-//                     </SheetTrigger>
-//                 </div>
-//                 <SheetContent className="flex flex-col gap-0 bg-white p-0" side="bottom">
-//                     <SheetHeader title={strings.Shared.sortBy} />
-//                     <SheetBody className="px-space-04 py-space-00">
-//                         <div className="grow">
-//                             <Collapsible defaultOpen>
-//                                 <CollapsibleTrigger
-//                                     id="subcategoriesCollapsible"
-//                                     className="flex w-full items-center justify-between py-space-03 [&>svg]:data-[state=closed]:rotate-180">
-//                                     <div className="flex grow items-center justify-between gap-space-01">
-//                                         <span className="text-body-01">{strings.Shared.serviceType}</span>
-//                                         <When condition={!!SubcategoriesIds?.length}>
-//                                             <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-background-secondary text-caption-01 text-primary">
-//                                                 {handleNumberDisplay(SubcategoriesIds?.length)}
-//                                             </span>
-//                                         </When>
-//                                     </div>
-//                                     <ExpandLess className="text-primary" />
-//                                 </CollapsibleTrigger>
-//                                 <CollapsibleContent>
-//                                     <SubCategory mobileView setSelectedSubCatMobile={setSelecedSubCat} />
-//                                 </CollapsibleContent>
-//                             </Collapsible>
-//                             <Unless condition={isAuthenticated}>
-//                                 <Collapsible className="border-y">
-//                                     <CollapsibleTrigger
-//                                         id="beneficiaryTypeIdsCollapsible"
-//                                         className="flex w-full items-center justify-between py-space-03 [&>svg]:data-[state=closed]:rotate-180">
-//                                         <div className="flex grow items-center justify-between gap-space-01">
-//                                             <span className="text-body-01">{strings.Shared.beneficiaryType}</span>
-//                                             <When condition={!!BeneficiaryTypeIds?.length}>
-//                                                 <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-background-secondary text-caption-01 text-primary">
-//                                                     {handleNumberDisplay(BeneficiaryTypeIds?.length)}
-//                                                 </span>
-//                                             </When>
-//                                         </div>
-//                                         <ExpandLess className="text-primary" />
-//                                     </CollapsibleTrigger>
-//                                     <CollapsibleContent>
-//                                         <BeneficiaryType mobileView setSelecedBenType={setSelecedBenType} />
-//                                     </CollapsibleContent>
-//                                 </Collapsible>
-//                             </Unless>
-//                         </div>
-//                     </SheetBody>
-//                     <SheetFooter className="p-space-04">
-//                         <div className="flex bg-background">
-//                             <Button id="servicesRest" size="sm" variant="ghost" colors="gray" onClick={handleReset} className="grow">
-//                                 {strings.Shared.reset}
-//                             </Button>
-//                             <SheetClose asChild className="">
-//                                 <Button id="servicesShowResults" size="sm" colors="primary" onClick={onClickFilter} className="grow">
-//                                     {strings.Shared.showResults}
-//                                 </Button>
-//                             </SheetClose>
-//                         </div>
-//                     </SheetFooter>
-//                 </SheetContent>
-//             </Sheet>
-//             <When condition={!isAuthenticated && (!!SubcategoriesIds?.length || !!BeneficiaryTypeIds?.length)}>
-//                 <button id="servicesRest" className="flex items-center gap-space-01 text-body-02" onClick={handleReset}>
-//                     {strings.Shared.reset}
-//                     <HighlightOff />
-//                 </button>
-//             </When>
-//         </>
-//     )
-// }
-// export default Filters
-
-// interface GetServicesParams {
-//     Name?: string | null
-//     ServiceCategoryId: string | null
-//     SubcategoriesIds: string[]
-//     BeneficiaryTypeIds: string[]
-//     Limit: number
-//     Offset: number
-//     IntegrationValidity?: string
-//     IsMostUsed?: boolean
-// }
-
-// type BeneficiaryTypeFilterProps = {
-//     mobileView?: boolean
-//     setSelecedBenType?: React.Dispatch<React.SetStateAction<string[]>>
-// }
-
-// const BeneficiaryType = ({ mobileView, setSelecedBenType }: BeneficiaryTypeFilterProps) => {
-//     const { setValue, watch } = useFormContext<GetServicesParams>()
-//     const [BeneficiaryTypeIds, ServiceCategoryId] = watch(['BeneficiaryTypeIds', 'ServiceCategoryId'])
-//     const localize = useSwitchData()
-//     const [selectedBeneIds, setSelectedBeneIds] = useState<string[]>(BeneficiaryTypeIds || [])
-//     const { data, isLoading } = useGetBeneficiaryTypes(ServiceCategoryId)
-//     const { BeneficiaryTypes } = data ?? {}
-
-//     const handleChange = (checked: boolean | string, value: string) => {
-//         if (typeof checked === 'boolean' && checked) {
-//             setSelectedBeneIds(current => [...current, value])
-//             if (setSelecedBenType) setSelecedBenType(current => [...current, value])
-//             return
-//         }
-//         setSelectedBeneIds(current => current.filter(id => id != value))
-//         if (setSelecedBenType) setSelecedBenType(current => current.filter(id => id != value))
-//     }
-
-//     const onClickFilter = () => {
-//         setValue('BeneficiaryTypeIds', selectedBeneIds)
-//     }
-//     const onClickClear = () => {
-//         setSelectedBeneIds([])
-//         setValue('BeneficiaryTypeIds', [])
-//     }
-
-//     const onChange = (values: string[]) => {
-//         setSelectedBeneIds(values)
-//         setValue('BeneficiaryTypeIds', values)
-//     }
-
-//     useEffect(() => {
-//         setSelectedBeneIds(BeneficiaryTypeIds)
-//     }, [BeneficiaryTypeIds])
-
-//     return (
-//         <If condition={mobileView}>
-//             <Then>
-//                 <FilterCheckList
-//                     data={BeneficiaryTypes ?? []}
-//                     selectedItems={selectedBeneIds}
-//                     onChange={handleChange}
-//                     onClear={onClickClear}
-//                     onFilter={onClickFilter}
-//                     name="beneficiaryType"
-//                     data-testid="beneficiaryTypeTestId"
-//                 />
-//             </Then>
-//             <Else>
-//                 <MultiSelect
-//                     options={
-//                         BeneficiaryTypes?.map(value => ({
-//                             value: value?.Id,
-//                             label: localize(value?.NameAr, value?.NameEn),
-//                         })) || []
-//                     }
-//                     onChange={onChange}
-//                     selectedValues={selectedBeneIds}
-//                     dataTestId="beneficiaryTypeMuliSelect"
-//                     placeholder={strings.Shared.beneficiaryType}
-//                     disabled={isLoading || !BeneficiaryTypes?.length}
-//                 />
-//             </Else>
-//         </If>
-//     )
-// }
-
-// interface ApiDynamicEntity<T = number> {
-//     Id: T
-//     NameAr: string
-//     NameEn: string
-// }
-
-// type FilterCheckListProps<T extends string | number = string> = {
-//     data: ApiDynamicEntity<T>[]
-//     selectedItems: T[]
-//     onChange: (checked: boolean | string, value: T) => void
-//     onClear: () => void
-//     onFilter: () => void
-//     name: string
-// }
-
-// const FilterCheckList = <T extends string | number = string>({ data, onChange, selectedItems, onClear, onFilter, name }: FilterCheckListProps<T>) => {
-//     const localize = useSwitchData()
-//     const mobileView = useMediaQuery('(max-width: 767px)')
-
-//     return (
-//         <>
-//             <div
-//                 className={classNames({
-//                     'p-space-04': !mobileView,
-//                     'py-space-04': mobileView,
-//                 })}>
-//                 {data?.map(item => (
-//                     <MenuItem
-//                         name={name}
-//                         key={item.NameEn}
-//                         label={localize(item.NameAr, item.NameEn)}
-//                         value={item.Id}
-//                         isCkecked={!!selectedItems.find(selectedId => selectedId == item.Id)}
-//                         onChange={onChange}
-//                     />
-//                 ))}
-//             </div>
-//             <div className={classNames('flex gap-space-04 px-space-04 py-space-03', { 'bg-background': !mobileView })}>
-//                 <Unless condition={mobileView}>
-//                     <Button id="servicesRest" size="sm" variant="ghost" colors="primary" onClick={onClear} className="grow">
-//                         {strings.Shared.reset}
-//                     </Button>
-//                     <Button id="servicesShowResults" size="sm" colors="primary" onClick={onFilter} className="grow">
-//                         {strings.Shared.showResults}
-//                     </Button>
-//                 </Unless>
-//             </div>
-//         </>
-//     )
-// }
-
-// interface MenuItemProps<T extends string | number = string> {
-//     label: string
-//     value: T
-//     isCkecked?: boolean
-//     onChange: (checked: boolean, value: T) => void
-//     name: string
-// }
-
-// const MenuItem = <T extends string | number = string>({ label, value, isCkecked, onChange, name }: MenuItemProps<T>) => {
-//     return (
-//         <div className="flex items-center justify-between p-space-01 hover:bg-card-hover">
-//             <label htmlFor={label} className="text-Body-01 flex grow gap-space-02 font-medium">
-//                 {label}
-//             </label>
-//             <Checkbox
-//                 id={`${name}${value}`}
-//                 value={value}
-//                 onCheckedChange={checked => onChange(typeof checked === 'boolean' ? checked : false, value)}
-//                 checked={isCkecked}
-//             />
-//         </div>
-//     )
-// }
 type Value = { [name: string]: string | string[] }
 interface FileContext {
     upsert: ({ name, selectedValue }: { name: string; selectedValue: string | string[] }) => void
@@ -357,35 +37,45 @@ interface FileContext {
 }
 const FilterContext = React.createContext<FileContext | null>(null)
 
+const useFilterContext = (onValueChange?: (value?: Value) => void) => {
+    const [value, setValue] = useState<Value>()
+    const mobileView = useMediaQuery('(max-width: 767px)')
+
+    const upsert = ({ name, selectedValue }: { name: string; selectedValue: string | string[] }) => {
+        const newValue = { ...value, [name]: selectedValue }
+        setValue(newValue)
+        if (!mobileView) onValueChange?.(newValue)
+    }
+
+    const resetFilters = () => {
+        const newValue = { ...value }
+        for (const k in newValue) {
+            newValue[k] = ''
+        }
+        setValue(newValue)
+    }
+
+    return { value, upsert, resetFilters }
+}
+
 const FilterGroup = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttributes<HTMLDivElement> & { onValueChange?: (value?: Value) => void }>(
     ({ children, onValueChange, ...props }, ref) => {
-        const [value, setValue] = useState<Value>()
         const mobileView = useMediaQuery('(max-width: 767px)')
-
-        const upsert = ({ name, selectedValue }: { name: string; selectedValue: string | string[] }) => {
-            const newValue = { ...value, [name]: selectedValue }
-            setValue(newValue)
-            onValueChange?.(newValue)
-        }
-        const resetFilters = () => {
-            const newValue = { ...value }
-            for (const k in newValue) {
-                newValue[k] = ''
-            }
-            setValue(newValue)
-        }
+        const { value, resetFilters, upsert } = useFilterContext(onValueChange)
 
         return (
             <div ref={ref} {...props}>
                 <FilterContext.Provider value={{ value, upsert }}>
                     <ShouldRender shouldRender={mobileView}>
-                        <FilterMobileView resetFilters={resetFilters}>{children}</FilterMobileView>
+                        <FilterMobileView resetFilters={resetFilters} onClickFilter={() => onValueChange?.(value)}>
+                            {children}{' '}
+                        </FilterMobileView>
                     </ShouldRender>
 
                     <ShouldRender shouldRender={!mobileView}>
                         {children}
-                        <ShouldRender shouldRender={value && Object.keys(value).length > 0}>
-                            <Button colors={'neutral'} rounded={'default'} variant={'text'} size={'sm'} onClick={resetFilters}>
+                        <ShouldRender shouldRender={value && Object.values(value).some(Boolean)}>
+                            <Button colors={'neutral'} rounded={'default'} variant={'text'} size={'sm'} onClick={resetFilters} className="ms-auto">
                                 {strings.Shared.reset}
                                 <HighlightOff className="ms-space-01" />
                             </Button>
@@ -413,7 +103,7 @@ interface FilterSelectProps {
 const FilterSelect = ({ multi, data, placeholder, disabled, isLoading, rounded, size, name }: FilterSelectProps) => {
     const context = React.useContext(FilterContext)
     const mobileView = useMediaQuery('(max-width: 767px)')
-    console.log(context?.value?.[name], name)
+
     if (mobileView)
         return (
             <Collapsible defaultOpen>
@@ -422,9 +112,9 @@ const FilterSelect = ({ multi, data, placeholder, disabled, isLoading, rounded, 
                     className="flex w-full items-center justify-between py-space-03 [&>svg]:data-[state=closed]:rotate-180">
                     <div className="flex grow items-center justify-between gap-space-01">
                         <span className="text-body-01">{placeholder}</span>
-                        <ShouldRender shouldRender={!!context?.value?.[name]?.length}>
+                        <ShouldRender shouldRender={typeof context?.value?.[name] === 'object' && !!context?.value?.[name]?.length}>
                             <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-background-secondary text-caption-01 text-primary">
-                                {/* {handleNumberDisplay(context?.value?.[name]?.length || 0)} */}
+                                {handleNumberDisplay(context?.value?.[name]?.length || 0)}
                             </span>
                         </ShouldRender>
                     </div>
@@ -476,11 +166,12 @@ const FilterSelect = ({ multi, data, placeholder, disabled, isLoading, rounded, 
                 context?.upsert({ name, selectedValue: value })
             }}
             selectedValues={(context?.value?.[name] as string[]) || []}
-            dataTestId="beneficiaryTypeMuliSelect"
+            dataTestId="muliSelect"
             placeholder={placeholder}
             disabled={disabled}
             rounded={rounded}
             size={size}
+            className="!w-max"
         />
     ) : (
         <ComboboxControlNoForm
@@ -504,13 +195,12 @@ const FilterSelect = ({ multi, data, placeholder, disabled, isLoading, rounded, 
 const FilterMobileView = ({
     resetFilters,
     children,
+    onClickFilter,
 }: {
     children: React.ReactNode
-    onValueChange?: (value?: Value) => void
     resetFilters: () => void
+    onClickFilter: () => void
 }) => {
-    const onClickFilter = () => {}
-
     return (
         <>
             <Sheet>
@@ -518,7 +208,9 @@ const FilterMobileView = ({
                     <SheetTrigger asChild>
                         <Button
                             id="servicesFilter"
-                            variant="ghost"
+                            variant="text"
+                            size={'icon'}
+                            colors={'neutral'}
                             className={classNames({
                                 '!px-space-00': true,
                             })}>

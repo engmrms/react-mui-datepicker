@@ -52,7 +52,7 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
         const buttonContent = (
             <>
                 {placeholder && !children && <span className="pointer-events-none text-body-01 text-form-field-text-placeholder">{placeholder}</span>}
-                <span className="flex-1 truncate text-ellipsis text-right">{children}</span>
+                {children && <span className="flex-1 truncate text-ellipsis text-right">{children}</span>}
                 {isLoading ? (
                     <ActionLoader />
                 ) : (
@@ -179,7 +179,7 @@ const ComboboxControlNoForm = <_, T>({
                         <ComboboxItem
                             className={classNames({
                                 relative: true,
-                                'after:absolute after:bottom-auto after:right-space-01 after:top-auto after:h-[50%] after:w-[2px] after:rounded-full after:bg-primary':
+                                'after:absolute after:bottom-auto after:start-space-01 after:top-auto after:h-[50%] after:w-[2px] after:rounded-full after:bg-primary':
                                     String(opt[optionValue]) === value,
                             })}
                             value={String(opt[optionLabel])}

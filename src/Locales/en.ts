@@ -57,6 +57,7 @@ export const en = {
         comma: ',',
         accessibilityTools: " Accessibility Tools",
         sortBy: 'Sort by',
+        siteLanguageText: 'العربية',
     },
 
 

@@ -4,12 +4,10 @@ import { VariantProps, cva } from 'class-variance-authority'
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
-import ShouldRender from '../ShouldRender'
-import { Button } from './button'
-import { Popover, PopoverContent, PopoverTrigger } from './popover'
+import { ResponsiveScroll } from '../ResponsiveScroll'
 
 const tabVariants = cva(
-    `relative inline-flex  items-center justify-center   transition-all disabled:pointer-events-none  data-[state=active]:font-semibold`,
+    `relative inline-flex shrink-0  items-center justify-center   transition-all disabled:pointer-events-none  data-[state=active]:font-semibold`,
     {
         variants: {
             container: {
@@ -84,58 +82,70 @@ const TabsContext = React.createContext<VariantProps<typeof tabVariants>>({
     orientation: 'horizontal',
 })
 
+// const TabsList = React.forwardRef<
+//     React.ElementRef<typeof TabsPrimitive.List>,
+//     React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> &
+//         VariantProps<typeof tabVariants> & {
+//             breakpoints?: { [key: number]: number }
+//         }
+// >(({ className, underline, orientation, variant = 'filled', size = 'default', children, breakpoints = {}, ...props }, ref) => {
+//     const [visibleTabs, setVisibleTabs] = React.useState(React.Children.count(children))
+//     const [open, setOpen] = React.useState(false)
+
+//     const sortedBreakpoints = Object.entries(breakpoints).sort(([a], [b]) => Number(a) - Number(b))
+//     const tabCount = React.useCallback(
+//         () =>
+//             sortedBreakpoints.find(([breakpoint]) => document.documentElement.clientWidth <= Number(breakpoint))?.[1] ??
+//             React.Children.count(children),
+//         [children, sortedBreakpoints],
+//     )
+
+//     React.useEffect(() => {
+//         setVisibleTabs(tabCount())
+//     }, [tabCount])
+
+//     window.onresize = function () {
+//         setVisibleTabs(tabCount())
+//     }
+
+//     const mapChildren = React.Children?.map(children, child => child) as React.ReactElement[]
+
+//     return (
+//         <TabsPrimitive.List ref={ref} className={cn(tabVariants({ container: variant, underline, orientation }), className)} {...props}>
+//             <TabsContext.Provider value={{ variant, size, orientation }}>{mapChildren?.slice(0, visibleTabs)}</TabsContext.Provider>
+//             <ShouldRender shouldRender={!!mapChildren?.slice(visibleTabs).length}>
+//                 <Popover open={open} onOpenChange={setOpen}>
+//                     <PopoverTrigger asChild>
+//                         <Button variant="text" colors={'neutral'} size={'xs'}>
+//                             <span className="text-subtitle-02">...</span>
+//                         </Button>
+//                     </PopoverTrigger>
+//                     <PopoverContent className="w-40 p-2">
+//                         <div className="flex flex-col space-y-2">
+//                             {mapChildren?.slice(visibleTabs).map(tab => (
+//                                 <TabsTrigger key={tab.toString()} className="!rounded-0" value={tab.props.value} onClick={() => setOpen(false)}>
+//                                     {tab.props.value}
+//                                 </TabsTrigger>
+//                             ))}
+//                         </div>
+//                     </PopoverContent>
+//                 </Popover>
+//             </ShouldRender>
+//         </TabsPrimitive.List>
+//     )
+// })
+// TabsList.displayName = TabsPrimitive.List.displayName
+
 const TabsList = React.forwardRef<
     React.ElementRef<typeof TabsPrimitive.List>,
-    React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> &
-        VariantProps<typeof tabVariants> & {
-            breakpoints?: { [key: number]: number }
-        }
->(({ className, underline, orientation, variant = 'filled', size = 'default', children, breakpoints = {}, ...props }, ref) => {
-    const [visibleTabs, setVisibleTabs] = React.useState(React.Children.count(children))
-    const [open, setOpen] = React.useState(false)
-
-    const sortedBreakpoints = Object.entries(breakpoints).sort(([a], [b]) => Number(a) - Number(b))
-    const tabCount = React.useCallback(
-        () =>
-            sortedBreakpoints.find(([breakpoint]) => document.documentElement.clientWidth <= Number(breakpoint))?.[1] ??
-            React.Children.count(children),
-        [children, sortedBreakpoints],
-    )
-
-    React.useEffect(() => {
-        setVisibleTabs(tabCount())
-    }, [tabCount])
-
-    window.onresize = function () {
-        setVisibleTabs(tabCount())
-    }
-
-    const mapChildren = React.Children?.map(children, child => child) as React.ReactElement[]
-
-    return (
-        <TabsPrimitive.List ref={ref} className={cn(tabVariants({ container: variant, underline, orientation }), className)} {...props}>
-            <TabsContext.Provider value={{ variant, size, orientation }}>{mapChildren?.slice(0, visibleTabs)}</TabsContext.Provider>
-            <ShouldRender shouldRender={!!mapChildren?.slice(visibleTabs).length}>
-                <Popover open={open} onOpenChange={setOpen}>
-                    <PopoverTrigger asChild>
-                        <Button variant="text" colors={'neutral'} size={'xs'}>
-                            <span className="text-subtitle-02">...</span>
-                        </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-40 p-2">
-                        <div className="flex flex-col space-y-2">
-                            {mapChildren?.slice(visibleTabs).map(tab => (
-                                <TabsTrigger key={tab.toString()} className="!rounded-0" value={tab.props.value} onClick={() => setOpen(false)}>
-                                    {tab.props.value}
-                                </TabsTrigger>
-                            ))}
-                        </div>
-                    </PopoverContent>
-                </Popover>
-            </ShouldRender>
+    React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & VariantProps<typeof tabVariants>
+>(({ className, underline, orientation, variant = 'filled', size = 'default', children, ...props }, ref) => (
+    <ResponsiveScroll className="py-2" buttonClassName="bg-background" margin={16}>
+        <TabsPrimitive.List ref={ref} className={cn(tabVariants({ container: variant, underline, size, orientation }), className)} {...props}>
+            <TabsContext.Provider value={{ variant, size, orientation }}>{children}</TabsContext.Provider>
         </TabsPrimitive.List>
-    )
-})
+    </ResponsiveScroll>
+))
 TabsList.displayName = TabsPrimitive.List.displayName
 
 const TabsTrigger = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Trigger>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>>(
@@ -167,4 +177,33 @@ const TabsContent = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Conte
 )
 TabsContent.displayName = TabsPrimitive.Content.displayName
 
-export { Tabs, TabsContent, TabsList, TabsTrigger, tabVariants }
+// interface Tab {
+//     id: string
+//     label: string
+//     content: React.ReactNode
+// }
+
+// function ResponsiveTabs({ tabs, defaultValue, ...props }: React.ComponentProps<typeof TabsList> & { tabs: Tab[]; defaultValue?: string }) {
+//     return (
+//         <div className="flex w-full flex-col">
+//             <Tabs defaultValue={defaultValue}>
+//                 <ResponsiveScroll className="py-2" buttonClassName="bg-background">
+//                     <TabsList {...props}>
+//                         {tabs.map(tab => (
+//                             <TabsTrigger key={tab.id} value={tab.id}>
+//                                 {tab.label}
+//                             </TabsTrigger>
+//                         ))}
+//                     </TabsList>
+//                 </ResponsiveScroll>
+//                 {tabs.map(tab => (
+//                     <TabsContent key={tab.id} value={tab.id}>
+//                         {tab.content}
+//                     </TabsContent>
+//                 ))}
+//             </Tabs>
+//         </div>
+//     )
+// }
+
+export {  Tabs, TabsContent, TabsList, TabsTrigger, tabVariants }

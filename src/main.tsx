@@ -1,5 +1,5 @@
 import { Check, Home } from 'google-material-icons/outlined'
-import React, { useCallback } from 'react'
+import React, { PropsWithChildren, useCallback, useEffect, useLayoutEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, NavLink } from 'react-router-dom'
 import './Assets/css/Shared.css'
@@ -31,6 +31,7 @@ import {
     NavigationMenuTrigger,
     NavigationMenuViewport,
     NavigationSearch,
+    NavigationSwitchLanguage,
     Select,
     SelectContent,
     SelectItem,
@@ -45,10 +46,6 @@ import {
     SheetTrigger,
     Stack,
     Switch,
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
     toast,
 } from './Components'
 import { Button } from './Components/ui/button'
@@ -59,6 +56,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { FilterGroup, FilterSelect } from './Components/Filter'
 import { Footer } from './Components/Footer'
+import { setLanguage, Tabs, TabsContent, TabsList, TabsTrigger, useLanguage } from './package'
 
 const FormSchema = z.object({
     email: z
@@ -192,7 +190,7 @@ const App = () => {
     }
 
     return (
-        <>
+        <Bootstrap>
             <NavigationHeader divider>
                 <NavigationMain>
                     <NavigationHeaderLogo logoSrc={vission} logoAlt="logo" />
@@ -238,11 +236,14 @@ const App = () => {
                 </NavigationMain>
 
                 <NavigationAction>
-                    <NavigationSearch />
+                    <NavigationSwitchLanguage />
+                    <NavigationSearch onSearch={v => console.log(v)}>
+                        <h1>Suggestion</h1>
+                    </NavigationSearch>
                 </NavigationAction>
             </NavigationHeader>
 
-            <FilterGroup onValueChange={v => console.log(v)} className="grid grid-cols-12 gap-space-03">
+            <FilterGroup onValueChange={v => console.log('main', v)} className="flex gap-space-03 ">
                 <FilterSelect
                     name="test"
                     placeholder="select"
@@ -269,7 +270,7 @@ const App = () => {
             <Stack direction={'col'} className="p-space-06">
                 <ActionLoader />
                 <h1 className="shadow-md">Tetco Design System</h1>
-                <Stack className="p-space-03">
+                <Stack className="flex-wrap p-space-03">
                     <Button variant={'text'} size={'sm'} colors={'primary'}>
                         <Check />
                         <span>Button</span>
@@ -312,8 +313,8 @@ const App = () => {
                 </Stack>
                 <Switch disabled />
 
-                <Tabs dir={'ltr'} defaultValue="tab1" className="w-[400px]">
-                    <TabsList variant={'underline'} breakpoints={{ 768: 3, 1024: 4 }}>
+                <Tabs dir={'ltr'} defaultValue="tab1">
+                    <TabsList variant={'underline'} underline>
                         <TabsTrigger value="tab1">
                             <Home />
                             tab1
@@ -343,6 +344,7 @@ const App = () => {
                             tab7
                         </TabsTrigger>
                     </TabsList>
+
                     <TabsContent value="tab1">...</TabsContent>
                     <TabsContent value="tab2">...</TabsContent>
                     <TabsContent value="tab3">...</TabsContent>
@@ -539,8 +541,25 @@ const App = () => {
                     </div>,
                 ]}
             />
-        </>
+        </Bootstrap>
     )
+}
+
+const Bootstrap = ({ children }: PropsWithChildren) => {
+    const { lang, dir } = useLanguage()
+    useLayoutEffect(() => {
+        document.dir = dir
+        if (navigator.userAgent.indexOf('iPhone') > -1) {
+            document?.querySelector('[name=viewport]')?.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1')
+        }
+    }, [dir])
+
+    useEffect(() => {
+        if (!lang) return
+        setLanguage(lang)
+    }, [lang])
+
+    return children
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

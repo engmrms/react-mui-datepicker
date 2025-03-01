@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu'
 import { cva } from 'class-variance-authority'
-import { KeyboardArrowDown, Menu, MoreHoriz, Search } from 'google-material-icons/outlined'
+import { Close, KeyboardArrowDown, Language, Menu, MoreHoriz, Search } from 'google-material-icons/outlined'
 import * as React from 'react'
 
 import { cn } from '../../Lib/utils'
+import { strings } from '../../Locales'
+import { useLanguage } from '../../package'
 import { Button } from './button'
-import { Sheet, SheetBody, SheetContent, SheetHeader, SheetTrigger } from './sheet'
-import { SearchInput } from './SearchInput'
+import { Input } from './input'
+import { Sheet, SheetBody, SheetClose, SheetContent, SheetTrigger } from './sheet'
 
 const NavigationMenu = React.forwardRef<
     React.ElementRef<typeof NavigationMenuPrimitive.Root>,
@@ -31,7 +33,10 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
 const NavigationMenuItem = NavigationMenuPrimitive.Item
 
 const navigationMenuTriggerStyle = cva(
-    `group relative inline-flex h-[72px] items-center justify-center gap-space-01 px-space-05 py-space-02 after:absolute  after:bottom-0  after:start-1/2  after:h-space-02  after:w-[calc(100%_-_16px)]  after:rounded-full  hover:bg-button-background-neutral-hovered hover:after:bg-background-neutral-400 focus:bg-transparent focus:outline focus:outline-2 focus:outline-black active:bg-button-background-neutral-pressed active:after:bg-background-neutral-800 ltr:after:-translate-x-1/2  rtl:after:translate-x-1/2
+    `group relative inline-flex h-[72px] items-center justify-center gap-space-01 px-space-05 py-space-02 after:absolute  after:bottom-0  after:start-1/2  after:h-space-02  after:w-[calc(100%_-_16px)]  after:rounded-full
+     hover:bg-button-background-neutral-hovered hover:after:bg-background-neutral-400 focus:bg-transparent
+     focus:outline focus:outline-2 focus:outline-black active:bg-button-background-neutral-pressed active:after:bg-background-neutral-800
+     ltr:after:-translate-x-1/2  rtl:after:translate-x-1/2
     data-[state=open]:bg-button-background-primary-hovered data-[state=open]:text-text-oncolor-primary data-[state=open]:after:bg-background-primary-400 data-[state=open]:active:bg-button-background-primary-pressed
     [&.active]:bg-button-background-primary-hovered [&.active]:text-text-oncolor-primary [&.active]:after:bg-background-primary-400 [&.active]:active:bg-button-background-primary-pressed`,
 )
@@ -72,7 +77,7 @@ const NavigationMenuLink = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <NavigationMenuPrimitive.Link
         className={cn(
-            'group relative inline-flex h-[72px] items-center justify-center gap-space-01 px-space-05 py-space-02 after:absolute  after:bottom-0  after:start-1/2  after:h-space-02  after:w-[calc(100%_-_16px)]  after:rounded-full  hover:bg-button-background-neutral-hovered hover:after:bg-background-neutral-400 focus:bg-transparent focus:outline focus:outline-2 focus:outline-black active:bg-button-background-neutral-pressed active:after:bg-background-neutral-800 ltr:after:-translate-x-1/2  rtl:after:translate-x-1/2 [&.active]:bg-button-background-primary-hovered [&.active]:text-text-oncolor-primary [&.active]:after:bg-background-primary-400 [&.active]:active:bg-button-background-primary-pressed',
+            'group relative inline-flex h-[72px] items-center justify-center gap-space-01 px-space-05 py-space-02 after:absolute  after:bottom-0  after:start-1/2  after:h-space-02  after:w-[calc(100%_-_16px)]  after:-translate-x-1/2  after:rounded-full hover:bg-button-background-neutral-hovered hover:after:bg-background-neutral-400 focus:bg-transparent focus:outline focus:outline-2 focus:outline-black active:bg-button-background-neutral-pressed active:after:bg-background-neutral-800    [&.active]:bg-button-background-primary-hovered [&.active]:text-text-oncolor-primary [&.active]:after:bg-background-primary-400 [&.active]:active:bg-button-background-primary-pressed',
             className,
         )}
         ref={ref}
@@ -154,7 +159,7 @@ const NavigationMain = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttributes
 NavigationMain.displayName = 'NavigationMain'
 
 const NavigationAction = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttributes<HTMLDivElement>>(({ className, children, ...props }, ref) => (
-    <div ref={ref} className={cn('flex items-center gap-space-04', className)} {...props}>
+    <div ref={ref} className={cn('flex items-center ', className)} {...props}>
         <Button variant={'text'} colors={'neutral'} size={'icon'} rounded={'default'} className="sm:hidden">
             <MoreHoriz />{' '}
         </Button>
@@ -164,22 +169,102 @@ const NavigationAction = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttribut
 
 NavigationAction.displayName = 'NavigationAction'
 
-const NavigationSearch = () => {
+const NavigationSearch = ({
+    onSearch,
+    onValueChange,
+    children,
+}: {
+    onSearch: (value: string) => void
+    onValueChange?: (value: string) => void
+    children?: React.ReactNode
+}) => {
+    const [inputValue, setInputValue] = React.useState('')
+
+    // methods
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            onSearch(inputValue.trim())
+        }
+    }
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value
+        setInputValue(value)
+        onValueChange?.(value)
+    }
+
+    const handleClear = () => {
+        setInputValue('')
+        onSearch('')
+    }
+
+    const handleSearch = () => {
+        onSearch(inputValue)
+    }
+
     return (
-        <Sheet>
+        <Sheet
+            onOpenChange={() => {
+                setTimeout(() => {
+                    document.body.style.removeProperty('pointer-events')
+                }, 1000)
+            }}>
             <SheetTrigger className={navigationMenuTriggerStyle()}>
                 <Search /> Search
             </SheetTrigger>
-            <SheetContent ignoreInteractOutside side={'top'} className="top-[72px] w-full sm:max-w-full">
+            <SheetContent side={'top'} className="top-[72px] w-full sm:max-w-full">
                 <SheetBody>
-                    <SheetHeader />
-                   <SearchInput type={'onType'} onSearch={()=>{} }/>
+                    <div className="mx-auto flex max-w-screen-xl flex-col py-space-06">
+                        <SheetClose asChild className="ms-auto">
+                            <Button size={'icon-sm'} rounded={'default'} variant={'text'} colors={'neutral'}>
+                                <Close />
+                            </Button>
+                        </SheetClose>
+                        <div className="flex gap-space-04 py-space-07">
+                            <Input
+                                rounded={'default'}
+                                value={inputValue}
+                                placeholder={strings.Shared.Search}
+                                startAdornment={<Search />}
+                                onKeyDown={handleKeyDown}
+                                onChange={handleInputChange}
+                                endAdornment={
+                                    inputValue && (
+                                        <button type="button" className="text-text-default" onClick={handleClear}>
+                                            <Close size={20} />
+                                        </button>
+                                    )
+                                }
+                            />
+                            <SheetClose asChild>
+                                <Button colors={'primary'} rounded={'default'} onClick={handleSearch}>
+                                    {strings.Shared.Search}
+                                </Button>
+                            </SheetClose>
+                        </div>
+                        {children}
+                    </div>
                 </SheetBody>
             </SheetContent>
         </Sheet>
     )
 }
-const NavigationSwitchLanguage = () => {}
+const NavigationSwitchLanguage = ({ onValueChange }: { onValueChange?: () => void }) => {
+    const { changeLang, lang } = useLanguage()
+
+    return (
+        <button
+            className={navigationMenuTriggerStyle()}
+            onClick={() => {
+                const newLang = lang === 'ar' ? 'en' : 'ar'
+                changeLang(newLang)
+                onValueChange?.()
+            }}
+            data-testid="localizationBtn">
+            <span>{strings.Shared.siteLanguageText}</span> <Language />
+        </button>
+    )
+}
 
 export {
     NavigationAction,
@@ -196,4 +281,5 @@ export {
     navigationMenuTriggerStyle,
     NavigationMenuViewport,
     NavigationSearch,
+    NavigationSwitchLanguage,
 }

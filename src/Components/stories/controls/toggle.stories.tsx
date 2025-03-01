@@ -36,7 +36,6 @@ const ToggleGroupDemoSingle = (arg: any) => {
     )
 }
 
-
 const ToggleGroupDemoText = (arg: any) => {
     return (
         <ToggleGroup type="single" {...arg}>
@@ -49,6 +48,21 @@ const ToggleGroupDemoText = (arg: any) => {
             <ToggleGroupItem value="strikethrough" aria-label="Toggle strikethrough">
                 <FormatUnderlined /> Underlined
             </ToggleGroupItem>
+        </ToggleGroup>
+    )
+}
+const ToggleGroupResponsiveDemo = (arg: any) => {
+    const toggleOptions = Array.from({ length: 10 }, (_, i) => ({
+        value: `option${i + 1}`,
+        label: `Option ${i + 1}`,
+    }))
+    return (
+        <ToggleGroup type="single" {...arg}>
+            {toggleOptions.map(togle => (
+                <ToggleGroupItem key={togle.value} value={togle.value} aria-label="Toggle bold">
+                    {togle.label}
+                </ToggleGroupItem>
+            ))}
         </ToggleGroup>
     )
 }
@@ -104,5 +118,16 @@ export const Text: Story = {
         colors: 'default',
         size: 'default',
     },
-    render: ToggleGroupDemoText
+    render: ToggleGroupDemoText,
+}
+
+export const Responsive: Story = {
+    args: {
+        disabled: false,
+        asChild: false,
+        variant: 'outline',
+        colors: 'default',
+        size: 'default',
+    },
+    render: ToggleGroupResponsiveDemo,
 }

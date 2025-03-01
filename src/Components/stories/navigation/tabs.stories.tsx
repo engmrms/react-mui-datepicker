@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Home } from 'google-material-icons/outlined'
 import { Button } from '../../ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../ui/card'
 import { Input } from '../../ui/input'
@@ -99,6 +98,11 @@ export const Default: Story = {
     ),
 }
 
+const tabs = Array.from({ length: 10 }, (_, i) => ({
+    id: `tab${i + 1}`,
+    label: `Tab ${i + 1}`,
+    content: <div>Content for Tab {i + 1}</div>,
+}))
 export const Responsive: Story = {
     args: {
         variant: 'underline',
@@ -117,49 +121,19 @@ export const Responsive: Story = {
         underline: { control: 'boolean', description: 'only with variant: underline' },
     },
     render: (arg: any) => (
-        <Tabs dir={arg?.dir} defaultValue="tab1">
-            <TabsList
-                variant={arg?.variant}
-                size={arg.size}
-                underline={arg?.underline}
-                orientation={arg?.orientation}
-                breakpoints={{ 640: 2, 768: 3, 1024: 4 }}>
-                <TabsTrigger value="tab1" disabled={arg?.disabled}>
-                    <Home />
-                    tab1
-                </TabsTrigger>
-                <TabsTrigger value="tab2" disabled={arg?.disabled}>
-                    <Home />
-                    tab2
-                </TabsTrigger>
-                <TabsTrigger value="tab3" disabled={arg?.disabled}>
-                    <Home />
-                    tab3
-                </TabsTrigger>
-                <TabsTrigger value="tab4" disabled={arg?.disabled}>
-                    <Home />
-                    tab4
-                </TabsTrigger>
-                <TabsTrigger value="tab5" disabled={arg?.disabled}>
-                    <Home />
-                    tab5
-                </TabsTrigger>
-                <TabsTrigger value="tab6" disabled={arg?.disabled}>
-                    <Home />
-                    tab6
-                </TabsTrigger>
-                <TabsTrigger value="tab7" disabled={arg?.disabled}>
-                    <Home />
-                    tab7
-                </TabsTrigger>
+        <Tabs dir={arg?.dir} defaultValue={tabs[0].id}>
+            <TabsList variant={arg?.variant} size={arg.size} underline={arg?.underline} orientation={arg?.orientation}>
+                {tabs.map(tab => (
+                    <TabsTrigger key={tab.id} value={tab.id} disabled={arg?.disabled}>
+                        {tab.label}
+                    </TabsTrigger>
+                ))}
             </TabsList>
-            <TabsContent value="tab1">tab1...</TabsContent>
-            <TabsContent value="tab2">tab2...</TabsContent>
-            <TabsContent value="tab3">tab3...</TabsContent>
-            <TabsContent value="tab4">tab4...</TabsContent>
-            <TabsContent value="tab5">tab5...</TabsContent>
-            <TabsContent value="tab6">tab6...</TabsContent>
-            <TabsContent value="tab7">tab7...</TabsContent>
+            {tabs.map(tab => (
+                <TabsContent key={tab.id} value={tab.id}>
+                    {tab.content}
+                </TabsContent>
+            ))}
         </Tabs>
     ),
 }

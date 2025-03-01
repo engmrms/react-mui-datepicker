@@ -56,6 +56,7 @@ export const ar = {
         comma: '،',
         accessibilityTools:"أداة سهولة الوصول",
         sortBy: 'تصنيف حسب',
+        siteLanguageText: 'English',
 
     },
 
