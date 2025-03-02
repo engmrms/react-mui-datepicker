@@ -51,18 +51,18 @@ export function MultiSelect<T extends ValueType>({
             }}>
             <PopoverTrigger asChild disabled={disabled} data-testid={dataTestId}>
                 <button className={cn(selectVariants({ variant, colors, size, rounded }), className)}>
-                    <span className="text-body-01 text-form-field-text-placeholder ">{placeholder}</span>
+                    <span className="shrink-0 text-body-01 text-form-field-text-placeholder ">{placeholder}</span>
                     {selectedValues?.length > 0 && (
                         <>
                             {selectedValues?.length > 1 ? (
-                                <label className="flex size-space-05 items-center justify-center rounded-full bg-background-secondary text-caption-01">
+                                <label className="flex size-space-05 shrink-0 items-center justify-center rounded-full bg-background-secondary text-caption-01">
                                     {selectedValues.length}
                                 </label>
                             ) : (
                                 options
                                     ?.filter(option => selectedValues?.includes(option.value))
                                     ?.map(option => (
-                                        <Badge colors="gray" variant="ghost" size="sm" key={option.value}>
+                                        <Badge colors="gray" variant="ghost" size="sm" key={option.value}  >
                                             {option.label}
                                         </Badge>
                                     ))
@@ -70,7 +70,7 @@ export function MultiSelect<T extends ValueType>({
                         </>
                     )}
                     <ExpandMore
-                        className={'size-[20px]  shrink-0  transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180'}
+                        className={'size-[20px]  shrink-0  transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180 '}
                     />
                 </button>
             </PopoverTrigger>
