@@ -114,13 +114,15 @@ const SheetHeader = ({ className, title, children, ...props }: React.HTMLAttribu
         <div className={cn('flex flex-row items-center gap-space-02 px-space-05 py-space-04', className)} {...props}>
             {children}
             <h1 className="text-body-01 font-semibold">{title}</h1>
-            <div className="ms-auto ">
-                <Button variant={'ghost'} size={'icon-sm'} onClick={() => setIsCenter()} className="hidden sm:inline-flex">
+            <div className="ms-auto flex items-center gap-space-01 ">
+                <Button variant={'text'} colors={'neutral'} size={'icon-sm'} onClick={() => setIsCenter()} className="hidden sm:inline-flex">
                     {!isCenter && <ViewSidebar size={20} className="-scale-100" />}
                     {isCenter && <WidthFull size={20} />}
                 </Button>
-                <SheetClose className="p-space-01" data-testid="sheetClose">
-                    <Close className="size-[20px]" />
+                <SheetClose className="p-space-01" data-testid="sheetClose" asChild>
+                    <Button variant={'text'} colors={'neutral'} size={'icon-sm'}>
+                        <Close className="size-[20px]" />
+                    </Button>
                 </SheetClose>
             </div>
         </div>

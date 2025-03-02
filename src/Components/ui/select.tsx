@@ -10,7 +10,7 @@ import { cn } from '../../Lib/utils'
 
 const selectVariants = cva(
     ` placeholder:text-form-field-text-placeholder data-[placeholder]:text-form-field-text-placeholder  text-form-field-text-filled after:bg-form-field-border-pressed group relative
-    flex w-full items-center justify-between gap-space-01 whitespace-nowrap 
+    flex w-full items-center justify-between gap-space-01 whitespace-nowrap overflow-hidden
     aria-[invalid=true]:border-form-field-border-error  data-[state=open]:aria-[invalid=true]:after:bg-form-field-border-error
     ps-space-03 pe-space-02  after:absolute after:bottom-0 after:start-1/2 after:h-[2px]  focus-visible:after:w-full focus:outline-none
     after:w-0 after:transition-all after:ease-in-out data-[state=open]:after:w-full  disabled:cursor-not-allowed disabled:border-border-disabled disabled:text-disabled-text-default-disabled ltr:after:-translate-x-1/2 rtl:after:translate-x-1/2 [&>span]:line-clamp-1
