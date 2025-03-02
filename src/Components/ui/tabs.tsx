@@ -7,7 +7,7 @@ import { cn } from '../../Lib/utils'
 import { ResponsiveScroll } from '../ResponsiveScroll'
 
 const tabVariants = cva(
-    `relative inline-flex shrink-0  items-center justify-center   transition-all disabled:pointer-events-none  data-[state=active]:font-semibold`,
+    `relative inline-flex shrink-0  items-center justify-start   transition-all disabled:pointer-events-none  data-[state=active]:font-semibold`,
     {
         variants: {
             container: {
@@ -18,13 +18,13 @@ const tabVariants = cva(
             variant: {
                 filled: 'after:hidden hover:bg-button-background-neutral-hovered data-[state=inactive]:text-text-paragraph-primary rounded-full  data-[state=active]:bg-button-background-primary text-text-oncolor-primary data-[state=active]:shadow-sm hover:data-[state=active]:bg-button-background-primary-hovered  disabled:data-[state=active]:bg-disabled-background-disabled disabled:text-disabled-text-default-disabled',
                 underline:
-                    'relative data-[state=inactive]:text-text-paragraph-primary after:z-[1]  hover:data-[state=inactive]:bg-button-background-neutral-hovered hover:text-text-default after:absolute after:block after:bottom-[1px] after:rounded-full after:start-1/2 after:-translate-x-1/2 rtl:after:translate-x-1/2 after:h-[3px] hover:after:bg-border-black hover:data-[state=active]:after:bg-border-primary-default data-[state=active]:after:bg-border-primary-default disabled:data-[state=active]:after:bg-border-disabled disabled:text-disabled-text-default-disabled',
+                    'relative  data-[state=inactive]:text-text-paragraph-primary after:z-[1]  hover:data-[state=inactive]:bg-button-background-neutral-hovered hover:text-text-default after:absolute after:block after:bottom-[1px] after:rounded-full after:start-1/2 after:-translate-x-1/2 rtl:after:translate-x-1/2 after:h-[3px] hover:after:bg-border-black hover:data-[state=active]:after:bg-border-primary-default data-[state=active]:after:bg-border-primary-default disabled:data-[state=active]:after:bg-border-disabled disabled:text-disabled-text-default-disabled',
                 transparent:
                     'hover:bg-card-hover hover:data-[state=inactive]:text-card-foreground rounded-full py-space-02 px-space-04  focus-visible:outline-none data-[state=active]:bg-background data-[state=active]:text-card-foreground data-[state=active]:shadow-sm hover:data-[state=active]:bg-background data-[state=active]:disabled:bg-disabled',
             },
             size: {
-                default: 'text-body-02 py-space-03 px-space-04 after:w-[calc(100%_-_32px)] [&>svg]:size-space-04 gap-space-01',
-                sm: 'text-body-01 py-space-02 px-space-03 after:w-[calc(100%_-_24px)]  [&>svg]:size-space-04 gap-space-01',
+                default: 'text-body-02   after:w-[calc(100%_-_32px)] [&>svg]:size-space-04 gap-space-01',
+                sm: 'text-body-01  after:w-[calc(100%_-_24px)]  [&>svg]:size-space-04 gap-space-01',
             },
             disabled: {
                 false: null,
@@ -41,10 +41,31 @@ const tabVariants = cva(
         },
         compoundVariants: [
             {
+                variant: 'filled',
+                size: 'sm',
+                className: 'px-space-03 py-space-01',
+            },
+            {
+                variant: 'underline',
+                size: 'default',
+                className: 'px-space-04 py-space-03',
+            },
+            {
+                variant: 'underline',
+                size: 'sm',
+                className: 'px-space-03 py-space-02',
+            },
+            {
+                variant: 'filled',
+                size: 'default',
+                className: 'px-space-04 py-space-02',
+            },
+
+            {
                 container: 'underline',
                 underline: true,
                 className:
-                    'after:absolute after:bottom-0 after:start-0 after:z-0 after:h-[3px] after:w-full after:rounded-full after:bg-border-neutral-primary',
+                    'justify-start w-full after:absolute after:bottom-0 after:start-0 after:z-0 after:h-[3px] after:w-full after:rounded-full after:bg-border-neutral-primary',
             },
             {
                 container: 'underline',
@@ -52,6 +73,11 @@ const tabVariants = cva(
                 orientation: 'vertical',
                 className:
                     'after:absolute after:start-0 after:top-0  after:z-0 after:w-[3px] after:h-full after:rounded-full after:bg-border-neutral-primary',
+            },
+            {
+                container: 'filled',
+                orientation: 'vertical',
+                className: 'bg-transparent',
             },
             {
                 variant: 'underline',
@@ -62,13 +88,13 @@ const tabVariants = cva(
                 variant: 'underline',
                 orientation: 'vertical',
                 size: 'default',
-                className: 'after:h-[calc(100%_-_24px)]',
+                className: 'after:h-[calc(100%_-_24px)] py-space-03',
             },
             {
                 variant: 'underline',
                 orientation: 'vertical',
                 size: 'sm',
-                className: 'after:h-[calc(100%_-_16px)]',
+                className: 'after:h-[calc(100%_-_16px)] py-space-02',
             },
         ],
     },
@@ -206,4 +232,4 @@ TabsContent.displayName = TabsPrimitive.Content.displayName
 //     )
 // }
 
-export {  Tabs, TabsContent, TabsList, TabsTrigger, tabVariants }
+export { Tabs, TabsContent, TabsList, TabsTrigger, tabVariants }
