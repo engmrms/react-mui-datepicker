@@ -11,25 +11,28 @@ interface ResponsiveScrollProps {
 }
 
 export function ResponsiveScroll({ children, scrollAmount = 200, margin = 0, className = '', buttonClassName = '' }: ResponsiveScrollProps) {
-    const [canScrollLeft, setCanScrollLeft] = React.useState(false)
-    const [canScrollRight, setCanScrollRight] = React.useState(false)
+    const [canScrollStart, setCanScrollStart] = React.useState(false)
+    const [canScrollEnd, setCanScrollEnd] = React.useState(false)
     const scrollContainerRef = React.useRef<HTMLDivElement>(null)
 
     const checkScroll = React.useCallback(() => {
         const el = scrollContainerRef.current
-
+        const dir = document.dir
         if (el) {
-            const canScrollLeft = el.scrollLeft > 0
-            const canScrollRight = el.scrollLeft < el.scrollWidth - el.clientWidth - margin
-            setCanScrollLeft(canScrollLeft)
-            setCanScrollRight(canScrollRight)
+            const scrollleft = (dir === 'ltr' ? 1 : -1) * el.scrollLeft
+            const canScrollStart = scrollleft > 0
+            const canScrollEnd = scrollleft < el.scrollWidth - el.clientWidth - margin
+            setCanScrollStart(canScrollStart)
+            setCanScrollEnd(canScrollEnd)
         }
-    }, [])
+    }, [margin])
 
-    const scroll = (direction: 'left' | 'right') => {
+    const scroll = (direction: 'start' | 'end') => {
         if (scrollContainerRef.current) {
+            const dir = document.dir
+            const scrollDirection = (dir === 'ltr' && direction === 'start') || (dir === 'rtl' && direction === 'end') ? -1 : 1
             scrollContainerRef.current.scrollBy({
-                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                left: scrollAmount * scrollDirection,
                 behavior: 'smooth',
             })
         }
@@ -60,34 +63,34 @@ export function ResponsiveScroll({ children, scrollAmount = 200, margin = 0, cla
 
     return (
         <div className="relative flex items-center">
-            {canScrollLeft && (
+            {canScrollStart && (
                 <>
-                    <div className="pointer-events-none absolute start-0 top-0 z-[5] h-full  w-[120px] bg-gradient-to-l from-transparent via-white via-60% to-white"></div>
+                    <div className="pointer-events-none absolute start-0 top-0 z-[5] h-full  w-[120px] bg-gradient-to-r from-transparent via-white via-60% to-white"></div>
                     <Button
                         variant="text"
                         size="icon"
                         colors={'neutral'}
-                        onClick={() => scroll('left')}
+                        onClick={() => scroll('start')}
                         aria-label="Scroll left"
-                        className={`absolute left-0 z-10 flex-shrink-0 ${buttonClassName}`}>
-                        <ChevronLeft className="h-4 w-4" />
+                        className={`absolute start-0 z-10 flex-shrink-0 ${buttonClassName}`}>
+                        <ChevronLeft className="size-space-04 rtl:rotate-180" />
                     </Button>
                 </>
             )}
             <div ref={scrollContainerRef} className={`no-scrollbar flex-1 overflow-x-auto    ${className}`}>
                 <div className="flex">{children}</div>
             </div>
-            {canScrollRight && (
+            {canScrollEnd && (
                 <>
-                    <div className="pointer-events-none absolute end-0 top-0 z-[5] h-full w-[120px] bg-gradient-to-r from-transparent via-white via-60% to-white"></div>
+                    <div className="pointer-events-none absolute end-0 top-0 z-[5] h-full w-[120px] bg-gradient-to-l from-transparent via-white via-60% to-white"></div>
                     <Button
                         variant="text"
                         size="icon"
                         colors={'neutral'}
-                        onClick={() => scroll('right')}
+                        onClick={() => scroll('end')}
                         aria-label="Scroll right"
-                        className={`absolute right-0 z-10 flex-shrink-0  ${buttonClassName}`}>
-                        <ChevronRight className="h-4 w-4" />
+                        className={`absolute end-0 z-10 flex-shrink-0  ${buttonClassName}`}>
+                        <ChevronRight className="size-space-04 rtl:rotate-180" />
                     </Button>
                 </>
             )}
