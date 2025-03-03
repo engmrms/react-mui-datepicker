@@ -54,10 +54,11 @@ export const ar = {
         reset: 'إعادة التعيين',
         CopiedSuccessfully: 'تم النسخ بنجاح',
         comma: '،',
-        accessibilityTools:"أداة سهولة الوصول",
+        accessibilityTools: 'أداة سهولة الوصول',
         sortBy: 'تصنيف حسب',
         siteLanguageText: 'English',
-
+        lightMode: 'الوضع الفاتح',
+        darkMode: 'الوضع الداكن',
     },
 
     Footer: {
@@ -90,5 +91,14 @@ export const ar = {
         ApplyFile: 'تقديم الملف',
         maxAcceptedFilesCount: 'أقصى عدد من الملفات التي يمكنك إرفاقها هنا هو {0} ملفات',
         attachedFile: 'مرفق ملف',
+    },
+    Accessibility: {
+        Accessibility: 'تمكين الوصول',
+        FontSize: 'حجم الخط',
+        IncreaseFontSize: 'تكبير حجم الخط',
+        DecreaseFontSize: 'تصغير حجم الخط',
+        ColorContrast: 'تباين الألوان',
+        SignLanguage: 'دعم لغة الإشارة',
+        VoiceCommands: 'الأوامر الصوتية',
     },
 }

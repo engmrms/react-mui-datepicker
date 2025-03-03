@@ -72,3 +72,9 @@ export enum DateFormat {
     ArShort = 'DD MMMM YYYY',
     EnShort = 'MMM DD, YYYY',
 }
+
+export enum THEME {
+    LIGHT = 1,
+    DARK = 2,
+    SYSTEM = 3,
+}

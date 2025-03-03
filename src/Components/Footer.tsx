@@ -115,10 +115,9 @@ const FooterSocialMedia = ({ title, links, colors }: { links: SocialLink[]; titl
                         tooltip={slink.title}
                         colors={colors === 'neutral' ? 'neutral' : 'oncolor'}
                         size={'icon-sm'}
+                        onClick={() => window.open(slink.target, '_blank', 'noopener,noreferrer')}
                         rounded={'default'}>
-                        <a href={slink.target} target="_blank" rel="noopener noreferrer" title={slink.title}>
-                            {slink.icon}
-                        </a>
+                        {slink.icon}
                     </Button>
                 ))}
             </div>
@@ -136,7 +135,7 @@ const FooterAccessibilityTools = ({ colors }: { colors: Colors }) => {
             <div className="flex flex-wrap items-center gap-space-02">
                 <Button
                     variant={'outline'}
-                    tooltip={'Visibility'}
+                    tooltip={strings.Accessibility.ColorContrast}
                     colors={colors === 'neutral' ? 'neutral' : 'oncolor'}
                     size={'icon-sm'}
                     rounded={'default'}
@@ -145,7 +144,7 @@ const FooterAccessibilityTools = ({ colors }: { colors: Colors }) => {
                 </Button>
                 <Button
                     variant={'outline'}
-                    tooltip={'Visibility'}
+                    tooltip={strings.Accessibility.DecreaseFontSize}
                     colors={colors === 'neutral' ? 'neutral' : 'oncolor'}
                     size={'icon-sm'}
                     rounded={'default'}
@@ -154,7 +153,7 @@ const FooterAccessibilityTools = ({ colors }: { colors: Colors }) => {
                 </Button>
                 <Button
                     variant={'outline'}
-                    tooltip={'Visibility'}
+                    tooltip={strings.Accessibility.IncreaseFontSize}
                     colors={colors === 'neutral' ? 'neutral' : 'oncolor'}
                     size={'icon-sm'}
                     rounded={'default'}
@@ -163,13 +162,14 @@ const FooterAccessibilityTools = ({ colors }: { colors: Colors }) => {
                 </Button>
                 <Button
                     variant={'outline'}
-                    tooltip={'Visibility'}
+                    tooltip={strings.Accessibility.VoiceCommands}
                     colors={colors === 'neutral' ? 'neutral' : 'oncolor'}
                     size={'icon-sm'}
-                    rounded={'default'}>
-                    <a href="https://deaf.dga.gov.sa" target="_blank" rel="noreferrer">
-                        <HearingDisabled />
-                    </a>
+                    rounded={'default'}
+                    onClick={() => {
+                        window.open('https://deaf.dga.gov.sa', '_blank', 'noopener,noreferrer')
+                    }}>
+                    <HearingDisabled size={20} />
                 </Button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { Check, Home } from 'google-material-icons/outlined'
+import { Check, Home, WbSunny } from 'google-material-icons/outlined'
 import React, { PropsWithChildren, useCallback, useEffect, useLayoutEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, NavLink } from 'react-router-dom'
@@ -56,6 +56,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { FilterGroup, FilterSelect } from './Components/Filter'
 import { Footer } from './Components/Footer'
+import { SecondNavHeader, SecondNavHeaderAction, SecondNavHeaderContent } from './Components/SecondNavHeader'
 import { setLanguage, Tabs, TabsContent, TabsList, TabsTrigger, useLanguage } from './package'
 
 const FormSchema = z.object({
@@ -139,6 +140,67 @@ const menuItems = [
     },
 ]
 
+const Header = () => {
+    return (
+        <>
+            <SecondNavHeader  >
+                <SecondNavHeaderContent />
+                <SecondNavHeaderAction />
+            </SecondNavHeader>
+            <NavigationHeader divider>
+                <NavigationMain>
+                    <NavigationHeaderLogo logoSrc={vission} logoAlt="logo" />
+                    <NavigationMenu className="" dir="ltr">
+                        <NavigationMenuList>
+                            {[...menuItems].reverse().map(m => (
+                                <NavigationMenuItem key={m.title}>
+                                    {m.items.length > 0 ? (
+                                        <>
+                                            <NavigationMenuTrigger>{m.title}</NavigationMenuTrigger>
+                                            <NavigationMenuContent className="">
+                                                <ul className="one m-0 grid list-none gap-x-2.5 p-[22px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
+                                                    {m.items.map(subItem => (
+                                                        <li key={subItem.title} className="row-span-3 grid">
+                                                            <NavigationMenuLink asChild>
+                                                                <Link
+                                                                    to={subItem.href}
+                                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                                    <div className="text-sm font-medium leading-none">{subItem.title}</div>
+                                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                                                        {subItem.description}
+                                                                    </p>
+                                                                </Link>
+                                                            </NavigationMenuLink>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </NavigationMenuContent>
+                                        </>
+                                    ) : (
+                                        <NavigationMenuLink asChild>
+                                            <NavLink to={m.href}>{m.title}</NavLink>
+                                        </NavigationMenuLink>
+                                    )}
+                                </NavigationMenuItem>
+                            ))}
+                            <NavigationMenuIndicator />
+                        </NavigationMenuList>
+
+                        <NavigationMenuViewport />
+                    </NavigationMenu>
+                </NavigationMain>
+
+                <NavigationAction>
+                    <NavigationSwitchLanguage />
+                    <NavigationSearch onSearch={v => console.log(v)}>
+                        <h1>Suggestion</h1>
+                    </NavigationSearch>
+                </NavigationAction>
+            </NavigationHeader>
+        </>
+    )
+}
+
 const App = () => {
     const handleFileSelect = useCallback(
         (
@@ -191,83 +253,35 @@ const App = () => {
 
     return (
         <Bootstrap>
-            <NavigationHeader divider>
-                <NavigationMain>
-                    <NavigationHeaderLogo logoSrc={vission} logoAlt="logo" />
-                    <NavigationMenu className="" dir="ltr">
-                        <NavigationMenuList>
-                            {[...menuItems].reverse().map(m => (
-                                <NavigationMenuItem key={m.title}>
-                                    {m.items.length > 0 ? (
-                                        <>
-                                            <NavigationMenuTrigger>{m.title}</NavigationMenuTrigger>
-                                            <NavigationMenuContent className="">
-                                                <ul className="one m-0 grid list-none gap-x-2.5 p-[22px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
-                                                    {m.items.map(subItem => (
-                                                        <li key={subItem.title} className="row-span-3 grid">
-                                                            <NavigationMenuLink asChild>
-                                                                <Link
-                                                                    to={subItem.href}
-                                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                                                                    <div className="text-sm font-medium leading-none">{subItem.title}</div>
-                                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                                                        {subItem.description}
-                                                                    </p>
-                                                                </Link>
-                                                            </NavigationMenuLink>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </NavigationMenuContent>
-                                        </>
-                                    ) : (
-                                        <NavigationMenuLink asChild>
-                                            <NavLink to={m.href}>{m.title}</NavLink>
-                                        </NavigationMenuLink>
-                                    )}
-                                </NavigationMenuItem>
-                            ))}
-
-                            <NavigationMenuIndicator />
-                        </NavigationMenuList>
-
-                        <NavigationMenuViewport />
-                    </NavigationMenu>
-                </NavigationMain>
-
-                <NavigationAction>
-                    <NavigationSwitchLanguage />
-                    <NavigationSearch onSearch={v => console.log(v)}>
-                        <h1>Suggestion</h1>
-                    </NavigationSearch>
-                </NavigationAction>
-            </NavigationHeader>
-
-            <FilterGroup onValueChange={v => console.log('main', v)} className="flex gap-space-03 ">
-                <FilterSelect
-                    name="test"
-                    placeholder="select"
-                    data={[
-                        { value: '1', label: 'label1' },
-                        { value: '2', label: 'label2' },
-                        { value: '3', label: 'label3' },
-                        { value: '4', label: 'label4' },
-                    ]}
-                />
-                <FilterSelect
-                    name="test2"
-                    multi
-                    placeholder="select"
-                    data={[
-                        { value: '1', label: 'multi1' },
-                        { value: '2', label: 'multi2' },
-                        { value: '3', label: 'multi3' },
-                        { value: '4', label: 'multi4' },
-                    ]}
-                />
-            </FilterGroup>
+            <Header />
 
             <Stack direction={'col'} className="p-space-06">
+                <Button size={'icon-sm'} tooltip="change color" variant={'text'} colors={'primary'}>
+                    <WbSunny />
+                </Button>
+                <FilterGroup onValueChange={v => console.log('main', v)} className="flex gap-space-03 ">
+                    <FilterSelect
+                        name="test"
+                        placeholder="select"
+                        data={[
+                            { value: '1', label: 'label1' },
+                            { value: '2', label: 'label2' },
+                            { value: '3', label: 'label3' },
+                            { value: '4', label: 'label4' },
+                        ]}
+                    />
+                    <FilterSelect
+                        name="test2"
+                        multi
+                        placeholder="select"
+                        data={[
+                            { value: '1', label: 'multi1' },
+                            { value: '2', label: 'multi2' },
+                            { value: '3', label: 'multi3' },
+                            { value: '4', label: 'multi4' },
+                        ]}
+                    />
+                </FilterGroup>
                 <ActionLoader />
                 <h1 className="shadow-md">Tetco Design System</h1>
                 <Stack className="flex-wrap p-space-03">
@@ -496,7 +510,7 @@ const App = () => {
                             { href: '', label: 'about' },
                             { href: '', label: 'Privacy and terms of use' },
                             { href: '', label: 'News and events' },
-                            { href: '', label: 'News and events' },
+                          
                         ],
                     },
                     {

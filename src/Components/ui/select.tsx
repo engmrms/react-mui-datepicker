@@ -53,15 +53,18 @@ const SelectContext = React.createContext<VariantProps<typeof selectVariants>>({
     size: 'default',
 })
 
-const Select = React.forwardRef<
-    React.ElementRef<typeof SelectPrimitive.Root>,
-    React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root> & VariantProps<typeof selectVariants>
->(({ variant, size, colors, rounded, children, ...props }) => (
+const Select = ({
+    variant,
+    size,
+    colors,
+    rounded,
+    children,
+    ...props
+}: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root> & VariantProps<typeof selectVariants>) => (
     <SelectPrimitive.Root {...props}>
         <SelectContext.Provider value={{ variant, size, colors, rounded }}>{children}</SelectContext.Provider>
     </SelectPrimitive.Root>
-))
-Select.displayName = SelectPrimitive.Root.displayName
+)
 
 const SelectGroup = SelectPrimitive.Group
 

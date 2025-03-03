@@ -124,7 +124,7 @@ const NavigationHeader = React.forwardRef<HTMLHeadElement, React.HtmlHTMLAttribu
         <header
             ref={ref}
             className={cn(
-                'relative z-[100] flex h-[72px] min-h-[72px] w-full bg-background-menu',
+                'relative  flex h-[72px] min-h-[72px] w-full bg-background-menu',
                 {
                     'after:absolute after:bottom-0 after:start-0 after:block after:h-[1px] after:w-full after:bg-background-neutral-100': divider,
                 },

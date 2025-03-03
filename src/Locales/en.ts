@@ -55,11 +55,12 @@ export const en = {
         reset: 'Reset',
         CopiedSuccessfully: 'Copied successfully',
         comma: ',',
-        accessibilityTools: " Accessibility Tools",
+        accessibilityTools: ' Accessibility Tools',
         sortBy: 'Sort by',
         siteLanguageText: 'العربية',
+        lightMode: 'Light mode',
+        darkMode: 'Dark mode',
     },
-
 
     Footer: {
         KSA: 'Ministry of Education - Saudia Arabia',
@@ -91,5 +92,14 @@ export const en = {
         ApplyFile: 'Apply File',
         maxAcceptedFilesCount: 'the maximum number of files you can drop here {0} files',
         attachedFile: 'Attached File',
+    },
+    Accessibility: {
+        Accessibility: 'Accessibility',
+        FontSize: 'Font size',
+        IncreaseFontSize: 'Increase font size',
+        DecreaseFontSize: 'Decrease font size',
+        ColorContrast: 'Color contrast',
+        SignLanguage: 'Sign language',
+        VoiceCommands: 'Voice commands',
     },
 }

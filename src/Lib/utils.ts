@@ -89,7 +89,7 @@ export const formatter = (dir: string) => {
     return new Intl.DateTimeFormat(dir === 'rtl' ? 'ar' : 'en', { day: '2-digit', month: 'short', year: 'numeric' })
 }
 export const formatterTime = (dir: string) => {
-    return new Intl.DateTimeFormat(dir === 'ar' ? 'ar' : 'en', { timeStyle: 'short' })
+    return new Intl.DateTimeFormat(dir === 'rtl' ? 'ar' : 'en', { timeStyle: 'short' })
 }
 
 export const dateFormatter = ({
