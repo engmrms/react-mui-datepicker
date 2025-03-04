@@ -7,7 +7,7 @@ import { useFormContext } from '../ui/form'
 const textAreaVariants = cva(
     `flex relative overflow-hidden min-h-[10rem] w-full   ps-space-04 text-body-02 overflow-hidden text-form-field-text-filled
      aria-[disabled=true]:cursor-not-allowed aria-[disabled=true]:text-disabled-text-default-disabled
-     aria-[invalid=true]:border-form-field-border-error  focus-within:aria-[invalid=true]:after:bg-form-field-border-error
+     aria-[invalid=true]:border-form-field-border-error  focus-within:aria-[invalid=true]:after:bg-form-field-border-error focus-within:shadow-md
      after:absolute after:bottom-0 after:w-0 after:h-[2px] ltr:after:-translate-x-1/2 rtl:after:translate-x-1/2 after:start-1/2 after:bg-form-field-border-pressed after:ease-in-out after:transition-all focus-within:after:w-full
     `,
     {

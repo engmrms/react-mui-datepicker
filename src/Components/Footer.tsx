@@ -76,13 +76,13 @@ const Footer = ({ colors = 'default', ...props }: FooterProps) => {
 
 const FooterHeading = ({ title, colors }: { colors: Colors; title: string }) => {
     return (
-        <h3
+        <label
             className={cn('w-full border-b pb-space-02 text-body-02 font-medium', {
                 'border-border-neutral-primary': colors === 'neutral',
                 'border-border-oncolor-transparent-30': colors === 'default',
             })}>
             {title}
-        </h3>
+        </label>
     )
 }
 

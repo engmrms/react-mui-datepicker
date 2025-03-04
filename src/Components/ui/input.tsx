@@ -5,7 +5,7 @@ import { cn } from '../../Lib/utils'
 const inputVariants = cva(
     `relative inline-flex items-center  w-full  px-space-04 text-form-field-text-filled   overflow-hidden
      aria-[disabled=true]:cursor-not-allowed aria-[disabled=true]:text-disabled-text-default-disabled
-     aria-[invalid=true]:border-form-field-border-error  focus-within:aria-[invalid=true]:after:bg-form-field-border-error
+     aria-[invalid=true]:border-form-field-border-error focus-within:shadow-md  focus-within:aria-[invalid=true]:after:bg-form-field-border-error
      after:absolute after:bottom-0 after:w-0 after:h-[2px] ltr:after:-translate-x-1/2 rtl:after:translate-x-1/2 after:start-1/2 after:bg-form-field-border-pressed after:ease-in-out after:transition-all focus-within:after:w-full
     `,
     {

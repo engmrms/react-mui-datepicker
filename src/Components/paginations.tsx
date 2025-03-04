@@ -51,11 +51,9 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                     <PaginationPrevious
                         data-testid="paginationPrevius"
                         hasText={!withoutText}
-                        className={classNames({
-                            'cursor-pointer': true,
-                            'pointer-events-none text-disabled': selectedPage === 1,
-                        })}
+                        disabled={selectedPage === 1}
                         onClick={() => {
+                            if (selectedPage === 1) return
                             handlePageClick(selectedPage - 2)
                         }}
                     />
@@ -66,9 +64,6 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                             <PaginationLink
                                 data-testid={`pagination${i}`}
                                 isActive={selectedPage === i + 1}
-                                className={classNames({
-                                    'cursor-pointer': true,
-                                })}
                                 onClick={() => {
                                     handlePageClick(i)
                                 }}>
@@ -85,9 +80,6 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                                     <PaginationLink
                                         data-testid={`pagination${i}`}
                                         isActive={selectedPage === i + 1}
-                                        className={classNames({
-                                            'cursor-pointer': true,
-                                        })}
                                         onClick={() => {
                                             handlePageClick(i)
                                         }}>
@@ -106,9 +98,6 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                                     <PaginationLink
                                         data-testid={`pagination${i}`}
                                         isActive={selectedPage === i + 1}
-                                        className={classNames({
-                                            'cursor-pointer': true,
-                                        })}
                                         onClick={() => {
                                             handlePageClick(i)
                                         }}>
@@ -134,11 +123,9 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                     <PaginationNext
                         data-testid="paginationNext"
                         hasText={!withoutText}
-                        className={classNames({
-                            'cursor-pointer': true,
-                            'pointer-events-none text-disabled': selectedPage === pageCount,
-                        })}
+                        disabled={selectedPage === pageCount}
                         onClick={() => {
+                            if (selectedPage === pageCount) return
                             handlePageClick(selectedPage)
                         }}
                     />
@@ -199,7 +186,7 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
         <div className="flex gap-space-02">
             <button
                 disabled={disabled ?? currentPage === 1}
-                className="!p-space-02 disabled:border-disabled disabled:text-disabled"
+                className="!p-space-02 disabled:border-disabled disabled:text-disabled-text-default-disabled"
                 onClick={() =>
                     setCurrentPage(prev => {
                         if (prev > 1) return prev - 1
@@ -210,7 +197,7 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
             </button>
             <button
                 disabled={disabled ?? currentPage === totalPages}
-                className="!p-space-02 disabled:border-disabled disabled:text-disabled"
+                className="!p-space-02 disabled:border-disabled disabled:text-disabled-text-default-disabled"
                 onClick={() =>
                     setCurrentPage(prev => {
                         if (disabled) return prev

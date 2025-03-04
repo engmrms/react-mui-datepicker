@@ -29,10 +29,10 @@ const Intro = () => {
     return (
         <section className="sb-unstyled space-y-space-08">
             <div className="space-y-space-03">
-                <h1 className="title-03 text-[#3546A3]">Introduction to Our Design System</h1>
+                <h1 className="title-03 text-[#3546A3]">Introduction to Mada Design System</h1>
                 <p className="subtitle-02">
-                    Welcome to Portals’ Design System! Our design system is a comprehensive collection of reusable components, guidelines, and
-                    resources designed to empower our teams to create consistent and delightful user experiences across all our platforms.
+                    Welcome to Mada Design System! Our design system is a comprehensive collection of reusable components, guidelines, and resources
+                    designed to empower our teams to create consistent and delightful user experiences across all our platforms.
                 </p>
             </div>
             <div>

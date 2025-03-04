@@ -18,6 +18,7 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
+    Label,
     NavigationAction,
     NavigationHeader,
     NavigationHeaderLogo,
@@ -270,6 +271,8 @@ const App = () => {
         })
     }
 
+   
+
     return (
         <Bootstrap>
             <Header />
@@ -301,6 +304,7 @@ const App = () => {
                         ]}
                     />
                 </FilterGroup>
+
                 <ActionLoader />
                 <h1 className="shadow-md">Tetco Design System</h1>
                 <Stack className="flex-wrap p-space-03">
@@ -344,7 +348,11 @@ const App = () => {
                         <Check />
                     </Badge>
                 </Stack>
-                <Switch disabled />
+                <div>
+                    <Switch id="airplane-mode" />
+
+                    <Label htmlFor="airplane-mode">Airplane Mode</Label>
+                </div>
 
                 <Tabs dir={'ltr'} defaultValue="tab1">
                     <TabsList variant={'underline'} underline>

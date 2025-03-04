@@ -6,7 +6,7 @@ export default create({
     fontBase: '"IBM Reguler","Open Sans", sans-serif',
     fontCode: '"IBM Reguler"',
 
-    brandTitle: 'Tetco Design System',
+    brandTitle: 'Mada Design System',
     brandUrl: 'https://tetco.sa',
     brandImage: 'LogoDS.svg',
     brandTarget: '_self',

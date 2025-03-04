@@ -44,7 +44,12 @@ const SecondNavHeaderContext = createContext<VariantProps<typeof secondNavHeader
 const SecondNavHeader = ({ colors, hideDivider, className, ...props }: SecondNavHeaderProps) => {
     return (
         <SecondNavHeaderContext.Provider value={{ colors, hideDivider }}>
-            <div className={cn(secondNavHeaderVariants({ colors, hideDivider }), className)} {...props} aria-label="Second Navigation Header" />
+            <div
+                className={cn(secondNavHeaderVariants({ colors, hideDivider }), className)}
+                {...props}
+                aria-label="a secondary navigation navbar"
+                role="banner"
+            />
         </SecondNavHeaderContext.Provider>
     )
 }
@@ -62,14 +67,14 @@ const SecondNavHeaderContent = ({ className, ...props }: HTMLAttributes<HTMLDivE
 
     return (
         <div className={cn('hidden items-center gap-space-04 text-body-02 md:flex', className)} {...props}>
-            <span className="flex items-center gap-space-01" aria-label={`Current date: ${Intl.DateTimeFormat('en-GB').format()}`}>
+            <label className="flex items-center gap-space-01" aria-label={`Current date: ${Intl.DateTimeFormat('en-GB').format()}`}>
                 <CalendarToday size={20} />
                 <span>{Intl.DateTimeFormat('en-GB').format()}</span>
-            </span>
-            <span className="flex items-center gap-space-01" aria-label={`Current time: ${time}`}>
+            </label>
+            <label className="flex items-center gap-space-01" aria-label={`Current time: ${time}`}>
                 <AccessTime size={20} />
                 <span>{time}</span>
-            </span>
+            </label>
             {props.children}
         </div>
     )
