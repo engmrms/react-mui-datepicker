@@ -53,11 +53,22 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Comp
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useToggle } from 'usehooks-ts'
 import { z } from 'zod'
 import { FilterGroup, FilterSelect } from './Components/Filter'
 import { Footer } from './Components/Footer'
 import { SecondNavHeader, SecondNavHeaderAction, SecondNavHeaderContent } from './Components/SecondNavHeader'
-import { setLanguage, Tabs, TabsContent, TabsList, TabsTrigger, useLanguage } from './package'
+import {
+    NavigationMobileHeader,
+    NavigationMobileLink,
+    NavigationMobileSideBar,
+    setLanguage,
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
+    useLanguage,
+} from './package'
 
 const FormSchema = z.object({
     email: z
@@ -141,16 +152,17 @@ const menuItems = [
 ]
 
 const Header = () => {
+    const [open, toggle, setToggle] = useToggle()
     return (
         <>
-            <SecondNavHeader  >
+            <SecondNavHeader>
                 <SecondNavHeaderContent />
                 <SecondNavHeaderAction />
             </SecondNavHeader>
             <NavigationHeader divider>
-                <NavigationMain>
+                <NavigationMain collapsed={open} onToggleCollapsed={toggle}>
                     <NavigationHeaderLogo logoSrc={vission} logoAlt="logo" />
-                    <NavigationMenu className="" dir="ltr">
+                    <NavigationMenu className="">
                         <NavigationMenuList>
                             {[...menuItems].reverse().map(m => (
                                 <NavigationMenuItem key={m.title}>
@@ -158,13 +170,11 @@ const Header = () => {
                                         <>
                                             <NavigationMenuTrigger>{m.title}</NavigationMenuTrigger>
                                             <NavigationMenuContent className="">
-                                                <ul className="one m-0 grid list-none gap-x-2.5 p-[22px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
+                                                <ul className="one m-0 grid list-none gap-x-2.5 p-[22px] sm:w-[800px] sm:grid-cols-[0.75fr_1fr]">
                                                     {m.items.map(subItem => (
                                                         <li key={subItem.title} className="row-span-3 grid">
                                                             <NavigationMenuLink asChild>
-                                                                <Link
-                                                                    to={subItem.href}
-                                                                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                                <Link to={subItem.href} className="flex select-none flex-col space-y-1 ">
                                                                     <div className="text-sm font-medium leading-none">{subItem.title}</div>
                                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                                                                         {subItem.description}
@@ -197,6 +207,15 @@ const Header = () => {
                     </NavigationSearch>
                 </NavigationAction>
             </NavigationHeader>
+            <NavigationMobileSideBar open={open} onOpenChange={open => setToggle(open)}>
+                <NavigationMobileHeader>
+                    <NavigationHeaderLogo logoSrc={vission} logoAlt="logo" />
+                </NavigationMobileHeader>
+
+                <NavigationMobileLink asChild>
+                    <NavLink to={'m.href'}>{'m.title'}</NavLink>
+                </NavigationMobileLink>
+            </NavigationMobileSideBar>
         </>
     )
 }
@@ -510,7 +529,6 @@ const App = () => {
                             { href: '', label: 'about' },
                             { href: '', label: 'Privacy and terms of use' },
                             { href: '', label: 'News and events' },
-                          
                         ],
                     },
                     {

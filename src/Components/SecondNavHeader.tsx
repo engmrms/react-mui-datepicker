@@ -3,7 +3,7 @@ import { AccessTime, CalendarToday, DarkMode, HearingDisabled, LightMode, Visibi
 import { createContext, HTMLAttributes, useContext, useEffect, useState } from 'react'
 import { cn, formatterTime } from '../Lib'
 import { THEME } from '../Models/enums'
-import { accessibilityTools, Button, strings, useLanguage, useThemeStore } from '../package'
+import { accessibilityTools, Button, ButtonProps, strings, useLanguage, useThemeStore } from '../package'
 
 const secondNavHeaderVariants = cva(`h-space-07 px-space-06 py-space-01 flex [&>svg]:size-[20px] items-center md:justify-between justify-center`, {
     variants: {
@@ -83,7 +83,7 @@ const SecondNavHeaderAction = ({ className, ...props }: HTMLAttributes<HTMLDivEl
 
     return (
         <div className={cn('flex items-center gap-space-02 text-body-02', className)} {...props}>
-            <NavigationSwitchTheme />
+            <NavigationSwitchTheme colors={btnColor} />
             <Button
                 size={'icon-sm'}
                 tooltip={strings.Accessibility.ColorContrast}
@@ -127,10 +127,8 @@ const SecondNavHeaderAction = ({ className, ...props }: HTMLAttributes<HTMLDivEl
     )
 }
 
-const NavigationSwitchTheme = () => {
+const NavigationSwitchTheme = ({ colors }: { colors: ButtonProps['colors'] }) => {
     const { theme, setTheme } = useThemeStore()
-    const context = useContext(SecondNavHeaderContext)
-    const btnColor = context.colors === 'gray' ? 'neutral' : 'oncolor'
 
     const handleDefaultThemeChange = () => {
         const value = theme === String(THEME.LIGHT) ? String(THEME.DARK) : String(THEME.LIGHT)
@@ -150,8 +148,8 @@ const NavigationSwitchTheme = () => {
             size={'icon-sm'}
             tooltip={theme === String(THEME.DARK) ? strings.Shared.lightMode : strings.Shared.darkMode}
             variant={'text'}
-            colors={btnColor}
-            className={cn({ 'mix-blend-multiply  dark:mix-blend-normal': context.colors === 'gray' })}
+            colors={colors}
+            className={cn({ 'mix-blend-multiply  dark:mix-blend-normal': colors === 'gray' })}
             onClick={handleDefaultThemeChange}>
             {theme === String(THEME.DARK) ? <LightMode /> : <DarkMode />}
         </Button>
