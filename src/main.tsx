@@ -54,11 +54,13 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Comp
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
 import { useToggle } from 'usehooks-ts'
 import { z } from 'zod'
 import { FilterGroup, FilterSelect } from './Components/Filter'
 import { Footer } from './Components/Footer'
 import { SecondNavHeader, SecondNavHeaderAction, SecondNavHeaderContent } from './Components/SecondNavHeader'
+import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from './Components/ui/charts'
 import {
     NavigationMobileHeader,
     NavigationMobileLink,
@@ -271,13 +273,48 @@ const App = () => {
         })
     }
 
-   
+    const chartData = [
+        { month: 'January', desktop: 186, mobile: 80 },
+        { month: 'February', desktop: 305, mobile: 200 },
+        { month: 'March', desktop: 237, mobile: 120 },
+        { month: 'April', desktop: 73, mobile: 190 },
+        { month: 'May', desktop: 209, mobile: 130 },
+        { month: 'June', desktop: 214, mobile: 140 },
+    ]
+
+    const chartConfig = {
+        desktop: {
+            label: 'Desktop',
+            color: '#2563eb',
+        },
+        mobile: {
+            label: 'Mobile',
+            color: '#60a5fa',
+        },
+    } satisfies ChartConfig
 
     return (
         <Bootstrap>
             <Header />
 
             <Stack direction={'col'} className="p-space-06">
+                <ChartContainer config={chartConfig} className="min-h-[100px] w-full">
+                    <BarChart accessibilityLayer data={chartData}>
+                    <CartesianGrid vertical={false} />
+                    <XAxis
+      dataKey="month"
+      tickLine={false}
+      tickMargin={10}
+      axisLine={false}
+      tickFormatter={(value) => value.slice(0, 3)}
+    />
+      <ChartTooltip content={<ChartTooltipContent />} />
+      <ChartLegend content={<ChartLegendContent />} />
+                        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+                        <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+                    </BarChart>
+                </ChartContainer>
+
                 <Button size={'icon-sm'} tooltip="change color" variant={'text'} colors={'primary'}>
                     <WbSunny />
                 </Button>
