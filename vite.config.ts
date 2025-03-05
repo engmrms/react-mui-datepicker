@@ -34,7 +34,7 @@ export default defineConfig({
                 }),
             ],
 
-            external: ['react/jsx-runtime', 'react', 'react-dom', /^@radix-ui/, '@tanstack/react-query', 'react-localization', 'framer-motion'],
+            external: ['react/jsx-runtime', 'react', 'react-dom', /^@radix-ui/,"recharts", '@tanstack/react-query', 'react-localization', 'framer-motion'],
         },
         commonjsOptions: { requireReturnsDefault: 'preferred' },
         assetsInlineLimit: 0,

@@ -30,7 +30,7 @@ type Story = StoryObj<typeof MultiSelect>
 //     { label: 'Low', value: 3 },
 // ]
 
-const mockData = Array.from({ length: 2000 }, (_, i) => ({
+const mockData = Array.from({ length: 20 }, (_, i) => ({
     value:i,
     label: `Item ${i} - ${Math.random().toString(36).substring(2, 8)}`,
 }))

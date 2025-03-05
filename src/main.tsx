@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Check, Home, WbSunny } from 'google-material-icons/outlined'
-import React, { PropsWithChildren, useCallback, useEffect, useLayoutEffect } from 'react'
+import React, { PropsWithChildren, useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, NavLink } from 'react-router-dom'
 import './Assets/css/Shared.css'
@@ -18,7 +19,6 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-    Label,
     NavigationAction,
     NavigationHeader,
     NavigationHeaderLogo,
@@ -54,14 +54,16 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Comp
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
+import { Label, Pie, PieChart } from 'recharts'
 import { useToggle } from 'usehooks-ts'
 import { z } from 'zod'
 import { FilterGroup, FilterSelect } from './Components/Filter'
 import { Footer } from './Components/Footer'
 import { SecondNavHeader, SecondNavHeaderAction, SecondNavHeaderContent } from './Components/SecondNavHeader'
-import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from './Components/ui/charts'
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from './Components/ui/charts'
 import {
+    ChartConfig,
+    MultiSelect,
     NavigationMobileHeader,
     NavigationMobileLink,
     NavigationMobileSideBar,
@@ -154,6 +156,11 @@ const menuItems = [
     },
 ]
 
+const mockData = Array.from({ length: 3000 }, (_, i) => ({
+    value: i,
+    label: `Item ${i} - ${Math.random().toString(36).substring(2, 8)}`,
+}))
+
 const Header = () => {
     const [open, toggle, setToggle] = useToggle()
     return (
@@ -224,6 +231,7 @@ const Header = () => {
 }
 
 const App = () => {
+    const [selectedValues, setSelectedValues] = useState<number[]>([])
     const handleFileSelect = useCallback(
         (
             selectedFiles: FileInfo[],
@@ -273,32 +281,22 @@ const App = () => {
         })
     }
 
-    const chartData = [
-        { month: 'January', desktop: 186, mobile: 80 },
-        { month: 'February', desktop: 305, mobile: 200 },
-        { month: 'March', desktop: 237, mobile: 120 },
-        { month: 'April', desktop: 73, mobile: 190 },
-        { month: 'May', desktop: 209, mobile: 130 },
-        { month: 'June', desktop: 214, mobile: 140 },
-    ]
-
-    const chartConfig = {
-        desktop: {
-            label: 'Desktop',
-            color: '#2563eb',
-        },
-        mobile: {
-            label: 'Mobile',
-            color: '#60a5fa',
-        },
-    } satisfies ChartConfig
-
     return (
         <Bootstrap>
             <Header />
 
             <Stack direction={'col'} className="p-space-06">
-                <ChartContainer config={chartConfig} className="min-h-[100px] w-full">
+                <ComponentPie />
+                <MultiSelect
+                    options={mockData}
+                    selectedValues={selectedValues}
+                    onChange={(values: number[]) => {
+                        setSelectedValues(prev => [...prev, ...values])
+                    }}
+                    placeholder={'select'}
+                />
+
+                {/* <ChartContainer config={chartConfig} className="min-h-[100px] w-full">
                     <BarChart accessibilityLayer data={chartData}>
                     <CartesianGrid vertical={false} />
                     <XAxis
@@ -313,7 +311,7 @@ const App = () => {
                         <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
                         <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
                     </BarChart>
-                </ChartContainer>
+                </ChartContainer> */}
 
                 <Button size={'icon-sm'} tooltip="change color" variant={'text'} colors={'primary'}>
                     <WbSunny />
@@ -388,7 +386,7 @@ const App = () => {
                 <div>
                     <Switch id="airplane-mode" />
 
-                    <Label htmlFor="airplane-mode">Airplane Mode</Label>
+                    {/* <Label htmlFor="airplane-mode">Airplane Mode</Label> */}
                 </div>
 
                 <Tabs dir={'ltr'} defaultValue="tab1">
@@ -639,10 +637,78 @@ const Bootstrap = ({ children }: PropsWithChildren) => {
     return children
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </React.StrictMode>,
-)
+let root: ReactDOM.Root | null = null
+
+const container = document.getElementById('root')
+
+if (container) {
+    if (!root) {
+        root = ReactDOM.createRoot(container)
+    }
+
+    root.render(
+        <React.StrictMode>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </React.StrictMode>,
+    )
+}
+
+function ComponentPie() {
+    const chartData = [
+        { browser: 'chrome', visitors: 275, fill: 'var(--color-chrome)' },
+        { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
+        { browser: 'firefox', visitors: 287, fill: 'var(--color-firefox)' },
+    ]
+
+    const chartConfig = {
+        visitors: {
+            label: 'Visitors',
+        },
+        chrome: {
+            label: 'Chrome',
+            color: 'var(--primary)',
+        },
+        safari: {
+            label: 'Safari',
+            color: 'var(--secondary)',
+        },
+        firefox: {
+            label: 'Firefox',
+            color: 'var(--primary-light)',
+        },
+    } satisfies ChartConfig
+
+    const totalVisitors = React.useMemo(() => {
+        return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
+    }, [chartData])
+
+    return (
+        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-[250px]">
+            <PieChart>
+                <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+                {/* <ChartLegend content={<ChartLegendContent  />} /> */}
+                <Pie data={chartData} dataKey="visitors" nameKey="browser" innerRadius={60} strokeWidth={5} outerRadius={80}>
+                    <Label
+                        content={({ viewBox }) => {
+                            if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
+                                return (
+                                    <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle" dominantBaseline="middle">
+                                        <tspan x={viewBox.cx} y={viewBox.cy} className="fill-foreground text-3xl font-bold">
+                                            {totalVisitors.toLocaleString()}
+                                        </tspan>
+                                        <tspan x={viewBox.cx} y={(viewBox.cy || 0) + 24} className="fill-muted-foreground">
+                                            Visitors
+                                        </tspan>
+                                    </text>
+                                )
+                            }
+                            return null
+                        }}
+                    />
+                </Pie>
+            </PieChart>
+        </ChartContainer>
+    )
+}

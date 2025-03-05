@@ -11,7 +11,7 @@ const meta: Meta<typeof Footer> = {
         layout: 'centered',
         docs: {
             description: {
-                component: '<h4>Displays a Footer template component .</h4>',
+                component: '<h4>A collection of links and contents for footer websites.</h4>',
             },
         },
     },

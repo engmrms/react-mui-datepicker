@@ -8,10 +8,9 @@ const meta: Meta<typeof SecondNavHeader> = {
     tags: ['autodocs'],
 
     parameters: {
-        
         docs: {
             description: {
-                component: '<h4>Displays a Footer template component .</h4>',
+                component: '<h4>A collection of links and contents for second navigating websites.</h4>',
             },
         },
     },
@@ -25,8 +24,8 @@ export const Default: Story = {
         colors: 'primary',
         hideDivider: false,
     },
-    argTypes:{
-        hideDivider:{control:"boolean"}
+    argTypes: {
+        hideDivider: { control: 'boolean' },
     },
     render: args => (
         <SecondNavHeader {...args}>

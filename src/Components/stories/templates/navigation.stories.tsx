@@ -71,7 +71,7 @@ const meta: Meta<typeof NavigationHeader> = {
         layout: 'centered',
         docs: {
             description: {
-                component: '<h4>Displays a Footer template component .</h4>',
+                component: '<h4>A collection of links for navigating websites.</h4>',
             },
         },
     },

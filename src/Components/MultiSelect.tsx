@@ -123,8 +123,8 @@ function CommandBody<T extends ValueType>({ options, selectedValues, dataTestId,
     const rowVirtualizer = useVirtualizer({
         count: options.length,
         getScrollElement: () => parentRef.current,
-        estimateSize: () => 35, // Adjust based on your row height
-        overscan: 5, // Improves scroll performance
+        estimateSize: () => 36, // Adjust based on your row height
+        overscan: 10, // Improves scroll performance
     })
 
     return (
@@ -145,7 +145,7 @@ function CommandBody<T extends ValueType>({ options, selectedValues, dataTestId,
                         }}>
                         {option.icon && <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />}
                         <span>{option.label}</span>
-                        <Checkbox className="mr-auto" checked={isSelected} />
+                        <Checkbox className="ms-auto" checked={isSelected} />
                     </CommandItem>
                 )
             })}
