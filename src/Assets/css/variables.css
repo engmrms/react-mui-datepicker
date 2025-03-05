@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
 
 :root {
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-
     --background: theme(colors.gray.100);
     --background-foreground: theme(colors.gray.900);
     --background-secondary: theme(colors.gray.300);
@@ -182,7 +176,7 @@
     --field-border-default: theme(colors.neutral.400);
     --field-border-hovered: theme(colors.neutral.700);
     --field-border-pressed: theme(colors.neutral.950);
-    --field-border-error:var(--border-error);
+    --field-border-error: var(--border-error);
 
     /* border */
     --border-primary: theme(colors.neutral.200);
@@ -486,12 +480,6 @@
 }
 
 .dark {
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-
     --background: theme(colors.grayDark.800);
     --background-foreground: theme(colors.grayDark.10);
     --background-secondary: theme(colors.grayDark.700);
@@ -626,7 +614,6 @@
     --field-border-default: theme(colors.neutral.500);
     --field-border-hovered: theme(colors.neutral.200);
     --field-border-pressed: theme(colors.neutral.25);
-
 
     /* border */
     --border-primary: theme(colors.neutral.500);
