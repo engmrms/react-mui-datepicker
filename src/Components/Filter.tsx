@@ -21,12 +21,11 @@ import {
     ShouldRender,
 } from './'
 
-import classNames from 'classnames'
 import { FilterAlt } from 'google-material-icons/filled'
 import { ExpandLess, HighlightOff } from 'google-material-icons/outlined'
 import { useMediaQuery } from 'usehooks-ts'
 import { strings } from '../Locales'
-import { useLanguage } from '../package'
+import { cn, useLanguage } from '../package'
 
 const handleNumberDisplay = (num: number) => {
     return num < 10 ? '0' + num?.toString() : num?.toString()
@@ -60,34 +59,35 @@ const useFilterContext = (onValueChange?: (value?: Value) => void) => {
     return { value, upsert, resetFilters }
 }
 
-const FilterGroup = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttributes<HTMLDivElement> & { onValueChange?: (value?: Value) => void }>(
-    ({ children, onValueChange, ...props }, ref) => {
-        const mobileView = useMediaQuery('(max-width: 767px)')
-        const { value, resetFilters, upsert } = useFilterContext(onValueChange)
+const FilterGroup = React.forwardRef<
+    HTMLDivElement,
+    React.HtmlHTMLAttributes<HTMLDivElement> & { label?: string; onValueChange?: (value?: Value) => void }
+>(({ children, onValueChange, label, ...props }, ref) => {
+    const mobileView = useMediaQuery('(max-width: 767px)')
+    const { value, resetFilters, upsert } = useFilterContext(onValueChange)
 
-        return (
-            <div ref={ref} {...props}>
-                <FilterContext.Provider value={{ value, upsert }}>
-                    <ShouldRender shouldRender={mobileView}>
-                        <FilterMobileView resetFilters={resetFilters} onClickFilter={() => onValueChange?.(value)}>
-                            {children}{' '}
-                        </FilterMobileView>
-                    </ShouldRender>
+    return (
+        <div ref={ref} {...props}>
+            <FilterContext.Provider value={{ value, upsert }}>
+                <ShouldRender shouldRender={mobileView}>
+                    <FilterMobileView resetFilters={resetFilters} onClickFilter={() => onValueChange?.(value)} label={label}>
+                        {children}{' '}
+                    </FilterMobileView>
+                </ShouldRender>
 
-                    <ShouldRender shouldRender={!mobileView}>
-                        {children}
-                        <ShouldRender shouldRender={value && Object.values(value).some(Boolean)}>
-                            <Button colors={'neutral'} rounded={'default'} variant={'text'} size={'sm'} onClick={resetFilters} className="ms-auto">
-                                {strings.Shared.reset}
-                                <HighlightOff className="ms-space-01" />
-                            </Button>
-                        </ShouldRender>
+                <ShouldRender shouldRender={!mobileView}>
+                    {children}
+                    <ShouldRender shouldRender={value && Object.values(value).some(Boolean)}>
+                        <Button colors={'neutral'} rounded={'default'} variant={'text'} size={'sm'} onClick={resetFilters} className="ms-auto">
+                            {strings.Shared.reset}
+                            <HighlightOff className="ms-space-01" />
+                        </Button>
                     </ShouldRender>
-                </FilterContext.Provider>
-            </div>
-        )
-    },
-)
+                </ShouldRender>
+            </FilterContext.Provider>
+        </div>
+    )
+})
 
 FilterGroup.displayName = 'FilterGroup'
 
@@ -107,7 +107,6 @@ const FilterSelect = ({ multi, data, placeholder, disabled, isLoading, rounded, 
     const context = React.useContext(FilterContext)
     const mobileView = useMediaQuery('(max-width: 767px)')
     const { dir } = useLanguage()
-    console.log(dir)
 
     if (mobileView)
         return (
@@ -168,7 +167,6 @@ const FilterSelect = ({ multi, data, placeholder, disabled, isLoading, rounded, 
         <MultiSelect
             options={data || []}
             onChange={value => {
-                console.log('multi', value)
                 context?.upsert({ name, selectedValue: value })
             }}
             selectedValues={(context?.value?.[name] as string[]) || []}
@@ -202,25 +200,29 @@ const FilterMobileView = ({
     resetFilters,
     children,
     onClickFilter,
+    label,
 }: {
     children: React.ReactNode
     resetFilters: () => void
     onClickFilter: () => void
+    label?: string
 }) => {
     return (
         <Sheet>
             <div className="flex justify-between">
                 <SheetTrigger asChild>
-                    <Button
-                        id="servicesFilter"
-                        variant="text"
-                        size={'icon'}
-                        colors={'neutral'}
-                        className={classNames({
-                            '!px-space-00': true,
-                        })}>
-                        <FilterAlt className="me-space-01" />
-                    </Button>
+                    <div className="flex items-center gap-space-01">
+                        <Button
+                            id="servicesFilter"
+                            variant="text"
+                            colors={'neutral'}
+                            className={cn({
+                                '!px-space-02': !label,
+                            })}>
+                            <FilterAlt />
+                            {label && <span>label</span>}
+                        </Button>
+                    </div>
                 </SheetTrigger>
             </div>
             <SheetContent className="flex flex-col gap-0 bg-white p-0" side="bottom">

@@ -227,7 +227,6 @@ function FileUpload({
 
     const validateFile = useCallback(
         (file: File): { isValid: boolean; error?: string } => {
-            console.log(file)
             if (file.size > maxSize * 1024 * 1024 || !acceptedFormats[file.type]) {
                 return {
                     isValid: false,

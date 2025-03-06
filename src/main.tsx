@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Check, Home, WbSunny } from 'google-material-icons/outlined'
-import React, { PropsWithChildren, useCallback, useEffect, useLayoutEffect, useState } from 'react'
+import { Check, Home, Person, WbSunny } from 'google-material-icons/outlined'
+import React, { useCallback, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Link, NavLink } from 'react-router-dom'
 import './Assets/css/Shared.css'
@@ -19,7 +19,7 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-    NavigationAction,
+    NavigationActions,
     NavigationHeader,
     NavigationHeaderLogo,
     NavigationMain,
@@ -62,17 +62,17 @@ import { Footer } from './Components/Footer'
 import { SecondNavHeader, SecondNavHeaderAction, SecondNavHeaderContent } from './Components/SecondNavHeader'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from './Components/ui/charts'
 import {
+    Bootstrap,
     ChartConfig,
     MultiSelect,
+    navigationMenuTriggerStyle,
     NavigationMobileHeader,
     NavigationMobileLink,
     NavigationMobileSideBar,
-    setLanguage,
     Tabs,
     TabsContent,
     TabsList,
     TabsTrigger,
-    useLanguage,
 } from './package'
 
 const FormSchema = z.object({
@@ -210,12 +210,16 @@ const Header = () => {
                     </NavigationMenu>
                 </NavigationMain>
 
-                <NavigationAction>
+                <NavigationActions>
                     <NavigationSwitchLanguage />
                     <NavigationSearch onSearch={v => console.log(v)}>
                         <h1>Suggestion</h1>
                     </NavigationSearch>
-                </NavigationAction>
+                    <NavLink to="login" className={navigationMenuTriggerStyle()}>
+                        {' '}
+                        <Person /> <span>login</span>{' '}
+                    </NavLink>
+                </NavigationActions>
             </NavigationHeader>
             <NavigationMobileSideBar open={open} onOpenChange={open => setToggle(open)}>
                 <NavigationMobileHeader>
@@ -318,7 +322,7 @@ const App = () => {
                 </Button>
                 <FilterGroup onValueChange={v => console.log('main', v)} className="flex gap-space-03 ">
                     <FilterSelect
-                    defaultOpen
+                        defaultOpen
                         name="test"
                         placeholder="select"
                         data={[
@@ -619,23 +623,6 @@ const App = () => {
             />
         </Bootstrap>
     )
-}
-
-const Bootstrap = ({ children }: PropsWithChildren) => {
-    const { lang, dir } = useLanguage()
-    useLayoutEffect(() => {
-        document.dir = dir
-        if (navigator.userAgent.indexOf('iPhone') > -1) {
-            document?.querySelector('[name=viewport]')?.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1')
-        }
-    }, [dir])
-
-    useEffect(() => {
-        if (!lang) return
-        setLanguage(lang)
-    }, [lang])
-
-    return children
 }
 
 let root: ReactDOM.Root | null = null

@@ -1,9 +1,9 @@
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { VariantProps } from 'class-variance-authority'
 import { ExpandMore } from 'google-material-icons/outlined'
-import React, { ComponentType } from 'react'
+import React, { ComponentType, useCallback, useMemo } from 'react'
 import { useToggle } from 'usehooks-ts'
-import { cn } from '../Lib'
+import { cn, debounce } from '../Lib'
 import { strings } from '../Locales'
 import ActionLoader from './ActionLoader'
 import ShouldRender from './ShouldRender'
@@ -46,14 +46,21 @@ export function MultiSelect<T extends ValueType>({
 }: MultiSelectProps<T>) {
     const [isOpen, toggle] = useToggle(false)
     const [search, setSearch] = React.useState('')
+    const [inputValue, setInputValue] = React.useState('')
 
-    const filteredItems = options.filter(item => item.label.toLowerCase().includes(search.toLowerCase()))
+    const debouncSearch = useCallback(() => debounce(value => setSearch(value), 300), [])
+
+    const filteredItems = useMemo(() => options.filter(item => item.label.toLowerCase().includes(search.toLowerCase())), [options, search])
 
     return (
         <Popover
             open={isOpen}
             onOpenChange={() => {
                 toggle()
+                if (!isOpen) {
+                    setInputValue('')
+                    setSearch('')
+                }
             }}>
             <PopoverTrigger asChild disabled={disabled} data-testid={dataTestId}>
                 <button className={cn(selectVariants({ variant, colors, size, rounded }), className)}>
@@ -90,7 +97,14 @@ export function MultiSelect<T extends ValueType>({
                 <Command className="w-full" shouldFilter={false}>
                     <div className="p-space-02">
                         <ShouldRender shouldRender={options?.length > 7}>
-                            <CommandInput placeholder={placeholder} value={search} onValueChange={setSearch} />
+                            <CommandInput
+                                placeholder={placeholder}
+                                value={inputValue}
+                                onValueChange={value => {
+                                    setInputValue(value)
+                                    debouncSearch()(value)
+                                }}
+                            />
                         </ShouldRender>
                         <CommandList>
                             <CommandEmpty>No results found.</CommandEmpty>

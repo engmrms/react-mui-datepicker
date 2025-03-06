@@ -16,12 +16,15 @@ import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger 
 const NavigationMenu = React.forwardRef<
     React.ElementRef<typeof NavigationMenuPrimitive.Root>,
     React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
->(({ className, children, ...props }, ref) => (
-    <NavigationMenuPrimitive.Root ref={ref} className={cn('relative z-10 hidden flex-1 items-center sm:flex  ', className)} {...props}>
-        {children}
-        <NavigationMenuViewport />
-    </NavigationMenuPrimitive.Root>
-))
+>(({ className, children, ...props }, ref) => {
+    const { dir } = useLanguage()
+    return (
+        <NavigationMenuPrimitive.Root dir={dir} ref={ref} className={cn('relative z-10 hidden flex-1 items-center sm:flex  ', className)} {...props}>
+            {children}
+            <NavigationMenuViewport />
+        </NavigationMenuPrimitive.Root>
+    )
+})
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName
 
 const NavigationMenuList = React.forwardRef<
@@ -47,11 +50,11 @@ const NavigationMenuTrigger = React.forwardRef<
     React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
     React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => (
-    <NavigationMenuPrimitive.Trigger ref={ref} className={cn(navigationMenuTriggerStyle(), 'group', className)} {...props}>
+    <NavigationMenuPrimitive.Trigger ref={ref} className={cn(navigationMenuTriggerStyle(), '', className)} {...props}>
         {children}{' '}
         <KeyboardArrowDown
             size={20}
-            className="relative top-[1px] ml-1 transition duration-200 group-data-[state=open]:rotate-180"
+            className="relative top-[1px] me-1 transition duration-200 group-data-[state=open]:rotate-180"
             aria-hidden="true"
         />
     </NavigationMenuPrimitive.Trigger>
@@ -65,7 +68,7 @@ const NavigationMenuContent = React.forwardRef<
     <NavigationMenuPrimitive.Content
         ref={ref}
         className={cn(
-            'data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft absolute left-0 top-0 w-full sm:w-auto',
+            'data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft absolute start-0 top-0 w-full sm:w-auto',
             className,
         )}
         {...props}
@@ -79,7 +82,7 @@ const NavigationMenuLink = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <NavigationMenuPrimitive.Link
         className={cn(
-            'group relative inline-flex h-[72px] items-center justify-center gap-space-01 px-space-05 py-space-02 after:absolute  after:bottom-0  after:start-1/2  after:h-space-02  after:w-[calc(100%_-_16px)]  after:-translate-x-1/2  after:rounded-full hover:bg-button-background-neutral-hovered hover:after:bg-background-neutral-400 focus:bg-transparent focus:outline focus:outline-2 focus:outline-black active:bg-button-background-neutral-pressed active:after:bg-background-neutral-800    [&.active]:bg-button-background-primary-hovered [&.active]:text-text-oncolor-primary [&.active]:after:bg-background-primary-400 [&.active]:active:bg-button-background-primary-pressed',
+            'group relative inline-flex h-[72px] items-center justify-center gap-space-01 px-space-05 py-space-02 after:absolute  after:bottom-0  after:start-1/2  after:h-space-02  after:w-[calc(100%_-_16px)]  after:rounded-full hover:bg-button-background-neutral-hovered   hover:after:bg-background-neutral-400 focus:bg-transparent focus:outline focus:outline-2 focus:outline-black active:bg-button-background-neutral-pressed active:after:bg-background-neutral-800 ltr:after:-translate-x-1/2 rtl:after:translate-x-1/2    [&.active]:bg-button-background-primary-hovered [&.active]:text-text-oncolor-primary [&.active]:after:bg-background-primary-400 [&.active]:active:bg-button-background-primary-pressed',
             className,
         )}
         ref={ref}
@@ -92,7 +95,7 @@ const NavigationMenuViewport = React.forwardRef<
     React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
     React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
 >(({ className, ...props }, ref) => (
-    <div className={cn('absolute left-0 top-full flex justify-center')}>
+    <div className={cn('absolute start-0 top-full flex justify-center')}>
         <NavigationMenuPrimitive.Viewport
             className={cn(
                 'origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]',
@@ -133,7 +136,7 @@ const NavigationHeader = React.forwardRef<HTMLHeadElement, React.HtmlHTMLAttribu
                 className,
             )}
             {...props}>
-            <div className="flex w-full items-center justify-between md:px-space-06 px-space-04">{children}</div>
+            <div className="flex w-full items-center justify-between px-space-04 md:px-space-06">{children}</div>
         </header>
     ),
 )
@@ -163,7 +166,7 @@ const NavigationMain = React.forwardRef<
 
 NavigationMain.displayName = 'NavigationMain'
 
-const NavigationAction = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttributes<HTMLDivElement>>(({ className, children, ...props }, ref) => (
+const NavigationActions = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttributes<HTMLDivElement>>(({ className, children, ...props }, ref) => (
     <div ref={ref} className={cn('flex items-center ', className)} {...props}>
         <Button variant={'text'} colors={'neutral'} size={'icon'} rounded={'default'} className="sm:hidden">
             <MoreHoriz />{' '}
@@ -172,7 +175,7 @@ const NavigationAction = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttribut
     </div>
 ))
 
-NavigationAction.displayName = 'NavigationAction'
+NavigationActions.displayName = 'NavigationActions'
 
 const NavigationSearch = ({
     onSearch,
@@ -276,8 +279,8 @@ const NavigationMobileSideBar = ({
     children,
 }: React.PropsWithChildren<{ open?: boolean; onOpenChange?: (open: boolean) => void }>) => {
     return (
-        <Sheet  open={open} onOpenChange={onOpenChange}>
-            <SheetContent  side="right" className="flex h-svh w-10/12 flex-col overflow-x-hidden p-0 sm:max-w-lg md:max-w-xl">
+        <Sheet open={open} onOpenChange={onOpenChange}>
+            <SheetContent side="right" className="flex h-svh w-10/12 flex-col overflow-x-hidden p-0 sm:max-w-lg md:max-w-xl">
                 {children}
             </SheetContent>
         </Sheet>
@@ -314,7 +317,7 @@ const NavigationMobileLink = React.forwardRef<HTMLAnchorElement, React.AnchorHTM
 NavigationMobileLink.displayName = NavigationMenuPrimitive.Link.displayName
 
 export {
-    NavigationAction,
+    NavigationActions,
     NavigationHeader,
     NavigationHeaderLogo,
     NavigationMain,
