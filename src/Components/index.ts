@@ -10,7 +10,6 @@ export * from './paginations'
 export * from './SheetForm'
 export * from './ShouldRender'
 export { default as Text } from './Text'
-export * from './ui/PieChart'
 export * from './Widget'
 // fc
 export * from './ui/accordion'

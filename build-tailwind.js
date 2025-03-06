@@ -42,6 +42,7 @@ try {
     }
 
     fs.copyFileSync(path.join('tailwind.config.js'), path.join(distDir, 'tailwind.config.js'))
+    fs.copyFileSync(path.join('dga.config.js'), path.join(distDir, 'dga.config.js'))
     fs.copyFileSync(path.join('tsconfig.json'), path.join(distDir, 'tsconfig.json'))
     fs.copyFileSync(path.join('.prettierrc.json'), path.join(distDir, '.prettierrc.json'))
     fs.copyFileSync(path.join('.eslintrc.cjs'), path.join(distDir, '.eslintrc.cjs'))

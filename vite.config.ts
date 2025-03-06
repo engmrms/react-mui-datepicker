@@ -26,6 +26,7 @@ export default defineConfig({
                 preserveModules: true, // Enable tree-shaking
                 preserveModulesRoot: 'src', // Preserve module structure
                 //sourcemap: true,
+                exports: 'named',
             },
             plugins: [
                 inject({

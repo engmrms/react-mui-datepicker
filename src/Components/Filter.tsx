@@ -16,6 +16,7 @@ import {
     SheetContent,
     SheetFooter,
     SheetHeader,
+    SheetTitle,
     SheetTrigger,
     ShouldRender,
 } from './'
@@ -25,6 +26,7 @@ import { FilterAlt } from 'google-material-icons/filled'
 import { ExpandLess, HighlightOff } from 'google-material-icons/outlined'
 import { useMediaQuery } from 'usehooks-ts'
 import { strings } from '../Locales'
+import { useLanguage } from '../package'
 
 const handleNumberDisplay = (num: number) => {
     return num < 10 ? '0' + num?.toString() : num?.toString()
@@ -98,15 +100,18 @@ interface FilterSelectProps {
     isLoading?: boolean
     rounded?: 'default' | 'full'
     size?: 'default' | 'sm'
+    defaultOpen?: boolean
 }
 
-const FilterSelect = ({ multi, data, placeholder, disabled, isLoading, rounded, size, name }: FilterSelectProps) => {
+const FilterSelect = ({ multi, data, placeholder, disabled, isLoading, rounded, size, name, defaultOpen }: FilterSelectProps) => {
     const context = React.useContext(FilterContext)
     const mobileView = useMediaQuery('(max-width: 767px)')
+    const { dir } = useLanguage()
+    console.log(dir)
 
     if (mobileView)
         return (
-            <Collapsible defaultOpen>
+            <Collapsible dir={dir} defaultOpen={defaultOpen}>
                 <CollapsibleTrigger
                     id="subcategoriesCollapsible"
                     className="flex w-full items-center justify-between py-space-03 [&>svg]:data-[state=closed]:rotate-180">
@@ -146,6 +151,7 @@ const FilterSelect = ({ multi, data, placeholder, disabled, isLoading, rounded, 
                         <div className="py-space-04">
                             <RadioGroup
                                 name={name}
+                                dir={dir}
                                 value={typeof context?.value?.[name] === 'string' ? context?.value?.[name] : undefined}
                                 onValueChange={value => {
                                     context?.upsert({ name, selectedValue: value })
@@ -202,55 +208,40 @@ const FilterMobileView = ({
     onClickFilter: () => void
 }) => {
     return (
-        <>
-            <Sheet>
-                <div className="flex justify-between">
-                    <SheetTrigger asChild>
-                        <Button
-                            id="servicesFilter"
-                            variant="text"
-                            size={'icon'}
-                            colors={'neutral'}
-                            className={classNames({
-                                '!px-space-00': true,
-                            })}>
-                            <FilterAlt className="me-space-01" />
-
-                            {/* <When condition={!!SubcategoriesIds?.length || !!BeneficiaryTypeIds?.length}>
-                                <span className="ms-space-01 flex h-[24px] w-[24px] items-center justify-center rounded-full bg-background-secondary text-caption-01 text-primary">
-                                    {BeneficiaryTypeIds && SubcategoriesIds
-                                        ? handleNumberDisplay(BeneficiaryTypeIds?.length + SubcategoriesIds?.length)
-                                        : ''}
-                                    {!BeneficiaryTypeIds && SubcategoriesIds ? handleNumberDisplay(SubcategoriesIds?.length) : ''}
-                                </span>
-                            </When> */}
+        <Sheet>
+            <div className="flex justify-between">
+                <SheetTrigger asChild>
+                    <Button
+                        id="servicesFilter"
+                        variant="text"
+                        size={'icon'}
+                        colors={'neutral'}
+                        className={classNames({
+                            '!px-space-00': true,
+                        })}>
+                        <FilterAlt className="me-space-01" />
+                    </Button>
+                </SheetTrigger>
+            </div>
+            <SheetContent className="flex flex-col gap-0 bg-white p-0" side="bottom">
+                <SheetHeader>
+                    <SheetTitle>{strings.Shared.sortBy}</SheetTitle>
+                </SheetHeader>
+                <SheetBody className="px-space-04 py-space-00">{children}</SheetBody>
+                <SheetFooter className="p-space-04">
+                    <div className="flex bg-background">
+                        <Button id="servicesRest" size="sm" variant="ghost" colors="gray" onClick={resetFilters} className="grow">
+                            {strings.Shared.reset}
                         </Button>
-                    </SheetTrigger>
-                </div>
-                <SheetContent className="flex flex-col gap-0 bg-white p-0" side="bottom">
-                    <SheetHeader title={strings.Shared.sortBy} />
-                    <SheetBody className="px-space-04 py-space-00">{children}</SheetBody>
-                    <SheetFooter className="p-space-04">
-                        <div className="flex bg-background">
-                            <Button id="servicesRest" size="sm" variant="ghost" colors="gray" onClick={resetFilters} className="grow">
-                                {strings.Shared.reset}
+                        <SheetClose asChild className="">
+                            <Button id="servicesShowResults" size="sm" colors="primary" onClick={onClickFilter} className="grow">
+                                {strings.Shared.showResults}
                             </Button>
-                            <SheetClose asChild className="">
-                                <Button id="servicesShowResults" size="sm" colors="primary" onClick={onClickFilter} className="grow">
-                                    {strings.Shared.showResults}
-                                </Button>
-                            </SheetClose>
-                        </div>
-                    </SheetFooter>
-                </SheetContent>
-            </Sheet>
-            {/* <When condition={!isAuthenticated && (!!SubcategoriesIds?.length || !!BeneficiaryTypeIds?.length)}>
-                <button id="servicesRest" className="flex items-center gap-space-01 text-body-02" onClick={handleReset}>
-                    {strings.Shared.reset}
-                    <HighlightOff />
-                </button>
-            </When> */}
-        </>
+                        </SheetClose>
+                    </div>
+                </SheetFooter>
+            </SheetContent>
+        </Sheet>
     )
 }
 

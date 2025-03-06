@@ -318,6 +318,7 @@ const App = () => {
                 </Button>
                 <FilterGroup onValueChange={v => console.log('main', v)} className="flex gap-space-03 ">
                     <FilterSelect
+                    defaultOpen
                         name="test"
                         placeholder="select"
                         data={[
