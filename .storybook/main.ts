@@ -10,8 +10,9 @@ const config: StorybookConfig = {
         '@storybook/addon-onboarding',
         '@storybook/addon-interactions',
         '@storybook/addon-a11y',
-        '@storybook/addon-themes',
+       // '@storybook/addon-themes',
         '@storybook/addon-mdx-gfm',
+        'storybook-dark-mode',
         '@chromatic-com/storybook',
     ],
     typescript: {
