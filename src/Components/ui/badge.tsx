@@ -20,7 +20,7 @@ const badgeVariants = cva(
                 xs: 'py-space-01 px-space-02  h-[20px] text-caption-02 [&>svg]:size-[10px]',
             },
             rounded: {
-                default: 'rounded-0',
+                default: 'rounded',
                 full: 'rounded-full',
             },
             colors: {

@@ -159,7 +159,7 @@ function DragAndDropArea({
     return (
         <div
             className={cn(
-                `group rounded-0 border border-dashed bg-background-neutral-100 p-space-05 text-center hover:border-border-success hover:bg-background-success-25`,
+                `group rounded border border-dashed bg-background-neutral-100 p-space-05 text-center hover:border-border-success hover:bg-background-success-25`,
                 {
                     'border-border-success bg-background-success-25': isDragging,
                     'pointer-events-none cursor-not-allowed border-border-disabled': disabled,

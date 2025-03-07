@@ -30,7 +30,7 @@ const buttonVariants = cva(
                 'icon-xs': 'p-space-01 size-space-05 [&>svg]:size-space-04',
             },
             rounded: {
-                default: 'rounded-0',
+                default: 'rounded',
                 full: 'rounded-full',
             },
             colors: {

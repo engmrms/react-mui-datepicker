@@ -16,7 +16,7 @@ const inputVariants = cva(
                 lighter: 'bg-form-field-background-lighter  aria-[disabled=false]:hover:border-form-field-border-default',
             },
             rounded: {
-                default: 'rounded-0',
+                default: 'rounded',
                 full: 'rounded-4',
             },
             colors: {

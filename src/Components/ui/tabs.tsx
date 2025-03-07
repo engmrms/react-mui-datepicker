@@ -149,7 +149,7 @@ const TabsContext = React.createContext<VariantProps<typeof tabVariants>>({
 //                     <PopoverContent className="w-40 p-2">
 //                         <div className="flex flex-col space-y-2">
 //                             {mapChildren?.slice(visibleTabs).map(tab => (
-//                                 <TabsTrigger key={tab.toString()} className="!rounded-0" value={tab.props.value} onClick={() => setOpen(false)}>
+//                                 <TabsTrigger key={tab.toString()} className="!rounded" value={tab.props.value} onClick={() => setOpen(false)}>
 //                                     {tab.props.value}
 //                                 </TabsTrigger>
 //                             ))}

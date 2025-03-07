@@ -16,7 +16,19 @@ export default function BorderRadius() {
                     </div>
                     <div className="frame3466427 flex w-full flex-row gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <span className="rounded01 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-01</span>
+                            <span className="rounded01 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded</span>
+                        </div>
+                        <div className="cell flex min-w-0 flex-1 flex-row   gap-0 border  border-border p-space-04">
+                            <span className="8 text-left  text-2xl font-normal leading-8 ">4</span>
+                            <span className="px08rem  min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">px/0.4rem</span>
+                        </div>
+                        <div className="w-1/3 gap-2 border p-space-04">
+                            <div className="frame3466393 relative h-space-12  w-space-12 overflow-hidden rounded border border-border bg-lavender-100 p-0" />
+                        </div>
+                    </div>
+                    <div className="frame3466427 flex w-full flex-row gap-0 p-0">
+                        <div className="w-1/3 gap-2 border p-space-04">
+                            <span className="rounded01 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-1</span>
                         </div>
                         <div className="cell flex min-w-0 flex-1 flex-row   gap-0 border  border-border p-space-04">
                             <span className="8 text-left  text-2xl font-normal leading-8 ">8</span>
@@ -28,7 +40,7 @@ export default function BorderRadius() {
                     </div>
                     <div className="frame3466428 flex w-full flex-row gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <span className="rounded02 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-02</span>
+                            <span className="rounded02 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-2</span>
                         </div>
                         <div className="cell flex min-w-0 flex-1 flex-row   gap-0 border  border-border p-space-04">
                             <span className="12 text-left  text-2xl font-normal leading-8 ">12</span>
@@ -40,7 +52,7 @@ export default function BorderRadius() {
                     </div>
                     <div className="frame3466429 flex w-full flex-row gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <span className="rounded03 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-03</span>
+                            <span className="rounded03 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-3</span>
                         </div>
                         <div className="cell flex min-w-0 flex-1 flex-row   gap-0 border  border-border p-space-04">
                             <span className="16 text-left  text-2xl font-normal leading-8 ">16</span>
@@ -52,7 +64,7 @@ export default function BorderRadius() {
                     </div>
                     <div className="frame3466430 flex w-full flex-row gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <span className="rounded04 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-04</span>
+                            <span className="rounded04 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-4</span>
                         </div>
                         <div className="cell flex min-w-0 flex-1 flex-row   gap-0 border  border-border p-space-04">
                             <span className="24 text-left  text-2xl font-normal leading-8">24</span>
@@ -64,7 +76,7 @@ export default function BorderRadius() {
                     </div>
                     <div className="frame3466431 flex w-full flex-row gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <span className="rounded05 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-05</span>
+                            <span className="rounded05 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-5</span>
                         </div>
                         <div className="cell flex min-w-0 flex-1 flex-row   gap-0 border  border-border p-space-04">
                             <span className="32 text-left  text-2xl font-normal leading-8 ">32</span>
@@ -76,7 +88,7 @@ export default function BorderRadius() {
                     </div>
                     <div className="frame3466432 flex w-full flex-row  gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <span className="rounded06 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-06</span>
+                            <span className="rounded06 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-6</span>
                         </div>
                         <div className="cell flex min-w-0 flex-1 flex-row   gap-0 border  border-border p-space-04">
                             <span className="40 text-left  text-2xl font-normal leading-8 ">40</span>
@@ -88,7 +100,7 @@ export default function BorderRadius() {
                     </div>
                     <div className="frame3466433 flex w-full flex-row  gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <span className="rounded07 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-07</span>
+                            <span className="rounded07 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-7</span>
                         </div>
                         <div className="cell flex min-w-0 flex-1 flex-row   gap-0 border  border-border p-space-04">
                             <span className="48 text-left  text-2xl font-normal leading-8 ">48</span>
@@ -100,7 +112,7 @@ export default function BorderRadius() {
                     </div>
                     <div className="frame3466434 flex w-full flex-row  gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <span className="rounded08 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-08</span>
+                            <span className="rounded08 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-8</span>
                         </div>
                         <div className="cell flex min-w-0 flex-1 flex-row   gap-0 border  border-border p-space-04">
                             <span className="64 text-left  text-2xl font-normal leading-8 ">64</span>
