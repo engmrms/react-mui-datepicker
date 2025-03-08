@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
-import classNames from 'classnames'
 import { ExpandMore } from 'google-material-icons/outlined'
 import { cn, dateFormatter } from '../Lib/utils'
 import useLanguage from '../Stores/useLanguage'
@@ -94,7 +93,7 @@ const ComboboxGroup = React.forwardRef<React.ElementRef<typeof CommandGroup>, Re
                         <ComboboxEmpty>{strings.Shared.NoDataFound}</ComboboxEmpty>
                     </>
                 )}
-                <ScrollArea className={classNames({ 'h-auto': childrenCount <= 7, 'h-48 sm:h-64': childrenCount > 7 })} dir={dir}>
+                <ScrollArea className={cn({ 'h-auto': childrenCount <= 7, 'h-48 sm:h-64': childrenCount > 7 })} dir={dir}>
                     <CommandGroup ref={ref} {...props} dir={document.dir}>
                         {children}
                     </CommandGroup>
@@ -131,7 +130,7 @@ const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, o
                 {!!options?.length &&
                     options?.map(opt => (
                         <ComboboxItem
-                            className={classNames({
+                            className={cn({
                                 relative: true,
                                 'after:absolute after:bottom-auto after:right-space-01 after:top-auto after:h-[75%] after:w-[2px] after:rounded-full after:bg-primary':
                                     String(opt[optionValue]) === value,
@@ -177,7 +176,7 @@ const ComboboxControlNoForm = <_, T>({
                 {!!options?.length &&
                     options?.map(opt => (
                         <ComboboxItem
-                            className={classNames({
+                            className={cn({
                                 relative: true,
                                 'after:absolute after:bottom-auto after:start-space-01 after:top-auto after:h-[50%] after:w-[2px] after:rounded-full after:bg-primary':
                                     String(opt[optionValue]) === value,

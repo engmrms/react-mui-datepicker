@@ -1,7 +1,5 @@
-import classNames from 'classnames'
 import { ChevronLeft, ChevronRight } from 'google-material-icons/outlined'
 import React from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { cn } from '../Lib/utils'
 import { strings } from '../Locales'
 import useLanguage from '../Stores/useLanguage'
@@ -74,7 +72,7 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                 </ShouldRender>
                 <ShouldRender shouldRender={pageCount > 6}>
                     {pages?.map(i => (
-                        <React.Fragment key={uuidv4()}>
+                        <React.Fragment key={i}>
                             <ShouldRender shouldRender={(selectedPage < 5 && i < 5) || i + 1 === pageCount || i === 0}>
                                 <PaginationItem key={i}>
                                     <PaginationLink
@@ -88,7 +86,6 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                                 </PaginationItem>
                             </ShouldRender>
                             <ShouldRender
-                                key={uuidv4()}
                                 shouldRender={
                                     selectedPage >= 5 &&
                                     (selectedPage === i || selectedPage === i + 2 || selectedPage === i + 1 || isLastItems(i)) &&
@@ -138,7 +135,7 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
 const Break = () => (
     <PaginationItem className="flex w-space-05 items-center justify-center text-center">
         <PaginationLink
-            className={classNames({
+            className={cn({
                 'pointer-events-none': true,
             })}>
             ...

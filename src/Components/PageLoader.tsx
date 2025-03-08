@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import { cn } from '../Lib'
 import accessibilityTools from '../Stores/accessibilityTools'
 
 export const PageLoader = () => {
@@ -6,7 +6,7 @@ export const PageLoader = () => {
 
     return (
         <div
-            className={classNames({
+            className={cn({
                 'fixed  left-0 top-0 z-[1000] flex h-full w-full items-center justify-center opacity-70': true,
                 grayscale: isActive,
                 'grayscale-0': !isActive,
