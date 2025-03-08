@@ -80,7 +80,7 @@ const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Con
             <SheetPortal>
                 <SheetOverlay
                     className={clsx({
-                        'opacity-0': hideOverlay,
+                        'bg-transparent': hideOverlay,
                     })}>
                     <SheetPrimitive.Content
                         aria-describedby={undefined}

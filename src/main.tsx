@@ -448,18 +448,33 @@ const App = () => {
                     </TooltipProvider>
 
                     <Sheet>
-                        <SheetTrigger>Open</SheetTrigger>
-                        <SheetContent hideOverlay>
+                        <SheetTrigger>Openn</SheetTrigger>
+                        <SheetContent >
                             <SheetHeader>
                                 <SheetTitle>Are you absolutely sure?</SheetTitle>
                             </SheetHeader>
                             <SheetBody>
                                 <SheetDescription>
+
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit deleniti quibusdam sed voluptatibus obcaecati
                                     nesciunt animi qui, pariatur omnis amet non commodi perferendis voluptatem possimus eveniet autem voluptate
                                     explicabo soluta! Fugit nesciunt, cupiditate unde qui illo ullam totam voluptatum sed modi delectus enim eveniet
                                     possimus saepe quod quae eum a dolorum nesciunt soluta.
                                 </SheetDescription>
+                                <Sheet>
+                                        <SheetTrigger>Open</SheetTrigger>
+                                        <SheetContent  hideOverlay>
+                                            <SheetHeader>
+                                                <SheetTitle>Are you absolutely sure?</SheetTitle>
+                                            </SheetHeader>
+                                            <SheetBody>
+                                                <SheetDescription>
+                                                    This action cannot be undone. This will permanently delete your account and remove your data from
+                                                    our servers.
+                                                </SheetDescription>
+                                            </SheetBody>
+                                        </SheetContent>
+                                    </Sheet>
                             </SheetBody>
                         </SheetContent>
                     </Sheet>
