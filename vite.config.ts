@@ -35,14 +35,23 @@ export default defineConfig({
                 }),
             ],
 
-            external: ['react/jsx-runtime', 'react', 'react-dom', /^@radix-ui/,"recharts", '@tanstack/react-query', 'react-localization', 'framer-motion'],
+            external: [
+                'react/jsx-runtime',
+                'react',
+                'react-dom',
+                /^@radix-ui/,
+                'recharts',
+                '@tanstack/react-query',
+                'react-localization',
+                'framer-motion',
+            ],
         },
         commonjsOptions: { requireReturnsDefault: 'preferred' },
         assetsInlineLimit: 0,
     },
     esbuild: {
         legalComments: 'none',
-       // drop: ['console', 'debugger'],
+        drop: ['console', 'debugger'],
     },
 
     plugins: [react(), basicSsl(), dts({ tsconfigPath: './tsconfig.json', rollupTypes: true })],

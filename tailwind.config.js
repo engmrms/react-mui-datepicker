@@ -149,7 +149,7 @@ module.exports = {
 
                 ...dgaToken,
 
-                black:"#161616",
+                black: '#161616',
                 gray: {
                     50: '#FAFAFA',
                     100: '#F9f9f9',
@@ -402,10 +402,10 @@ module.exports = {
                 },
             },
             borderRadius: {
+                DEFAULT: '4px',
                 lg: 'var(--radius)',
                 md: 'calc(var(--radius) - 2px)',
                 sm: 'calc(var(--radius) - 4px)',
-                0: '4px',
                 1: '8px',
                 2: '12px',
                 3: '16px',
