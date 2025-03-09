@@ -1,6 +1,6 @@
 .dark .sbdocs-wrapper,
 .dark .sbdocs-preview {
-    background-color: #000000;
+    background-color: #0D121C;
     color: #fff;
 }
 
@@ -10,23 +10,26 @@
 
 .dark .docblock-code-toggle {
     background: transparent;
-    color: #d4d4d4;
+   
 }
 
-.dark div:has(.docblock-code-toggle) {
+/* .dark div:has(.docblock-code-toggle) {
     background: transparent;
-}
+} */
 
 .dark .os-theme-dark {
     background: #161616;
     color: #fff;
 }
 
-.dark .sbdocs-title,.dark .sbdocs,
-.dark .sbdocs h2 ,.dark .sbdocs h3{
-    color: #fff ;
+.dark .sbdocs-title,
+.dark .sbdocs,
+.dark .sbdocs h2,
+.dark .sbdocs h3,
+.dark .sbdocs h1,
+.dark .sbdocs p {
+    color: #fff;
 }
-
 
 .dark .docblock-argstable-head {
     background: #161616;

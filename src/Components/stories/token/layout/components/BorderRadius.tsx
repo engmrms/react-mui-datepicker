@@ -1,9 +1,9 @@
 export default function BorderRadius() {
     return (
-        <div className=" flex flex-col  gap-0 space-y-space-08 overflow-hidden bg-white p-0">
+        <div className=" flex flex-col  gap-0 space-y-space-08 overflow-hidden  p-0">
             <div className="flex w-full flex-col  space-y-space-07 ">
                 <div className="  flex w-full flex-col  gap-0 p-0">
-                    <div className="frame3466426 flex w-full flex-row gap-0 p-0">
+                    <div className="flex w-full flex-row gap-0 p-0">
                         <div className="cell flex  min-w-0 flex-1 flex-row items-start gap-2 border  border-border p-space-04">
                             <span className="tokenName p-space-04  text-left text-2xl font-semibold leading-9">Token Name</span>
                         </div>
@@ -14,7 +14,7 @@ export default function BorderRadius() {
                             <span className="sample p-space-04  text-left text-2xl font-semibold leading-9">Sample</span>
                         </div>
                     </div>
-                    <div className="frame3466427 flex w-full flex-row gap-0 p-0">
+                    <div className=" flex w-full flex-row gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
                             <span className="rounded01 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded</span>
                         </div>
@@ -23,10 +23,10 @@ export default function BorderRadius() {
                             <span className="px08rem  min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">px/0.4rem</span>
                         </div>
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <div className="frame3466393 relative h-space-12  w-space-12 overflow-hidden rounded border border-border bg-lavender-100 p-0" />
+                            <div className="relative h-space-12  w-space-12 overflow-hidden rounded border border-border bg-lavender-100 p-0" />
                         </div>
                     </div>
-                    <div className="frame3466427 flex w-full flex-row gap-0 p-0">
+                    <div className=" flex w-full flex-row gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
                             <span className="rounded01 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-1</span>
                         </div>
@@ -35,10 +35,10 @@ export default function BorderRadius() {
                             <span className="px08rem  min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">px/0.8rem</span>
                         </div>
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <div className="frame3466393 relative h-space-12  w-space-12 overflow-hidden rounded-1 border border-border bg-lavender-100 p-0" />
+                            <div className="relative h-space-12  w-space-12 overflow-hidden rounded-1 border border-border bg-lavender-100 p-0" />
                         </div>
                     </div>
-                    <div className="frame3466428 flex w-full flex-row gap-0 p-0">
+                    <div className=" flex w-full flex-row gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
                             <span className="rounded02 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-2</span>
                         </div>
@@ -47,10 +47,10 @@ export default function BorderRadius() {
                             <span className="px12rem   min-w-0 flex-1 text-left  text-2xl font-normal leading-8">px/1.2rem</span>
                         </div>
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <div className="frame3466393 relative h-space-12  w-space-12 overflow-hidden rounded-2 border border-border bg-lavender-100 p-0" />
+                            <div className="relative h-space-12  w-space-12 overflow-hidden rounded-2 border border-border bg-lavender-100 p-0" />
                         </div>
                     </div>
-                    <div className="frame3466429 flex w-full flex-row gap-0 p-0">
+                    <div className=" flex w-full flex-row gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
                             <span className="rounded03 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-3</span>
                         </div>
@@ -59,10 +59,10 @@ export default function BorderRadius() {
                             <span className="px16rem w-[349px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8">px/1.6rem</span>
                         </div>
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <div className="frame3466393 relative h-space-12  w-space-12 overflow-hidden rounded-3 border border-border bg-lavender-100 p-0" />
+                            <div className="relative h-space-12  w-space-12 overflow-hidden rounded-3 border border-border bg-lavender-100 p-0" />
                         </div>
                     </div>
-                    <div className="frame3466430 flex w-full flex-row gap-0 p-0">
+                    <div className=" flex w-full flex-row gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
                             <span className="rounded04 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-4</span>
                         </div>
@@ -71,10 +71,10 @@ export default function BorderRadius() {
                             <span className="px24rem w-[349px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">px/2.4rem</span>
                         </div>
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <div className="frame3466393 relative h-space-12  w-space-12 overflow-hidden rounded-4 border border-border bg-lavender-100 p-0" />
+                            <div className="relative h-space-12  w-space-12 overflow-hidden rounded-4 border border-border bg-lavender-100 p-0" />
                         </div>
                     </div>
-                    <div className="frame3466431 flex w-full flex-row gap-0 p-0">
+                    <div className=" flex w-full flex-row gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
                             <span className="rounded05 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-5</span>
                         </div>
@@ -83,10 +83,10 @@ export default function BorderRadius() {
                             <span className="px32rem w-[349px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8">px/3.2rem</span>
                         </div>
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <div className="frame3466393 relative h-space-12  w-space-12 overflow-hidden rounded-5 border border-border bg-lavender-100 p-0" />
+                            <div className="relative h-space-12  w-space-12 overflow-hidden rounded-5 border border-border bg-lavender-100 p-0" />
                         </div>
                     </div>
-                    <div className="frame3466432 flex w-full flex-row  gap-0 p-0">
+                    <div className="flex w-full flex-row  gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
                             <span className="rounded06 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-6</span>
                         </div>
@@ -95,10 +95,10 @@ export default function BorderRadius() {
                             <span className="px40rem w-[349px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">px/4.0rem</span>
                         </div>
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <div className="frame3466393 relative h-space-12  w-space-12 overflow-hidden rounded-6 border border-border bg-lavender-100 p-0" />
+                            <div className="relative h-space-12  w-space-12 overflow-hidden rounded-6 border border-border bg-lavender-100 p-0" />
                         </div>
                     </div>
-                    <div className="frame3466433 flex w-full flex-row  gap-0 p-0">
+                    <div className="flex w-full flex-row  gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
                             <span className="rounded07 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-7</span>
                         </div>
@@ -107,10 +107,10 @@ export default function BorderRadius() {
                             <span className="px48rem w-[349px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">px/4.8rem</span>
                         </div>
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <div className="frame3466393 relative h-space-12  w-space-12 overflow-hidden rounded-7 border border-border bg-lavender-100 p-0" />
+                            <div className="relative h-space-12  w-space-12 overflow-hidden rounded-7 border border-border bg-lavender-100 p-0" />
                         </div>
                     </div>
-                    <div className="frame3466434 flex w-full flex-row  gap-0 p-0">
+                    <div className="flex w-full flex-row  gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
                             <span className="rounded08 min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-8</span>
                         </div>
@@ -119,10 +119,10 @@ export default function BorderRadius() {
                             <span className="px64rem w-[349px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">px/6.4rem</span>
                         </div>
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <div className="frame3466393 sb-unstyled relative h-space-12  w-space-12 rounded-8 border border-border bg-lavender-100 p-0" />
+                            <div className="sb-unstyled relative h-space-12  w-space-12 rounded-8 border border-border bg-lavender-100 p-0" />
                         </div>
                     </div>
-                    <div className="frame3466435 flex w-full flex-row  gap-0 p-0">
+                    <div className="flex w-full flex-row  gap-0 p-0">
                         <div className="w-1/3 gap-2 border p-space-04">
                             <span className="roundedFull min-w-0 flex-1 p-space-04  text-left text-2xl font-normal leading-8">Rounded-Full</span>
                         </div>
@@ -130,7 +130,7 @@ export default function BorderRadius() {
                             <span className="fullRadius min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">Full radius</span>
                         </div>
                         <div className="w-1/3 gap-2 border p-space-04">
-                            <div className="frame3466393 relative h-space-12  w-space-12 overflow-hidden rounded-full border border-border bg-lavender-100 p-0" />
+                            <div className="relative h-space-12  w-space-12 overflow-hidden rounded-full border border-border bg-lavender-100 p-0" />
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 export default function ResponsiveFontSizes() {
     return (
-        <div className="typography flex flex-col items-start gap-0 overflow-hidden bg-white p-0">
+        <div className="typography flex flex-col items-start gap-0 overflow-hidden  p-0">
             <div className="pageContent flex w-full flex-col items-start gap-10 pb-24 pt-0">
                 <div className="flex w-full flex-col items-start gap-0 p-0">
                     <div className="frame3466426 flex w-full flex-row  gap-0 p-0">

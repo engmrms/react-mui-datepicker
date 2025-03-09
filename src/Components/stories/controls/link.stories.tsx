@@ -27,6 +27,7 @@ export const Default: Story = {
         colors: 'primary',
         underline: 'hover',
         disabled: false,
+        size:"default"
     },
     argTypes: {
         disabled: { control: 'boolean' },

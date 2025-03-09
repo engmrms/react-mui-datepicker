@@ -44,7 +44,8 @@ export const Default: Story = {
         selectedValues: [],
         rounded: 'default',
         variant:"default",
-        colors:"default"
+        colors:"default",
+        isLoading:false
     },
     render: arg => {
         const [storyArgs, updateArgs] = useArgs()

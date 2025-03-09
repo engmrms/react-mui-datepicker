@@ -11,7 +11,7 @@ const boxShadow = {
 }
 export default function Shadows() {
     return (
-        <div className=" flex flex-col  gap-0 space-y-space-08 overflow-hidden bg-white p-0">
+        <div className=" flex flex-col  gap-0 space-y-space-08 overflow-hidden   p-0">
             <div className="flex w-full flex-col  space-y-space-07 ">
                 <div className="  flex w-full flex-col  gap-0 p-0">
                     <div className="  flex w-full flex-row  gap-0 p-0">

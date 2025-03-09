@@ -1,7 +1,7 @@
 // sb-unstyled
 const ColorToken = () => {
     return (
-        <div className=" flex flex-col items-start gap-0 space-y-space-08 overflow-hidden bg-white p-0">
+        <div className=" flex flex-col items-start gap-0 space-y-space-08 overflow-hidden   p-0">
             <div className="flex w-full flex-col items-start space-y-space-07 ">
                 <h2 className="w-full">Background Colors</h2>
                 <div className="flex  w-full flex-col items-start gap-0 p-0">

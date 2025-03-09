@@ -27,6 +27,8 @@ export const Default: Story = {
     args: {
         asChild: false,
         disabled: false,
+        colors: 'primary',
+        size: 'default',
     },
     render: (arg, { globals: { dir } }) => {
         return (
