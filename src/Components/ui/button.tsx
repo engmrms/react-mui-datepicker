@@ -261,16 +261,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, variant, size, rounded, colors, tooltip, children, isLoading = false, asChild = false, ...props }, ref) => {
         const Comp = asChild ? Slot : 'button'
         const ariaLabel = size?.includes('icon') ? tooltip || 'icon-button' : 'mada-button'
+
+        const buttonContent = asChild ? (
+            children
+        ) : (
+            <>
+                {isLoading && <ActionLoader />}
+                {children}
+            </>
+        )
+
         const Component = (
-            <Comp
-                className={cn('text-link ', buttonVariants({ variant, size, rounded, colors, className }))}
-                ref={ref}
-                aria-label={ariaLabel}
-                {...props}>
-                <>
-                    {isLoading && <ActionLoader />}
-                    {children}
-                </>
+            <Comp className={cn(buttonVariants({ variant, size, rounded, colors, className }))} ref={ref} aria-label={ariaLabel} {...props}>
+                {buttonContent}
             </Comp>
         )
 
