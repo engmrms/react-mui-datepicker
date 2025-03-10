@@ -125,7 +125,7 @@ const WidgetActions = ({ actions }: WidgetActionsProps) => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="text" colors="neutral" size="icon">
                     <MoreHoriz className="h-5 w-5" />
                 </Button>
             </DropdownMenuTrigger>

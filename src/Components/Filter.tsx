@@ -232,7 +232,7 @@ const FilterMobileView = ({
                 <SheetBody className="px-space-04 py-space-00">{children}</SheetBody>
                 <SheetFooter className="p-space-04">
                     <div className="flex bg-background">
-                        <Button id="servicesRest" size="sm" variant="ghost" colors="gray" onClick={resetFilters} className="grow">
+                        <Button id="servicesRest" size="sm" variant="text" colors="neutral" onClick={resetFilters} className="grow">
                             {strings.Shared.reset}
                         </Button>
                         <SheetClose asChild className="">

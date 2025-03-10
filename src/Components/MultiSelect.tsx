@@ -114,8 +114,8 @@ export function MultiSelect<T extends ValueType>({
                     <ShouldRender shouldRender={!!selectedValues?.length}>
                         <div className="flex items-center gap-space-04 border-t border-t-border bg-background px-space-04 py-space-02">
                             <Button
-                                colors="gray"
-                                variant="ghost"
+                                colors="neutral"
+                                variant="text"
                                 size="sm"
                                 onClick={() => {
                                     onChange([])
