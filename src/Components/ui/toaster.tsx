@@ -1,4 +1,4 @@
-import { CheckCircle, Error, Info, WarningAmber } from 'google-material-icons/outlined'
+import { CheckCircle, ErrorOutline, Info, WarningAmber } from 'google-material-icons/outlined'
 import { Toast, ToastClose, ToastDescription, ToastIcon, ToastProvider, ToastTitle, ToastViewport } from '../../Components/ui/toast'
 import { useToast } from '../../Components/ui/use-toast'
 import accessibilityTools from '../../Stores/accessibilityTools'
@@ -8,7 +8,7 @@ const IconMap = {
     success: <CheckCircle />,
     default: <Info />,
     info: <Info />,
-    warning: <Error />,
+    warning: <ErrorOutline />,
 }
 export function Toaster() {
     const { toasts } = useToast()
@@ -28,7 +28,7 @@ export function Toaster() {
                                 </div>
                                 <ToastClose />
                             </div>
-                            <div className='mx-space-07'>{action}</div>
+                            <div className="mx-space-07">{action}</div>
                         </div>
                     </Toast>
                 )
