@@ -6,8 +6,8 @@ import { cn } from '../Lib/utils'
 const dlVariants = cva('grid border-b border-border-secondary', {
     variants: {
         variant: {
-            default: '[&>dt]:text-foreground-secondary  [&>dd]:font-medium',
-            list: '[&>dd]:text-foreground-secondary  [&>dt]:font-medium',
+            default: '[&>dt]:text-foreground-secondary',
+            list: '[&>dd]:text-card-foreground',
         },
         size: {
             default: 'text-body-01',

@@ -2,9 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { Textarea } from '../../ui/textarea'
 
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 
 import { Button } from '../../ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../../ui/form'
@@ -38,7 +36,7 @@ export const Default: Story = {
         colors: 'default',
         rounded: 'default',
         disabled: false,
-        placeholder:"Enter new text"
+        placeholder: 'Enter new text',
     },
 }
 export const From: Story = {
@@ -51,23 +49,10 @@ export const From: Story = {
     render: () => <TextareaForm />,
 }
 
-const FormSchema = z.object({
-    bio: z
-        .string()
-        .min(10, {
-            message: 'Bio must be at least 10 characters.',
-        })
-        .max(160, {
-            message: 'Bio must not be longer than 30 characters.',
-        }),
-})
-
 function TextareaForm() {
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
-    })
+    const form = useForm<{ bio: string }>()
 
-    function onSubmit(data: z.infer<typeof FormSchema>) {
+    function onSubmit(data: { bio: string }) {
         toast({
             title: 'You submitted the following values:',
             description: (
@@ -84,6 +69,11 @@ function TextareaForm() {
                 <FormField
                     control={form.control}
                     name="bio"
+                    rules={{
+                        required: { value: true, message: 'Bio is required field' },
+                        minLength: { value: 10, message: 'Bio must be at least 10 characters.' },
+                        maxLength: { value: 160, message: 'Bio must not be longer than 160 characters.' },
+                    }}
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Bio</FormLabel>
