@@ -27,6 +27,10 @@ export const Default: Story = {
         placeholder: '',
         rounded: 'default',
         value: '',
+        variant: 'default',
+        colors: 'default',
+        size: 'default',
+        defaultToToday: false,
     },
     argTypes: {
         value: { control: 'text' },

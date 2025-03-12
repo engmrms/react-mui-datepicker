@@ -20,13 +20,21 @@ const meta: Meta<typeof Select> = {
 
 export default meta
 type Story = StoryObj<typeof Select>
+
 export const Default: Story = {
+    args: {
+        variant: 'outline',
+        size: 'default',
+        disabled:false,
+        rounded:"default",
+        colors:"default"
+    },
     render: (arg, { globals: { dir } }) => (
-        <Select {...arg} dir={dir}>
-            <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Theme" />
+        <Select   {...arg} dir={dir} >
+            <SelectTrigger  className="w-[180px]">
+                <SelectValue placeholder="Theme"  />
             </SelectTrigger>
-            <SelectContent position='popper'>
+            <SelectContent position="popper">
                 <SelectItem value="light">Light</SelectItem>
                 <SelectItem value="dark">Dark</SelectItem>
                 <SelectItem value="system">System</SelectItem>
@@ -37,7 +45,7 @@ export const Default: Story = {
 
 export const Scrollable: Story = {
     render: (arg, { globals: { dir } }) => (
-        <Select {...arg} dir={dir}>
+        <Select  {...arg} dir={dir}>
             <SelectTrigger className="w-[280px]">
                 <SelectValue placeholder="Select a timezone" />
             </SelectTrigger>

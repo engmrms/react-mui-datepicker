@@ -24,11 +24,16 @@ const meta: Meta<typeof MultiSelect> = {
 export default meta
 type Story = StoryObj<typeof MultiSelect>
 
-const mockData = [
-    { label: 'Hight', value: 1 },
-    { label: 'Medium', value: 2 },
-    { label: 'Low', value: 3 },
-]
+// const mockData = [
+//     { label: 'Hight', value: 1 },
+//     { label: 'Medium', value: 2 },
+//     { label: 'Low', value: 3 },
+// ]
+
+const mockData = Array.from({ length: 20 }, (_, i) => ({
+    value:i,
+    label: `Item ${i} - ${Math.random().toString(36).substring(2, 8)}`,
+}))
 
 export const Default: Story = {
     args: {
@@ -38,6 +43,9 @@ export const Default: Story = {
         options: mockData,
         selectedValues: [],
         rounded: 'default',
+        variant:"default",
+        colors:"default",
+        isLoading:false
     },
     render: arg => {
         const [storyArgs, updateArgs] = useArgs()

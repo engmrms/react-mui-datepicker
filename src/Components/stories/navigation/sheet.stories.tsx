@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from '../../ui/button'
 import { Input } from '../../ui/input'
 import { Label } from '../../ui/label'
-import { Sheet, SheetBody, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTrigger } from '../../ui/sheet'
+import { Sheet, SheetBody, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '../../ui/sheet'
 
 const meta: Meta<typeof Sheet> = {
     title: 'Design System/Navigation/Sheet',
@@ -29,7 +29,9 @@ export const Default: Story = {
                 <Button variant="outline">Open</Button>
             </SheetTrigger>
             <SheetContent>
-                <SheetHeader title="Edit profile" />
+                <SheetHeader>
+                    <SheetTitle>Edit profile</SheetTitle>
+                </SheetHeader>
 
                 <SheetBody>
                     <div className="grid gap-4 py-4">

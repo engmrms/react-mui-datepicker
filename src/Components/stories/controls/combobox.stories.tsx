@@ -3,12 +3,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { Combobox, ComboboxControl, ComboboxGroup, ComboboxItem } from '../../Combobox'
+import { ComboboxControl, ComboboxControlNoForm } from '../../Combobox'
 
-import { ExpandMore } from 'google-material-icons/outlined'
-import { Button } from '../../ui/button'
 import { Form, FormField, FormItem, FormLabel, useForm } from '../../ui/form'
-import { PopoverTrigger } from '../../ui/popover'
 
 interface Languages {
     label: string
@@ -25,6 +22,8 @@ const languages: Languages[] = [
     { label: 'Japanese', value: 'ja' },
     { label: 'Korean', value: 'ko' },
     { label: 'Chinese', value: 'zh' },
+    { label: 'Arabic', value: 'ar' },
+    { label: 'Ordo', value: 'or' },
 ]
 
 const ComboboxControlDemo = (arg: any) => {
@@ -54,35 +53,18 @@ const ComboboxControlDemo = (arg: any) => {
 }
 
 const ComboboxDemo = (arg: any) => {
-    const [selectedLanguage, setSelectedLanguage] = React.useState<Languages>()
+    const [selectedLanguage, setSelectedLanguage] = React.useState<string>()
 
     return (
-        <Combobox>
-            <PopoverTrigger asChild>
-                <Button variant="outline" role="combobox" {...arg}>
-                    {!selectedLanguage?.label ? (
-                        <span className="text-body-01 text-foreground-secondary">Select Language</span>
-                    ) : (
-                        selectedLanguage.label
-                    )}
-
-                    <ExpandMore className="  ms-space-02 h-space-05 w-space-05 shrink-0 text-foreground  " />
-                </Button>
-            </PopoverTrigger>
-
-            <ComboboxGroup>
-                {languages?.map(opt => (
-                    <ComboboxItem
-                        value={opt.value}
-                        key={String(opt.value)}
-                        onSelect={() => {
-                            setSelectedLanguage(opt)
-                        }}>
-                        {opt.label}
-                    </ComboboxItem>
-                ))}
-            </ComboboxGroup>
-        </Combobox>
+        <ComboboxControlNoForm
+            options={languages}
+            optionLabel="label"
+            optionValue="value"
+            placeholder="select"
+            onChange={vale => setSelectedLanguage(vale)}
+            value={selectedLanguage}
+            {...arg}
+        />
     )
 }
 
@@ -90,15 +72,25 @@ const meta: Meta<typeof ComboboxControl> = {
     title: 'Design System/Controls/Combobox',
     tags: ['autodocs'],
     component: ComboboxControl,
-    argTypes: {
-        rounded: { control: 'radio', options: ['full', 'default'] },
-    },
     args: {
-        rounded: 'full',
+        variant: 'outline',
+        size: 'default',
+        colors: 'default',
+        rounded: 'default',
+        disabled: false,
+        placeholder: 'select',
+    },
+    argTypes:{
+        variant: {control:"select",options:["default","outline","lighter"]},
+        size: {control:"select",options:["default","sm"]},
+        colors: {control:"select",options:["default","success","destructive"]},
+        rounded:{control:"select",options:["default","full"]},
+
     },
 
     parameters: {
         layout: 'centered',
+
         docs: {
             description: {
                 component: `<h4>Autocomplete input and command palette with a list of suggestions.</h4>`,

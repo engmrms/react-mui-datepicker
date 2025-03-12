@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
-import classNames from 'classnames'
 import { ExpandMore } from 'google-material-icons/outlined'
 import { cn, dateFormatter } from '../Lib/utils'
 import useLanguage from '../Stores/useLanguage'
-import { Button, ButtonProps, buttonVariants } from './ui/button'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command'
 import { FormControl } from './ui/form'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
@@ -15,6 +13,7 @@ import React, { useState } from 'react'
 import { strings } from '../Locales'
 import ActionLoader from './ActionLoader'
 import ShouldRender from './ShouldRender'
+import { selectVariants } from './ui/select'
 
 const Combobox = Popover
 
@@ -32,52 +31,47 @@ const ComboboxContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
 
 ComboboxContent.displayName = 'ComboboxContent'
 
-interface ButtonPropsExtend extends ButtonProps {
+interface ButtonPropsExtend extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof selectVariants> {
     isLoading?: boolean
     isForm?: boolean
 }
 
 const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
-    ({ className, children, placeholder, isLoading, isForm = true, ...props }, ref) => {
+    ({ className, children, variant, colors, size, rounded, placeholder, isLoading, isForm = true, ...props }, ref) => {
+        const buttonProps = {
+            ref,
+            role: 'combobox',
+            'aria-expanded': false,
+            'aria-label': placeholder || 'Select an option',
+            title: placeholder || 'Select an option',
+            disabled: isLoading,
+            className: cn(selectVariants({ variant, colors, size, rounded }), className),
+            ...props,
+        }
+        const buttonContent = (
+            <>
+                {placeholder && !children && <span className="pointer-events-none text-body-01 text-form-field-text-placeholder">{placeholder}</span>}
+                {children && <span className="flex-1 truncate text-ellipsis text-right">{children}</span>}
+                {isLoading ? (
+                    <ActionLoader />
+                ) : (
+                    <ExpandMore
+                        className="size-[20px]  shrink-0  transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180"
+                        aria-hidden
+                    />
+                )}
+            </>
+        )
         if (!isForm)
             return (
                 <PopoverTrigger asChild>
-                    <Button
-                        ref={ref}
-                        rounded={props?.rounded ?? 'default'}
-                        variant="outline"
-                        role="combobox"
-                        disabled={isLoading}
-                        className={cn(
-                            'flex w-auto items-center justify-between border border-input bg-transparent  !px-space-03    placeholder:text-foreground-secondary aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled',
-                            className,
-                        )}
-                        {...props}>
-                        {placeholder && !children && <span className="text-body-01 text-foreground-secondary">{placeholder}</span>}
-                        <span className="flex-1 truncate text-ellipsis text-right">{children}</span>
-                        {isLoading ? <ActionLoader /> : <ExpandMore className="  h-space-05 w-space-05 shrink-0 text-background-foreground" />}
-                    </Button>
+                    <button {...buttonProps}>{buttonContent}</button>
                 </PopoverTrigger>
             )
-
         return (
             <PopoverTrigger asChild>
                 <FormControl>
-                    <Button
-                        rounded={props?.rounded ?? 'default'}
-                        ref={ref}
-                        variant="outline"
-                        role="combobox"
-                        disabled={isLoading}
-                        className={cn(
-                            'flex  w-full items-center justify-between border border-input bg-transparent !px-space-03  placeholder:text-foreground-secondary aria-[invalid=true]:border-error data-[placeholder]:text-foreground-secondary hover:border-foreground hover:bg-transparent hover:text-foreground focus-visible:outline-none active:bg-transparent active:text-foreground disabled:cursor-not-allowed disabled:bg-card disabled:text-disabled',
-                            className,
-                        )}
-                        {...props}>
-                        {placeholder && !children && <span className="text-body-01 text-foreground-secondary">{placeholder}</span>}
-                        <span className="line-clamp-1 flex-1 text-right">{children}</span>
-                        {isLoading ? <ActionLoader /> : <ExpandMore className="  h-space-05 w-space-05 shrink-0 text-primary-oncontainer" />}
-                    </Button>
+                    <button {...buttonProps}>{buttonContent}</button>
                 </FormControl>
             </PopoverTrigger>
         )
@@ -99,7 +93,7 @@ const ComboboxGroup = React.forwardRef<React.ElementRef<typeof CommandGroup>, Re
                         <ComboboxEmpty>{strings.Shared.NoDataFound}</ComboboxEmpty>
                     </>
                 )}
-                <ScrollArea className={classNames({ 'h-auto': childrenCount <= 7, 'h-48 sm:h-64': childrenCount > 7 })} dir={dir}>
+                <ScrollArea className={cn({ 'h-auto': childrenCount <= 7, 'h-48 sm:h-64': childrenCount > 7 })} dir={dir}>
                     <CommandGroup ref={ref} {...props} dir={document.dir}>
                         {children}
                     </CommandGroup>
@@ -110,7 +104,7 @@ const ComboboxGroup = React.forwardRef<React.ElementRef<typeof CommandGroup>, Re
 )
 ComboboxGroup.displayName = 'ComboboxGroup'
 
-interface Props<T> extends VariantProps<typeof buttonVariants> {
+interface Props<T> extends VariantProps<typeof selectVariants> {
     options?: T[]
     optionLabel: keyof T
     optionValue: keyof T
@@ -136,7 +130,7 @@ const ComboboxControl = <_, T>({ options, optionLabel, placeholder, isLoading, o
                 {!!options?.length &&
                     options?.map(opt => (
                         <ComboboxItem
-                            className={classNames({
+                            className={cn({
                                 relative: true,
                                 'after:absolute after:bottom-auto after:right-space-01 after:top-auto after:h-[75%] after:w-[2px] after:rounded-full after:bg-primary':
                                     String(opt[optionValue]) === value,
@@ -182,9 +176,9 @@ const ComboboxControlNoForm = <_, T>({
                 {!!options?.length &&
                     options?.map(opt => (
                         <ComboboxItem
-                            className={classNames({
+                            className={cn({
                                 relative: true,
-                                'after:absolute after:bottom-auto after:right-space-01 after:top-auto after:h-[50%] after:w-[2px] after:rounded-full after:bg-primary':
+                                'after:absolute after:bottom-auto after:start-space-01 after:top-auto after:h-[50%] after:w-[2px] after:rounded-full after:bg-primary':
                                     String(opt[optionValue]) === value,
                             })}
                             value={String(opt[optionLabel])}

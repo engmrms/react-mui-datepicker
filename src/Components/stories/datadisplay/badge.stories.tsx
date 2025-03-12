@@ -25,7 +25,7 @@ type Story = StoryObj<BadgeProps>
 export const Default: Story = {
     args: {
         variant: 'default',
-        colors: 'default',
+        colors: 'primary',
         size: 'default',
         rounded: 'default',
     },

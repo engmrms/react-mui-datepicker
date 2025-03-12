@@ -1,20 +1,21 @@
 import { DateCalendarProps } from '@mui/x-date-pickers'
+import { VariantProps } from 'class-variance-authority'
 import { DateRange } from 'google-material-icons/outlined'
 import moment, { Moment } from 'moment'
 import { useState } from 'react'
 import { cn } from '../../Lib/utils'
 import useLanguage from '../../Stores/useLanguage'
-import { Button, ButtonProps } from './button'
 import { Calendar } from './calendar'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
+import { selectVariants } from './select'
 
-interface Props {
+interface Props extends VariantProps<typeof selectVariants> {
     lang: 'ar' | 'en'
     placeholder?: string | null
     value: Date | string | null | undefined
     onChange: (value: string) => void
-    rounded?: ButtonProps['rounded']
     defaultToToday?: boolean
+    className?: string
 }
 
 export const DatePicker = ({
@@ -24,6 +25,11 @@ export const DatePicker = ({
     lang,
     rounded,
     defaultToToday,
+    variant,
+    className,
+    colors,
+    size,
+
     ...rest
 }: Props & Omit<DateCalendarProps<Moment>, 'value'>) => {
     const { lang: portalLang } = useLanguage()
@@ -42,23 +48,16 @@ export const DatePicker = ({
     return (
         <Popover open={isOpen} onOpenChange={setIsOpen}>
             <PopoverTrigger asChild>
-                <Button
-                    id="date"
-                    rounded={rounded}
-                    variant={'outline'}
-                    className={cn(
-                        'w-full justify-between !px-space-04 font-normal hover:border-foreground hover:bg-transparent hover:text-foreground',
-                        'text-foreground',
-                    )}>
+                <button id="date" role="date" className={cn(selectVariants({ variant, colors, size, rounded }), className)} disabled={rest.disabled}>
                     {selectedDate ? (
                         selectedDate.format(portalLang === 'ar' ? 'YYYY/M/D' : 'D/M/YYYY')
                     ) : (
-                        <span className="text-body-02 text-foreground-secondary">
+                        <span className="text-body-01 text-foreground-secondary">
                             {placeholder || (defaultToToday ? moment().format(portalLang === 'ar' ? 'YYYY/M/D' : 'D/M/YYYY') : '')}
                         </span>
                     )}
-                    <DateRange className="h-8 w-8" />
-                </Button>
+                    <DateRange className="size-[20px]  shrink-0 " />
+                </button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
                 <>

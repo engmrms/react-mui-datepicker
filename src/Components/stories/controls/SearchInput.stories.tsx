@@ -25,6 +25,13 @@ const meta: Meta<typeof SearchInput> = {
             description: 'Disables the search input',
         },
     },
+    args:{
+        type:"onType",
+        variant:"default",
+        rounded:"default",
+        colors:"default",
+        size:"default"
+    },
     parameters:{
         docs:{
             description:{

@@ -34,7 +34,7 @@ const DialogContent = React.forwardRef<
     <DialogPortal>
         <DialogOverlay
             className={clsx({
-                'opacity-0': hideOverlay,
+                'bg-transparent': hideOverlay,
             })}
         />
         <DialogPrimitive.Content

@@ -23,21 +23,34 @@ const meta: Meta<typeof Tabs> = {
 }
 
 export default meta
-type Story = StoryObj<typeof Tabs | typeof tabVariants>
+
+type Story = StoryObj<typeof tabVariants | typeof Tabs>
 export const Default: Story = {
     args: {
         variant: 'underline',
         dir: 'ltr',
+        size: 'default',
+        disabled: false,
+        underline: false,
+        orientation: 'horizontal',
     },
     argTypes: {
         variant: { control: 'radio', options: ['underline', 'filled'], description: "'underline', 'filled'" },
         dir: { control: 'radio', options: ['rtl', 'ltr'] },
+        size: { control: 'select', options: ['default', 'sm'] },
+        orientation: { control: 'select', options: ['horizontal', 'vertical'] },
+        disabled: { control: 'boolean' },
+        underline: { control: 'boolean', description: 'only with variant: underline' },
     },
     render: (arg: any) => (
-        <Tabs dir={arg?.dir} orientation={arg?.orientation} defaultValue="account" className="w-[400px]">
-            <TabsList className="grid w-full grid-cols-2" variant={arg?.variant}>
-                <TabsTrigger value="account">Account</TabsTrigger>
-                <TabsTrigger value="password">Password</TabsTrigger>
+        <Tabs dir={arg?.dir} defaultValue="account" className="w-[400px]">
+            <TabsList variant={arg?.variant} size={arg.size} underline={arg?.underline} orientation={arg?.orientation}>
+                <TabsTrigger value="account" disabled={arg?.disabled}>
+                    Account
+                </TabsTrigger>
+                <TabsTrigger value="password" disabled={arg?.disabled}>
+                    Password
+                </TabsTrigger>
             </TabsList>
             <TabsContent value="account">
                 <Card>
@@ -81,6 +94,46 @@ export const Default: Story = {
                     </CardFooter>
                 </Card>
             </TabsContent>
+        </Tabs>
+    ),
+}
+
+const tabs = Array.from({ length: 10 }, (_, i) => ({
+    id: `tab${i + 1}`,
+    label: `Tab ${i + 1}`,
+    content: <div>Content for Tab {i + 1}</div>,
+}))
+export const Responsive: Story = {
+    args: {
+        variant: 'underline',
+        dir: 'ltr',
+        size: 'default',
+        disabled: false,
+        underline: false,
+        orientation: 'horizontal',
+    },
+    argTypes: {
+        variant: { control: 'radio', options: ['underline', 'filled'], description: "'underline', 'filled'" },
+        dir: { control: 'radio', options: ['rtl', 'ltr'] },
+        size: { control: 'select', options: ['default', 'sm'] },
+        orientation: { control: 'select', options: ['horizontal', 'vertical'] },
+        disabled: { control: 'boolean' },
+        underline: { control: 'boolean', description: 'only with variant: underline' },
+    },
+    render: (arg: any) => (
+        <Tabs dir={arg?.dir} defaultValue={tabs[0].id}>
+            <TabsList variant={arg?.variant} size={arg.size} underline={arg?.underline} orientation={arg?.orientation}>
+                {tabs.map(tab => (
+                    <TabsTrigger key={tab.id} value={tab.id} disabled={arg?.disabled}>
+                        {tab.label}
+                    </TabsTrigger>
+                ))}
+            </TabsList>
+            {tabs.map(tab => (
+                <TabsContent key={tab.id} value={tab.id}>
+                    {tab.content}
+                </TabsContent>
+            ))}
         </Tabs>
     ),
 }

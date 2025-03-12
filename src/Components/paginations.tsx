@@ -1,7 +1,5 @@
-import classNames from 'classnames'
 import { ChevronLeft, ChevronRight } from 'google-material-icons/outlined'
 import React from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { cn } from '../Lib/utils'
 import { strings } from '../Locales'
 import useLanguage from '../Stores/useLanguage'
@@ -51,11 +49,9 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                     <PaginationPrevious
                         data-testid="paginationPrevius"
                         hasText={!withoutText}
-                        className={classNames({
-                            'cursor-pointer': true,
-                            'pointer-events-none text-disabled': selectedPage === 1,
-                        })}
+                        disabled={selectedPage === 1}
                         onClick={() => {
+                            if (selectedPage === 1) return
                             handlePageClick(selectedPage - 2)
                         }}
                     />
@@ -66,9 +62,6 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                             <PaginationLink
                                 data-testid={`pagination${i}`}
                                 isActive={selectedPage === i + 1}
-                                className={classNames({
-                                    'cursor-pointer': true,
-                                })}
                                 onClick={() => {
                                     handlePageClick(i)
                                 }}>
@@ -79,15 +72,12 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                 </ShouldRender>
                 <ShouldRender shouldRender={pageCount > 6}>
                     {pages?.map(i => (
-                        <React.Fragment key={uuidv4()}>
+                        <React.Fragment key={i}>
                             <ShouldRender shouldRender={(selectedPage < 5 && i < 5) || i + 1 === pageCount || i === 0}>
                                 <PaginationItem key={i}>
                                     <PaginationLink
                                         data-testid={`pagination${i}`}
                                         isActive={selectedPage === i + 1}
-                                        className={classNames({
-                                            'cursor-pointer': true,
-                                        })}
                                         onClick={() => {
                                             handlePageClick(i)
                                         }}>
@@ -96,7 +86,6 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                                 </PaginationItem>
                             </ShouldRender>
                             <ShouldRender
-                                key={uuidv4()}
                                 shouldRender={
                                     selectedPage >= 5 &&
                                     (selectedPage === i || selectedPage === i + 2 || selectedPage === i + 1 || isLastItems(i)) &&
@@ -106,9 +95,6 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                                     <PaginationLink
                                         data-testid={`pagination${i}`}
                                         isActive={selectedPage === i + 1}
-                                        className={classNames({
-                                            'cursor-pointer': true,
-                                        })}
                                         onClick={() => {
                                             handlePageClick(i)
                                         }}>
@@ -134,11 +120,9 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
                     <PaginationNext
                         data-testid="paginationNext"
                         hasText={!withoutText}
-                        className={classNames({
-                            'cursor-pointer': true,
-                            'pointer-events-none text-disabled': selectedPage === pageCount,
-                        })}
+                        disabled={selectedPage === pageCount}
                         onClick={() => {
+                            if (selectedPage === pageCount) return
                             handlePageClick(selectedPage)
                         }}
                     />
@@ -151,7 +135,7 @@ const Pagination = ({ totalItems, onPageChange, selectedPage, className, without
 const Break = () => (
     <PaginationItem className="flex w-space-05 items-center justify-center text-center">
         <PaginationLink
-            className={classNames({
+            className={cn({
                 'pointer-events-none': true,
             })}>
             ...
@@ -199,7 +183,7 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
         <div className="flex gap-space-02">
             <button
                 disabled={disabled ?? currentPage === 1}
-                className="!p-space-02 disabled:border-disabled disabled:text-disabled"
+                className="!p-space-02 disabled:border-disabled disabled:text-disabled-text-default-disabled"
                 onClick={() =>
                     setCurrentPage(prev => {
                         if (prev > 1) return prev - 1
@@ -210,7 +194,7 @@ const SliderPagination = ({ setCurrentPage, currentPage, totalPages, disabled }:
             </button>
             <button
                 disabled={disabled ?? currentPage === totalPages}
-                className="!p-space-02 disabled:border-disabled disabled:text-disabled"
+                className="!p-space-02 disabled:border-disabled disabled:text-disabled-text-default-disabled"
                 onClick={() =>
                     setCurrentPage(prev => {
                         if (disabled) return prev

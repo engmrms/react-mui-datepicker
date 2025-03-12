@@ -27,6 +27,7 @@ export const Default: Story = {
     args: {
         variant:"awful",
         disabled: false,
+        size:"default"
     },
     render: (args)=> <Emoji {...args}/>,
 }

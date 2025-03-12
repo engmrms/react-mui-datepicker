@@ -25,6 +25,11 @@ type Story = StoryObj<typeof Alert>
  * to learn how to use render functions.
  */
 export const Default: Story = {
+    args: {
+        colors: 'default',
+        variant: 'default',
+    },
+
     render: arg => (
         <Alert {...arg}>
             <AlertTitle>Notification title</AlertTitle>
@@ -36,6 +41,7 @@ export const Default: Story = {
 export const Primary: Story = {
     args: {
         colors: 'primary',
+        variant: 'default',
     },
     render: arg => (
         <Alert {...arg}>

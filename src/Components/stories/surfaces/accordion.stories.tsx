@@ -1,13 +1,40 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/no-unescaped-entities */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Add, Minimize } from 'google-material-icons/outlined'
+import { Add, KeyboardArrowDown, Minimize } from 'google-material-icons/outlined'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../../ui/accordion'
 
-function AccordionDemo(arg: any) {
+function AccordionDemo(arg: React.ComponentProps<typeof Accordion>) {
+    console.log(arg.size)
     return (
-        <Accordion {...arg} type="single" collapsible className="w-full">
+        <Accordion {...arg} className="w-full">
+            <AccordionItem value="item-1">
+                <AccordionTrigger>
+                    Is it accessible?
+                    <KeyboardArrowDown className="transition-transform duration-500 ease-in-out group-data-[state=open]:rotate-180" aria-hidden />
+                </AccordionTrigger>
+                <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+                <AccordionTrigger>
+                    Is it styled?
+                    <KeyboardArrowDown className="transition-transform duration-500 ease-in-out group-data-[state=open]:rotate-180" aria-hidden />
+                </AccordionTrigger>
+                <AccordionContent>Yes. It comes with default styles that matches the other components&apos; aesthetic.</AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+                <AccordionTrigger>
+                    Is it animated?
+                    <KeyboardArrowDown className="transition-transform duration-500 ease-in-out group-data-[state=open]:rotate-180" aria-hidden />
+                </AccordionTrigger>
+                <AccordionContent>{"Yes. It's animated by default, but you can disable it if you prefer."}</AccordionContent>
+            </AccordionItem>
+        </Accordion>
+    )
+}
+
+function AccordionCustomIcon(arg: React.ComponentProps<typeof Accordion>) {
+    return (
+        <Accordion {...arg} className="w-full">
             <AccordionItem value="item-1">
                 <AccordionTrigger>
                     Is it accessible?
@@ -18,17 +45,19 @@ function AccordionDemo(arg: any) {
             </AccordionItem>
             <AccordionItem value="item-2">
                 <AccordionTrigger>
-                    Is it styled? <Add className="group-data-[state=open]:hidden" />
+                    Is it styled?
+                    <Add className="group-data-[state=open]:hidden" />
                     <Minimize className="group-data-[state=closed]:hidden" />
                 </AccordionTrigger>
                 <AccordionContent>Yes. It comes with default styles that matches the other components&apos; aesthetic.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
                 <AccordionTrigger>
-                    Is it animated? <Add className="group-data-[state=open]:hidden" />
+                    Is it animated?
+                    <Add className="group-data-[state=open]:hidden" />
                     <Minimize className="group-data-[state=closed]:hidden" />
                 </AccordionTrigger>
-                <AccordionContent>Yes. It's animated by default, but you can disable it if you prefer.</AccordionContent>
+                <AccordionContent>{"Yes. It's animated by default, but you can disable it if you prefer."}</AccordionContent>
             </AccordionItem>
         </Accordion>
     )
@@ -36,9 +65,21 @@ function AccordionDemo(arg: any) {
 
 const meta: Meta<typeof Accordion> = {
     title: 'Design System/Surface/Accordion',
-    component: AccordionDemo,
+    component: Accordion,
     tags: ['autodocs'],
-    argTypes: {},
+
+    args: {
+        type: 'single',
+        collapsible: false,
+        disabled: false,
+        size: 'default',
+        isLeading: false,
+    },
+    argTypes: {
+        type: { control: 'radio', options: ['single', 'multiple'] },
+        size: { control: 'select', options: ['default', 'sm', 'xs'] },
+        collapsible: { description: "When type is 'single', allows closing content when clicking trigger for an open item." },
+    },
     parameters: {
         docs: {
             description: {
@@ -49,7 +90,13 @@ const meta: Meta<typeof Accordion> = {
 }
 
 export default meta
+
 type Story = StoryObj<typeof Accordion>
+
 export const Default: Story = {
-    render: AccordionDemo,
+    render: args => <AccordionDemo {...args} />,
+}
+
+export const CustomIcon: Story = {
+    render: AccordionCustomIcon,
 }

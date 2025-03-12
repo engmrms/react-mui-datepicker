@@ -1,6 +1,7 @@
 import { Close, Search } from 'google-material-icons/outlined'
 import React, { useEffect, useRef, useState } from 'react'
 import { cn, debounce } from '../../Lib/utils'
+import { strings } from '../../Locales'
 import { Button } from './button'
 import { Input, InputProps } from './input'
 import { Stack } from './Layout'
@@ -72,28 +73,25 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps & InputP
                     {...props}
                     onKeyDown={handleKeyDown}
                     onChange={handleInputChange}
-                    className={cn('w-full pe-space-01 transition-all duration-200 focus-within:border-success hover:border-success', className)}
+                    className={cn('w-full ', { 'pe-space-04': type === 'onType', 'pe-space-01': type === 'onButton' }, className)}
                     aria-invalid={!!validationMessage}
                     data-testid="search-input"
-                    startAdornment={type === 'onType' && <Search className="text-foreground-tertiary" />}
+                    startAdornment={type === 'onType' && <Search className="text-icon-default" />}
                     endAdornment={
                         <Stack gap={1} alignItems={'center'}>
                             {inputValue && (
-                                <button
-                                    type="button"
-                                    className="rounded-full bg-background !p-space-01 text-foreground-tertiary"
-                                    onClick={handleClear}>
-                                    <Close />
+                                <button type="button" className="text-text-default" onClick={handleClear}>
+                                    <Close size={20} />
                                 </button>
                             )}
                             {inputValue && type === 'onButton' && <span className="mx-space-01 block h-space-05 border" />}
                             {type === 'onButton' && (
                                 <Button
                                     variant={'outline'}
-                                    colors={'success'}
                                     rounded={'full'}
                                     size={'icon-sm'}
                                     type="button"
+                                    tooltip={strings.Shared.Search}
                                     className="h-auto rounded-full border !p-space-01"
                                     onClick={handleSearch}>
                                     <Search />

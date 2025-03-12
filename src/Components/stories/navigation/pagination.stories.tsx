@@ -54,3 +54,27 @@ export const Default: Story = {
         )
     },
 }
+
+export const PaginationOnly: Story = {
+    args: {
+        totalItems: 50,
+        itemsPerPage: 10,
+        selectedPage: 1,
+        withoutText: false,
+    },
+    render: arg => {
+        const [storyArgs, updateArgs] = useArgs()
+        return (
+            <>
+                <Pagination
+                    {...arg}
+                    onPageChange={function (page: number): void {
+                        if (page !== storyArgs.selectedPage) {
+                            updateArgs({ selectedPage: page })
+                        }
+                    }}
+                />
+            </>
+        )
+    },
+}
