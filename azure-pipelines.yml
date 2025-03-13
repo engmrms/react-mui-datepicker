@@ -47,11 +47,19 @@ steps:
           enableTelemetry: true
 
     - script: |
+        cd '$(System.DefaultWorkingDirectory)/'
+        npm install -g pnpm@latest-8 --force
+      displayName: 'Install Pipeline Dependencies'
+
+    - script: |
           cd '$(System.DefaultWorkingDirectory)/'
-          npm install -g pnpm@latest-10 --force
           pnpm  install
+      displayName: 'Install Packages.'
+
+    - script: |
+          cd '$(System.DefaultWorkingDirectory)/'
           pnpm  run build:storybook
-      displayName: 'npm install and build'
+      displayName: 'Build Portal'
 
     - script: |
           cd '$(System.DefaultWorkingDirectory)/'
