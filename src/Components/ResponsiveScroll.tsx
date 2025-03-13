@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight } from 'google-material-icons/outlined'
 import * as React from 'react'
 import { Button } from './'
+import { cn } from '../Lib'
 
 interface ResponsiveScrollProps {
     children: React.ReactNode
@@ -77,7 +78,15 @@ export function ResponsiveScroll({ children, scrollAmount = 200, margin = 0, cla
                     </Button>
                 </>
             )}
-            <div ref={scrollContainerRef} className={`no-scrollbar flex-1 overflow-x-auto    ${className}`}>
+            <div
+                ref={scrollContainerRef}
+                className={cn(
+                    `no-scrollbar flex-1 `,
+                    {
+                        'overflow-x-auto ': canScrollEnd || canScrollStart,
+                    },
+                    className,
+                )}>
                 <div className="flex">{children}</div>
             </div>
             {canScrollEnd && (
