@@ -3,17 +3,13 @@ import { cn } from '../Lib/utils'
 
 import { cva, VariantProps } from 'class-variance-authority'
 import { Check } from 'google-material-icons/outlined'
+import ShouldRender from './ShouldRender'
 
 const stepperVariants = cva(`group relative flex shrink-0 items-start justify-start `, {
     variants: {
         variant: {
             circle: 'peer border border-border-primary-default text-text-primary items-center justify-center rounded-full w-space-06 h-space-06 text-body-02 font-medium data-[state=upcoming]:border-border-neutral-primary data-[state=upcoming]:text-border-neutral-primary data-[state=complete]:bg-background-primary  data-[state=complete]:text-icon-oncolor',
-            dot: '',
-        },
-
-        disabled: {
-            false: null,
-            true: null,
+            dot: 'peer items-center justify-center rounded-full w-space-06 h-space-06 ',
         },
 
         orientation: {
@@ -84,10 +80,15 @@ const Step = React.forwardRef<HTMLDivElement, StepProps>(({ className, children,
     })
 
     return (
-        <div className="relative flex-col flex min-w-space-08 max-w-space-12 gap-space-02 group-data-[orientation=vertical]:min-h-space-08 group-data-[orientation=vertical]:flex-row " >
+        <div className="relative flex min-w-space-08 max-w-space-12 flex-col gap-space-02 group-data-[orientation=vertical]:min-h-space-08 group-data-[orientation=vertical]:flex-row ">
             <div ref={ref} data-state={state} className={cn(stepperVariants({ variant }), className)} {...props}>
-                {state !== 'complete' && <span>{index}</span>}
-                {state === 'complete' && <Check size={20} />}
+                <ShouldRender shouldRender={variant === 'circle'}>
+                    {state !== 'complete' && <span>{index}</span>}
+                    {state === 'complete' && <Check size={20} />}
+                </ShouldRender>
+                <ShouldRender shouldRender={variant === 'dot'}>
+                    <div className="size-space-02 bg-border-neutral-primary group-data-[state=current]:border-2 group-data-[state=current]:border-primary  group-data-[state=complete]:bg-background-primary   rounded-full"></div>
+                </ShouldRender>
             </div>
             <div className="me-space-04 hidden flex-col gap-space-01 md:flex ">{children}</div>
             {!props.lastStep && <StepConnector />}
@@ -124,7 +125,7 @@ const StepConnector = React.forwardRef<HTMLDivElement, React.HtmlHTMLAttributes<
         <div
             ref={ref}
             className={cn(
-                'absolute start-space-06 top-space-04 h-[2px] w-[calc(100%_-_32px)] group-data-[orientation=vertical]:start-space-04 group-data-[orientation=vertical]:top-space-06  group-data-[orientation=vertical]:w-[2px]  group-data-[orientation=vertical]:h-[calc(100%_-_32px)] bg-border-background-neutral peer-data-[state=complete]:bg-background-primary',
+                'absolute start-space-06 top-space-04 h-[2px] w-[calc(100%_-_32px)] bg-border-background-neutral group-data-[orientation=vertical]:start-space-04  group-data-[orientation=vertical]:top-space-06  group-data-[orientation=vertical]:h-[calc(100%_-_32px)] group-data-[orientation=vertical]:w-[2px] peer-data-[state=complete]:bg-background-primary',
                 className,
             )}
             {...props}>

@@ -292,7 +292,9 @@ const App = () => {
     return (
         <Bootstrap>
             <Header />
-            <Stepper activeStep={3}>
+
+            <Stack direction={'col'} className="p-space-06">
+            <Stepper activeStep={3} orientation={"horizontal"}  >
                 <Step>
                     <StepTitle>first</StepTitle>
                     <StepDescription>first description first description first description</StepDescription>
@@ -318,8 +320,6 @@ const App = () => {
                     <StepDescription>seventh description seventh description seventh description</StepDescription>
                 </Step>
             </Stepper>
-
-            <Stack direction={'col'} className="p-space-06">
                 <ComponentPie />
                 <MultiSelect
                     options={mockData}
