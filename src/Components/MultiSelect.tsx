@@ -28,6 +28,7 @@ export interface MultiSelectProps<T extends ValueType> extends VariantProps<type
     dataTestId?: string
     className?: string
     isLoading?: boolean
+    checkboxSize?: 'default' | 'sm' | 'xs'
 }
 
 export function MultiSelect<T extends ValueType>({
@@ -43,7 +44,8 @@ export function MultiSelect<T extends ValueType>({
     colors = 'default',
     isLoading = false,
     className,
-}: MultiSelectProps<T>) {
+    checkboxSize = 'default',
+}: Readonly<MultiSelectProps<T>>) {
     const [isOpen, toggle] = useToggle(false)
     const [search, setSearch] = React.useState('')
     const [inputValue, setInputValue] = React.useState('')
@@ -108,7 +110,13 @@ export function MultiSelect<T extends ValueType>({
                         </ShouldRender>
                         <CommandList>
                             <CommandEmpty>No results found.</CommandEmpty>
-                            <CommandBody options={filteredItems} dataTestId={dataTestId} onChange={onChange} selectedValues={selectedValues} />
+                            <CommandBody
+                                options={filteredItems}
+                                dataTestId={dataTestId}
+                                onChange={onChange}
+                                selectedValues={selectedValues}
+                                checkboxSize={checkboxSize}
+                            />
                         </CommandList>
                     </div>
                     <ShouldRender shouldRender={!!selectedValues?.length}>
@@ -132,7 +140,13 @@ export function MultiSelect<T extends ValueType>({
     )
 }
 
-function CommandBody<T extends ValueType>({ options, selectedValues, dataTestId, onChange }: Omit<MultiSelectProps<T>, 'placeholder'>) {
+function CommandBody<T extends ValueType>({
+    options,
+    selectedValues,
+    dataTestId,
+    onChange,
+    checkboxSize,
+}: Readonly<Omit<MultiSelectProps<T>, 'placeholder'>>) {
     const parentRef = React.useRef<HTMLDivElement>(null)
     const rowVirtualizer = useVirtualizer({
         count: options.length,
@@ -159,7 +173,7 @@ function CommandBody<T extends ValueType>({ options, selectedValues, dataTestId,
                         }}>
                         {option.icon && <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />}
                         <span>{option.label}</span>
-                        <Checkbox className="ms-auto" checked={isSelected} />
+                        <Checkbox className="ms-auto" checked={isSelected} size={checkboxSize} />
                     </CommandItem>
                 )
             })}
