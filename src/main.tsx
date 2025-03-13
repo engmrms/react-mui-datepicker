@@ -69,6 +69,10 @@ import {
     NavigationMobileHeader,
     NavigationMobileLink,
     NavigationMobileSideBar,
+    Step,
+    StepDescription,
+    Stepper,
+    StepTitle,
     Tabs,
     TabsContent,
     TabsList,
@@ -288,6 +292,32 @@ const App = () => {
     return (
         <Bootstrap>
             <Header />
+            <Stepper activeStep={3}>
+                <Step>
+                    <StepTitle>first</StepTitle>
+                    <StepDescription>first description first description first description</StepDescription>
+                </Step>
+                <Step>
+                    <StepTitle>second</StepTitle>
+                    <StepDescription>second description second description second description</StepDescription>
+                </Step>
+                <Step>
+                    <StepTitle>third</StepTitle>
+                    <StepDescription>third description third description third description</StepDescription>
+                </Step>
+                <Step>
+                    <StepTitle>fourth</StepTitle>
+                    <StepDescription>fourth description fourth description fourth description</StepDescription>
+                </Step>
+                <Step>
+                    <StepTitle>sixth</StepTitle>
+                    <StepDescription>sixth description sixth description sixth description</StepDescription>
+                </Step>
+                <Step>
+                    <StepTitle>seventh</StepTitle>
+                    <StepDescription>seventh description seventh description seventh description</StepDescription>
+                </Step>
+            </Stepper>
 
             <Stack direction={'col'} className="p-space-06">
                 <ComponentPie />
@@ -449,32 +479,31 @@ const App = () => {
 
                     <Sheet>
                         <SheetTrigger>Openn</SheetTrigger>
-                        <SheetContent >
+                        <SheetContent>
                             <SheetHeader>
                                 <SheetTitle>Are you absolutely sure?</SheetTitle>
                             </SheetHeader>
                             <SheetBody>
                                 <SheetDescription>
-
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit deleniti quibusdam sed voluptatibus obcaecati
                                     nesciunt animi qui, pariatur omnis amet non commodi perferendis voluptatem possimus eveniet autem voluptate
                                     explicabo soluta! Fugit nesciunt, cupiditate unde qui illo ullam totam voluptatum sed modi delectus enim eveniet
                                     possimus saepe quod quae eum a dolorum nesciunt soluta.
                                 </SheetDescription>
                                 <Sheet>
-                                        <SheetTrigger>Open</SheetTrigger>
-                                        <SheetContent  hideOverlay>
-                                            <SheetHeader>
-                                                <SheetTitle>Are you absolutely sure?</SheetTitle>
-                                            </SheetHeader>
-                                            <SheetBody>
-                                                <SheetDescription>
-                                                    This action cannot be undone. This will permanently delete your account and remove your data from
-                                                    our servers.
-                                                </SheetDescription>
-                                            </SheetBody>
-                                        </SheetContent>
-                                    </Sheet>
+                                    <SheetTrigger>Open</SheetTrigger>
+                                    <SheetContent hideOverlay>
+                                        <SheetHeader>
+                                            <SheetTitle>Are you absolutely sure?</SheetTitle>
+                                        </SheetHeader>
+                                        <SheetBody>
+                                            <SheetDescription>
+                                                This action cannot be undone. This will permanently delete your account and remove your data from our
+                                                servers.
+                                            </SheetDescription>
+                                        </SheetBody>
+                                    </SheetContent>
+                                </Sheet>
                             </SheetBody>
                         </SheetContent>
                     </Sheet>
