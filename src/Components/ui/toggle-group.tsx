@@ -16,7 +16,7 @@ const ToggleGroup = React.forwardRef<
     React.ElementRef<typeof ToggleGroupPrimitive.Root>,
     React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> & VariantProps<typeof toggleVariants>
 >(({ className, variant, size, colors, children, ...props }, ref) => (
-    <ResponsiveScroll className="py-2" buttonClassName="bg-background">
+    <ResponsiveScroll   buttonClassName="bg-background">
         <ToggleGroupPrimitive.Root ref={ref} className={cn('flex items-center justify-center gap-space-01', className)} {...props}>
             <ToggleGroupContext.Provider value={{ variant, size, colors }}>{children}</ToggleGroupContext.Provider>
         </ToggleGroupPrimitive.Root>
