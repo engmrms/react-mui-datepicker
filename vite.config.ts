@@ -51,7 +51,7 @@ export default defineConfig({
     },
     esbuild: {
         legalComments: 'none',
-        drop: ['console', 'debugger'],
+        drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : [],
     },
 
     plugins: [react(), basicSsl(), dts({ tsconfigPath: './tsconfig.json', rollupTypes: true })],
