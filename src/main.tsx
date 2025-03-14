@@ -63,6 +63,9 @@ import { SecondNavHeader, SecondNavHeaderAction, SecondNavHeaderContent } from '
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from './Components/ui/charts'
 import {
     Bootstrap,
+    Card,
+    CardContent,
+    Carousel,
     ChartConfig,
     MultiSelect,
     navigationMenuTriggerStyle,
@@ -159,10 +162,10 @@ const menuItems = [
         items: [],
     },
 ]
-
+console.log(window.crypto.getRandomValues(new Uint32Array(1)))
 const mockData = Array.from({ length: 3000 }, (_, i) => ({
     value: i,
-    label: `Item ${i} - ${Math.random().toString(36).substring(2, 8)}`,
+    label: `Item ${i} - ${window.crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substring(2, 8)}`,
 }))
 
 const Header = () => {
@@ -294,32 +297,44 @@ const App = () => {
             <Header />
 
             <Stack direction={'col'} className="p-space-06">
-            <Stepper activeStep={3} orientation={"horizontal"}  >
-                <Step>
-                    <StepTitle>first</StepTitle>
-                    <StepDescription>first description first description first description</StepDescription>
-                </Step>
-                <Step>
-                    <StepTitle>second</StepTitle>
-                    <StepDescription>second description second description second description</StepDescription>
-                </Step>
-                <Step>
-                    <StepTitle>third</StepTitle>
-                    <StepDescription>third description third description third description</StepDescription>
-                </Step>
-                <Step>
-                    <StepTitle>fourth</StepTitle>
-                    <StepDescription>fourth description fourth description fourth description</StepDescription>
-                </Step>
-                <Step>
-                    <StepTitle>sixth</StepTitle>
-                    <StepDescription>sixth description sixth description sixth description</StepDescription>
-                </Step>
-                <Step>
-                    <StepTitle>seventh</StepTitle>
-                    <StepDescription>seventh description seventh description seventh description</StepDescription>
-                </Step>
-            </Stepper>
+                <Stepper activeStep={3} orientation={'horizontal'}>
+                    <Step>
+                        <StepTitle>first</StepTitle>
+                        <StepDescription>first description first description first description</StepDescription>
+                    </Step>
+                    <Step>
+                        <StepTitle>second</StepTitle>
+                        <StepDescription>second description second description second description</StepDescription>
+                    </Step>
+                    <Step>
+                        <StepTitle>third</StepTitle>
+                        <StepDescription>third description third description third description</StepDescription>
+                    </Step>
+                    <Step>
+                        <StepTitle>fourth</StepTitle>
+                        <StepDescription>fourth description fourth description fourth description</StepDescription>
+                    </Step>
+                    <Step>
+                        <StepTitle>sixth</StepTitle>
+                        <StepDescription>sixth description sixth description sixth description</StepDescription>
+                    </Step>
+                    <Step>
+                        <StepTitle>seventh</StepTitle>
+                        <StepDescription>seventh description seventh description seventh description</StepDescription>
+                    </Step>
+                </Stepper>
+
+                <Carousel showArrows loop={false} className="w-full  ">
+                    {Array.from({ length: 5 }).map((_, index) => (
+                        <div className="p-1" key={index}>
+                            <Card>
+                                <CardContent className="flex aspect-square items-center justify-center p-6">
+                                    <span className="text-4xl font-semibold">{index + 1}</span>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    ))}
+                </Carousel>
                 <ComponentPie />
                 <MultiSelect
                     options={mockData}
@@ -657,13 +672,13 @@ const App = () => {
                 ]}
                 showGroupLinks
                 colors="default"
-                bottomImages={[
-                    <div key={'dgacert'} className="w-space-12">
-                        <a href="http://raqmi.dga.gov.sa/platforms/DigitalStamp/ShowCertificate/6122">
-                            <img className="raqmi m-0" src="http://raqmi.dga.gov.sa/platforms/DigitalStamp/GetStampWFile/3523" alt="raqmi" />
-                        </a>
-                    </div>,
-                ]}
+                // bottomImages={[
+                //     <div key={'dgacert'} className="w-space-12">
+                //         <a href="http://raqmi.dga.gov.sa/platforms/DigitalStamp/ShowCertificate/6122">
+                //             <img className="raqmi m-0" src="http://raqmi.dga.gov.sa/platforms/DigitalStamp/GetStampWFile/3523" alt="raqmi" />
+                //         </a>
+                //     </div>,
+                // ]}
             />
         </Bootstrap>
     )

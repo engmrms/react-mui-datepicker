@@ -158,6 +158,7 @@ function DragAndDropArea({
 }: DragAndDropAreaProps) {
     return (
         <div
+            role="button"
             className={cn(
                 `group rounded border border-dashed bg-background-neutral-100 p-space-05 text-center hover:border-border-success hover:bg-background-success-25`,
                 {
@@ -244,7 +245,7 @@ function FileUpload({
                 const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9_.-]/g, '_')
                 const sanitizedFile = new File([file], sanitizedFileName, { type: file.type })
                 return {
-                    id: `${file.name}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+                    id: `${file.name}-${Date.now()}-${window.crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substring(2, 9)}`,
                     file: sanitizedFile,
                     progress: 0,
                     status: 'uploading' as const,
