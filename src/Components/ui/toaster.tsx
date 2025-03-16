@@ -28,7 +28,7 @@ export function Toaster() {
                                 </div>
                                 <ToastClose />
                             </div>
-                            <div className="mx-space-07">{action}</div>
+                            {action && <div className="mx-space-07">{action}</div>}
                         </div>
                     </Toast>
                 )

@@ -31,8 +31,8 @@ type Story = StoryObj<typeof MultiSelect>
 // ]
 
 const mockData = Array.from({ length: 20 }, (_, i) => ({
-    value:i,
-    label: `Item ${i} - ${Math.random().toString(36).substring(2, 8)}`,
+    value: i,
+    label: `Item ${i} - ${window.crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substring(2, 8)}`,
 }))
 
 export const Default: Story = {
@@ -43,9 +43,9 @@ export const Default: Story = {
         options: mockData,
         selectedValues: [],
         rounded: 'default',
-        variant:"default",
-        colors:"default",
-        isLoading:false
+        variant: 'default',
+        colors: 'default',
+        isLoading: false,
     },
     render: arg => {
         const [storyArgs, updateArgs] = useArgs()
@@ -56,10 +56,7 @@ export const Default: Story = {
                 options={mockData}
                 selectedValues={storyArgs.selectedValues}
                 onChange={(values: number[]) => {
-                    // if (values !== storyArgs.selectedValues) {
-
                     updateArgs({ selectedValues: [...values] })
-                    //}
                 }}
             />
         )

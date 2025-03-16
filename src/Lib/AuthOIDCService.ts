@@ -168,7 +168,7 @@ class AuthService implements IAuthService {
      */
     public async clearSession(): Promise<void> {
         return new Promise((resolve, reject) => {
-            const logoutWindow = window.open('https://iam-dev.moe.gov.sa/pkmslogout', '_blank', 'width=800,height=600')
+            const logoutWindow = window.open('https://iam-dev.moe.gov.sa/pkmslogout', '_blank', 'width=800,height=600,noopener')
             if (logoutWindow) {
                 setTimeout(() => {
                     logoutWindow.close()

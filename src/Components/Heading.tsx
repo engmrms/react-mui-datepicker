@@ -6,7 +6,7 @@ type AllowedElements = Extract<keyof JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' |
 type HeadingProps<T extends AllowedElements = 'h1'> = {
     as?: T
     asChild?: boolean
-    children: ReactNode
+    children?: ReactNode
 } & React.ComponentPropsWithoutRef<T>
 
 const Heading = forwardRef(<T extends AllowedElements = 'h1'>({ as, children, asChild, ...props }: HeadingProps<T>, ref: React.Ref<ElementType>) => {
