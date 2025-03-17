@@ -59,6 +59,7 @@ import { useToggle } from 'usehooks-ts'
 import { z } from 'zod'
 import { FilterGroup, FilterSelect } from './Components/Filter'
 import { Footer } from './Components/Footer'
+import { Rating } from './Components/Rating'
 import { SecondNavHeader, SecondNavHeaderAction, SecondNavHeaderContent } from './Components/SecondNavHeader'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from './Components/ui/charts'
 import {
@@ -80,6 +81,7 @@ import {
     TabsContent,
     TabsList,
     TabsTrigger,
+    Toggle,
 } from './package'
 
 const FormSchema = z.object({
@@ -162,7 +164,7 @@ const menuItems = [
         items: [],
     },
 ]
-console.log(window.crypto.getRandomValues(new Uint32Array(1)))
+
 const mockData = Array.from({ length: 3000 }, (_, i) => ({
     value: i,
     label: `Item ${i} - ${window.crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substring(2, 8)}`,
@@ -243,6 +245,7 @@ const Header = () => {
 
 const App = () => {
     const [selectedValues, setSelectedValues] = useState<number[]>([])
+    const [rating, setRating] = useState(3)
     const handleFileSelect = useCallback(
         (
             selectedFiles: FileInfo[],
@@ -295,6 +298,8 @@ const App = () => {
     return (
         <Bootstrap>
             <Header />
+            <Rating onChange={v => setRating(v)} value={rating} max={7} variant="brand" />
+                <Toggle onVolumeChange={v=>console.log(v)}>test</Toggle>
 
             <Stack direction={'col'} className="p-space-06">
                 <Stepper activeStep={3} orientation={'horizontal'}>
