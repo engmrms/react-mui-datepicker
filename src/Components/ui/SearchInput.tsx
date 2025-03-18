@@ -63,7 +63,6 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps & InputP
         return (
             <div className="space-y-space-01">
                 <Input
-                    rounded={'full'}
                     type="text"
                     variant={'outline'}
                     placeholder={placeholder}
