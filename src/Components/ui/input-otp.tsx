@@ -6,13 +6,13 @@ import { cn } from '../../Lib/utils'
 
 const InputOTP = React.forwardRef<React.ElementRef<typeof OTPInput>, React.ComponentPropsWithoutRef<typeof OTPInput>>(
     ({ className, ...props }, ref) => (
-        <OTPInput ref={ref} containerClassName={cn('group flex items-center has-[:disabled]:text-disabled', className)} {...props} />
+        <OTPInput ref={ref} containerClassName={cn('group flex items-center grow has-[:disabled]:text-disabled', className)} {...props} />
     ),
 )
 InputOTP.displayName = 'InputOTP'
 
 const InputOTPGroup = React.forwardRef<React.ElementRef<'div'>, React.ComponentPropsWithoutRef<'div'>>(({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('flex items-center', className)} {...props} />
+    <div ref={ref} className={cn('flex grow items-center', className)} {...props} />
 ))
 InputOTPGroup.displayName = 'InputOTPGroup'
 
@@ -23,7 +23,7 @@ const InputOTPSlot = React.forwardRef<React.ElementRef<'div'>, SlotProps & React
                 ref={ref}
                 className={cn(
                     'relative min-w-[48px] p-space-02 text-body-02',
-                    'flex items-center justify-center',
+                    'flex grow items-center justify-center',
                     'transition-all duration-300',
                     'border-y border-e border-border first:rounded-s-[4px] first:border-s last:rounded-e-[4px] group-has-[input[aria-invalid]]:border-error',
                     'group-focus-within:border-accent-foreground/20 group-hover:border-accent-foreground/20',
