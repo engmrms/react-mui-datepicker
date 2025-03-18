@@ -68,10 +68,11 @@ const sheetVariants = cva(
 interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>, VariantProps<typeof sheetVariants> {
     ignoreInteractOutside?: boolean
     hideOverlay?: boolean
+    overlayClassName?: string
 }
 
 const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Content>, SheetContentProps>(
-    ({ className, side, ignoreInteractOutside = false, hideOverlay = false, children, ...props }, ref) => {
+    ({ className, side, ignoreInteractOutside = false, hideOverlay = false, overlayClassName, children, ...props }, ref) => {
         const isActive = accessibilityTools(state => state.isActive)
         const matches = useMediaQuery('(min-width: 600px)')
         const { isCenter, setIsCenter } = useSheet()
@@ -79,7 +80,7 @@ const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Con
         return (
             <SheetPortal>
                 <SheetOverlay
-                    className={clsx({
+                    className={clsx(overlayClassName, {
                         'bg-transparent': hideOverlay,
                     })}>
                     <SheetPrimitive.Content

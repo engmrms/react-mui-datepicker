@@ -29,11 +29,15 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
 const DialogContent = React.forwardRef<
     React.ElementRef<typeof DialogPrimitive.Content>,
-    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { ignoreInteractOutside?: boolean; hideOverlay?: boolean }
->(({ className, ignoreInteractOutside, hideOverlay, children, ...props }, ref) => (
+    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
+        ignoreInteractOutside?: boolean
+        hideOverlay?: boolean
+        overlayClassName?: string
+    }
+>(({ className, ignoreInteractOutside, hideOverlay, overlayClassName, children, ...props }, ref) => (
     <DialogPortal>
         <DialogOverlay
-            className={clsx({
+            className={clsx(overlayClassName, {
                 'bg-transparent': hideOverlay,
             })}
         />

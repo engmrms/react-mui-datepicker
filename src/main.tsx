@@ -499,7 +499,7 @@ const App = () => {
 
                     <Sheet>
                         <SheetTrigger>Openn</SheetTrigger>
-                        <SheetContent>
+                        <SheetContent >
                             <SheetHeader>
                                 <SheetTitle>Are you absolutely sure?</SheetTitle>
                             </SheetHeader>
