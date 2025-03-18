@@ -51,17 +51,19 @@ function ButtonStar({ star, rating, hoverRating, onHover, onClick, readOnly, var
                 'size-space-08': size === 'default',
                 'size-space-06': size === 'sm',
                 'size-space-05': size === 'xs',
+                'cursor-default': readOnly,
             })}>
             <StarBorder
                 className={cn('absolute size-full   shrink-0 ', {
                     'group-hover:opacity-0': !readOnly,
                 })}
             />
+
             <Star
                 className={cn('absolute   size-full   shrink-0   opacity-0 transition-all', {
                     'opacity-100': star <= (hoverRating || rating),
                     'group-hover:opacity-100': !readOnly,
-                    'text-warning': variant === 'default',
+                    'text-secondary': variant === 'default',
                     'text-primary': variant === 'brand',
                 })}
             />

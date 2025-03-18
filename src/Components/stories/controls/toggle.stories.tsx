@@ -96,6 +96,7 @@ export const Default: Story = {
         size: 'icon',
         colors: 'default',
         dir: 'ltr',
+        rounded: 'default',
     },
     render: ToggleGroupDemo,
 }
@@ -106,6 +107,7 @@ export const Single: Story = {
         variant: 'outline',
         colors: 'default',
         size: 'icon',
+        rounded: 'default',
     },
     render: ToggleGroupDemoSingle,
 }
@@ -117,6 +119,7 @@ export const Text: Story = {
         variant: 'outline',
         colors: 'default',
         size: 'default',
+        rounded: 'default',
     },
     render: ToggleGroupDemoText,
 }
@@ -128,6 +131,7 @@ export const Responsive: Story = {
         variant: 'outline',
         colors: 'default',
         size: 'default',
+        rounded: 'default',
     },
     render: ToggleGroupResponsiveDemo,
 }
