@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from 'google-material-icons/outlined'
 import * as React from 'react'
-import { Button } from './'
 import { cn } from '../Lib'
+import { Button } from './'
 
 interface ResponsiveScrollProps {
     children: React.ReactNode
@@ -66,7 +66,7 @@ export function ResponsiveScroll({ children, scrollAmount = 200, margin = 0, cla
         <div className="relative flex items-center">
             {canScrollStart && (
                 <>
-                    <div className="pointer-events-none absolute start-0 top-0 z-[5] h-full  w-[120px] bg-gradient-to-r from-transparent via-white via-60% to-white"></div>
+                    <div className="pointer-events-none absolute start-0 top-0 z-[5] h-full  w-[120px] bg-gradient-to-r from-transparent via-background-white via-60% to-background-white"></div>
                     <Button
                         variant="text"
                         size="icon"
@@ -91,7 +91,7 @@ export function ResponsiveScroll({ children, scrollAmount = 200, margin = 0, cla
             </div>
             {canScrollEnd && (
                 <>
-                    <div className="pointer-events-none absolute end-0 top-0 z-[5] h-full w-[120px] bg-gradient-to-l from-transparent via-white via-60% to-white"></div>
+                    <div className="pointer-events-none absolute end-0 top-0 z-[5] h-full w-[120px] bg-gradient-to-l from-transparent via-background-white via-60% to-background-white"></div>
                     <Button
                         variant="text"
                         size="icon"
