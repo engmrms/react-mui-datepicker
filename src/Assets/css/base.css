@@ -5,21 +5,21 @@
 
 @layer base {
     :root {
-        --background: theme(colors.gray.100);
-        --background-foreground: theme(colors.gray.900);
-        --background-secondary: theme(colors.gray.300);
+        --background: theme(colors.neutral.50);
+        --background-foreground: theme(colors.black);
+        --background-secondary: theme(colors.neutral.100);
         --background-brand: theme(colors.cyan.25);
-        --foreground: theme(colors.gray.900);
-        --overlay: theme(colors.gray.800);
-        --foreground-secondary: theme(colors.gray.800);
-        --foreground-tertiary: theme(colors.gray.700);
+        --foreground: theme(colors.black);
+        --overlay: theme(colors.alpha.black-60);
+        --foreground-secondary: theme(colors.neutral.700);
+        --foreground-tertiary: theme(colors.neutral.500);
 
         --card: theme(colors.white);
-        --card-foreground: theme(colors.gray.900);
-        --card-hover: theme(colors.gray.200);
-        --card-active: theme(colors.gray.50);
+        --card-foreground: theme(colors.black);
+        --card-hover: theme(colors.neutral.200);
+        --card-active: theme(colors.neutral.300);
         --popover: theme(colors.white);
-        --popover-foreground: theme(colors.gray.900);
+        --popover-foreground: theme(colors.black);
 
         --primary: theme(colors.cyan.600);
         --primary-foreground: theme(colors.white);
@@ -70,8 +70,8 @@
         --info-oncontainer: theme(colors.blue.900);
         --info-container: theme(colors.blue.100);
 
-        --muted: theme(colors.gray.100);
-        --muted-foreground: theme(colors.gray.900);
+        --muted: theme(colors.white);
+        --muted-foreground: theme(colors.black);
 
         --accent: 210 40% 96.1%;
         --accent-foreground: 222.2 47.4% 11.2%;
@@ -79,22 +79,22 @@
         --destructive: theme(colors.red.500);
         --destructive-foreground: theme(colors.white);
 
-        --inverted: theme(colors.gray.900);
+        --inverted: theme(colors.black);
         --inverted-secondary: theme(colors.gray.700);
         --inverted-foreground: theme(colors.white);
 
-        --border: theme(colors.gray.300);
-        --border-secondary: theme(colors.gray.300);
+        --border: theme(colors.neutral.200);
+        --border-secondary: theme(colors.neutral.300);
 
         --disabled: theme(colors.neutral.400);
         --disabled-foreground: theme(colors.neutral.50);
         --disabled-control-disabled: theme(colors.neutral.400);
         --disabled-border-disabled: theme(colors.neutral.400);
 
-        --input: theme(colors.gray.500);
+        --input: theme(colors.neutral.400);
         --ring: theme(colors.gray.900);
         --divider: theme(colors.gray.500);
-        --skeleton: theme(colors.gray.400);
+        --skeleton: theme(colors.neutral.400);
         --radius: 12px;
 
         /* dga */
@@ -484,20 +484,20 @@
     }
 
     .dark {
-        --background: theme(colors.grayDark.800);
-        --background-foreground: theme(colors.grayDark.10);
-        --background-secondary: theme(colors.grayDark.700);
-        --background-brand: theme(colors.grayDark.800);
+        --background: theme(colors.neutral.700);
+        --background-foreground: theme(colors.white);
+        --background-secondary: theme(colors.neutral.700);
+        --background-brand: theme(colors.neutral.900);
         --foreground: theme(colors.white);
-        --overlay: theme(colors.grayDark.50);
-        --foreground-secondary: theme(colors.grayDark.50);
-        --foreground-tertiary: theme(colors.grayDark.100);
+        --overlay: theme(colors.alpha.black-70);
+        --foreground-secondary: theme(colors.neutral.100);
+        --foreground-tertiary: theme(colors.neutral.200);
 
-        --card: theme(colors.grayDark.900);
+        --card: theme(colors.neutral.800);
         --card-foreground: theme(colors.white);
-        --card-hover: theme(colors.grayDark.700);
-        --card-active: theme(colors.grayDark.800);
-        --popover: theme(colors.grayDark.900);
+        --card-hover: theme(colors.neutral.700);
+        --card-active: theme(colors.neutral.900);
+        --popover: theme(colors.black);
         --popover-foreground: theme(colors.white);
 
         --primary: theme(colors.cyan.500);
@@ -549,7 +549,7 @@
         --info-oncontainer: theme(colors.blue.50);
         --info-container: theme(colors.blue.900);
 
-        --muted: theme(colors.grayDark.800);
+        --muted: theme(colors.black);
         --muted-foreground: theme(colors.white);
 
         --accent: 210 40% 96.1%;
@@ -558,22 +558,22 @@
         --destructive: theme(colors.red.500);
         --destructive-foreground: theme(colors.white);
 
-        --inverted: theme(colors.grayDark.10);
+        --inverted: theme(colors.white);
         --inverted-secondary: theme(colors.grayDark.50);
         --inverted-foreground: theme(colors.grayDark.900);
 
-        --border: theme(colors.grayDark.500);
-        --border-secondary: theme(colors.grayDark.600);
+        --border: theme(colors.neutral.500);
+        --border-secondary: theme(colors.neutral.600);
 
         --disabled: theme(colors.neutral.400);
         --disabled-foreground: theme(colors.neutral.50);
         --disabled-control-disabled: theme(colors.alpha.white-30);
         --disabled-border-disabled: theme(colors.neutral.400);
 
-        --input: theme(colors.grayDark.500);
+        --input: theme(colors.neutral.500);
         --ring: theme(colors.gray.900);
-        --divider: theme(colors.grayDark.500);
-        --skeleton: theme(colors.grayDark.400);
+        --divider: theme(colors.neutral.500);
+        --skeleton: theme(colors.neutral.400);
         --radius: 12px;
 
         /* dga */

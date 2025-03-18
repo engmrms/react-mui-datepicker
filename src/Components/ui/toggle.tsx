@@ -7,7 +7,7 @@ import * as React from 'react'
 import { cn } from '../../Lib/utils'
 
 const toggleVariants = cva(
-    `group inline-flex items-center justify-center gap-space-01 rounded-full transition-colors text-text-default data-[state=on]:font-semibold
+    `group inline-flex items-center justify-center gap-space-01 transition-colors text-text-default data-[state=on]:font-semibold
      disabled:text-disabled-text-default-disabled  disabled:pointer-events-none disabled:cursor-not-allowed focus:outline focus:outline-2 focus:outline-offset-1 focus:outline-black
      `,
     {
@@ -25,6 +25,10 @@ const toggleVariants = cva(
                 'icon-sm': 'p-space-02 size-[32px] [&>svg]:size-[20px]',
                 'icon-xs': 'p-space-01 size-[24px] [&>svg]:size-space-04',
                 fit: '',
+            },
+            rounded: {
+                default: 'rounded',
+                full: 'rounded-full',
             },
             colors: {
                 default: `hover:bg-button-background-primary-light-hovered
@@ -67,6 +71,7 @@ const toggleVariants = cva(
             variant: 'default',
             size: 'default',
             colors: 'default',
+            rounded: 'default',
         },
     },
 )
