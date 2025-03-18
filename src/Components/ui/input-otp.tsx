@@ -25,10 +25,9 @@ const InputOTPSlot = React.forwardRef<React.ElementRef<'div'>, SlotProps & React
                     'relative min-w-[48px] p-space-02 text-body-02',
                     'flex grow items-center justify-center',
                     'transition-all duration-300',
-                    'border-y border-e border-border first:rounded-s-[4px] first:border-s last:rounded-e-[4px] group-has-[input[aria-invalid]]:border-error',
-                    'group-focus-within:border-accent-foreground/20 group-hover:border-accent-foreground/20',
-                    'outline outline-0 outline-accent-foreground/20 group-has-[input[aria-invalid]]:outline-error',
-                    { 'outline-1 outline-foreground': isActive },
+                    'border-y border-e border-input first:rounded-s first:border-s last:rounded-e group-has-[input[aria-invalid]]:border-error',
+                    'group-has-[input[aria-invalid]]:border-error',
+                    { 'border border-form-field-border-hovered': isActive },
                     className,
                 )}>
                 <div className="group-has-[input[aria-invalid]]:text-error group-has-[input[data-input-otp-placeholder-shown]]:text-foreground-secondary">
@@ -36,7 +35,7 @@ const InputOTPSlot = React.forwardRef<React.ElementRef<'div'>, SlotProps & React
                 </div>
                 {hasFakeCaret && (
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                        <div className="animate-caret-blink h-4 w-px bg-foreground duration-1000" />
+                        <div className="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
                     </div>
                 )}
             </div>
