@@ -14,7 +14,7 @@ if (container) {
 
     root.render(
         <React.StrictMode>
-            <h1>Hello</h1>
+            <h1>hello</h1>
         </React.StrictMode>,
     )
 }
