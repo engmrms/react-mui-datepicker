@@ -6,7 +6,17 @@ import { cn } from '../../Lib/utils'
 
 const InputOTP = React.forwardRef<React.ElementRef<typeof OTPInput>, React.ComponentPropsWithoutRef<typeof OTPInput>>(
     ({ className, ...props }, ref) => (
-        <OTPInput ref={ref} containerClassName={cn('group flex items-center grow has-[:disabled]:text-disabled', className)} {...props} />
+        <OTPInput
+            ref={ref}
+            containerClassName={cn(
+                'flex items-center grow has-[:disabled]:text-disabled',
+                {
+                    group: !props.disabled,
+                },
+                className,
+            )}
+            {...props}
+        />
     ),
 )
 InputOTP.displayName = 'InputOTP'
@@ -22,20 +32,20 @@ const InputOTPSlot = React.forwardRef<React.ElementRef<'div'>, SlotProps & React
             <div
                 ref={ref}
                 className={cn(
-                    'relative min-w-[48px] p-space-02 text-body-02',
+                    'relative h-space-07 min-w-[48px] p-space-02 text-body-02',
                     'flex grow items-center justify-center',
                     'transition-all duration-300',
                     'border-y border-e border-input first:rounded-s first:border-s last:rounded-e group-has-[input[aria-invalid]]:border-error',
-                    'group-has-[input[aria-invalid]]:border-error',
+                    'group-hover:border-form-field-border-hovered ',
                     { 'border border-form-field-border-hovered': isActive },
                     className,
                 )}>
-                <div className="group-has-[input[aria-invalid]]:text-error group-has-[input[data-input-otp-placeholder-shown]]:text-foreground-secondary">
+                <div className="group-has-[input[aria-invalid]]:text-error group-has-[input[data-input-otp-placeholder-shown]]:text-form-field-text-placeholder">
                     {char ?? props.placeholderChar}
                 </div>
                 {hasFakeCaret && (
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                        <div className="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
+                        <div className="animate-caret-blink h-4 w-px bg-foreground duration-1000" />
                     </div>
                 )}
             </div>

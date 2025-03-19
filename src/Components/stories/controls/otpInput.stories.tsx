@@ -15,7 +15,7 @@ const meta: Meta<typeof InputOTP> = {
             control: { type: 'boolean' },
         },
     },
-    args: { maxLength: 4 },
+    args: { maxLength: 4, disabled: false },
     parameters: {
         layout: 'centered',
         docs: {
