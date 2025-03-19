@@ -132,7 +132,7 @@ const SecondNavHeaderAction = ({ className, ...props }: HTMLAttributes<HTMLDivEl
     )
 }
 
-const NavigationSwitchTheme = ({ colors }: { colors: ButtonProps['colors'] }) => {
+const NavigationSwitchTheme = ({ colors, size = 'icon-sm' }: { colors?: ButtonProps['colors']; size?: 'icon-sm' | 'icon' | 'icon-xs' }) => {
     const { theme, setTheme } = useThemeStore()
 
     const handleDefaultThemeChange = () => {
@@ -150,7 +150,7 @@ const NavigationSwitchTheme = ({ colors }: { colors: ButtonProps['colors'] }) =>
 
     return (
         <Button
-            size={'icon-sm'}
+            size={size}
             tooltip={theme === String(THEME.DARK) ? strings.Shared.lightMode : strings.Shared.darkMode}
             variant={'text'}
             colors={colors}
