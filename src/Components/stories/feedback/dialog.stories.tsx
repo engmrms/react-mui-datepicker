@@ -37,6 +37,41 @@ export const Default: Story = {
                 <DialogBody>
                     <div className="flex flex-col">
                         <p>
+                            Quae molestias temporibus illum voluptatum doloremque quasi, dolorum, quos nihil consectetur earum odit? Optio minus
+                            consectetur blanditiis placeat sunt. Quibusdam dignissimos exercitationem veniam porro, eaque earum officia voluptas optio
+                            in saepe, sit odit. Mollitia sed quaerat magnam quos? Corporis fugit aperiam commodi incidunt. Corrupti architecto
+                            reiciendis voluptatum nam ipsa. Error reiciendis in ducimus sed assumenda fugiat praesentium fugit perferendis quas.
+                            Explicabo neque magnam cum hic in nemo voluptas laborum, veritatis architecto ducimus quos, iste repellendus beatae qui id
+                            nulla.
+                        </p>
+                    </div>
+                </DialogBody>
+                <DialogFooter>
+                    <Button type="submit" className="w-full">
+                        Save changes
+                    </Button>
+                    <Button type="submit" className="w-full" variant={'outline'} asChild>
+                        <DialogClose>cancel</DialogClose>
+                    </Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    ),
+}
+
+export const Scrollable: Story = {
+    render: args => (
+        <Dialog {...args}>
+            <DialogTrigger asChild>
+                <Button variant="outline">Edit Profile</Button>
+            </DialogTrigger>
+            <DialogContent className="">
+                <DialogHeader>
+                    <DialogTitle>Edit profile</DialogTitle>
+                </DialogHeader>
+                <DialogBody>
+                    <div className="flex flex-col">
+                        <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae voluptatum consequuntur cumque quidem accusamus,
                             labore aliquam nisi earum, veritatis mollitia maxime saepe eaque placeat itaque perferendis, iste dolorum animi suscipit?
                             Repellat vitae ratione in, doloremque sequi harum modi? Iusto architecto aut totam voluptatum voluptate veniam eveniet
