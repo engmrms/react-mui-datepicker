@@ -76,7 +76,7 @@ DialogHeader.displayName = 'DialogHeader'
 const DialogBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
     const { dir } = useLanguage()
     return (
-        <ScrollArea dir={dir} className="max-h-[50vh] ">
+        <ScrollArea dir={dir} className="max-h-[calc(100vh_-_300px)] ">
             <div
                 ref={ref}
                 className={cn(

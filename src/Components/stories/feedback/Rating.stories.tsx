@@ -14,7 +14,7 @@ const meta: Meta<typeof Rating> = {
         layout: 'centered',
         docs: {
             description: {
-                component: '<h4>Use to show a placeholder while content is loading.</h4>',
+                component: `<h4>Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own.</h4>`,
             },
         },
     },
