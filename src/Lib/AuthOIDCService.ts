@@ -90,8 +90,13 @@ class AuthService implements IAuthService {
         })
 
         this.userManager.events.addAccessTokenExpired(() => {
-            console.log('Access token expired.')
-            this.signin()
+            console.log('Access token expired. Attempting to refresh...')
+            this.refreshToken().then(user => {
+                if (!user) {
+                    // If refresh fails, then redirect to sign in
+                    this.signin()
+                }
+            })
         })
 
         this.userManager.events.addUserSignedIn(() => {
@@ -160,6 +165,24 @@ class AuthService implements IAuthService {
                 this.error = error
                 this.isLoading = false
                 throw error
+            })
+    }
+
+    public async refreshToken(): Promise<User | null> {
+        return this.userManager
+            .signinSilent()
+            .then(user => {
+                if (user) {
+                    this.user = user
+                    this.isAuthenticated = !user?.expired
+                    localStorage.setItem('accessToken', user?.id_token ?? '')
+                }
+                return user
+            })
+            .catch(error => {
+                console.error('Token refresh failed:', error)
+                this.error = error
+                return null
             })
     }
 

@@ -13,15 +13,15 @@ export const createIdentityConfig = (config: OIDCConfig) => ({
     client_secret: config.clientSecret,
     redirect_uri: `${config.baseUrl}/login/sso/callback`,
     login: config.authUrl,
-    automaticSilentRenew: true,
+    automaticSilentRenew: false,
     loadUserInfo: false,
     silent_redirect_uri: `${config.baseUrl}/login/sso/callback`,
     post_logout_redirect_uri: `${config.baseUrl}/logout/sso`,
     audience: config.baseUrl,
-    responseType: 'id_token token',
-    grantType: 'password',
-    scope: 'openid NationalID',
-    webAuthResponseType: 'id_token token',
+    responseType: 'code',
+    grantType: 'authorization_code',
+    scope: 'openid NationalID offline_access',
+    webAuthResponseType: 'code',
 })
 
 export const createMetadataConfig = (authUrl: string, jwks: string) => ({
