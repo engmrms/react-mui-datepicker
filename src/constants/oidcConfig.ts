@@ -23,7 +23,7 @@ export const createIdentityConfig = (config: OIDCConfig) => ({
     grantType: 'authorization_code',
     scope: 'openid NationalID offline_access',
     webAuthResponseType: 'code',
-    disablePKCE: config.disablePKCE || true,
+    disablePKCE: config.disablePKCE ?? true,
 })
 
 export const createMetadataConfig = (authUrl: string, jwks: string) => ({
