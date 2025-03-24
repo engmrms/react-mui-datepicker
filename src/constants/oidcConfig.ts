@@ -4,6 +4,7 @@ export interface OIDCConfig {
     baseUrl: string
     authUrl: string
     jwks?: string
+    disablePKCE?: boolean
     oauth20LogoutUrl: string // Required (no ?)
 }
 
@@ -22,6 +23,7 @@ export const createIdentityConfig = (config: OIDCConfig) => ({
     grantType: 'authorization_code',
     scope: 'openid NationalID offline_access',
     webAuthResponseType: 'code',
+    disablePKCE: config.disablePKCE ?? true,
 })
 
 export const createMetadataConfig = (authUrl: string, jwks: string) => ({
