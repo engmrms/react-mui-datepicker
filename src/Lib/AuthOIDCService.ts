@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { User } from 'oidc-client-ts'
 import { Log, UserManager } from 'oidc-client-ts'
 import { createIdentityConfig, createMetadataConfig, OIDCConfig } from '../constants/oidcConfig'
@@ -119,11 +120,11 @@ class AuthService implements IAuthService {
         return false
     }
 
-    public signin(): Promise<void> {
+    public signin(customParams: Record<string, any> = {}): Promise<void> {
         this.isLoading = true
         this.error = undefined
         this.user = null
-        return this.userManager.signinRedirect()
+        return this.userManager.signinRedirect({ state: customParams })
     }
 
     public completeSignIn() {
