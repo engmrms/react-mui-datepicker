@@ -2,6 +2,7 @@
 import type { User } from 'oidc-client-ts'
 import { Log, UserManager } from 'oidc-client-ts'
 import { createIdentityConfig, createMetadataConfig, OIDCConfig } from '../constants/oidcConfig'
+import { authStore } from '../package'
 
 /**
  * @public
@@ -95,7 +96,8 @@ class AuthService implements IAuthService {
             this.refreshToken().then(user => {
                 if (!user) {
                     // If refresh fails, then redirect to sign in
-                    this.signin()
+                    const { setExpireSession } = authStore.getState()
+                    setExpireSession()
                 }
             })
         })
