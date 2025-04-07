@@ -5,6 +5,7 @@ export const en = {
     },
 
     Shared: {
+        trialVersion: 'Beta version',
         soon: 'soon',
         NationalId: 'National ID',
         ResidentID: 'Resident ID',

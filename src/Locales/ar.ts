@@ -4,6 +4,7 @@ export const ar = {
         required: '{0} اجباري',
     },
     Shared: {
+        trialVersion: 'نسخة تجريبية',
         soon: 'قريبًا',
         NationalId: 'الهوية الوطنية',
         ResidentID: 'الإقامة',
