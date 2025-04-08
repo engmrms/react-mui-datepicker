@@ -260,7 +260,7 @@ const NavigationSearch = ({
                     </ShouldRender>
                 </>
             </SheetTrigger>
-            <Content className="absolute inset-x-0 top-[72px] z-50 flex w-full flex-col overflow-y-auto rounded-b-3 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top data-[side=bottom]:max-md:h-[93%] sm:max-w-full">
+            <Content className="absolute inset-x-0 top-[72px] z-50 flex w-full flex-col overflow-y-auto rounded-b-3 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out sm:max-w-full">
                 <div className="scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-w-2.5 scrollbar-h-2.5 h-full overflow-auto bg-background-menu p-space-05 scrollbar scrollbar-track-transparent scrollbar-thumb-border">
                     <div className="mx-auto flex max-w-screen-xl flex-col py-space-06">
                         <SheetClose asChild className="ms-auto">
@@ -331,7 +331,7 @@ const NavigationMobileSideBar = ({
 }: React.PropsWithChildren<{ open?: boolean; onOpenChange?: (open: boolean) => void }>) => {
     return (
         <Sheet open={open} onOpenChange={onOpenChange}>
-            <SheetContent dir="ltr" side="left" className="flex h-svh w-10/12 flex-col overflow-x-hidden p-0 sm:max-w-lg md:max-w-xl">
+            <SheetContent side="left" className="flex h-svh w-10/12 flex-col overflow-x-hidden p-0 sm:max-w-lg md:max-w-xl">
                 {children}
             </SheetContent>
         </Sheet>
