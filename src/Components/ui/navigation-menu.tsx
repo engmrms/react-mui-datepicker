@@ -331,7 +331,7 @@ const NavigationMobileSideBar = ({
 }: React.PropsWithChildren<{ open?: boolean; onOpenChange?: (open: boolean) => void }>) => {
     return (
         <Sheet open={open} onOpenChange={onOpenChange}>
-            <SheetContent side="left" className="flex h-svh w-10/12 flex-col overflow-x-hidden p-0 sm:max-w-lg md:max-w-xl">
+            <SheetContent side="right" className="flex h-svh w-10/12 flex-col overflow-x-hidden p-0 sm:max-w-lg md:max-w-xl">
                 {children}
             </SheetContent>
         </Sheet>
