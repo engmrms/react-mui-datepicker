@@ -1,53 +1,32 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import vission from '../../../Assets/images/logos/vision_neutral.svg'
+import { Person } from 'google-material-icons/outlined'
+import { useToggle } from 'usehooks-ts'
+import vision from '../../../Assets/images/logos/vision_neutral.svg'
+import { strings } from '../../../Locales'
+import { Button, NavigationMobileFooter, NavigationMobileLink, Stack } from '../../../package'
 import {
+    NavigationAction,
+    NavigationActions,
     NavigationHeader,
     NavigationHeaderLogo,
     NavigationMain,
     NavigationMenu,
-    NavigationMenuContent,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger,
+    NavigationMobileBody,
+    NavigationMobileHeader,
+    NavigationMobileSideBar,
+    NavigationSearch,
+    NavigationSwitchLanguage,
 } from '../../ui/navigation-menu'
 
 const menuItems = [
     {
-        title: 'Item 7',
-        href: '#',
-        items: [
-            {
-                title: 'Sub Item 1',
-                href: '#',
-                description: 'Description for sub item 1',
-            },
-            {
-                title: 'Sub Item 2',
-                href: '#',
-                description: 'Description for sub item 2',
-            },
-        ],
-    },
-    {
-        title: 'Item 6',
-        href: 'item6',
-        items: [],
-    },
-    {
-        title: 'Item 5',
-        href: 'item5',
-        items: [],
-    },
-    {
-        title: 'Item 4',
-        href: 'item4',
-        items: [],
-    },
-    {
-        title: 'Item 3',
-        href: 'item3',
+        title: 'Item 1',
+        href: 'item1',
         items: [],
     },
     {
@@ -56,8 +35,23 @@ const menuItems = [
         items: [],
     },
     {
-        title: 'Item 1',
-        href: 'item1',
+        title: 'Item 3',
+        href: 'item3',
+        items: [],
+    },
+    {
+        title: 'Item 4',
+        href: 'item4',
+        items: [],
+    },
+    {
+        title: 'Item 5',
+        href: 'item5',
+        items: [],
+    },
+    {
+        title: 'Item 6',
+        href: 'item6',
         items: [],
     },
 ]
@@ -68,7 +62,6 @@ const meta: Meta<typeof NavigationHeader> = {
     tags: ['autodocs'],
 
     parameters: {
-        layout: 'centered',
         docs: {
             description: {
                 component: '<h4>A collection of links for navigating websites.</h4>',
@@ -82,44 +75,60 @@ type Story = StoryObj<typeof NavigationHeader>
 
 export const Default: Story = {
     args: {},
-    render: () => (
-        <NavigationHeader divider>
-            <NavigationMain>
-                <NavigationHeaderLogo logoSrc={vission} logoAlt="logo" />
-                <NavigationMenu className="" dir="ltr">
-                    <NavigationMenuList>
-                        {[...menuItems].reverse().map(m => (
-                            <NavigationMenuItem key={m.title}>
-                                {m.items.length > 0 ? (
-                                    <>
-                                        <NavigationMenuTrigger>{m.title}</NavigationMenuTrigger>
-                                        <NavigationMenuContent className="grid w-[400px]">
-                                            <ul className="one m-0 grid list-none gap-x-2.5 p-[22px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
-                                                {m.items.map(subItem => (
-                                                    <li key={subItem.title} className="row-span-3 grid">
-                                                        <NavigationMenuLink asChild>
-                                                            <a
-                                                                href={subItem.href}
-                                                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                                                                <div className="text-sm font-medium leading-none">{subItem.title}</div>
-                                                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                                                    {subItem.description}
-                                                                </p>
-                                                            </a>
-                                                        </NavigationMenuLink>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </NavigationMenuContent>
-                                    </>
-                                ) : (
-                                    <NavigationMenuLink href={m.title}>{m.title}</NavigationMenuLink>
-                                )}
-                            </NavigationMenuItem>
-                        ))}
-                    </NavigationMenuList>
-                </NavigationMenu>
-            </NavigationMain>
-        </NavigationHeader>
-    ),
+    render: () => {
+        const [open, toggle, setToggle] = useToggle()
+        strings.setLanguage('en')
+        return (
+            <>
+                <NavigationHeader divider>
+                    <NavigationMain collapsed={open} onToggleCollapsed={toggle}>
+                        <NavigationHeaderLogo logoSrc={vision} logoAlt="logo" />
+                        <NavigationMenu className="">
+                            <NavigationMenuList>
+                                {[...menuItems].map(m => (
+                                    <NavigationMenuItem key={m.title}>
+                                        <NavigationMenuLink href={m.title}>{m.title}</NavigationMenuLink>
+                                    </NavigationMenuItem>
+                                ))}
+                            </NavigationMenuList>
+                        </NavigationMenu>
+                    </NavigationMain>
+                    <NavigationActions>
+                        <NavigationSearch onSearch={val => console.log(val)} />
+                        <NavigationSwitchLanguage />
+                        <NavigationAction asChild>
+                            <a href="#">
+                                <Person />
+                                <span className="sr-only lg:not-sr-only">{strings.Shared.Login}</span>
+                            </a>
+                        </NavigationAction>
+                    </NavigationActions>
+                </NavigationHeader>
+                <NavigationMobileSideBar open={open} onOpenChange={setToggle}>
+                    <NavigationMobileHeader>
+                        <img src={vision} />
+                    </NavigationMobileHeader>
+                    <NavigationMobileBody>
+                        <Stack gap={'none'} direction={'col'}>
+                            {[...menuItems].map(m => (
+                                <NavigationMobileLink key={m.title} href={m.title}>
+                                    {m.title}
+                                </NavigationMobileLink>
+                            ))}
+                            {[...menuItems].map(m => (
+                                <NavigationMobileLink key={m.title} href={m.title}>
+                                    {m.title}
+                                </NavigationMobileLink>
+                            ))}
+                        </Stack>
+                        <NavigationMobileFooter>
+                            <Button rounded={'default'} size={'sm'}>
+                                Login
+                            </Button>
+                        </NavigationMobileFooter>
+                    </NavigationMobileBody>
+                </NavigationMobileSideBar>
+            </>
+        )
+    },
 }

@@ -34,3 +34,19 @@ export const Default: Story = {
         </SecondNavHeader>
     ),
 }
+
+export const HideTrailVersion: Story = {
+    args: {
+        colors: 'primary',
+        hideDivider: false,
+    },
+    argTypes: {
+        hideDivider: { control: 'boolean' },
+    },
+    render: args => (
+        <SecondNavHeader {...args}>
+            <SecondNavHeaderContent />
+            <SecondNavHeaderAction hideTrail />
+        </SecondNavHeader>
+    ),
+}

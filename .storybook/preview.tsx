@@ -1,9 +1,28 @@
-import { withThemeByClassName } from '@storybook/addon-themes'
 import type { Preview } from '@storybook/react'
-import React from 'react'
-import '/src/Assets/css/Shared.css'
-import './style.css'
 import { themes } from '@storybook/theming'
+import React, { PropsWithChildren, useEffect } from 'react'
+import { setLanguage, useLanguage } from '../src'
+
+import './style.css'
+import '/src/Assets/css/Shared.css'
+
+const LocaleWrapper = ({ children, locale }: PropsWithChildren<{ locale: 'ar' | 'en' }>) => {
+    const { changeLang } = useLanguage()
+
+    useEffect(() => {
+        // Set the language when the locale changes
+        changeLang(locale)
+    }, [locale, changeLang])
+
+    const dir = locale === 'ar' ? 'rtl' : 'ltr'
+
+    return (
+        <div dir={dir} className="bg-background-white">
+            {children}
+        </div>
+    )
+}
+
 const preview: Preview = {
     globalTypes: {
         locale: {
@@ -82,35 +101,23 @@ const preview: Preview = {
             },
         },
         options: {
-            
             // storySort: (a, b) => (a.id === b.id ? 0 : a.id.localeCompare(b.id, undefined, { numeric: true })),
         },
     },
     decorators: [
         (Story, context) => {
-            // React.useEffect(() => {
-            //     const html = document.documentElement
-            //     if (context.globals.theme === 'dark') {
-            //         html.classList.add('dark')
-            //     } else {
-            //         html.classList.remove('dark')
-            //     }
-            // }, [context.globals.theme])
+            setLanguage(context.globals.locale)
 
-            const dir = context.globals.locale === 'ar' ? 'rtl' : 'ltr'
-            return (
-                <div dir={dir} className="bg-background-white">
-                    <Story />
-                </div>
-            )
+            const StoryWithLocale = () => {
+                return (
+                    <LocaleWrapper locale={context.globals.locale}>
+                        <Story />
+                    </LocaleWrapper>
+                )
+            }
+
+            return <StoryWithLocale />
         },
-        // withThemeByClassName({
-        //     themes: {
-        //         light: 'light',
-        //         dark: 'dark',
-        //     },
-        //     defaultTheme: 'light',
-        // }),
     ],
 }
 
