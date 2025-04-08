@@ -9,6 +9,7 @@ import { useMediaQuery } from 'usehooks-ts'
 import { create } from 'zustand'
 import { cn } from '../../Lib/utils'
 import accessibilityTools from '../../Stores/accessibilityTools'
+import ShouldRender from '../ShouldRender'
 import { Button } from './button'
 
 type SheetStore = {
@@ -37,7 +38,7 @@ const SheetOverlay = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Ove
     ({ className, ...props }, ref) => (
         <SheetPrimitive.Overlay
             className={cn(
-                'fixed inset-0 z-50 bg-background-overlay  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+                'fixed inset-0 z-50 bg-background-overlay data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
                 className,
             )}
             {...props}
@@ -109,17 +110,19 @@ const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Con
 )
 SheetContent.displayName = SheetPrimitive.Content.displayName
 
-const SheetHeader = ({ className, title, children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+const SheetHeader = ({ className, title, hideCenter, children, ...props }: React.HTMLAttributes<HTMLDivElement> & { hideCenter?: boolean }) => {
     const { setIsCenter, isCenter } = useSheet()
     return (
         <div className={cn('flex flex-row items-center gap-space-02 px-space-05 py-space-04', className)} {...props}>
             {children}
             <h1 className="text-body-01 font-semibold">{title}</h1>
-            <div className="ms-auto flex items-center gap-space-01 ">
-                <Button variant={'text'} colors={'neutral'} size={'icon-sm'} onClick={() => setIsCenter()} className="hidden sm:inline-flex">
-                    {!isCenter && <ViewSidebar size={20} className="-scale-100" />}
-                    {isCenter && <WidthFull size={20} />}
-                </Button>
+            <div className="ms-auto flex items-center gap-space-01">
+                <ShouldRender shouldRender={!hideCenter}>
+                    <Button variant={'text'} colors={'neutral'} size={'icon-sm'} onClick={() => setIsCenter()} className="hidden sm:inline-flex">
+                        {!isCenter && <ViewSidebar size={20} className="-scale-100" />}
+                        {isCenter && <WidthFull size={20} />}
+                    </Button>
+                </ShouldRender>
                 <SheetClose className="p-space-01" data-testid="sheetClose" asChild>
                     <Button variant={'text'} colors={'neutral'} size={'icon-sm'}>
                         <Close className="size-[20px]" />

@@ -340,7 +340,7 @@ const NavigationMobileSideBar = ({
 
 const NavigationMobileHeader = ({ children, className, ...props }: React.HtmlHTMLAttributes<HTMLDivElement>) => {
     return (
-        <SheetHeader className={cn('flex items-center justify-between bg-background-neutral-25 px-space-05', className)} {...props}>
+        <SheetHeader hideCenter className={cn('flex items-center justify-between bg-background-neutral-25 px-space-05', className)} {...props}>
             <SheetTitle>{children}</SheetTitle>
         </SheetHeader>
     )
