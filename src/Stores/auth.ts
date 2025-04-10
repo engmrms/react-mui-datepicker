@@ -57,6 +57,7 @@ const authStore = create<Local_DTO.AuthStore>()(
                     state?.user?.roles?.map(role => {
                         localStorage.removeItem(`${role}-evaluationCounter`)
                         localStorage.removeItem(`${role}-evaluationSkipCounter`)
+                        localStorage.removeItem(`${role}-onBoardingSkipCounter`)
                     })
                     localStorage.removeItem('email')
 
