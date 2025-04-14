@@ -5,6 +5,10 @@
 
 @layer base {
     :root {
+        --sidebar-width: 88px;
+        --sidebar-width-mobile: 320px;
+        --sidebar-width-icon: 3rem;
+
         --background: theme(colors.neutral.50);
         --background-foreground: theme(colors.black);
         --background-secondary: theme(colors.neutral.100);

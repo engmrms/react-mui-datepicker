@@ -49,7 +49,7 @@ const SheetOverlay = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Ove
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
 
 const sheetVariants = cva(
-    'flex flex-col data-[side=bottom]:max-md:h-[93%] sm:max-w-[60rem] md:rounded-tl-none md:rounded-tr-none fixed z-50 bg-background overflow-y-auto p-space-00 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500',
+    'flex flex-col data-[side=bottom]:max-md:h-[93%] sm:max-w-[60rem] md:rounded-tl-none md:rounded-tr-none fixed z-50 bg-background-secondary overflow-y-auto p-space-00 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500',
     {
         variants: {
             side: {
@@ -146,7 +146,7 @@ const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
     return (
         <div
             className={cn(
-                'absolute bottom-0 left-0 z-20 mt-auto flex w-full flex-col-reverse bg-background p-space-04 sm:flex-row sm:justify-end sm:space-x-2 sm:p-space-05',
+                'absolute bottom-0 left-0 z-20 mt-auto flex w-full flex-col-reverse bg-background-secondary p-space-04 sm:flex-row sm:justify-end sm:space-x-2 sm:p-space-05',
                 className,
             )}
             {...props}
@@ -174,7 +174,7 @@ const SheetBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivE
             ref={ref}
             className={cn(
                 'scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-w-2.5 scrollbar-h-2.5 scrollbar scrollbar-track-transparent scrollbar-thumb-border',
-                `${isFooterUsed ? 'mb-space-11' : ''} h-full overflow-auto rounded-4 bg-card p-space-05 text-foreground`,
+                `${isFooterUsed ? 'mb-space-11' : ''} h-full overflow-auto rounded-4 border border-border-neutral-secondary bg-card p-space-05 text-foreground`,
                 className,
             )}
             {...props}
