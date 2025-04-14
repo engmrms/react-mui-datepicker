@@ -15,9 +15,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tool
 
 const SIDEBAR_COOKIE_NAME = 'sidebar:state'
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
-const SIDEBAR_WIDTH = '88px'
-const SIDEBAR_WIDTH_MOBILE = '320px'
-const SIDEBAR_WIDTH_ICON = '3rem'
+
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b'
 
 type SidebarContext = {
@@ -112,8 +110,6 @@ const SidebarProvider = React.forwardRef<
                 <div
                     style={
                         {
-                            '--sidebar-width': SIDEBAR_WIDTH,
-                            '--sidebar-width-icon': SIDEBAR_WIDTH_ICON,
                             ...style,
                         } as React.CSSProperties
                     }
@@ -152,12 +148,7 @@ const Sidebar = React.forwardRef<
                 <SheetContent
                     data-sidebar="sidebar"
                     data-mobile="true"
-                    className="w-[--sidebar-width] bg-card p-0 text-foreground-secondary [&>button]:hidden"
-                    style={
-                        {
-                            '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
-                        } as React.CSSProperties
-                    }
+                    className="w-[--sidebar-width-mobile] bg-card p-0 text-foreground-secondary [&>button]:hidden"
                     side={side}>
                     <div className="flex h-full w-full flex-col">{children}</div>
                 </SheetContent>

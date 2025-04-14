@@ -1,6 +1,6 @@
 {
     "name": "mada-design-system",
-    "version": "0.2.1",
+    "version": "0.2.4",
     "sideEffects": false,
     "private": false,
     "main": "./src/index.ts",
@@ -50,7 +50,6 @@
         "@radix-ui/react-toggle": "^1.1.1",
         "@radix-ui/react-toggle-group": "^1.1.1",
         "@radix-ui/react-tooltip": "^1.1.7",
-        "@tailwindcss/typography": "^0.5.10",
         "@tanstack/react-query": "5.55.4",
         "@tanstack/react-table": "^8.20.6",
         "@tanstack/react-virtual": "^3.13.2",
