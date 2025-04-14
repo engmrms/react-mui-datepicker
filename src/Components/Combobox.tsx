@@ -51,7 +51,7 @@ const ComboboxTrigger = React.forwardRef<HTMLButtonElement, ButtonPropsExtend>(
         const buttonContent = (
             <>
                 {placeholder && !children && <span className="pointer-events-none text-body-01 text-form-field-text-placeholder">{placeholder}</span>}
-                {children && <span className="flex-1 truncate text-ellipsis text-right">{children}</span>}
+                {children && <span className=" w-11 flex-1  text-right">{children}</span>}
                 {isLoading ? (
                     <ActionLoader />
                 ) : (

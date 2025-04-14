@@ -13,7 +13,7 @@ const selectVariants = cva(
     flex w-full items-center justify-between gap-space-01 whitespace-nowrap overflow-hidden min-w-fit
     aria-[invalid=true]:border-form-field-border-error  data-[state=open]:aria-[invalid=true]:after:bg-form-field-border-error
     ps-space-03 pe-space-02  after:absolute after:bottom-0 after:start-1/2 after:h-[2px]  focus-visible:after:w-full focus:outline-none focus:shadow-md
-    after:w-0 after:transition-all after:ease-in-out data-[state=open]:after:w-full  disabled:cursor-not-allowed disabled:border-border-disabled disabled:text-disabled-text-default-disabled ltr:after:-translate-x-1/2 rtl:after:translate-x-1/2 [&>span]:line-clamp-1
+    after:w-0 after:transition-all after:ease-in-out data-[state=open]:after:w-full  disabled:cursor-not-allowed disabled:border-border-disabled disabled:text-disabled-text-default-disabled ltr:after:-translate-x-1/2 rtl:after:translate-x-1/2 [&>span]:truncate
     `,
     {
         variants: {
