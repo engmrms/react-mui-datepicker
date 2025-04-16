@@ -35,17 +35,17 @@ const InputOTPSlot = React.forwardRef<React.ElementRef<'div'>, SlotProps & React
                     'relative h-space-07 min-w-[48px] p-space-02 text-body-02',
                     'flex grow items-center justify-center',
                     'transition-all duration-300',
-                    'border-y border-e border-input first:rounded-s first:border-s last:rounded-e group-has-[input[aria-invalid]]:border-error',
+                    'border-y border-e border-input first:rounded-s first:border-s last:rounded-e group-has-[input[aria-invalid=true]]:border-error',
                     'group-hover:border-form-field-border-hovered ',
                     { 'border border-form-field-border-hovered': isActive },
                     className,
                 )}>
-                <div className="group-has-[input[aria-invalid]]:text-error group-has-[input[data-input-otp-placeholder-shown]]:text-form-field-text-placeholder">
+                <div className="group-has-[input[aria-invalid=true]]:text-error group-has-[input[data-input-otp-placeholder-shown]]:text-form-field-text-placeholder">
                     {char ?? props.placeholderChar}
                 </div>
                 {hasFakeCaret && (
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                        <div className="animate-caret-blink h-4 w-px bg-foreground duration-1000" />
+                        <div className="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
                     </div>
                 )}
             </div>
