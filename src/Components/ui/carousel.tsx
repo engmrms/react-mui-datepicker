@@ -158,6 +158,7 @@ interface CustomCarouselProps {
     itemWidth?: number | string
     slidesToShow?: number
     showPartial?: boolean
+    dir?: 'ltr' | 'rtl'
 }
 
 export function Carousel({
@@ -174,6 +175,7 @@ export function Carousel({
     itemWidth = 230,
     slidesToShow,
     showPartial = true,
+    dir = 'rtl',
 }: Readonly<CustomCarouselProps>) {
     const [api, setApi] = React.useState<CarouselApi>()
     const [current, setCurrent] = React.useState(0)
@@ -356,7 +358,7 @@ export function Carousel({
     return (
         <div className={cn('w-full overflow-hidden', containerClassName)}>
             <CarouselPrimitive
-                dir="rtl"
+                dir={dir}
                 setApi={setApi}
                 opts={{
                     align: 'start',
@@ -364,7 +366,7 @@ export function Carousel({
                     skipSnaps: false,
                     containScroll: 'trimSnaps',
                     dragFree: false,
-                    direction: 'rtl',
+                    direction: dir,
                     slidesToScroll: 1,
                 }}
                 className={cn('w-full', className)}>
@@ -393,7 +395,7 @@ export function Carousel({
                                     size="icon"
                                     aria-label="Previous slide"
                                     className={cn(!loop && current === 0 && '!pointer-events-none')}
-                                    // disabled={!loop && current === 0}
+                                // disabled={!loop && current === 0}
                                 >
                                     <ChevronRight className="h-4 w-4" />
                                 </Button>
@@ -404,7 +406,7 @@ export function Carousel({
                                     size="icon"
                                     aria-label="Next slide"
                                     className={cn(!loop && current === count - 1 && '!pointer-events-none')}
-                                    // disabled={!loop && current === count - 1}
+                                // disabled={!loop && current === count - 1}
                                 >
                                     <ChevronLeft className="h-4 w-4" />
                                 </Button>
