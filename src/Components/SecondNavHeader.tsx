@@ -94,7 +94,11 @@ const SecondNavHeaderContent = ({ className, ...props }: HTMLAttributes<HTMLDivE
     )
 }
 
-const SecondNavHeaderAction = ({ className, hideTrail, ...props }: HTMLAttributes<HTMLDivElement> & { hideTrail?: boolean }) => {
+interface SecondNavHeaderAction {
+    hideTrail?: boolean
+    hideSwitchTheme?: boolean
+}
+const SecondNavHeaderAction = ({ className, hideTrail, hideSwitchTheme, ...props }: HTMLAttributes<HTMLDivElement> & SecondNavHeaderAction) => {
     const { toggleColors, increaseSize, decreaseSize } = accessibilityTools(state => state)
     const context = useContext(SecondNavHeaderContext)
     const btnColor = context.colors === 'gray' ? 'neutral' : 'oncolor'
@@ -103,7 +107,9 @@ const SecondNavHeaderAction = ({ className, hideTrail, ...props }: HTMLAttribute
 
     return (
         <div className={cn('flex items-center gap-space-02 text-body-02', className)} {...props}>
-            <NavigationSwitchTheme colors={btnColor} />
+            <ShouldRender shouldRender={!hideSwitchTheme}>
+                <NavigationSwitchTheme colors={btnColor} />
+            </ShouldRender>
             <Button
                 size={'icon-sm'}
                 tooltip={strings.Accessibility.ColorContrast}

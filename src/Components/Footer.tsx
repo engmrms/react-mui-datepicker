@@ -193,7 +193,7 @@ const FooterBottomSection = ({ basicLinks, extraLinks, bottomImages, showBasicLi
                     {extraLinks?.map(link => <FooterLink key={link.label} {...link} colors={colors === 'neutral' ? 'neutral' : 'oncolor'} />)}
                 </div>
             </div>
-            <div className="col-span-12 ms-auto flex flex-wrap items-center gap-space-04 md:col-span-4">
+            <div className="col-span-12 flex flex-wrap items-center gap-space-04 md:col-span-4 md:ms-auto">
                 <a href="https://moe.gov.sa/ar/Pages/default.aspx" rel="noopener noreferrer" target="_blank">
                     <img src={colors === 'default' ? moe : moeNeutral} alt="moe" />
                 </a>

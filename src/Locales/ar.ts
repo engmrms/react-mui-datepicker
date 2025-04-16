@@ -67,7 +67,7 @@ export const ar = {
         TermsAndConditions: 'الشروط والأحكام',
         PolicyAndPrivacy: 'سياسة الخصوصية',
         RegulationsPolicies: 'اللوائح والسياسات',
-        Rights: '© {0} جميع الحقوق محفوظة لوزارة التعليم',
+        Rights: ' جميع الحقوق محفوظة لوزارة التعليم © {0}',
         Version: 'نسخة رقم ',
         DevelopedByTetco: 'تطوير وتشغيل شركة تطوير لتقنيات التعليم',
     },

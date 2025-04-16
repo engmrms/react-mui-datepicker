@@ -297,9 +297,8 @@ const NavigationSearch = ({
         </Sheet>
     )
 }
-const NavigationSwitchLanguage = ({ onValueChange }: { onValueChange?: () => void }) => {
+const NavigationSwitchLanguage = ({ onValueChange, className }: { onValueChange?: () => void; className?: string }) => {
     const { changeLang, lang } = useLanguage()
-    const isSmartDevice = useMediaQuery('(max-width: 1023px)')
     const switchLang = () => {
         const newLang = lang === 'ar' ? 'en' : 'ar'
         changeLang(newLang)
@@ -307,18 +306,9 @@ const NavigationSwitchLanguage = ({ onValueChange }: { onValueChange?: () => voi
     }
 
     return (
-        <>
-            <ShouldRender shouldRender={!isSmartDevice}>
-                <button className={cn(navigationMenuTriggerStyle(), 'hidden md:flex')} onClick={switchLang} data-testid="localizationBtn">
-                    <Language /> <span className="sr-only lg:not-sr-only">{strings.Shared.siteLanguageText}</span>
-                </button>
-            </ShouldRender>
-            <ShouldRender shouldRender={isSmartDevice}>
-                <Button variant={'ghost'} colors={'gray'} size={'icon'} onClick={switchLang}>
-                    <Language />
-                </Button>
-            </ShouldRender>
-        </>
+        <button className={cn(navigationMenuTriggerStyle(), 'hidden lg:inline-flex', className)} onClick={switchLang} data-testid="localizationBtn">
+            <Language /> <span className="sr-only lg:not-sr-only">{strings.Shared.siteLanguageText}</span>
+        </button>
     )
 }
 
