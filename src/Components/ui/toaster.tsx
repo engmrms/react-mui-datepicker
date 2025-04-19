@@ -1,5 +1,5 @@
 import { CheckCircle, ErrorOutline, Info, WarningAmber } from 'google-material-icons/outlined'
-import { Toast, ToastClose, ToastDescription, ToastIcon, ToastProvider, ToastTitle, ToastViewport } from '../../Components/ui/toast'
+import { Toast, ToastClose, ToastDescription, ToastIcon, ToastProps, ToastProvider, ToastTitle, ToastViewport } from '../../Components/ui/toast'
 import { useToast } from '../../Components/ui/use-toast'
 import accessibilityTools from '../../Stores/accessibilityTools'
 
@@ -10,7 +10,8 @@ const IconMap = {
     info: <Info />,
     warning: <ErrorOutline />,
 }
-export function Toaster() {
+
+export function Toaster({ position = 'bottom' }: { position?: ToastProps['position'] }) {
     const { toasts } = useToast()
     const isActive = accessibilityTools(state => state.isActive)
 
@@ -18,7 +19,7 @@ export function Toaster() {
         <ToastProvider>
             {toasts.map(function ({ id, title, description, action, ...props }) {
                 return (
-                    <Toast key={id} {...props} className={`${isActive ? 'grayscale' : 'grayscale-0'}`}>
+                    <Toast key={id} {...props} className={`${isActive ? 'grayscale' : 'grayscale-0'}`} position={position}>
                         <div className="flex grow flex-col justify-between gap-space-04">
                             <div className="flex w-full gap-space-03">
                                 <ToastIcon icon={props.variant && IconMap[props.variant]} />
@@ -33,7 +34,7 @@ export function Toaster() {
                     </Toast>
                 )
             })}
-            <ToastViewport />
+            <ToastViewport position={position} />
         </ToastProvider>
     )
 }

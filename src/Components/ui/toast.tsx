@@ -9,18 +9,27 @@ import { Button } from './button'
 
 const ToastProvider = ToastPrimitives.Provider
 
+const toastViewportVariants = cva(`fixed z-[10000000000000] flex max-h-screen w-full flex-col p-4  lg:max-w-[500px] `, {
+    variants: {
+        position: {
+            top: 'ltr:sm:right-1/2 ltr:sm:translate-x-1/2 rtl:sm:left-1/2 rtl:sm:-translate-x-1/2 sm:top-10 sm:bottom-auto top-space-05',
+            bottom: 'ltr:sm:right-1/2 ltr:sm:translate-x-1/2 rtl:sm:left-1/2 rtl:sm:-translate-x-1/2 sm:bottom-10 sm:top-auto bottom-space-05',
+            'top-right': 'end-0 sm:top-10 sm:bottom-auto top-space-05',
+            'top-left': 'start-0 sm:top-10 sm:bottom-auto top-space-05',
+            'bottom-right': 'end-0 sm:bottom-10 sm:top-auto bottom-space-05',
+            'bottom-left': 'start-0 sm:bottom-10 sm:top-auto bottom-space-05',
+        },
+    },
+    defaultVariants: {
+        position: 'bottom',
+    },
+})
+
 const ToastViewport = React.forwardRef<
     React.ElementRef<typeof ToastPrimitives.Viewport>,
-    React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>
->(({ className, ...props }, ref) => (
-    <ToastPrimitives.Viewport
-        ref={ref}
-        className={cn(
-            'fixed bottom-space-05 z-[10000000000000] flex max-h-screen w-full flex-col p-4 sm:bottom-10 sm:top-auto lg:max-w-[500px]  ltr:sm:right-1/2 ltr:sm:translate-x-1/2 rtl:sm:left-1/2 rtl:sm:-translate-x-1/2',
-            className,
-        )}
-        {...props}
-    />
+    React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport> & VariantProps<typeof toastViewportVariants>
+>(({ className, position, ...props }, ref) => (
+    <ToastPrimitives.Viewport ref={ref} className={cn(toastViewportVariants({ position }), className)} {...props} />
 ))
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName
 
@@ -28,7 +37,7 @@ const toastVariants = cva(
     `group pointer-events-auto gap-space-03 relative bg-background-notification-white flex sm:flex-row w-full items-center space-x-4 overflow-hidden
      rounded-1 border border-border-primary  px-space-05 py-space-04 shadow-3xl transition-all data-[swipe=cancel]:translate-y-0 data-[swipe=end]:translate-y-[var(--radix-toast-swipe-end-x)]
      data-[swipe=move]:translate-y-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out
-     data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-bottom-full data-[state=open]:slide-in-from-bottom-full
+     data-[swipe=end]:animate-out data-[state=closed]:fade-out-80
      before:w-space-02 before:top-0 before:bottom-0 before:absolute before:start-0 before:opacity-70`,
     {
         variants: {
@@ -39,9 +48,18 @@ const toastVariants = cva(
                 info: 'info group before:bg-background-info',
                 warning: 'warning group before:bg-background-warning',
             },
+            position: {
+                top: 'data-[state=closed]:slide-out-to-top-full data-[state=open]:slide-in-from-top-full',
+                bottom: 'data-[state=closed]:slide-out-to-bottom-full data-[state=open]:slide-in-from-bottom-full',
+                'top-right': 'data-[state=closed]:slide-out-to-top-full data-[state=open]:slide-in-from-top-full',
+                'top-left': 'data-[state=closed]:slide-out-to-top-full data-[state=open]:slide-in-from-top-full',
+                'bottom-right': 'data-[state=closed]:slide-out-to-bottom-full data-[state=open]:slide-in-from-bottom-full',
+                'bottom-left': 'data-[state=closed]:slide-out-to-bottom-full data-[state=open]:slide-in-from-bottom-full',
+            },
         },
         defaultVariants: {
             variant: 'default',
+            position: 'bottom',
         },
     },
 )
@@ -49,8 +67,8 @@ const toastVariants = cva(
 const Toast = React.forwardRef<
     React.ElementRef<typeof ToastPrimitives.Root>,
     React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> & VariantProps<typeof toastVariants>
->(({ className, variant, ...props }, ref) => {
-    return <ToastPrimitives.Root ref={ref} className={cn(toastVariants({ variant }), className)} {...props} />
+>(({ className, variant, position, ...props }, ref) => {
+    return <ToastPrimitives.Root ref={ref} className={cn(toastVariants({ variant, position }), className)} {...props} />
 })
 Toast.displayName = ToastPrimitives.Root.displayName
 
