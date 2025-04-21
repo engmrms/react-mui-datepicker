@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { strings } from '../../../package'
 import { FilterGroup, FilterSelect } from '../../Filter'
 
 const meta: Meta<typeof FilterGroup> = {
@@ -21,9 +22,13 @@ export default meta
 type Story = StoryObj<typeof FilterGroup>
 
 export const Default: Story = {
+    args: {
+        label: strings.Shared.Select,
+    },
     render: arg => (
-        <FilterGroup onValueChange={v => console.log('main', v)} className="flex gap-space-03 " {...arg}>
+        <FilterGroup onValueChange={v => console.log('main', v)} className="flex gap-space-03 " onValueReset={() => console.log('first')} {...arg}>
             <FilterSelect
+                defaultOpen
                 name="test"
                 placeholder="select"
                 data={Array.from({ length: 10 }, (_, i) => ({

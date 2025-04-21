@@ -38,7 +38,7 @@ interface FileContext {
 }
 const FilterContext = React.createContext<FileContext | null>(null)
 
-const useFilterContext = (onValueChange?: (value?: Value) => void) => {
+const useFilterContext = (onValueChange?: (value?: Value) => void, onValueReset?: () => void) => {
     const [value, setValue] = useState<Value>()
     const mobileView = useMediaQuery('(max-width: 767px)')
 
@@ -54,6 +54,7 @@ const useFilterContext = (onValueChange?: (value?: Value) => void) => {
             newValue[k] = ''
         }
         setValue(newValue)
+        onValueReset?.()
     }
 
     return { value, upsert, resetFilters }
@@ -61,17 +62,17 @@ const useFilterContext = (onValueChange?: (value?: Value) => void) => {
 
 const FilterGroup = React.forwardRef<
     HTMLDivElement,
-    React.HtmlHTMLAttributes<HTMLDivElement> & { label?: string; onValueChange?: (value?: Value) => void }
->(({ children, onValueChange, label, ...props }, ref) => {
+    React.HtmlHTMLAttributes<HTMLDivElement> & { label?: string; onValueChange?: (value?: Value) => void; onValueReset?: () => void }
+>(({ children, onValueChange, onValueReset, label, ...props }, ref) => {
     const mobileView = useMediaQuery('(max-width: 767px)')
-    const { value, resetFilters, upsert } = useFilterContext(onValueChange)
+    const { value, resetFilters, upsert } = useFilterContext(onValueChange, onValueReset)
 
     return (
         <div ref={ref} {...props}>
             <FilterContext.Provider value={{ value, upsert }}>
                 <ShouldRender shouldRender={mobileView}>
                     <FilterMobileView resetFilters={resetFilters} onClickFilter={() => onValueChange?.(value)} label={label}>
-                        {children}{' '}
+                        {children}
                     </FilterMobileView>
                 </ShouldRender>
 
@@ -220,7 +221,7 @@ const FilterMobileView = ({
                                 '!px-space-02': !label,
                             })}>
                             <FilterAlt />
-                            {label && <span>label</span>}
+                            {label && <span>{label}</span>}
                         </Button>
                     </div>
                 </SheetTrigger>
@@ -231,16 +232,14 @@ const FilterMobileView = ({
                 </SheetHeader>
                 <SheetBody className="px-space-04 py-space-00">{children}</SheetBody>
                 <SheetFooter className="p-space-04">
-                    <div className="flex bg-background">
-                        <Button id="servicesRest" size="sm" variant="text" colors="neutral" onClick={resetFilters} className="grow">
-                            {strings.Shared.reset}
+                    <Button id="servicesRest" size="sm" variant="text" colors="neutral" onClick={resetFilters} className="grow">
+                        {strings.Shared.reset}
+                    </Button>
+                    <SheetClose asChild className="">
+                        <Button id="servicesShowResults" size="sm" colors="primary" onClick={onClickFilter} className="grow">
+                            {strings.Shared.showResults}
                         </Button>
-                        <SheetClose asChild className="">
-                            <Button id="servicesShowResults" size="sm" colors="primary" onClick={onClickFilter} className="grow">
-                                {strings.Shared.showResults}
-                            </Button>
-                        </SheetClose>
-                    </div>
+                    </SheetClose>
                 </SheetFooter>
             </SheetContent>
         </Sheet>
