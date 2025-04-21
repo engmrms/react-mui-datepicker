@@ -13,12 +13,13 @@ const meta: Meta<typeof Toast> = {
     tags: ['autodocs'],
     argTypes: {
         variant: { control: 'select', options: ['default', 'destructive', 'success', 'info', 'warning'] },
+        position: { control: 'select', options: ['top', 'bottom', 'top-right', 'top-left', 'bottom-right', 'bottom-left'] },
     },
 
     decorators: [
-        Story => (
+        (Story, context) => (
             <div className="min-h-space-12">
-                <Toaster />
+                <Toaster position={context.args.position} />
                 <Story />
             </div>
         ),
@@ -44,6 +45,7 @@ type Story = StoryObj<typeof Toast>
 export const Default: Story = {
     args: {
         variant: 'default',
+        position: 'top',
     },
     render: arg => {
         const { toast } = useToast()
