@@ -356,7 +356,7 @@ export function Carousel({
     }
 
     return (
-        <div className={cn('w-full overflow-hidden', containerClassName)}>
+        <div className={cn('w-full ', containerClassName)}>
             <CarouselPrimitive
                 dir={dir}
                 setApi={setApi}
@@ -395,9 +395,9 @@ export function Carousel({
                                     size="icon"
                                     aria-label="Previous slide"
                                     className={cn(!loop && current === 0 && '!pointer-events-none')}
-                                // disabled={!loop && current === 0}
+                                    // disabled={!loop && current === 0}
                                 >
-                                    <ChevronRight className="h-4 w-4" />
+                                    <ChevronRight className="ltr:rotate-180" />
                                 </Button>
                                 <Button
                                     onClick={handleNext}
@@ -406,9 +406,9 @@ export function Carousel({
                                     size="icon"
                                     aria-label="Next slide"
                                     className={cn(!loop && current === count - 1 && '!pointer-events-none')}
-                                // disabled={!loop && current === count - 1}
+                                    // disabled={!loop && current === count - 1}
                                 >
-                                    <ChevronLeft className="h-4 w-4" />
+                                    <ChevronLeft className="ltr:rotate-180" />
                                 </Button>
                             </div>
                         )}
