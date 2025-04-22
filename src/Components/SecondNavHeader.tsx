@@ -16,37 +16,34 @@ import { cn, formatterTime } from '../Lib'
 import { THEME } from '../Models/enums'
 import { accessibilityTools, Badge, BadgeProps, Button, ButtonProps, ShouldRender, strings, useLanguage, useThemeStore } from '../package'
 
-const secondNavHeaderVariants = cva(
-    `md:h-space-07    md:px-space-06 px-space-04 md:py-space-01 gap-space-02 py-space-02 flex flex-col md:flex-row [&>svg]:size-[20px] md:items-center md:justify-between `,
-    {
-        variants: {
-            colors: {
-                primary: 'bg-background-primary text-text-oncolor-primary',
-                gray: 'bg-background-neutral-100 text-text-paragraph-primary',
-            },
-            hideDivider: {
-                true: '',
-                false: 'border-b',
-            },
+const secondNavHeaderVariants = cva(`md:h-space-07    md:px-space-06 px-space-04 md:py-space-01 gap-space-02 py-space-02  [&>svg]:size-[20px] `, {
+    variants: {
+        colors: {
+            primary: 'bg-background-primary text-text-oncolor-primary',
+            gray: 'bg-background-neutral-100 text-text-paragraph-primary',
         },
-        compoundVariants: [
-            {
-                colors: 'primary',
-                hideDivider: false,
-                className: 'border-b-border-white-40',
-            },
-            {
-                colors: 'gray',
-                hideDivider: false,
-                className: 'border-b-border-neutral-primary',
-            },
-        ],
-        defaultVariants: {
-            colors: 'primary',
-            hideDivider: false,
+        hideDivider: {
+            true: '',
+            false: 'border-b',
         },
     },
-)
+    compoundVariants: [
+        {
+            colors: 'primary',
+            hideDivider: false,
+            className: 'border-b-border-white-40',
+        },
+        {
+            colors: 'gray',
+            hideDivider: false,
+            className: 'border-b-border-neutral-primary',
+        },
+    ],
+    defaultVariants: {
+        colors: 'primary',
+        hideDivider: false,
+    },
+})
 
 interface SecondNavHeaderProps extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof secondNavHeaderVariants> {}
 
@@ -55,15 +52,16 @@ const SecondNavHeaderContext = createContext<VariantProps<typeof secondNavHeader
     hideDivider: false,
 })
 
-const SecondNavHeader = ({ colors, hideDivider, className, ...props }: SecondNavHeaderProps) => {
+const SecondNavHeader = ({ colors, hideDivider, className, children, ...props }: SecondNavHeaderProps) => {
     return (
         <SecondNavHeaderContext.Provider value={{ colors, hideDivider }}>
             <div
                 className={cn(secondNavHeaderVariants({ colors, hideDivider }), className)}
                 {...props}
-                aria-label="a secondary navigation navbar"
-                role="banner"
-            />
+                aria-label="a secondary navigation navbar "
+                role="banner">
+                <div className="max-w-container mx-auto flex flex-col md:flex-row md:items-center md:justify-between ">{children}</div>
+            </div>
         </SecondNavHeaderContext.Provider>
     )
 }

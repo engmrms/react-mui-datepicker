@@ -401,6 +401,12 @@ module.exports = {
                     'Alpha-success-20': '#07945533',
                 },
             },
+            width: {
+                container: 'var(--container-size)',
+            },
+            maxWidth: {
+                container: 'var(--container-size)',
+            },
             borderRadius: {
                 DEFAULT: '4px',
                 lg: 'var(--radius)',
