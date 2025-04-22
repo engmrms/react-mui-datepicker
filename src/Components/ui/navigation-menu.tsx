@@ -130,14 +130,14 @@ const NavigationHeader = React.forwardRef<HTMLHeadElement, React.HtmlHTMLAttribu
         <header
             ref={ref}
             className={cn(
-                'relative z-50 flex h-[72px] min-h-[72px] w-full bg-background-menu',
+                'relative z-50 flex h-[72px] min-h-[72px] w-full bg-background-menu px-space-04 md:px-space-06 ',
                 {
                     'after:absolute after:bottom-0 after:start-0 after:block after:h-[1px] after:w-full after:bg-background-neutral-100': divider,
                 },
                 className,
             )}
             {...props}>
-            <div className="flex w-full items-center justify-between px-space-04 md:px-space-06">{children}</div>
+            <div className="max-w-container mx-auto flex w-full items-center  justify-between ">{children}</div>
         </header>
     ),
 )

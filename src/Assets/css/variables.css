@@ -4,6 +4,7 @@
     --sidebar-width: 88px;
     --sidebar-width-mobile: 320px;
     --sidebar-width-icon: 3rem;
+    --container-size: 1280px;
 
     --background: theme(colors.neutral.50);
     --background-foreground: theme(colors.black);

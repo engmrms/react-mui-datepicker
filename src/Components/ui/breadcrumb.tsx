@@ -7,6 +7,7 @@ import { useMediaQuery } from 'usehooks-ts'
 import { cn } from '../../Lib/utils'
 import ShouldRender from '../ShouldRender'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './dropdown-menu'
+import { Stack } from './Layout'
 
 const Breadcrumb = React.forwardRef<
     HTMLElement,
@@ -74,7 +75,7 @@ BreadcrumbEllipsis.displayName = 'BreadcrumbElipssis'
 type Item = { title: string | string[]; path?: string; state?: unknown; render?: React.ReactNode }
 type PropsBreadcrumb = {
     items: Item[]
-    dir?: 'rtl'|'ltr'
+    dir?: 'rtl' | 'ltr'
 }
 
 const renderItem = ({ item }: { item: Item }) => {
@@ -112,12 +113,14 @@ const Breadcrumbs = ({ items, dir }: PropsBreadcrumb) => {
                                         <DropdownMenuTrigger>
                                             <BreadcrumbEllipsis />
                                         </DropdownMenuTrigger>
-                                        <DropdownMenuContent>
-                                            {items.slice(1, -1).map((item, idx) => (
-                                                <DropdownMenuItem key={idx} asChild>
-                                                    {renderItem({ item })}
-                                                </DropdownMenuItem>
-                                            ))}
+                                        <DropdownMenuContent className="!rounded border-border-neutral-secondary !p-space-01 shadow-xl">
+                                            <Stack gap={'none'} direction={'col'}>
+                                                {items.slice(1, -1).map((item, idx) => (
+                                                    <DropdownMenuItem key={idx} className="ps-space-02  text-body-01 focus:bg-transparent">
+                                                        {renderItem({ item })}
+                                                    </DropdownMenuItem>
+                                                ))}
+                                            </Stack>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                 </BreadcrumbItem>

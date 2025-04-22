@@ -42,11 +42,11 @@ interface FooterProps extends BottomSectionProps {
 const Footer = ({ colors = 'default', ...props }: FooterProps) => {
     return (
         <footer
-            className={cn(' px-space-06', {
+            className={cn(' px-space-04 md:px-space-06 ', {
                 'bg-background-SA-Flag text-text-oncolor-primary': colors === 'default',
                 'bg-background-neutral-100 text-text-default': colors === 'neutral',
             })}>
-            <div className="flex flex-col items-start py-space-05">
+            <div className="max-w-container mx-auto flex flex-col items-start py-space-05">
                 {/* link groups */}
                 <ShouldRender shouldRender={props.showGroupLinks}>
                     <div className="mb-space-08 grid w-full grid-cols-12 items-stretch gap-space-05 pb-space-07 pt-space-04">
