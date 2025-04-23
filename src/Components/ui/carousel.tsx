@@ -425,8 +425,8 @@ export function Carousel({
                         )}
                         {showDots && count > 0 && (
                             <div
-                                className={cn('flex', {
-                                    ' items-center gap-1': type === 'multiple',
+                                className={cn('flex  gap-space-02', {
+                                    ' items-center': type === 'multiple',
                                     'absolute inset-x-0 bottom-space-08 justify-center': type === 'single',
                                 })}>
                                 {renderDots()}
