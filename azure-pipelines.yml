@@ -1,16 +1,16 @@
 trigger:
-    batch: false
-    branches:
-        include:
-            - dev
-            - master
+  batch: false
+  branches:
+    include:
+      - dev
+      - master
 
 pool:
     name: windows-2019
     demands: java
 
 variables:
-    enableCodeScanning: 'true'
+    enableCodeScanning: true
 
 resources:
     repositories:
