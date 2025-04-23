@@ -133,7 +133,7 @@ const CarouselContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
 
     return (
         <div ref={carouselRef} className="overflow-hidden">
-            <div ref={ref} className={cn('flex', orientation === 'horizontal' ? 'ml-4' : '-mt-4 flex-col', className)} {...props} />
+            <div ref={ref} className={cn('flex', orientation === 'horizontal' ? 'mx-4' : '-mt-4 flex-col', className)} {...props} />
         </div>
     )
 })
@@ -159,6 +159,7 @@ interface CustomCarouselProps {
     slidesToShow?: number
     showPartial?: boolean
     dir?: 'ltr' | 'rtl'
+    type?: 'single' | 'multiple'
 }
 
 export function Carousel({
@@ -176,6 +177,7 @@ export function Carousel({
     slidesToShow,
     showPartial = true,
     dir = 'rtl',
+    type = 'multiple',
 }: Readonly<CustomCarouselProps>) {
     const [api, setApi] = React.useState<CarouselApi>()
     const [current, setCurrent] = React.useState(0)
@@ -187,11 +189,12 @@ export function Carousel({
 
     // Calculate item width based on slidesToShow if provided
     const calculatedItemWidth = React.useMemo(() => {
+        if (type === 'single') return '100%'
         if (slidesToShow) {
             return `calc(${100 / slidesToShow}% - ${showPartial ? '1rem' : '0px'})`
         }
         return typeof itemWidth === 'number' ? `${itemWidth}px` : itemWidth
-    }, [itemWidth, slidesToShow, showPartial])
+    }, [type, slidesToShow, itemWidth, showPartial])
 
     const animateToIndex = React.useCallback(
         (targetIndex: number) => {
@@ -369,12 +372,12 @@ export function Carousel({
                     direction: dir,
                     slidesToScroll: 1,
                 }}
-                className={cn('w-full', className)}>
-                <CarouselContent className="gap-space-04">
+                className={cn('relative w-full', className)}>
+                <CarouselContent className=" gap-space-04">
                     {React.Children.map(children, (child, index) => (
                         <CarouselItem
                             key={`${idPrefix}-item-${index}`}
-                            className={cn('transition-transform duration-300', itemClassName)}
+                            className={cn('transition-transform duration-300 ', itemClassName)}
                             style={{
                                 flex: `0 0 ${calculatedItemWidth}`,
                                 maxWidth: calculatedItemWidth,
@@ -385,9 +388,17 @@ export function Carousel({
                 </CarouselContent>
 
                 {needsNavigation && (
-                    <div className="container mt-space-05 flex items-center justify-between">
+                    <div
+                        className={cn({
+                            'container mt-space-05 flex items-center justify-between': type === 'multiple',
+                        })}>
                         {showArrows && (
-                            <div className="flex items-center gap-2">
+                            <div
+                                className={cn({
+                                    'flex items-center gap-2': type === 'multiple',
+                                    'absolute inset-x-space-04 top-1/2 z-0 mx-auto flex max-w-container -translate-y-1/2 items-center justify-between':
+                                        type === 'single',
+                                })}>
                                 <Button
                                     onClick={handlePrev}
                                     colors="primary"
@@ -412,7 +423,15 @@ export function Carousel({
                                 </Button>
                             </div>
                         )}
-                        {showDots && count > 0 && <div className="flex items-center gap-1">{renderDots()}</div>}
+                        {showDots && count > 0 && (
+                            <div
+                                className={cn('flex', {
+                                    ' items-center gap-1': type === 'multiple',
+                                    'absolute inset-x-0 bottom-space-08 justify-center': type === 'single',
+                                })}>
+                                {renderDots()}
+                            </div>
+                        )}
                     </div>
                 )}
             </CarouselPrimitive>
