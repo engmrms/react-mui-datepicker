@@ -24,17 +24,24 @@ export const Default: Story = {
         loop: false,
         showArrows: true,
         showDots: true,
-        maxDots:6,
-        showPartial:false
+        maxDots: 6,
+        showPartial: false,
+        type: 'single',
+    },
+    argTypes: {
+        type: {
+            options: ['single', 'multiple'],
+            control: { type: 'radio' },
+        },
     },
 
     render: arg => {
         return (
-            <Carousel  {...arg} className="w-full  ">
-                {Array.from({ length: 5 }).map((_, index) => (
-                    <div className="p-1" key={index}>
-                        <Card>
-                            <CardContent className="flex aspect-square items-center justify-center p-6">
+            <Carousel {...arg} className="w-full  ">
+                {Array.from({ length: 8 }).map((_, index) => (
+                    <div className="" key={index}>
+                        <Card className="h-96">
+                            <CardContent className="flex h-full  items-center justify-center p-6">
                                 <span className="text-4xl font-semibold">{index + 1}</span>
                             </CardContent>
                         </Card>
