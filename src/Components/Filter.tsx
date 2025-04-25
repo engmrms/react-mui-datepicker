@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
-
+import { FilterAlt } from 'google-material-icons/filled'
+import { ExpandLess, HighlightOff } from 'google-material-icons/outlined'
+import React, { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import { useMediaQuery } from 'usehooks-ts'
+import { strings } from '../Locales'
 import {
     Button,
+    ButtonProps,
     Checkbox,
+    cn,
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
     ComboboxControlNoForm,
+    Command,
+    CommandEmpty,
+    CommandInput,
+    CommandItem,
+    CommandList,
+    Label,
     MultiSelect,
     RadioGroup,
     RadioGroupItem,
@@ -18,92 +29,32 @@ import {
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-    ShouldRender,
-} from './'
+    useLanguage,
+} from '../package'
 
-import { FilterAlt } from 'google-material-icons/filled'
-import { ExpandLess, HighlightOff } from 'google-material-icons/outlined'
-import { useMediaQuery } from 'usehooks-ts'
-import { strings } from '../Locales'
-import { ButtonProps, cn, Command, CommandEmpty, CommandInput, CommandItem, CommandList, Label, useLanguage } from '../package'
-
-const handleNumberDisplay = (num: number) => {
-    return num < 10 ? '0' + num?.toString() : num?.toString()
+// Types
+type FilterValue = {
+    [name: string]: string | string[]
 }
 
-type Value = { [name: string]: string | string[] }
-interface FileContext {
-    upsert: ({ name, selectedValue }: { name: string; selectedValue: string | string[] }) => void
-    value?: Value
+interface FilterContextValue {
+    value?: FilterValue
+    upsert: (params: { name: string; selectedValue: string | string[] }) => void
+    reset: () => void
 }
-const FilterContext = React.createContext<FileContext | null>(null)
 
-const useFilterContext = (onValueChange?: (value?: Value) => void, onValueReset?: () => void) => {
-    const [value, setValue] = useState<Value>()
-    const mobileView = useMediaQuery('(max-width: 767px)')
-
-    const upsert = ({ name, selectedValue }: { name: string; selectedValue: string | string[] }) => {
-        const newValue = { ...value, [name]: selectedValue }
-        setValue(newValue)
-        if (!mobileView) onValueChange?.(newValue)
-    }
-
-    const resetFilters = () => {
-        const newValue = { ...value }
-        for (const k in newValue) {
-            newValue[k] = ''
-        }
-        setValue(newValue)
-        onValueReset?.()
-    }
-
-    return { value, upsert, resetFilters }
-}
-interface FilterGroupProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
+interface FilterGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Optional label for the filter group */
     label?: string
-    onValueChange?: (value?: Value) => void
+    /** Callback when filter values change */
+    onValueChange?: (value?: FilterValue) => void
+    /** Callback when filters are reset */
     onValueReset?: () => void
+    /** Custom label for the reset button */
     resetButtonLabel?: string
+    /** Additional props for the reset button */
     resetButtonProps?: ButtonProps
 }
-
-const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
-    ({ children, onValueChange, onValueReset, label, resetButtonProps, resetButtonLabel, ...props }, ref) => {
-        const mobileView = useMediaQuery('(max-width: 767px)')
-        const { value, resetFilters, upsert } = useFilterContext(onValueChange, onValueReset)
-
-        return (
-            <div ref={ref} {...props}>
-                <FilterContext.Provider value={{ value, upsert }}>
-                    <ShouldRender shouldRender={mobileView}>
-                        <FilterMobileView resetFilters={resetFilters} onClickFilter={() => onValueChange?.(value)} label={label}>
-                            {children}
-                        </FilterMobileView>
-                    </ShouldRender>
-
-                    <ShouldRender shouldRender={!mobileView}>
-                        {children}
-                        <ShouldRender shouldRender={value && Object.values(value).some(Boolean)}>
-                            <Button
-                                colors={'neutral'}
-                                rounded={'default'}
-                                variant={'text'}
-                                size={'sm'}
-                                onClick={resetFilters}
-                                className="ms-auto"
-                                {...resetButtonProps}>
-                                {resetButtonLabel || strings.Shared.reset}
-                                <HighlightOff className="ms-space-01" />
-                            </Button>
-                        </ShouldRender>
-                    </ShouldRender>
-                </FilterContext.Provider>
-            </div>
-        )
-    },
-)
-
-FilterGroup.displayName = 'FilterGroup'
 
 interface FilterSelectProps {
     placeholder: string
@@ -117,83 +68,102 @@ interface FilterSelectProps {
     defaultOpen?: boolean
 }
 
-const FilterSelect = ({ multi, data, placeholder, disabled, isLoading, rounded, size, name, defaultOpen }: FilterSelectProps) => {
-    const context = React.useContext(FilterContext)
-    const mobileView = useMediaQuery('(max-width: 767px)')
-    const { dir } = useLanguage()
+interface MenuItemProps<T extends string | number = string> {
+    label: string
+    value: T
+    isCkecked?: boolean
+    onChange?: (checked: boolean, value: T) => void
+    name: string
+    multi?: boolean
+}
 
-    if (mobileView)
+// Context
+const FilterContext = createContext<FilterContextValue | null>(null)
+
+const useFilterContext = () => {
+    const context = useContext(FilterContext)
+    if (!context) {
+        throw new Error('useFilterContext must be used within a FilterGroup')
+    }
+    return context
+}
+
+// Utility Functions
+const handleNumberDisplay = (num: number) => {
+    return num < 10 ? '0' + num?.toString() : num?.toString()
+}
+
+// Components
+const MenuItem = <T extends string | number = string>({ label, value, isCkecked, onChange, name, multi }: MenuItemProps<T>) => {
+    return (
+        <div className="flex w-full items-center justify-between hover:bg-card-hover">
+            <Label htmlFor={label} className="text-Body-01 flex grow gap-space-02 font-medium">
+                {label}
+            </Label>
+            {multi ? (
+                <Checkbox
+                    id={`${name}${value}`}
+                    value={value}
+                    size="sm"
+                    onCheckedChange={checked => onChange?.(typeof checked === 'boolean' ? checked : false, value)}
+                    checked={isCkecked}
+                />
+            ) : (
+                <RadioGroupItem id={`${name}${value}`} value={value.toString()} />
+            )}
+        </div>
+    )
+}
+
+const FilterMobileMultipleSelect = ({ data, name, multi }: { name: string; data: { value: string; label: string }[]; multi?: boolean }) => {
+    const [showMore, setShowMore] = useState(false)
+    const { value, upsert } = useFilterContext()
+    const [search, setSearch] = useState('')
+    const limit = 9
+
+    const renderMenuItem = (item: { value: string; label: string }) => {
+        const isChecked = typeof value?.[name] === 'object' && !!(value?.[name] as string[])?.find(selectedId => selectedId === item.value)
+
         return (
-            <Collapsible dir={dir} defaultOpen={defaultOpen}>
-                <CollapsibleTrigger
-                    id="subcategoriesCollapsible"
-                    className="flex w-full items-center justify-between py-space-03 [&>svg]:data-[state=closed]:rotate-180">
-                    <div className="flex grow items-center justify-between gap-space-01">
-                        <span className="text-body-02">{placeholder}</span>
-                        <ShouldRender shouldRender={typeof context?.value?.[name] === 'object' && !!context?.value?.[name]?.length}>
-                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-background-secondary text-caption-01 text-primary">
-                                {handleNumberDisplay(context?.value?.[name]?.length || 0)}
-                            </span>
-                        </ShouldRender>
-                        <ShouldRender shouldRender={typeof context?.value?.[name] === 'string' && !!context?.value?.[name]}>
-                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-background-secondary text-caption-01 text-primary">
-                                01
-                            </span>
-                        </ShouldRender>
-                    </div>
-                    <ExpandLess className="text-primary" />
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                    <ShouldRender shouldRender={multi}>
-                        <FilterMobileMultipleSelect data={data} name={name} multi={multi} />
-                    </ShouldRender>
-
-                    <ShouldRender shouldRender={!multi}>
-                        <RadioGroup
-                            name={name}
-                            size="sm"
-                            dir={dir}
-                            value={typeof context?.value?.[name] === 'string' ? context?.value?.[name] : undefined}
-                            onValueChange={value => {
-                                context?.upsert({ name, selectedValue: value })
-                            }}>
-                            <FilterMobileMultipleSelect data={data} name={name} multi={multi} />
-                        </RadioGroup>
-                    </ShouldRender>
-                </CollapsibleContent>
-            </Collapsible>
+            <CommandItem key={item.label}>
+                <MenuItem
+                    multi={multi}
+                    name={name}
+                    label={item.label}
+                    value={item.value}
+                    isCkecked={isChecked}
+                    onChange={checked => {
+                        const newValue = [...(value?.[name] ?? [])]
+                        if (checked) newValue.push(item.value)
+                        if (!checked) {
+                            const index = newValue.indexOf(item.value)
+                            newValue.splice(index, 1)
+                        }
+                        upsert({ name, selectedValue: newValue })
+                    }}
+                />
+            </CommandItem>
         )
+    }
 
-    return multi ? (
-        <MultiSelect
-            options={data || []}
-            onChange={value => {
-                context?.upsert({ name, selectedValue: value })
-            }}
-            selectedValues={(context?.value?.[name] as string[]) || []}
-            dataTestId="muliSelect"
-            placeholder={placeholder}
-            disabled={disabled}
-            rounded={rounded}
-            size={size}
-            className="!w-max"
-        />
-    ) : (
-        <ComboboxControlNoForm
-            className="!w-max"
-            rounded={rounded}
-            options={data || []}
-            optionLabel="label"
-            optionValue="value"
-            placeholder={placeholder}
-            onChange={value => {
-                context?.upsert({ name, selectedValue: value })
-            }}
-            value={(context?.value?.[name] as string) || ''}
-            size={size}
-            disabled={disabled}
-            isLoading={isLoading}
-        />
+    const filteredItems = data.filter(item => item.label.toLowerCase().includes(search.toLowerCase()))
+
+    return (
+        <Command shouldFilter={false}>
+            {data.length > 9 && <CommandInput placeholder={strings.Shared.Search} value={search} onValueChange={setSearch} />}
+            <CommandList className="h-full max-h-max">
+                <CommandEmpty>{strings.Shared.noResultsFound}</CommandEmpty>
+                {filteredItems?.slice(0, limit)?.map(renderMenuItem)}
+                {filteredItems?.length > limit && (
+                    <Collapsible onOpenChange={setShowMore}>
+                        <CollapsibleContent>{filteredItems?.slice(limit)?.map(renderMenuItem)}</CollapsibleContent>
+                        <CollapsibleTrigger className="flex w-full items-center justify-center py-space-02 text-primary">
+                            <span>{showMore ? strings.Shared.showLess : strings.Shared.showMore}</span>
+                        </CollapsibleTrigger>
+                    </Collapsible>
+                )}
+            </CommandList>
+        </Command>
     )
 }
 
@@ -216,7 +186,7 @@ const FilterMobileView = ({
                         <Button
                             id="mobileFilter"
                             variant="text"
-                            colors={'neutral'}
+                            colors="neutral"
                             className={cn({
                                 '!px-space-02': !label,
                             })}>
@@ -235,7 +205,7 @@ const FilterMobileView = ({
                     <Button id="servicesRest" size="sm" variant="text" colors="neutral" onClick={resetFilters} className="grow">
                         {strings.Shared.reset}
                     </Button>
-                    <SheetClose asChild className="">
+                    <SheetClose asChild>
                         <Button id="servicesShowResults" size="sm" colors="primary" onClick={onClickFilter} className="grow">
                             {strings.Shared.showResults}
                         </Button>
@@ -246,89 +216,151 @@ const FilterMobileView = ({
     )
 }
 
-interface MenuItemProps<T extends string | number = string> {
-    label: string
-    value: T
-    isCkecked?: boolean
-    onChange?: (checked: boolean, value: T) => void
-    name: string
-    multi?: boolean
-}
+const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading, rounded, size, name, defaultOpen }: FilterSelectProps) => {
+    const { value, upsert } = useFilterContext()
+    const mobileView = useMediaQuery('(max-width: 767px)')
+    const { dir } = useLanguage()
 
-const MenuItem = <T extends string | number = string>({ label, value, isCkecked, onChange, name, multi }: MenuItemProps<T>) => {
-    return (
-        <div className="flex w-full items-center justify-between   hover:bg-card-hover">
-            <Label htmlFor={label} className="text-Body-01 flex grow gap-space-02 font-medium">
-                {label}
-            </Label>
-            <ShouldRender shouldRender={multi}>
-                <Checkbox
-                    id={`${name}${value}`}
-                    value={value}
-                    size={'sm'}
-                    onCheckedChange={checked => onChange?.(typeof checked === 'boolean' ? checked : false, value)}
-                    checked={isCkecked}
-                />
-            </ShouldRender>
-            <ShouldRender shouldRender={!multi}>
-                <RadioGroupItem id={`${name}${value}`} value={value.toString()} />
-            </ShouldRender>
-        </div>
-    )
-}
-
-const FilterMobileMultipleSelect = ({ data, name, multi }: { name: string; data: { value: string; label: string }[]; multi?: boolean }) => {
-    const [showMore, setShowMore] = useState(false)
-    const context = React.useContext(FilterContext)
-    const [search, setSearch] = useState('')
-    const limit = 9
-
-    const renderMenuItem = (item: { value: string; label: string }) => {
-        const isChecked =
-            typeof context?.value?.[name] === 'object' && !!(context?.value?.[name] as string[])?.find(selectedId => selectedId === item.value)
-
+    if (mobileView) {
         return (
-            <CommandItem key={item.label}>
-                <MenuItem
-                    multi={multi}
-                    name={name}
-                    label={item.label}
-                    value={item.value}
-                    isCkecked={isChecked}
-                    onChange={value => {
-                        const newValue = [...(context?.value?.[name] ?? [])]
-                        if (value) newValue.push(item.value)
-                        if (!value) {
-                            const index = newValue.indexOf(item.value)
-                            newValue.splice(index, 1)
-                        }
-                        context?.upsert({ name, selectedValue: newValue })
-                    }}
-                />
-            </CommandItem>
+            <Collapsible dir={dir} defaultOpen={defaultOpen}>
+                <CollapsibleTrigger
+                    id="subcategoriesCollapsible"
+                    className="flex w-full items-center justify-between py-space-03 [&>svg]:data-[state=closed]:rotate-180">
+                    <div className="flex grow items-center justify-between gap-space-01">
+                        <span className="text-body-02">{placeholder}</span>
+                        {typeof value?.[name] === 'object' && !!value?.[name]?.length && (
+                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-background-secondary text-caption-01 text-primary">
+                                {handleNumberDisplay(value?.[name]?.length || 0)}
+                            </span>
+                        )}
+                        {typeof value?.[name] === 'string' && !!value?.[name] && (
+                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-background-secondary text-caption-01 text-primary">
+                                01
+                            </span>
+                        )}
+                    </div>
+                    <ExpandLess className="text-primary" />
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                    {multi ? (
+                        <FilterMobileMultipleSelect data={data} name={name} multi={multi} />
+                    ) : (
+                        <RadioGroup
+                            name={name}
+                            size="sm"
+                            dir={dir}
+                            value={typeof value?.[name] === 'string' ? value?.[name] : undefined}
+                            onValueChange={value => upsert({ name, selectedValue: value })}>
+                            <FilterMobileMultipleSelect data={data} name={name} multi={multi} />
+                        </RadioGroup>
+                    )}
+                </CollapsibleContent>
+            </Collapsible>
         )
     }
-    const filteredItems = data.filter(item => item.label.toLowerCase().includes(search.toLowerCase()))
 
-    return (
-        <Command shouldFilter={false}>
-            <ShouldRender shouldRender={data.length > 9}>
-                <CommandInput placeholder={strings.Shared.Search} value={search} onValueChange={e => setSearch(e)} />
-            </ShouldRender>
-            <CommandList className="h-full max-h-max">
-                <CommandEmpty>{strings.Shared.noResultsFound}</CommandEmpty>
-                {filteredItems?.slice(0, limit)?.map(renderMenuItem)}
-                <ShouldRender shouldRender={filteredItems?.length > limit}>
-                    <Collapsible onOpenChange={setShowMore}>
-                        <CollapsibleContent>{filteredItems?.slice(limit)?.map(renderMenuItem)}</CollapsibleContent>
-                        <CollapsibleTrigger className="flex w-full items-center justify-center py-space-02 text-primary">
-                            <span> {showMore ? strings.Shared.showLess : strings.Shared.showMore}</span>
-                        </CollapsibleTrigger>
-                    </Collapsible>
-                </ShouldRender>
-            </CommandList>
-        </Command>
+    return multi ? (
+        <MultiSelect
+            options={data || []}
+            onChange={value => upsert({ name, selectedValue: value })}
+            selectedValues={(value?.[name] as string[]) || []}
+            dataTestId="muliSelect"
+            placeholder={placeholder}
+            disabled={disabled}
+            rounded={rounded}
+            size={size}
+            className="!w-max"
+        />
+    ) : (
+        <ComboboxControlNoForm
+            className="!w-max"
+            rounded={rounded}
+            options={data || []}
+            optionLabel="label"
+            optionValue="value"
+            placeholder={placeholder}
+            onChange={value => upsert({ name, selectedValue: value })}
+            value={(value?.[name] as string) || ''}
+            size={size}
+            disabled={disabled}
+            isLoading={isLoading}
+        />
     )
-}
+})
+
+FilterSelect.displayName = 'FilterSelect'
+
+const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
+    ({ children, onValueChange, onValueReset, label, resetButtonProps, resetButtonLabel, className, ...props }, ref) => {
+        const mobileView = useMediaQuery('(max-width: 767px)')
+        const [value, setValue] = useState<FilterValue>()
+
+        const upsert = useCallback(
+            ({ name, selectedValue }: { name: string; selectedValue: string | string[] }) => {
+                const newValue = { ...value, [name]: selectedValue }
+                setValue(newValue)
+                if (!mobileView) {
+                    onValueChange?.(newValue)
+                }
+            },
+            [value, mobileView, onValueChange],
+        )
+
+        const reset = useCallback(() => {
+            const newValue = { ...value }
+            for (const key in newValue) {
+                newValue[key] = ''
+            }
+            setValue(newValue)
+            onValueReset?.()
+        }, [value, onValueReset])
+
+        const contextValue = useMemo(
+            () => ({
+                value,
+                upsert,
+                reset,
+            }),
+            [value, upsert, reset],
+        )
+
+        const hasActiveFilters = useMemo(
+            () => value && Object.values(value).some(val => (Array.isArray(val) ? val.length > 0 : Boolean(val))),
+            [value],
+        )
+
+        return (
+            <div ref={ref} className={cn('flex', className)} {...props}>
+                <FilterContext.Provider value={contextValue}>
+                    {mobileView ? (
+                        <FilterMobileView resetFilters={reset} onClickFilter={() => onValueChange?.(value)} label={label}>
+                            {children}
+                        </FilterMobileView>
+                    ) : (
+                        <>
+                            {children}
+                            {hasActiveFilters && (
+                                <Button
+                                    colors="neutral"
+                                    rounded="default"
+                                    variant="text"
+                                    size="sm"
+                                    onClick={reset}
+                                    className="ms-auto"
+                                    {...resetButtonProps}>
+                                    {resetButtonLabel || strings.Shared.reset}
+                                    <HighlightOff className="ms-space-01" />
+                                </Button>
+                            )}
+                        </>
+                    )}
+                </FilterContext.Provider>
+            </div>
+        )
+    },
+)
+
+FilterGroup.displayName = 'FilterGroup'
 
 export { FilterGroup, FilterSelect }
