@@ -28,7 +28,7 @@ export const Default: Story = {
         asChild: false,
         disabled: false,
         colors: 'primary',
-
+        size: 'default',
         dir: 'ltr',
     },
 

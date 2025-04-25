@@ -24,12 +24,19 @@ type Story = StoryObj<typeof FilterGroup>
 export const Default: Story = {
     args: {
         label: strings.Shared.Select,
+        resetButtonProps: { rounded: 'full', size: 'default' },
     },
     render: arg => (
-        <FilterGroup onValueChange={v => console.log('main', v)} className="flex gap-space-03 " onValueReset={() => console.log('first')} {...arg}>
+        <FilterGroup
+            onValueChange={v => console.log('main', v)}
+            className="flex gap-space-03 "
+            onValueReset={() => console.log('first')}
+            resetButtonProps={{ rounded: 'full', size: 'default' }}
+            {...arg}>
             <FilterSelect
                 defaultOpen
                 name="test"
+                rounded="full"
                 placeholder="select"
                 data={Array.from({ length: 10 }, (_, i) => ({
                     value: i.toString(),
@@ -40,6 +47,7 @@ export const Default: Story = {
                 name="test2"
                 multi
                 placeholder="select"
+                rounded="full"
                 data={Array.from({ length: 10 }, (_, i) => ({
                     value: i.toString(),
                     label: `multi${i}`,
