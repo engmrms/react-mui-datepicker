@@ -81,6 +81,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps & InputP
                             {inputValue && (
                                 <button type="button" className="text-text-default" onClick={handleClear}>
                                     <Close size={20} />
+                                    <span className="sr-only">{strings.Shared.Clear}</span>
                                 </button>
                             )}
                             {inputValue && type === 'onButton' && <span className="mx-space-01 block h-space-05 border" />}

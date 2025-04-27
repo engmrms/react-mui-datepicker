@@ -64,6 +64,7 @@ export const en = {
         showLess: 'Show less',
         showMore: 'Show more',
         noResultsFound: 'No results found',
+        Clear: 'Clear',
     },
 
     Footer: {

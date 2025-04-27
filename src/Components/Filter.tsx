@@ -96,10 +96,7 @@ const handleNumberDisplay = (num: number) => {
 // Components
 const MenuItem = <T extends string | number = string>({ label, value, isCkecked, onChange, name, multi }: MenuItemProps<T>) => {
     return (
-        <div className="flex w-full items-center justify-between hover:bg-card-hover">
-            <Label htmlFor={label} className="text-Body-01 flex grow gap-space-02 font-medium">
-                {label}
-            </Label>
+        <div className="flex w-full items-center  gap-space-02 ">
             {multi ? (
                 <Checkbox
                     id={`${name}${value}`}
@@ -111,21 +108,23 @@ const MenuItem = <T extends string | number = string>({ label, value, isCkecked,
             ) : (
                 <RadioGroupItem id={`${name}${value}`} value={value.toString()} />
             )}
+            <Label htmlFor={label} className="text-Body-01 flex grow gap-space-02">
+                {label}
+            </Label>
         </div>
     )
 }
 
 const FilterMobileMultipleSelect = ({ data, name, multi }: { name: string; data: { value: string; label: string }[]; multi?: boolean }) => {
-    const [showMore, setShowMore] = useState(false)
     const { value, upsert } = useFilterContext()
     const [search, setSearch] = useState('')
-    const limit = 9
+    const limit = 5
 
     const renderMenuItem = (item: { value: string; label: string }) => {
         const isChecked = typeof value?.[name] === 'object' && !!(value?.[name] as string[])?.find(selectedId => selectedId === item.value)
 
         return (
-            <CommandItem key={item.label}>
+            <CommandItem key={item.label} className="py-space-01">
                 <MenuItem
                     multi={multi}
                     name={name}
@@ -149,16 +148,18 @@ const FilterMobileMultipleSelect = ({ data, name, multi }: { name: string; data:
     const filteredItems = data.filter(item => item.label.toLowerCase().includes(search.toLowerCase()))
 
     return (
-        <Command shouldFilter={false}>
+        <Command shouldFilter={false} className="pt-space-03">
             {data.length > 9 && <CommandInput placeholder={strings.Shared.Search} value={search} onValueChange={setSearch} />}
             <CommandList className="h-full max-h-max">
                 <CommandEmpty>{strings.Shared.noResultsFound}</CommandEmpty>
                 {filteredItems?.slice(0, limit)?.map(renderMenuItem)}
                 {filteredItems?.length > limit && (
-                    <Collapsible onOpenChange={setShowMore}>
+                    <Collapsible>
                         <CollapsibleContent>{filteredItems?.slice(limit)?.map(renderMenuItem)}</CollapsibleContent>
-                        <CollapsibleTrigger className="flex w-full items-center justify-center py-space-02 text-primary">
-                            <span>{showMore ? strings.Shared.showLess : strings.Shared.showMore}</span>
+                        <CollapsibleTrigger className="flex w-full items-center   gap-space-01 py-space-01 pe-space-02 ps-space-03  text-body-01 text-primary">
+                            <span className="group-data-[state=closed]:hidden">{strings.Shared.showLess}</span>
+                            <span className="group-data-[state=open]:hidden">{strings.Shared.showMore}</span>
+                            <ExpandLess size={16} className={'transition-transform duration-300 group-data-[state=closed]:rotate-180'} />
                         </CollapsibleTrigger>
                     </Collapsible>
                 )}
@@ -180,27 +181,23 @@ const FilterMobileView = ({
 }) => {
     return (
         <Sheet>
-            <div className="flex justify-between">
-                <SheetTrigger asChild>
-                    <div className="flex items-center gap-space-01">
-                        <Button
-                            id="mobileFilter"
-                            variant="text"
-                            colors="neutral"
-                            className={cn({
-                                '!px-space-02': !label,
-                            })}>
-                            <FilterAlt />
-                            {label && <span>{label}</span>}
-                        </Button>
-                    </div>
-                </SheetTrigger>
-            </div>
-            <SheetContent className="flex flex-col gap-0 bg-white p-0" side="bottom">
+            <SheetTrigger asChild>
+                <Button
+                    id="mobileFilter"
+                    colors="neutral"
+                    className={cn({
+                        '!px-space-02': !label,
+                    })}>
+                    <FilterAlt />
+                    {label && <span>{label}</span>}
+                </Button>
+            </SheetTrigger>
+
+            <SheetContent side="bottom">
                 <SheetHeader>
                     <SheetTitle>{strings.Shared.sortBy}</SheetTitle>
                 </SheetHeader>
-                <SheetBody className="px-space-04 py-space-00">{children}</SheetBody>
+                <SheetBody className="px-space-00 py-space-02">{children}</SheetBody>
                 <SheetFooter className="gap-space-02 p-space-04">
                     <Button id="servicesRest" size="sm" variant="text" colors="neutral" onClick={resetFilters} className="grow">
                         {strings.Shared.reset}
@@ -223,24 +220,24 @@ const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading
 
     if (mobileView) {
         return (
-            <Collapsible dir={dir} defaultOpen={defaultOpen}>
-                <CollapsibleTrigger
-                    id="subcategoriesCollapsible"
-                    className="flex w-full items-center justify-between py-space-03 [&>svg]:data-[state=closed]:rotate-180">
-                    <div className="flex grow items-center justify-between gap-space-01">
-                        <span className="text-body-02">{placeholder}</span>
+            <Collapsible dir={dir} defaultOpen={defaultOpen} className="border-b border-border-primary px-space-03 py-space-02">
+                <CollapsibleTrigger id="subcategoriesCollapsible" className=" flex w-full items-center  justify-between py-space-01 ps-space-02 ">
+                    <span className="text-body-01 font-semibold">{placeholder}</span>
+                    <div className="flex items-center  gap-space-01">
                         {typeof value?.[name] === 'object' && !!value?.[name]?.length && (
-                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-background-secondary text-caption-01 text-primary">
+                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-white">
                                 {handleNumberDisplay(value?.[name]?.length || 0)}
                             </span>
                         )}
                         {typeof value?.[name] === 'string' && !!value?.[name] && (
-                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-background-secondary text-caption-01 text-primary">
+                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-white">
                                 01
                             </span>
                         )}
+                        <Button variant={'text'} type="button" size={'icon-sm'} colors={'gray'}>
+                            <ExpandLess className=" transition-transform duration-300 group-data-[state=closed]:rotate-180" />
+                        </Button>
                     </div>
-                    <ExpandLess className="text-primary" />
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                     {multi ? (

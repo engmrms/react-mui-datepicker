@@ -56,7 +56,7 @@ const RadioGroupItem = React.forwardRef<
     const context = React.useContext(RadioGroupContext)
 
     return (
-        <div className="flex size-space-06 items-center justify-center">
+        <div className="flex  items-center justify-center">
             <RadioGroupPrimitive.Item
                 ref={ref}
                 className={cn(radioGroupVariants({ colors: context.colors, size: context.size, className }))}

@@ -63,6 +63,7 @@ export const ar = {
         showLess: 'أظهر أقل',
         showMore: 'أظهر أكثر',
         noResultsFound: 'لا توجد نتائج',
+        Clear: 'مسح',
     },
 
     Footer: {
