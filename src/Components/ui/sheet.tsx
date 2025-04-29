@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { cva, type VariantProps } from 'class-variance-authority'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import clsx from 'clsx'
 import { Close, ViewSidebar, WidthFull } from 'google-material-icons/outlined'
@@ -14,16 +14,13 @@ import { Button } from './button'
 
 type SheetStore = {
     isCenter: boolean
-    isFooterUsed: boolean
+
     setIsCenter: (center?: boolean) => void
-    setIsFooterUsed: (state: boolean) => void
 }
 
 const useSheet = create<SheetStore>(set => ({
     isCenter: false,
-    isFooterUsed: false,
     setIsCenter: center => set(state => ({ isCenter: center ?? !state.isCenter })),
-    setIsFooterUsed: state => set(() => ({ isFooterUsed: state })),
 }))
 
 const Sheet = SheetPrimitive.Root
@@ -135,18 +132,10 @@ const SheetHeader = ({ className, title, hideCenter, children, ...props }: React
 SheetHeader.displayName = 'SheetHeader'
 
 const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-    const { setIsFooterUsed } = useSheet()
-
-    useEffect(() => {
-        setIsFooterUsed(true)
-
-        return () => setIsFooterUsed(false)
-    }, [setIsFooterUsed])
-
     return (
         <div
             className={cn(
-                'absolute bottom-0 left-0 z-20 mt-auto flex w-full flex-col-reverse bg-background-secondary p-space-04 sm:flex-row sm:justify-end sm:space-x-2 sm:p-space-05',
+                'mt-auto flex w-full flex-col-reverse bg-background-secondary p-space-04 sm:flex-row sm:justify-end sm:space-x-2 sm:p-space-05',
                 className,
             )}
             {...props}
@@ -167,14 +156,12 @@ const SheetDescription = React.forwardRef<
 SheetDescription.displayName = SheetPrimitive.Description.displayName
 
 const SheetBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
-    const { isFooterUsed } = useSheet()
-
     return (
         <div
             ref={ref}
             className={cn(
                 'scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-w-2.5 scrollbar-h-2.5 scrollbar scrollbar-track-transparent scrollbar-thumb-border',
-                `${isFooterUsed ? 'mb-space-11' : ''} h-full overflow-auto rounded-4 border border-border-neutral-secondary bg-card p-space-05 text-foreground`,
+                `h-full overflow-auto rounded-4 border border-border-neutral-secondary bg-card p-space-04 text-foreground lg:p-space-05`,
                 className,
             )}
             {...props}
