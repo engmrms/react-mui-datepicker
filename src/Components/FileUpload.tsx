@@ -139,6 +139,7 @@ interface DragAndDropAreaProps {
     isDragging: boolean
     disabled?: boolean
     acceptedExtensions: string[]
+    maxSize: number
     onDragEnter: (e: React.DragEvent<HTMLDivElement>) => void
     onDragLeave: (e: React.DragEvent<HTMLDivElement>) => void
     onDragOver: (e: React.DragEvent<HTMLDivElement>) => void
@@ -150,6 +151,7 @@ function DragAndDropArea({
     isDragging,
     disabled,
     acceptedExtensions,
+    maxSize,
     onDragEnter,
     onDragLeave,
     onDragOver,
@@ -183,7 +185,7 @@ function DragAndDropArea({
                     className={cn('text-caption-01 text-text-paragraph-primary group-hover:text-text-success', {
                         'text-disabled-text-default-disabled': disabled,
                     })}>
-                    {strings.formatString(strings.Attachments.maxSize, 5)}
+                    {strings.formatString(strings.Attachments.maxSize, maxSize)}
                     {strings.Shared.comma} {strings.formatString(strings.Attachments.allowedFormats, acceptedExtensions.join(', '))}
                 </span>
                 <Button
@@ -331,6 +333,7 @@ function FileUpload({
                     onDragOver={handleDragOver}
                     onDrop={handleDrop}
                     onSelectFiles={handleSelectFiles}
+                    maxSize={maxSize}
                 />
             </ShouldRender>
             <ShouldRender shouldRender={!multiple}>
@@ -339,6 +342,7 @@ function FileUpload({
                     acceptedExtensions={acceptedExtensions}
                     onSelectFiles={handleSelectFiles}
                     isSelectedFile={!!files.length}
+                    maxSize={maxSize}
                 />
             </ShouldRender>
             <input
@@ -361,9 +365,10 @@ interface SingleUploadFileProps {
     acceptedExtensions: string[]
     onSelectFiles: () => void
     isSelectedFile?: boolean
+    maxSize: number
 }
 
-const SingleUploadFile = ({ disabled, acceptedExtensions, isSelectedFile, onSelectFiles }: SingleUploadFileProps) => {
+const SingleUploadFile = ({ disabled, acceptedExtensions, isSelectedFile, onSelectFiles, maxSize }: SingleUploadFileProps) => {
     return (
         <div className="space-y-space-04">
             <div className="space-y-space-02">
@@ -377,7 +382,7 @@ const SingleUploadFile = ({ disabled, acceptedExtensions, isSelectedFile, onSele
                     className={cn('text-caption-01 text-text-paragraph-primary group-hover:text-text-success', {
                         'text-disabled-text-default-disabled': disabled,
                     })}>
-                    {strings.formatString(strings.Attachments.maxSize, 5)}
+                    {strings.formatString(strings.Attachments.maxSize, maxSize)}
                     {strings.Shared.comma} {strings.formatString(strings.Attachments.allowedFormats, acceptedExtensions.join(', '))}
                 </p>
             </div>
