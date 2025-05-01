@@ -387,7 +387,7 @@ const SingleUploadFile = ({ disabled, acceptedExtensions, isSelectedFile, onSele
                 </p>
             </div>
             <ShouldRender shouldRender={!isSelectedFile}>
-                <Button onClick={onSelectFiles} colors={'neutral'} rounded={'default'} size={'sm'} disabled={disabled}>
+                <Button onClick={onSelectFiles} colors={'neutral'} rounded={'default'} type={'button'} size={'sm'} disabled={disabled}>
                     {strings.Attachments.browseFile}
                 </Button>
             </ShouldRender>
