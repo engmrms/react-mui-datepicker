@@ -42,10 +42,10 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
 const CommandInput = React.forwardRef<React.ElementRef<typeof CommandPrimitive.Input>, React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>>(
     ({ className, ...props }, ref) => (
         <div
-            className="mb-space-03 flex h-[40px] items-center gap-space-02 rounded-2 border border-border bg-muted px-space-03 py-space-02"
+            className="mb-space-03 flex h-[40px] items-center gap-space-02 rounded border border-form-field-border-default bg-form-field-background-default px-space-04 py-space-02 focus-within:border-form-field-border-pressed hover:border-form-field-border-hovered"
             cmdk-input-wrapper=""
             dir={document.dir}>
-            <Search className="size-[2.2rem] shrink-0 text-foreground-tertiary" />
+            <Search className="shrink-0 text-icon-default" />
             <CommandPrimitive.Input
                 ref={ref}
                 className={cn(
@@ -111,7 +111,7 @@ const CommandItem = React.forwardRef<React.ElementRef<typeof CommandPrimitive.It
         <CommandPrimitive.Item
             ref={ref}
             className={cn(
-                'pe-space-02 relative flex cursor-default select-none items-center rounded-1 py-space-02 ps-space-03 text-body-01 outline-none aria-selected:bg-card-hover  data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
+                'relative flex cursor-default select-none items-center rounded-1 py-space-02 pe-space-02 ps-space-03 text-body-01 outline-none aria-selected:bg-card-hover  data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
                 className,
             )}
             {...props}

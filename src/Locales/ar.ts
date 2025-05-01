@@ -60,6 +60,10 @@ export const ar = {
         siteLanguageText: 'English',
         lightMode: 'الوضع الفاتح',
         darkMode: 'الوضع الداكن',
+        showLess: 'أظهر أقل',
+        showMore: 'أظهر أكثر',
+        noResultsFound: 'لا توجد نتائج',
+        Clear: 'مسح',
     },
 
     Footer: {

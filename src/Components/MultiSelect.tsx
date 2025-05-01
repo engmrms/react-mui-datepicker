@@ -70,7 +70,7 @@ export function MultiSelect<T extends ValueType>({
                     {selectedValues?.length > 0 && (
                         <>
                             {selectedValues?.length > 1 ? (
-                                <label className="flex size-space-05 shrink-0 items-center justify-center rounded-full bg-background-secondary text-caption-01">
+                                <label className="ms-auto flex size-space-05 shrink-0 items-center justify-center rounded-full bg-inverted text-caption-01 text-white">
                                     {selectedValues.length}
                                 </label>
                             ) : (
@@ -95,7 +95,9 @@ export function MultiSelect<T extends ValueType>({
                     )}
                 </button>
             </PopoverTrigger>
-            <PopoverContent className="min-h-space-07 min-w-[var(--radix-popover-trigger-width)]   p-space-00" align="start">
+            <PopoverContent
+                className="min-h-space-07 min-w-[var(--radix-popover-trigger-width)] p-space-00   max-md:max-w-[var(--radix-popper-available-width)]"
+                align="start">
                 <Command className="w-full" shouldFilter={false}>
                     <div className="p-space-02">
                         <ShouldRender shouldRender={options?.length > 7}>

@@ -61,6 +61,10 @@ export const en = {
         siteLanguageText: 'العربية',
         lightMode: 'Light mode',
         darkMode: 'Dark mode',
+        showLess: 'Show less',
+        showMore: 'Show more',
+        noResultsFound: 'No results found',
+        Clear: 'Clear',
     },
 
     Footer: {
