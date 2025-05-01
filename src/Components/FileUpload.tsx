@@ -93,12 +93,12 @@ function FileItem({ file, onRemove }: FileItemProps) {
             className={cn('flex flex-col rounded border border-border-neutral-primary bg-background-neutral-100', {
                 'border-border-error': file.status === 'error',
             })}>
-            <div className="flex items-center justify-between p-space-02">
+            <div className="flex items-center justify-between truncate p-space-02">
                 <div className="flex gap-space-02">
                     {file.status === 'uploading' && <ActionLoader />}
                     {file.status === 'success' && <CheckCircle className="text-icon-success" />}
                     {file.status === 'error' && <Info className="text-icon-error" />}
-                    <span className="truncate text-body-01 font-medium text-text-default">{file.file.name}</span>
+                    <span className="text-body-01 font-medium text-text-default">{file.file.name}</span>
                 </div>
                 <Button
                     variant={'text'}
