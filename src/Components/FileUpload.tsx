@@ -107,7 +107,7 @@ function FileItem({ file, onRemove }: FileItemProps) {
                     colors={'neutral'}
                     onClick={() => onRemove(file.id)}
                     aria-label={`remove file ${file.file.name}`}
-                    className="mix-blend-multiply">
+                    className="mix-blend-multiply dark:mix-blend-normal">
                     <Close />
                 </Button>
             </div>
