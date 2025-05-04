@@ -205,11 +205,12 @@ function DragAndDropArea({
 
 interface FileUploadProps {
     acceptedFormats?: AcceptedFormatsType
-    onFileSelect?: (files: FileInfo[], updateCallback: (id: string, progress: number, status: FileInfo['status'], error?: string) => void) => void
+    onFileSelect?: (files: FileInfo[], updateCallback: (id: string, progress: number) => void) => void
     multiple?: boolean
     maxSize?: number
     disabled?: boolean
     maxFiles?: number
+    customError?: string
 }
 
 function FileUpload({
@@ -219,6 +220,7 @@ function FileUpload({
     disabled,
     maxSize = 1,
     maxFiles = Infinity,
+    customError,
 }: FileUploadProps) {
     const { files, addFiles, removeFile, updateProgress, updateStatus } = useFileUpload()
     const [isDragging, setIsDragging] = useState(false)
@@ -356,6 +358,9 @@ function FileUpload({
                 aria-describedby="fileInputDescription"
             />
             <FileList files={files} onRemove={removeFile} />
+            <ShouldRender shouldRender={!files.length && !!customError}>
+                <div className="text-caption-01 text-text-error">{customError}</div>
+            </ShouldRender>
         </div>
     )
 }
