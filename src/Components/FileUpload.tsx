@@ -244,7 +244,7 @@ function FileUpload({
     const handleFiles = useCallback(
         (newFiles: File[]) => {
             const newFileInfos = newFiles.map(file => {
-                const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9_.-]/g, '_')
+                const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9\u0600-\u06FF ._-]/g, '_')
                 const sanitizedFile = new File([file], sanitizedFileName, { type: file.type })
                 return {
                     id: `${file.name}-${Date.now()}-${window.crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substring(2, 9)}`,
