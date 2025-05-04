@@ -205,7 +205,7 @@ function DragAndDropArea({
 
 interface FileUploadProps {
     acceptedFormats?: AcceptedFormatsType
-    onFileSelect?: (files: FileInfo[], invalidFiles: FileInfo[], updateCallback: (id: string, progress: number) => void) => void
+    onFileSelect?: (files: FileInfo[], updateCallback: (id: string, progress: number) => void) => void
     multiple?: boolean
     maxSize?: number
     disabled?: boolean
@@ -269,22 +269,9 @@ function FileUpload({
                 const validation = validateFile(fileInfo.file)
                 return validation.isValid
             })
-            const invalidFileInfos = newFileInfos
-                .filter(fileInfo => {
-                    const validation = validateFile(fileInfo.file)
-                    return !validation.isValid
-                })
-                .map(fileInfo => {
-                    const validation = validateFile(fileInfo.file)
-                    return {
-                        ...fileInfo,
-                        error: validation.error,
-                        isValid: validation.isValid,
-                    }
-                })
 
             if (onFileSelect) {
-                onFileSelect(validFileInfos, invalidFileInfos, updateProgress)
+                onFileSelect(validFileInfos, updateProgress)
             }
 
             if (fileInputRef.current) {
