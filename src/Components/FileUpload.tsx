@@ -145,6 +145,7 @@ interface DragAndDropAreaProps {
     onDragOver: (e: React.DragEvent<HTMLDivElement>) => void
     onDrop: (e: React.DragEvent<HTMLDivElement>) => void
     onSelectFiles: () => void
+    browseLabel?: string
 }
 
 function DragAndDropArea({
@@ -157,6 +158,7 @@ function DragAndDropArea({
     onDragOver,
     onDrop,
     onSelectFiles,
+    browseLabel,
 }: DragAndDropAreaProps) {
     return (
         <div
@@ -196,7 +198,7 @@ function DragAndDropArea({
                     disabled={isDragging || disabled}
                     onClick={onSelectFiles}
                     aria-label="browse files">
-                    {strings.Attachments.browseFile}
+                    {browseLabel ?? strings.Attachments.browseFile}
                 </Button>
             </label>
         </div>
@@ -211,6 +213,10 @@ interface FileUploadProps {
     disabled?: boolean
     maxFiles?: number
     customError?: string
+    isInvalid?: boolean
+    isRequired?: boolean
+    label?: string
+    browseLabel?: string
 }
 
 function FileUpload({
@@ -221,6 +227,10 @@ function FileUpload({
     maxSize = 1,
     maxFiles = Infinity,
     customError,
+    isInvalid,
+    isRequired,
+    label,
+    browseLabel,
 }: FileUploadProps) {
     const { files, addFiles, removeFile, updateProgress, updateStatus } = useFileUpload()
     const [isDragging, setIsDragging] = useState(false)
@@ -324,7 +334,7 @@ function FileUpload({
     }, [isMaxFilesReached])
 
     return (
-        <div className="mx-auto flex w-full flex-col gap-space-02">
+        <div className={cn('mx-auto flex w-full flex-col gap-space-02', { 'rounded-1 border border-error p-space-02': isInvalid })}>
             <ShouldRender shouldRender={multiple}>
                 <DragAndDropArea
                     isDragging={isDragging}
@@ -336,6 +346,7 @@ function FileUpload({
                     onDrop={handleDrop}
                     onSelectFiles={handleSelectFiles}
                     maxSize={maxSize}
+                    browseLabel={browseLabel}
                 />
             </ShouldRender>
             <ShouldRender shouldRender={!multiple}>
@@ -345,6 +356,9 @@ function FileUpload({
                     onSelectFiles={handleSelectFiles}
                     isSelectedFile={!!files.length}
                     maxSize={maxSize}
+                    isRequired={isRequired}
+                    label={label}
+                    browseLabel={browseLabel}
                 />
             </ShouldRender>
             <input
@@ -371,18 +385,33 @@ interface SingleUploadFileProps {
     onSelectFiles: () => void
     isSelectedFile?: boolean
     maxSize: number
+    isRequired?: boolean
+    label?: string
+    browseLabel?: string
 }
 
-const SingleUploadFile = ({ disabled, acceptedExtensions, isSelectedFile, onSelectFiles, maxSize }: SingleUploadFileProps) => {
+const SingleUploadFile = ({
+    disabled,
+    acceptedExtensions,
+    isSelectedFile,
+    onSelectFiles,
+    maxSize,
+    isRequired,
+    label,
+    browseLabel,
+}: SingleUploadFileProps) => {
     return (
         <div className="space-y-space-04">
             <div className="space-y-space-02">
-                <p
+                <div
                     className={cn('text-body-02 text-form-field-text-label', {
                         'text-disabled-text-default-disabled': disabled,
                     })}>
-                    {strings.Attachments.uploadFiles}
-                </p>
+                    {label ?? strings.Attachments.uploadFiles}
+                    <ShouldRender shouldRender={isRequired}>
+                        <span className="ms-space-01 text-error">*</span>
+                    </ShouldRender>
+                </div>
                 <p
                     className={cn('text-caption-01 text-text-paragraph-primary group-hover:text-text-success', {
                         'text-disabled-text-default-disabled': disabled,
@@ -393,7 +422,7 @@ const SingleUploadFile = ({ disabled, acceptedExtensions, isSelectedFile, onSele
             </div>
             <ShouldRender shouldRender={!isSelectedFile}>
                 <Button onClick={onSelectFiles} colors={'neutral'} rounded={'default'} type={'button'} size={'sm'} disabled={disabled}>
-                    {strings.Attachments.browseFile}
+                    {browseLabel ?? strings.Attachments.browseFile}
                 </Button>
             </ShouldRender>
         </div>
