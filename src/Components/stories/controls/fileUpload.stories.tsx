@@ -12,6 +12,8 @@ const meta: Meta<typeof FileUpload> = {
         multiple: false,
         maxFiles: 1,
         maxSize: 1,
+        isInvalid: false,
+        isRequired: false,
     },
     parameters: {
         layout: 'centered',
