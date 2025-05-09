@@ -12,7 +12,8 @@ const inputVariants = cva(
         variants: {
             variant: {
                 default: 'bg-form-field-background-darker  hover:aria-[disabled=false]:border-form-field-border-default',
-                outline: 'bg-form-field-background-default aria-[disabled=false]:hover:border-form-field-border-hovered border border-form-field-border-default aria-[disabled=true]:border-border-disabled',
+                outline:
+                    'bg-form-field-background-default aria-[disabled=false]:hover:border-form-field-border-hovered border border-form-field-border-default aria-[disabled=true]:border-border-disabled',
                 lighter: 'bg-form-field-background-lighter  aria-[disabled=false]:hover:border-form-field-border-default',
             },
             rounded: {
@@ -55,7 +56,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 {startAdornment && <div className=" me-space-02 ">{startAdornment}</div>}
                 <input
                     type={type}
-                    className="file:font-mdium placeholder:text-form-field-text-placeholder w-full  bg-transparent outline-none  file:border-0 file:bg-transparent file:text-sm  "
+                    className="file:font-mdium w-full bg-transparent  outline-none file:border-0  file:bg-transparent file:text-sm placeholder:text-form-field-text-placeholder  "
                     ref={ref}
                     {...props}
                 />
