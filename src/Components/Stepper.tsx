@@ -66,9 +66,10 @@ Stepper.displayName = 'Stepper'
 type StepProps = React.ComponentPropsWithoutRef<'div'> & {
     'data-index'?: number
     lastStep?: boolean
+    progressClassName?: string
 }
 
-const Step = React.forwardRef<HTMLDivElement, StepProps>(({ className, children, ...props }, ref) => {
+const Step = React.forwardRef<HTMLDivElement, StepProps>(({ className, children, progressClassName, ...props }, ref) => {
     const { activeStep, variant } = React.useContext(StepperContext)
 
     const index = props?.['data-index'] ?? 0
@@ -80,14 +81,18 @@ const Step = React.forwardRef<HTMLDivElement, StepProps>(({ className, children,
     })
 
     return (
-        <div className="relative flex min-w-space-08 max-w-space-12 flex-col gap-space-02 group-data-[orientation=vertical]:min-h-space-08 group-data-[orientation=vertical]:flex-row ">
-            <div ref={ref} data-state={state} className={cn(stepperVariants({ variant }), className)} {...props}>
+        <div
+            className={cn(
+                'relative flex min-w-space-08 max-w-space-12 flex-col gap-space-02 group-data-[orientation=vertical]:min-h-space-08 group-data-[orientation=vertical]:flex-row',
+                className,
+            )}>
+            <div ref={ref} data-state={state} className={cn(stepperVariants({ variant }), progressClassName)} {...props}>
                 <ShouldRender shouldRender={variant === 'circle'}>
                     {state !== 'complete' && <span>{index}</span>}
                     {state === 'complete' && <Check size={20} />}
                 </ShouldRender>
                 <ShouldRender shouldRender={variant === 'dot'}>
-                    <div className="size-space-02 bg-border-neutral-primary group-data-[state=current]:border-2 group-data-[state=current]:border-primary  group-data-[state=complete]:bg-background-primary   rounded-full"></div>
+                    <div className="size-space-02 rounded-full bg-border-neutral-primary group-data-[state=current]:border-2  group-data-[state=current]:border-primary   group-data-[state=complete]:bg-background-primary"></div>
                 </ShouldRender>
             </div>
             <div className="me-space-04 hidden flex-col gap-space-01 md:flex ">{children}</div>
