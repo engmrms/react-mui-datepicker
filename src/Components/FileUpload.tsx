@@ -5,7 +5,7 @@ import { cn } from '../Lib'
 import ActionLoader from './ActionLoader'
 import { Button } from './ui/button'
 
-import { useCallback, useReducer, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { strings } from '../Locales'
 import ShouldRender from './ShouldRender'
 
@@ -21,67 +21,9 @@ type FileInfo = {
     id: string
     file: File
     progress: number
-    status: 'uploading' | 'success' | 'error'
+    status?: 'uploading' | 'success' | 'error'
     error?: string
 }
-
-type Action =
-    | { type: 'ADD_FILES'; payload: FileInfo[] }
-    | { type: 'UPDATE_PROGRESS'; payload: { id: string; progress: number } }
-    | { type: 'UPDATE_STATUS'; payload: { id: string; status: FileInfo['status']; error?: string } }
-    | { type: 'REMOVE_FILE'; payload: string }
-
-function fileInfoReducer(state: FileInfo[], action: Action): FileInfo[] {
-    switch (action.type) {
-        case 'ADD_FILES':
-            return [...state, ...action.payload]
-        case 'UPDATE_PROGRESS':
-            return state.map(file =>
-                file.id === action.payload.id
-                    ? {
-                          ...file,
-                          progress: action.payload.progress,
-                          status: action.payload.progress >= 100 ? 'success' : 'uploading',
-                      }
-                    : file,
-            )
-        case 'UPDATE_STATUS':
-            return state.map(file => (file.id === action.payload.id ? { ...file, status: action.payload.status, error: action.payload.error } : file))
-        case 'REMOVE_FILE':
-            return state.filter(file => file.id !== action.payload)
-        default:
-            return state
-    }
-}
-
-function useFileUpload() {
-    const [files, dispatch] = useReducer(fileInfoReducer, [])
-
-    const addFiles = useCallback((newFiles: FileInfo[]) => {
-        dispatch({ type: 'ADD_FILES', payload: newFiles })
-    }, [])
-
-    const updateProgress = useCallback((id: string, progress: number) => {
-        dispatch({ type: 'UPDATE_PROGRESS', payload: { id, progress } })
-    }, [])
-
-    const updateStatus = useCallback((id: string, status: FileInfo['status'], error?: string) => {
-        dispatch({ type: 'UPDATE_STATUS', payload: { id, status, error } })
-    }, [])
-
-    const removeFile = useCallback((id: string) => {
-        dispatch({ type: 'REMOVE_FILE', payload: id })
-    }, [])
-
-    return {
-        files,
-        addFiles,
-        updateProgress,
-        updateStatus,
-        removeFile,
-    }
-}
-
 interface FileItemProps {
     file: FileInfo
     onRemove: (id: string) => void
@@ -205,9 +147,14 @@ function DragAndDropArea({
     )
 }
 
+type FileUploadState = {
+    validFiles: FileInfo[]
+    invalidFiles: FileInfo[]
+}
+
 interface FileUploadProps {
     acceptedFormats?: AcceptedFormatsType
-    onFileSelect?: (files: FileInfo[], updateCallback: (id: string, progress: number) => void) => void
+    onFileSelect?: (files: FileInfo[], updateCallback: (id: string, progress: number, status?: FileInfo['status'], error?: string) => void) => void
     multiple?: boolean
     maxSize?: number
     disabled?: boolean
@@ -217,6 +164,8 @@ interface FileUploadProps {
     isRequired?: boolean
     label?: string
     browseLabel?: string
+    value?: FileInfo[]
+    onChange: (files: FileInfo[]) => void
 }
 
 function FileUpload({
@@ -231,14 +180,29 @@ function FileUpload({
     isRequired,
     label,
     browseLabel,
+    value = [],
+    onChange,
 }: FileUploadProps) {
-    const { files, addFiles, removeFile, updateProgress, updateStatus } = useFileUpload()
+    console.log('value', value)
+    const [state, setState] = useState<FileUploadState>({
+        validFiles: value,
+        invalidFiles: [],
+    })
     const [isDragging, setIsDragging] = useState(false)
     const fileInputRef = useRef<HTMLInputElement>(null)
-    const isMaxFilesReached = files.length >= maxFiles
+
+    const isMaxFilesReached = state.validFiles.length >= maxFiles
 
     const acceptedExtensions = Object.values(acceptedFormats).flat()
     const acceptAttribute = acceptedExtensions.join(',')
+
+    useEffect(() => {
+        if (!value.length) return
+        setState(prev => ({
+            validFiles: value,
+            invalidFiles: prev.invalidFiles,
+        }))
+    }, [value])
 
     const validateFile = useCallback(
         (file: File): { isValid: boolean; error?: string } => {
@@ -255,40 +219,57 @@ function FileUpload({
 
     const handleFiles = useCallback(
         (newFiles: File[]) => {
-            const newFileInfos = newFiles.map(file => {
+            const validFiles: FileInfo[] = []
+            const invalidFiles: FileInfo[] = []
+
+            newFiles.forEach(file => {
                 const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9\u0600-\u06FF ._-]/g, '_')
-                const sanitizedFile = new File([file], sanitizedFileName, { type: file.type })
-                return {
-                    id: `${file.name}-${Date.now()}-${window.crypto.getRandomValues(new Uint32Array(1))[0].toString(36).substring(2, 9)}`,
-                    file: sanitizedFile,
+                const invalid = validateFile(file)
+                if (!invalid.isValid) {
+                    invalidFiles.push({
+                        id: `${file.name}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+                        file: new File([file], sanitizedFileName, { type: file.type }),
+                        progress: 0,
+                        status: 'error',
+                        error: invalid.error,
+                    })
+                    return
+                }
+
+                validFiles.push({
+                    id: `${file.name}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+                    file: new File([file], sanitizedFileName, { type: file.type }),
                     progress: 0,
-                    status: 'uploading' as const,
-                }
+                    status: onFileSelect ? 'uploading' : 'success',
+                })
             })
 
-            addFiles(newFileInfos)
+            const updatedValidFiles = [...state.validFiles, ...validFiles]
 
-            newFileInfos.forEach(fileInfo => {
-                const validation = validateFile(fileInfo.file)
-                if (!validation.isValid) {
-                    updateStatus(fileInfo.id, 'error', validation.error)
-                }
+            setState({
+                validFiles: updatedValidFiles,
+                invalidFiles: [...state.invalidFiles, ...invalidFiles],
             })
 
-            const validFileInfos = newFileInfos.filter(fileInfo => {
-                const validation = validateFile(fileInfo.file)
-                return validation.isValid
-            })
+            // Only notify about valid files
+            onChange(updatedValidFiles)
 
-            if (onFileSelect) {
-                onFileSelect(validFileInfos, updateProgress)
+            if (onFileSelect && validFiles.length) {
+                onFileSelect(validFiles, (id, progress, status = 'uploading', error) => {
+                    const updatedFiles = updatedValidFiles.map(f => (f.id === id ? { ...f, progress, status, error } : f))
+                    setState(prev => ({
+                        validFiles: updatedFiles,
+                        invalidFiles: prev.invalidFiles,
+                    }))
+                    onChange(updatedFiles)
+                })
             }
 
             if (fileInputRef.current) {
                 fileInputRef.current.value = ''
             }
         },
-        [addFiles, onFileSelect, updateProgress, updateStatus, validateFile],
+        [state.validFiles, state.invalidFiles, onChange, validateFile, onFileSelect],
     )
 
     const handleDragEnter = useCallback((e: React.DragEvent<HTMLDivElement>) => {
@@ -333,6 +314,30 @@ function FileUpload({
         fileInputRef.current?.focus()
     }, [isMaxFilesReached])
 
+    const handleRemoveFile = useCallback(
+        (id: string) => {
+            const isInvalid = state.invalidFiles.some(f => f.id === id)
+            if (isInvalid) {
+                // Remove from invalid files
+                setState(prev => ({
+                    validFiles: prev.validFiles,
+                    invalidFiles: prev.invalidFiles.filter(f => f.id !== id),
+                }))
+            } else {
+                // Remove from valid files
+                const updatedFiles = state.validFiles.filter(f => f.id !== id)
+                setState(prev => ({
+                    validFiles: updatedFiles,
+                    invalidFiles: prev.invalidFiles,
+                }))
+                onChange(updatedFiles)
+            }
+        },
+        [state.validFiles, state.invalidFiles, onChange],
+    )
+
+    const allFilesToDisplay = [...state.validFiles, ...state.invalidFiles]
+
     return (
         <div className={cn('mx-auto flex w-full flex-col gap-space-02', { 'rounded-1 border border-error p-space-02': isInvalid })}>
             <ShouldRender shouldRender={multiple}>
@@ -354,7 +359,7 @@ function FileUpload({
                     disabled={disabled || isMaxFilesReached}
                     acceptedExtensions={acceptedExtensions}
                     onSelectFiles={handleSelectFiles}
-                    isSelectedFile={!!files.length}
+                    isSelectedFile={!!value.length || !!state.invalidFiles.length}
                     maxSize={maxSize}
                     isRequired={isRequired}
                     label={label}
@@ -371,8 +376,8 @@ function FileUpload({
                 disabled={disabled || isMaxFilesReached}
                 aria-describedby="fileInputDescription"
             />
-            <FileList files={files} onRemove={removeFile} />
-            <ShouldRender shouldRender={!files.length && !!customError}>
+            <FileList files={allFilesToDisplay} onRemove={handleRemoveFile} />
+            <ShouldRender shouldRender={!value.length && !!customError}>
                 <div className="text-caption-01 text-text-error">{customError}</div>
             </ShouldRender>
         </div>

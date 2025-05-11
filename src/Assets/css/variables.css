@@ -923,3 +923,9 @@ html[dir='ltr'] .MuiDateCalendar-root {
 html[dir='rtl'] .MuiDateCalendar-root {
     direction: rtl;
 }
+
+@counter-style arabic-letters {
+    system: alphabetic;
+    symbols: أ ب ج د ه و ز ح ط ي ك ل م ن س ع ف ص ق ر ش ت ث خ ذ ض ظ غ;
+    suffix: '.  ';
+}

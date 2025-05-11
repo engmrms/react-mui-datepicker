@@ -468,7 +468,7 @@ module.exports = {
                 'caption-02': ['1rem', '1.4rem'],
                 'body-01': ['1.4rem', '2rem'],
                 'body-02': ['1.6rem', '2.4rem'],
-                'subtitle-01': ['1.6rem', { lineHeight: '2.4rem', fontWeight: '600' }],
+                'subtitle-01': ['1.8rem', '2.8rem'],
                 'subtitle-02': ['2rem', '2.8rem'],
             },
             boxShadow: {
@@ -490,6 +490,10 @@ module.exports = {
             },
             fontFamily: {
                 IBMPlexSans: ['IBM Plex Sans Arabic', 'ui-sans-serif', 'system-ui'],
+            },
+            listStyleType: {
+                'arabic-letters': 'arabic-letters',
+                'hyphen-style': 'hyphen-style',
             },
         },
     },

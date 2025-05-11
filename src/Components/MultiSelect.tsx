@@ -29,6 +29,7 @@ export interface MultiSelectProps<T extends ValueType> extends VariantProps<type
     className?: string
     isLoading?: boolean
     checkboxSize?: 'default' | 'sm' | 'xs'
+    threshold?: number
 }
 
 export function MultiSelect<T extends ValueType>({
@@ -45,6 +46,7 @@ export function MultiSelect<T extends ValueType>({
     isLoading = false,
     className,
     checkboxSize = 'default',
+    threshold = 1,
 }: Readonly<MultiSelectProps<T>>) {
     const [isOpen, toggle] = useToggle(false)
     const [search, setSearch] = React.useState('')
@@ -69,7 +71,7 @@ export function MultiSelect<T extends ValueType>({
                     <span className="shrink-0 text-body-01 text-form-field-text-placeholder ">{placeholder}</span>
                     {selectedValues?.length > 0 && (
                         <>
-                            {selectedValues?.length > 1 ? (
+                            {selectedValues?.length > threshold ? (
                                 <label className="ms-auto flex size-space-05 shrink-0 items-center justify-center rounded-full bg-inverted text-caption-01 text-white">
                                     {selectedValues.length}
                                 </label>
