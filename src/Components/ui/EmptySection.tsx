@@ -21,7 +21,7 @@ const emptySectionVariants = cva('flex p-space-04 rounded-3 grow', {
 export interface EmptySectionProps extends VariantProps<typeof emptySectionVariants> {
     className?: string
     title?: string
-    message?: string
+    description?: string | React.ReactNode
     icon?: React.ReactNode
     children?: React.ReactNode // For buttons or other elements
     bordered?: boolean
@@ -30,7 +30,7 @@ export interface EmptySectionProps extends VariantProps<typeof emptySectionVaria
 export const EmptySection: React.FC<EmptySectionProps> = ({
     className = '',
     title = 'No results found',
-    message,
+    description,
     background,
     icon,
     layout = 'vertical',
@@ -39,7 +39,7 @@ export const EmptySection: React.FC<EmptySectionProps> = ({
     ...rest
 }) => {
     return (
-        <div className={cn(emptySectionVariants({ layout, background }), { border: bordered }, className)} {...rest}>
+        <div className={cn(emptySectionVariants({ layout, background }), { 'border border-border': bordered }, className)} {...rest}>
             {icon && <div className={cn({ 'self-start': layout === 'horizontal' })}>{icon}</div>}
             <div
                 className={cn('flex flex-col', {
@@ -51,8 +51,10 @@ export const EmptySection: React.FC<EmptySectionProps> = ({
                         'text-center': layout === 'vertical',
                     })}>
                     <h3 className="text-body-02 font-bold text-card-foreground">{title}</h3>
-                    {message && (
-                        <p className={cn('text-body-01 text-foreground', { 'text-foreground-secondary': background === 'gray' })}>{message}</p>
+                    {description && (
+                        <div className={cn('text-body-01 text-foreground', { 'text-foreground-secondary': background === 'gray' })}>
+                            {description}
+                        </div>
                     )}
                 </div>
                 {children && <div className="flex gap-space-02">{children}</div>}
