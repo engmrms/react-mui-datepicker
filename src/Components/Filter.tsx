@@ -54,6 +54,10 @@ interface FilterGroupProps extends React.HTMLAttributes<HTMLDivElement> {
     resetButtonLabel?: string
     /** Additional props for the reset button */
     resetButtonProps?: ButtonProps
+    /** Additional props for the filter button */
+    filterButtonProps?: ButtonProps
+    /** Icon for the filter button */
+    filterIcon?: React.ReactNode
 }
 
 interface FilterSelectProps {
@@ -173,11 +177,15 @@ const FilterMobileView = ({
     children,
     onClickFilter,
     label,
+    filterButtonProps,
+    filterIcon,
 }: {
     children: React.ReactNode
     resetFilters: () => void
     onClickFilter: () => void
     label?: string
+    filterButtonProps?: ButtonProps
+    filterIcon?: React.ReactNode
 }) => {
     return (
         <Sheet>
@@ -187,8 +195,9 @@ const FilterMobileView = ({
                     colors="neutral"
                     className={cn({
                         '!px-space-02': !label,
-                    })}>
-                    <FilterAlt />
+                    })}
+                    {...filterButtonProps}>
+                    {filterIcon || <FilterAlt />}
                     {label && <span>{label}</span>}
                 </Button>
             </SheetTrigger>
@@ -289,7 +298,10 @@ const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading
 FilterSelect.displayName = 'FilterSelect'
 
 const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
-    ({ children, onValueChange, onValueReset, label, resetButtonProps, resetButtonLabel, className, ...props }, ref) => {
+    (
+        { children, onValueChange, onValueReset, label, resetButtonProps, filterButtonProps, filterIcon, resetButtonLabel, className, ...props },
+        ref,
+    ) => {
         const mobileView = useMediaQuery('(max-width: 767px)')
         const [value, setValue] = useState<FilterValue>()
 
@@ -331,7 +343,12 @@ const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
             <div ref={ref} className={cn('flex', className)} {...props}>
                 <FilterContext.Provider value={contextValue}>
                     {mobileView ? (
-                        <FilterMobileView resetFilters={reset} onClickFilter={() => onValueChange?.(value)} label={label}>
+                        <FilterMobileView
+                            filterButtonProps={filterButtonProps}
+                            resetFilters={reset}
+                            onClickFilter={() => onValueChange?.(value)}
+                            label={label}
+                            filterIcon={filterIcon}>
                             {children}
                         </FilterMobileView>
                     ) : (

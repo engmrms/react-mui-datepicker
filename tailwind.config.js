@@ -493,7 +493,6 @@ module.exports = {
             },
             listStyleType: {
                 'arabic-letters': 'arabic-letters',
-                'hyphen-style': 'hyphen-style',
             },
         },
     },

@@ -12,7 +12,7 @@ const meta: Meta<typeof List> = {
         layout: 'centered',
         docs: {
             description: {
-                component: '<h4>Visually or semantically separates content.</h4>',
+                component: '<h4>Lists are used to organize a set of items into a single.</h4>',
             },
         },
     },
@@ -39,6 +39,10 @@ export const Default: Story = {
 }
 
 export const ListIcon: Story = {
+    args: {
+        variant: 'ordered',
+        colors: 'primary',
+    },
     render: args => {
         return (
             <List {...args} variant={'with-icon'}>
@@ -60,15 +64,25 @@ export const ListIcon: Story = {
                 </ListItem>
                 <List {...args} variant={'with-icon'}>
                     <ListItem>
-                        {' '}
                         <CheckCircle /> List item{' '}
                     </ListItem>
                     <ListItem>
-                        {' '}
                         <CheckCircle /> List item
                     </ListItem>
                 </List>
             </List>
         )
+    },
+}
+
+export const ListItems: Story = {
+    args: {
+        variant: 'ordered',
+        colors: 'primary',
+        items: ['List item 1', 'List item 2', 'List item 3'],
+        icon: <CheckCircle />,
+    },
+    render: args => {
+        return <List {...args} />
     },
 }
