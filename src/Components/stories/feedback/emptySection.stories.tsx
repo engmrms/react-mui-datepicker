@@ -50,6 +50,7 @@ const Actions = () => {
         </>
     )
 }
+
 const Template = (args: EmptySectionProps) => {
     return (
         <div className="flex">
