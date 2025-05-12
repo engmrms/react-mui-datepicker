@@ -50,10 +50,11 @@ const Actions = () => {
         </>
     )
 }
+
 const Template = (args: EmptySectionProps) => {
     return (
         <div className="flex">
-            <EmptySection {...args} message="Try adjusting your search or filter to find what you are looking for." />
+            <EmptySection {...args} description="Try adjusting your search or filter to find what you are looking for." />
         </div>
     )
 }
