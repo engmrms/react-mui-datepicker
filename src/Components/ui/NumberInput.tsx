@@ -31,12 +31,12 @@ export const NumberInput = ({ label, value, className, ...props }: InputProps & 
                 id={props.id}
                 value={value}
                 startAdornment={
-                    <Button variant="default" colors={'neutral'} rounded={'default'} onClick={() => increaseScore(Number(value))}>
+                    <Button variant="ghost" colors={'gray'} rounded={'default'} onClick={() => increaseScore(Number(value))}>
                         <Filled.Add />
                     </Button>
                 }
                 endAdornment={
-                    <Button variant="default" colors={'neutral'} rounded={'default'} onClick={() => decreaseScore(Number(value))}>
+                    <Button variant="ghost" colors={'gray'} rounded={'default'} onClick={() => decreaseScore(Number(value))}>
                         <Filled.Minimize />
                     </Button>
                 }
