@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
-import { DialogProps } from '@radix-ui/react-dialog'
+import { DialogProps, DialogTitle } from '@radix-ui/react-dialog'
 import { Command as CommandPrimitive, useCommandState } from 'cmdk'
 import { Search } from 'google-material-icons/outlined'
 import * as React from 'react'
 
-import { Dialog, DialogContent } from '../../Components/ui/dialog'
+import { Dialog, DialogContent, DialogHeader } from '../../Components/ui/dialog'
 import { cn } from '../../Lib/utils'
 import useLanguage from '../../Stores/useLanguage'
 import { ScrollArea } from './scroll-area'
@@ -31,6 +31,9 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
     return (
         <Dialog {...props}>
             <DialogContent className="overflow-hidden p-0 shadow-lg">
+                <DialogHeader className="hidden">
+                    <DialogTitle>Search</DialogTitle>
+                </DialogHeader>
                 <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
                     {children}
                 </Command>

@@ -59,7 +59,7 @@ export const DatePicker = ({
                     <DateRange className="size-[20px]  shrink-0 " />
                 </button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
+            <PopoverContent className="w-auto !rounded border-border-primary p-0 shadow-2xl" align="start">
                 <>
                     {/* <div>
                 <label htmlFor="">To Hijri</label> <Switch onCheckedChange={() => setIshijri(!ishijri)} dir="rtl" />

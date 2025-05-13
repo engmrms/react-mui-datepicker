@@ -1440,32 +1440,37 @@
 }
 
 .MuiButtonBase-root.MuiPickersDay-root {
-    @apply rounded-1 font-IBMPlexSans text-sm hover:bg-primary-container disabled:!text-disabled dark:text-foreground;
+    @apply font-IBMPlexSans text-body-02 text-text-default  hover:bg-primary-container disabled:!text-disabled sm:size-space-08;
 }
 .MuiPickersCalendarHeader-label,
 .MuiDayCalendar-header .MuiTypography-caption.MuiDayCalendar-weekDayLabel {
     @apply font-IBMPlexSans;
 }
-
+.MuiDayCalendar-header .MuiTypography-caption.MuiDayCalendar-weekDayLabel {
+    @apply sm:w-space-08;
+}
 .MuiButtonBase-root.MuiPickersDay-root.Mui-selected,
 .MuiButtonBase-root.MuiPickersDay-root:focus.Mui-selected {
-    @apply bg-primary;
+    @apply bg-primary font-normal;
 }
 .MuiDayCalendar-header .MuiTypography-caption {
-    @apply text-xs text-foreground-secondary;
+    @apply text-body-02 text-text-paragraph-secondary;
 }
 .MuiPickersCalendarHeader-root {
     @apply justify-between;
 }
 .MuiPickersCalendarHeader-root > div {
-    @apply m-0 text-body-01;
+    @apply m-0 text-body-02;
 }
 .MuiButtonBase-root.MuiIconButton-root {
-    @apply text-body-01 dark:text-foreground ltr:!rotate-0 rtl:rotate-180;
+    @apply text-body-02 dark:text-foreground ltr:!rotate-0 rtl:rotate-180;
+}
+.MuiButtonBase-root.MuiIconButton-root svg {
+    @apply sm:size-space-05;
 }
 
 .MuiPickersYear-root .MuiPickersYear-yearButton {
-    @apply text-body-01 hover:bg-primary-container;
+    @apply text-body-02 hover:bg-primary-container;
 }
 .MuiPickersYear-root .MuiPickersYear-yearButton.Mui-selected {
     @apply !bg-primary;
@@ -1477,6 +1482,9 @@
 .MuiButtonBase-root.MuiPickersDay-root.Mui-selected:hover {
     @apply !bg-primary-dark;
 }
+.MuiDateCalendar-root {
+    @apply sm:!h-[420px] sm:!max-h-[400px] sm:!w-[392px];
+}
 
 html[dir='ltr'] .MuiDateCalendar-root {
     direction: ltr;
@@ -1484,4 +1492,37 @@ html[dir='ltr'] .MuiDateCalendar-root {
 
 html[dir='rtl'] .MuiDateCalendar-root {
     direction: rtl;
+}
+
+.MuiDayCalendar-weekContainer {
+    margin: 4px 0;
+}
+.MuiDayCalendar-weekContainer .MuiPickersDay-root {
+    @apply rounded-full sm:size-space-08;
+}
+.MuiDayCalendar-weekContainer .MuiPickersDay-root:hover {
+    @apply bg-background-neutral-200;
+}
+.MuiDayCalendar-weekContainer .MuiPickersDay-root:active {
+    @apply bg-background-neutral-300;
+}
+.MuiPickersSlideTransition-root.MuiDayCalendar-slideTransition {
+    @apply sm:min-h-[300px];
+}
+
+.MuiButtonBase-root.MuiPickersDay-today {
+    @apply rounded-full border-2 !border-border-primary-default text-text-primary;
+}
+
+.MuiButtonBase-root.MuiPickersDay-today:hover {
+    @apply bg-primary-container;
+}
+.MuiPickersFadeTransitionGroup-root .MuiYearCalendar-root {
+    @apply w-full;
+}
+
+@counter-style arabic-letters {
+    system: alphabetic;
+    symbols: أ ب ج د ه و ز ح ط ي ك ل م ن س ع ف ص ق ر ش ت ث خ ذ ض ظ غ;
+    suffix: '.  ';
 }
