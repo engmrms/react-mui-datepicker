@@ -198,7 +198,7 @@ const FilterMobileView = ({
                     <SheetTitle>{strings.Shared.sortBy}</SheetTitle>
                 </SheetHeader>
                 <SheetBody className="px-space-00 py-space-02">{children}</SheetBody>
-                <SheetFooter className="gap-space-02 p-space-04">
+                <SheetFooter className="flex-row gap-space-02 p-space-04">
                     <Button id="servicesRest" size="sm" variant="text" colors="neutral" onClick={resetFilters} className="grow">
                         {strings.Shared.reset}
                     </Button>
