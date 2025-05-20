@@ -23,7 +23,7 @@ export function Toaster({ position = 'bottom' }: { position?: ToastProps['positi
                         <div className="flex grow flex-col justify-between gap-space-04">
                             <div className="flex w-full gap-space-03">
                                 <ToastIcon icon={props.variant && IconMap[props.variant]} />
-                                <div className="grid flex-1 gap-space-01">
+                                <div className="grid flex-1 items-center gap-space-01">
                                     {title && <ToastTitle>{title}</ToastTitle>}
                                     {description && <ToastDescription>{description}</ToastDescription>}
                                 </div>
