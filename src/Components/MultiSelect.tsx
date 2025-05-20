@@ -72,7 +72,7 @@ export function MultiSelect<T extends ValueType>({
                     {selectedValues?.length > 0 && (
                         <>
                             {selectedValues?.length > threshold ? (
-                                <label className="ms-auto flex size-space-05 shrink-0 items-center justify-center rounded-full bg-inverted text-caption-01 text-white">
+                                <label className="ms-auto flex size-space-05 shrink-0 items-center justify-center rounded-full  bg-inverted text-caption-01 text-inverted-foreground">
                                     {selectedValues.length}
                                 </label>
                             ) : (
