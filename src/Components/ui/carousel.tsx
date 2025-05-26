@@ -1,4 +1,5 @@
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react'
+
 import { ChevronLeft, ChevronRight } from 'google-material-icons/outlined'
 import * as React from 'react'
 import { cn } from '../../Lib'
@@ -160,6 +161,7 @@ interface CustomCarouselProps {
     showPartial?: boolean
     dir?: 'ltr' | 'rtl'
     type?: 'single' | 'multiple'
+    slidesToScroll: number | 'auto'
 }
 
 export function Carousel({
@@ -178,6 +180,7 @@ export function Carousel({
     showPartial = true,
     dir = 'rtl',
     type = 'multiple',
+    slidesToScroll = 1,
 }: Readonly<CustomCarouselProps>) {
     const [api, setApi] = React.useState<CarouselApi>()
     const [current, setCurrent] = React.useState(0)
@@ -370,7 +373,7 @@ export function Carousel({
                     containScroll: 'trimSnaps',
                     dragFree: false,
                     direction: dir,
-                    slidesToScroll: 1,
+                    slidesToScroll,
                 }}
                 className={cn('relative w-full', className)}>
                 <CarouselContent className=" gap-space-04">

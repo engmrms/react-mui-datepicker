@@ -234,12 +234,12 @@ const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading
                     <span className="text-body-01 font-semibold">{placeholder}</span>
                     <div className="flex items-center  gap-space-01">
                         {typeof value?.[name] === 'object' && !!value?.[name]?.length && (
-                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-white">
+                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-inverted-foreground">
                                 {handleNumberDisplay(value?.[name]?.length || 0)}
                             </span>
                         )}
                         {typeof value?.[name] === 'string' && !!value?.[name] && (
-                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-white">
+                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-inverted-foreground">
                                 01
                             </span>
                         )}

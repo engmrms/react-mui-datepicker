@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { FilterAlt } from 'google-material-icons/outlined'
 import { strings } from '../../../package'
 import { FilterGroup, FilterSelect } from '../../Filter'
 
@@ -25,6 +26,9 @@ export const Default: Story = {
     args: {
         label: strings.Shared.Select,
         resetButtonProps: { rounded: 'full', size: 'default' },
+        filterButtonProps: { rounded: 'full', size: 'default' },
+        resetButtonLabel: 'Reset',
+        filterIcon: <FilterAlt />,
     },
     render: arg => (
         <FilterGroup

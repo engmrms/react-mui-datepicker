@@ -5,7 +5,7 @@ import { cn } from '../Lib'
 import ActionLoader from './ActionLoader'
 import { Button } from './ui/button'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import { strings } from '../Locales'
 import ShouldRender from './ShouldRender'
 
@@ -77,18 +77,14 @@ function FileList({ files, onRemove }: FileListProps) {
     )
 }
 
-interface DragAndDropAreaProps {
+interface DragAndDropAreaProps extends SharedProps {
     isDragging: boolean
-    disabled?: boolean
     acceptedExtensions: string[]
-    maxSize: number
     onDragEnter: (e: React.DragEvent<HTMLDivElement>) => void
     onDragLeave: (e: React.DragEvent<HTMLDivElement>) => void
     onDragOver: (e: React.DragEvent<HTMLDivElement>) => void
     onDrop: (e: React.DragEvent<HTMLDivElement>) => void
     onSelectFiles: () => void
-    browseLabel?: string
-    description?: string
 }
 
 function DragAndDropArea({
@@ -133,7 +129,7 @@ function DragAndDropArea({
                     })}>
                     {description
                         ? description
-                        : `${strings.formatString(strings.Attachments.maxSize, maxSize)}${strings.Shared.comma} ${strings.formatString(strings.Attachments.allowedFormats, acceptedExtensions.join(', '))}`}
+                        : `${strings.formatString(strings.Attachments.maxSize, maxSize || 0)}${strings.Shared.comma} ${strings.formatString(strings.Attachments.allowedFormats, acceptedExtensions.join(', '))}`}
                 </span>
                 <Button
                     variant={'text'}
@@ -154,21 +150,23 @@ type FileUploadState = {
     validFiles: FileInfo[]
     invalidFiles: FileInfo[]
 }
-
-interface FileUploadProps {
-    acceptedFormats?: AcceptedFormatsType
-    onFileSelect?: (files: FileInfo[], updateCallback: (id: string, progress: number, status?: FileInfo['status'], error?: string) => void) => void
-    multiple?: boolean
+interface SharedProps {
     maxSize?: number
+    description?: string | ReactNode
+    label?: string
+    browseLabel?: string
+    isRequired?: boolean
     disabled?: boolean
+}
+
+interface FileUploadProps extends SharedProps {
+    multiple?: boolean
     maxFiles?: number
     customError?: string
     isInvalid?: boolean
-    isRequired?: boolean
-    label?: string
-    browseLabel?: string
     value?: FileInfo[]
-    description?: string
+    acceptedFormats?: AcceptedFormatsType
+    onFileSelect?: (files: FileInfo[], updateCallback: (id: string, progress: number, status?: FileInfo['status'], error?: string) => void) => void
     onChange: (files: FileInfo[]) => void
 }
 
@@ -391,16 +389,10 @@ function FileUpload({
     )
 }
 
-interface SingleUploadFileProps {
-    disabled?: boolean
+interface SingleUploadFileProps extends SharedProps {
     acceptedExtensions: string[]
     onSelectFiles: () => void
     isSelectedFile?: boolean
-    maxSize: number
-    isRequired?: boolean
-    label?: string
-    browseLabel?: string
-    description?: string
 }
 
 const SingleUploadFile = ({
@@ -432,7 +424,7 @@ const SingleUploadFile = ({
                     })}>
                     {description
                         ? description
-                        : `${strings.formatString(strings.Attachments.maxSize, maxSize)}${strings.Shared.comma} ${strings.formatString(strings.Attachments.allowedFormats, acceptedExtensions.join(', '))}`}
+                        : `${strings.formatString(strings.Attachments.maxSize, maxSize || 0)}${strings.Shared.comma} ${strings.formatString(strings.Attachments.allowedFormats, acceptedExtensions.join(', '))}`}
                 </p>
             </div>
             <ShouldRender shouldRender={!isSelectedFile}>

@@ -27,6 +27,7 @@ export const Default: Story = {
         maxDots: 6,
         showPartial: false,
         type: 'single',
+        slidesToScroll: 'auto',
     },
     argTypes: {
         type: {
