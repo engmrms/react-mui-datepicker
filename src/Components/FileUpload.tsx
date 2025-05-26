@@ -88,6 +88,7 @@ interface DragAndDropAreaProps {
     onDrop: (e: React.DragEvent<HTMLDivElement>) => void
     onSelectFiles: () => void
     browseLabel?: string
+    description?: string
 }
 
 function DragAndDropArea({
@@ -101,6 +102,7 @@ function DragAndDropArea({
     onDrop,
     onSelectFiles,
     browseLabel,
+    description,
 }: DragAndDropAreaProps) {
     return (
         <div
@@ -129,8 +131,9 @@ function DragAndDropArea({
                     className={cn('text-caption-01 text-text-paragraph-primary group-hover:text-text-success', {
                         'text-disabled-text-default-disabled': disabled,
                     })}>
-                    {strings.formatString(strings.Attachments.maxSize, maxSize)}
-                    {strings.Shared.comma} {strings.formatString(strings.Attachments.allowedFormats, acceptedExtensions.join(', '))}
+                    {description
+                        ? description
+                        : `${strings.formatString(strings.Attachments.maxSize, maxSize)}${strings.Shared.comma} ${strings.formatString(strings.Attachments.allowedFormats, acceptedExtensions.join(', '))}`}
                 </span>
                 <Button
                     variant={'text'}
@@ -165,6 +168,7 @@ interface FileUploadProps {
     label?: string
     browseLabel?: string
     value?: FileInfo[]
+    description?: string
     onChange: (files: FileInfo[]) => void
 }
 
@@ -180,6 +184,7 @@ function FileUpload({
     isRequired,
     label,
     browseLabel,
+    description,
     value = [],
     onChange,
 }: FileUploadProps) {
@@ -352,6 +357,7 @@ function FileUpload({
                     onSelectFiles={handleSelectFiles}
                     maxSize={maxSize}
                     browseLabel={browseLabel}
+                    description={description}
                 />
             </ShouldRender>
             <ShouldRender shouldRender={!multiple}>
@@ -364,6 +370,7 @@ function FileUpload({
                     isRequired={isRequired}
                     label={label}
                     browseLabel={browseLabel}
+                    description={description}
                 />
             </ShouldRender>
             <input
@@ -393,6 +400,7 @@ interface SingleUploadFileProps {
     isRequired?: boolean
     label?: string
     browseLabel?: string
+    description?: string
 }
 
 const SingleUploadFile = ({
@@ -404,6 +412,7 @@ const SingleUploadFile = ({
     isRequired,
     label,
     browseLabel,
+    description,
 }: SingleUploadFileProps) => {
     return (
         <div className="space-y-space-04">
@@ -421,8 +430,9 @@ const SingleUploadFile = ({
                     className={cn('text-caption-01 text-text-paragraph-primary group-hover:text-text-success', {
                         'text-disabled-text-default-disabled': disabled,
                     })}>
-                    {strings.formatString(strings.Attachments.maxSize, maxSize)}
-                    {strings.Shared.comma} {strings.formatString(strings.Attachments.allowedFormats, acceptedExtensions.join(', '))}
+                    {description
+                        ? description
+                        : `${strings.formatString(strings.Attachments.maxSize, maxSize)}${strings.Shared.comma} ${strings.formatString(strings.Attachments.allowedFormats, acceptedExtensions.join(', '))}`}
                 </p>
             </div>
             <ShouldRender shouldRender={!isSelectedFile}>
