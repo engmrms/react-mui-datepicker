@@ -19,4 +19,4 @@ echo "\033[32m# => Login to npm\033[0m"
 npm login
 #publish to npm
 echo "\033[32m# => Publish to npm\033[0m"
-npm publish
+sudo npm publish
