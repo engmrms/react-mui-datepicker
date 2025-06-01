@@ -1,9 +1,9 @@
 trigger:
-  batch: false
-  branches:
-    include:
-      - dev
-      - master
+    batch: false
+    branches:
+        include:
+            - dev
+            - master
 
 pool:
     name: windows-2019
@@ -26,6 +26,10 @@ steps:
       parameters:
           useDotnet: true
 
+    - script: |
+          git remote prune origin
+      displayName: 'Prune Remote Branches'
+
     - task: NodeTool@0
       inputs:
           versionSpec: '18.x'
@@ -47,8 +51,8 @@ steps:
           enableTelemetry: true
 
     - script: |
-        cd '$(System.DefaultWorkingDirectory)/'
-        npm install -g pnpm@latest-8 --force
+          cd '$(System.DefaultWorkingDirectory)/'
+          npm install -g pnpm@latest-8 --force
       displayName: 'Install Pipeline Dependencies'
 
     - script: |
