@@ -161,7 +161,7 @@ interface CustomCarouselProps {
     showPartial?: boolean
     dir?: 'ltr' | 'rtl'
     type?: 'single' | 'multiple'
-    slidesToScroll: number | 'auto'
+    slidesToScroll?: number | 'auto'
 }
 
 export function Carousel({
