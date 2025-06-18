@@ -3,7 +3,7 @@
 
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { AdapterMomentHijri } from '@mui/x-date-pickers/AdapterMomentHijri'
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
+import { DateCalendar, PickersCalendarHeader } from '@mui/x-date-pickers/DateCalendar'
 import { DateCalendarProps } from '@mui/x-date-pickers/DateCalendar/DateCalendar.types'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import moment, { Moment } from 'moment'
@@ -17,10 +17,20 @@ function Calendar({ ishijri, lang = 'ar', ...props }: { ishijri?: boolean; lang?
     //         })
     //     }
     // }, [lang])
+
+    const localeToUse = lang === 'ar' ? 'ar-ly' : 'en'
+
     return (
         <div dir="rtl">
-            <LocalizationProvider dateAdapter={ishijri ? AdapterMomentHijri : AdapterMoment} adapterLocale={lang === 'ar' ? 'ar-ly' : 'en'}>
-                <DateCalendar {...props} minDate={moment(new Date(1938, 0, 1))} maxDate={moment(new Date(2075, 11, 31))} />
+            <LocalizationProvider dateAdapter={ishijri ? AdapterMomentHijri : AdapterMoment} adapterLocale={localeToUse}>
+                <DateCalendar
+                    dayOfWeekFormatter={(_, date: moment.Moment) => {
+                        return date.format('ddd')
+                    }}
+                    {...props}
+                    minDate={moment(new Date(1938, 0, 1))}
+                    maxDate={moment(new Date(2075, 11, 31))}
+                />
             </LocalizationProvider>
         </div>
     )

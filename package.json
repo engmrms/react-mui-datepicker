@@ -59,8 +59,6 @@
         "cmdk": "^0.2.0",
         "embla-carousel-react": "^8.5.2",
         "google-material-icons": "^2.0.1",
-        "highcharts": "^11.2.0",
-        "highcharts-react-official": "^3.2.1",
         "immer": "^10.1.1",
         "input-otp": "^1.4.2",
         "moment": "^2.30.1",
