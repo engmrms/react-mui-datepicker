@@ -3,7 +3,7 @@
 
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { AdapterMomentHijri } from '@mui/x-date-pickers/AdapterMomentHijri'
-import { DateCalendar, PickersCalendarHeader } from '@mui/x-date-pickers/DateCalendar'
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import { DateCalendarProps } from '@mui/x-date-pickers/DateCalendar/DateCalendar.types'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import moment, { Moment } from 'moment'
