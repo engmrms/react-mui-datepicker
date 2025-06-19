@@ -1526,3 +1526,14 @@ html[dir='rtl'] .MuiDateCalendar-root {
     symbols: أ ب ج د ه و ز ح ط ي ك ل م ن س ع ف ص ق ر ش ت ث خ ذ ض ظ غ;
     suffix: '.  ';
 }
+
+
+.MuiDigitalClock-root .MuiDigitalClock-list .MuiMenuItem-root {
+    @apply text-body-01;
+}
+.MuiDigitalClock-root .MuiDigitalClock-list .MuiMenuItem-root:hover {
+    @apply bg-primary-container;
+}
+.MuiDigitalClock-root .MuiDigitalClock-list .MuiMenuItem-root.Mui-selected {
+    @apply bg-primary;
+}

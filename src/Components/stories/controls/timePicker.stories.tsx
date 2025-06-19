@@ -31,6 +31,7 @@ export const Default: Story = {
         colors: 'default',
         size: 'default',
         ampm: true,
+        timeStep: 15,
     },
     argTypes: {
         value: { control: 'text' },

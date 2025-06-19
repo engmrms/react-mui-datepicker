@@ -1,4 +1,4 @@
-import { MultiSectionDigitalClockProps } from '@mui/x-date-pickers'
+import { DigitalClockProps } from '@mui/x-date-pickers'
 import { VariantProps } from 'class-variance-authority'
 import { AccessTime } from 'google-material-icons/outlined'
 import moment, { Moment } from 'moment'
@@ -7,7 +7,7 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { cn } from '../../Lib/utils'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
 import { selectVariants } from './select'
-import { MultiSectionDigitalClock } from '@mui/x-date-pickers/MultiSectionDigitalClock'
+import { DigitalClock } from '@mui/x-date-pickers/DigitalClock'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import 'moment/dist/locale/ar-ly'
 
@@ -31,7 +31,7 @@ export const TimePicker = ({
     colors,
     size,
     ...rest
-}: Props & Omit<MultiSectionDigitalClockProps<Moment>, 'value' | 'onChange'>) => {
+}: Props & Omit<DigitalClockProps<Moment>, 'value' | 'onChange'>) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedTime, setSelectedTime] = useState<string | null | undefined>(value)
 
@@ -56,9 +56,9 @@ export const TimePicker = ({
                 </button>
             </PopoverTrigger>
             <PopoverContent className="w-auto !rounded border-border-primary p-0 shadow-2xl" align={'start'}>
-                <div dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+                <div dir={lang === 'ar' ? 'rtl' : 'ltr'} className="w-[300px]">
                     <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={lang === 'ar' ? 'ar-ly' : 'en'}>
-                        <MultiSectionDigitalClock value={momentValue} onChange={handleTimeChange} {...rest} />
+                        <DigitalClock value={momentValue} onChange={handleTimeChange} {...rest} />
                     </LocalizationProvider>
                 </div>
             </PopoverContent>
