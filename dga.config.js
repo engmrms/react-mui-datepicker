@@ -174,6 +174,10 @@ export const dgaToken = {
         success: 'var(--text-success)',
         warning: 'var(--text-warning)',
         error: 'var(--text-error)',
+        always: {
+            black: 'var(--text-always-black)',
+            white: 'var(--text-always-white)',
+        },
     },
     control: {
         primary: {

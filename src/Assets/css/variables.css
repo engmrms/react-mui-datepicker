@@ -162,6 +162,8 @@
     --text-tertiary-light: var(--tertiary-300);
     --text-default-disabled: theme(colors.neutral.400);
     --text-default-oncolor-disabled: theme(colors.alpha.white-40);
+    --text-always-black: theme(colors.black);
+    --text-always-white: theme(colors.white);
 
     /* form */
     --text-form-title: var(--text-default);
@@ -600,6 +602,8 @@
     --text-tertiary-light: var(--tertiary-400);
     --text-default-disabled: theme(colors.neutral.400);
     --text-default-oncolor-disabled: theme(colors.alpha.black-40);
+    --text-always-black: theme(colors.black);
+    --text-always-white: theme(colors.white);
 
     /* form */
     --text-form-title: var(--text-default);
