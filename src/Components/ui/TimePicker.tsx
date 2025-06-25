@@ -34,21 +34,22 @@ export const TimePicker = ({
 }: Props & Omit<DigitalClockProps<Moment>, 'value' | 'onChange'>) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedTime, setSelectedTime] = useState<string | null | undefined>(value)
-
+    const timeFormat = rest.ampm ? 'hh:mm A' : 'HH:mm'
     const handleTimeChange = (time: Moment | null) => {
-        const formattedTime = time ? time.format('HH:mm a') : null
+        const formattedTime = time ? time.format(timeFormat) : null
         setSelectedTime(formattedTime)
         onChange(formattedTime)
+        setIsOpen(false)
     }
 
-    const momentValue = value ? moment(value, 'HH:mm a') : null
+    const momentValue = value ? moment(value, timeFormat) : null
 
     return (
         <Popover open={isOpen} onOpenChange={setIsOpen}>
             <PopoverTrigger asChild>
                 <button id="date" role="date" className={cn(selectVariants({ variant, colors, size, rounded }), className)} disabled={rest.disabled}>
                     {selectedTime ? (
-                        <>{moment(selectedTime, 'HH:mm a').format('HH:mm a')}</>
+                        <>{moment(selectedTime, timeFormat).format(timeFormat)}</>
                     ) : (
                         <span className="text-body-01 text-foreground-secondary">{placeholder ?? '00:00'}</span>
                     )}
