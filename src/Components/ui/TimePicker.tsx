@@ -34,6 +34,7 @@ export const TimePicker = ({
 }: Props & Omit<DigitalClockProps<Moment>, 'value' | 'onChange'>) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedTime, setSelectedTime] = useState<string | null | undefined>(value)
+    moment.locale(lang)
     const timeFormat = rest.ampm ? 'hh:mm A' : 'HH:mm'
     const handleTimeChange = (time: Moment | null) => {
         const formattedTime = time ? time.format(timeFormat) : null
