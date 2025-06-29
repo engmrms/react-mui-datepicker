@@ -82,7 +82,7 @@ export const ar = {
         Full: 'توسيع',
         Width: 'العرض',
         Show: 'اظهار',
-        AddToDashboard: 'تخصيص العرض',
+        AddToDashboard: 'خصص تجربتك',
     },
     Attachments: {
         error: 'عفوًا، صيغة أو حجم  المرفق غير مسموح بها',

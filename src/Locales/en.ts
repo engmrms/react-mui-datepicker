@@ -83,7 +83,7 @@ export const en = {
         Full: 'Expand',
         Width: 'Width',
         Show: 'Show',
-        AddToDashboard: 'Custom display',
+        AddToDashboard: 'Customize your experience',
     },
     Attachments: {
         error: 'Sorry! The format or the size of the attachment is not allowed.',
