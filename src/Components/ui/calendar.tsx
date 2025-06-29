@@ -7,7 +7,7 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import { DateCalendarProps } from '@mui/x-date-pickers/DateCalendar/DateCalendar.types'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import moment, { Moment } from 'moment'
-import 'moment/dist/locale/ar-sa'
+import 'moment/dist/locale/ar-ly'
 
 function Calendar({ ishijri, lang = 'ar', ...props }: { ishijri?: boolean; lang?: 'ar' | 'en' } & DateCalendarProps<Moment>) {
     // useLayoutEffect(() => {
@@ -18,7 +18,7 @@ function Calendar({ ishijri, lang = 'ar', ...props }: { ishijri?: boolean; lang?
     //     }
     // }, [lang])
 
-    const localeToUse = lang === 'ar' ? 'ar-sa' : 'en'
+    const localeToUse = lang === 'ar' ? 'ar-ly' : 'en'
 
     return (
         <div dir="rtl">

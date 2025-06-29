@@ -7,7 +7,7 @@ import { cn } from '../../Lib/utils'
 import { Calendar } from './calendar'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
 import { selectVariants } from './select'
-import 'moment/dist/locale/ar-sa'
+import 'moment/dist/locale/ar-ly'
 
 interface Props extends VariantProps<typeof selectVariants> {
     lang?: 'ar' | 'en'
@@ -37,7 +37,7 @@ export const DatePicker = ({
 
     const [selectedDate, setSelectedDate] = useState<Moment | null>(dateValue)
     const dateFormate = lang === 'ar' ? 'YYYY/MM/DD' : 'DD/MM/YYYY'
-    const localeToUse = lang === 'ar' ? 'ar-sa' : 'en'
+    const localeToUse = lang === 'ar' ? 'ar-ly' : 'en'
     moment.locale(localeToUse)
     const handleDateChange = (date: Moment) => {
         setIsOpen(false)

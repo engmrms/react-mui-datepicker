@@ -9,7 +9,7 @@ import { Popover, PopoverContent, PopoverTrigger } from './popover'
 import { selectVariants } from './select'
 import { DigitalClock } from '@mui/x-date-pickers/DigitalClock'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import 'moment/dist/locale/ar-sa'
+import 'moment/dist/locale/ar-ly'
 
 interface Props extends VariantProps<typeof selectVariants> {
     lang?: 'ar' | 'en'
@@ -34,7 +34,7 @@ export const TimePicker = ({
 }: Props & Omit<DigitalClockProps<Moment>, 'value' | 'onChange'>) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedTime, setSelectedTime] = useState<string | null | undefined>(value)
-    const localeToUse = lang === 'ar' ? 'ar-sa' : 'en'
+    const localeToUse = lang === 'ar' ? 'ar-ly' : 'en'
     const timeFormat = rest.ampm ? 'hh:mm A' : 'HH:mm'
     moment.locale(localeToUse)
 
