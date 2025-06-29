@@ -42,7 +42,7 @@ export const DatePicker = ({
     const handleDateChange = (date: Moment) => {
         setIsOpen(false)
         setSelectedDate(date)
-        onChange(date.locale('en').format('DD/MM/YYYY'))
+        onChange(date.format('DD/MM/YYYY'))
     }
 
     return (
