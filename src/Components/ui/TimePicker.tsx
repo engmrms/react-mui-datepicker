@@ -9,10 +9,10 @@ import { Popover, PopoverContent, PopoverTrigger } from './popover'
 import { selectVariants } from './select'
 import { DigitalClock } from '@mui/x-date-pickers/DigitalClock'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import 'moment/dist/locale/ar-ly'
+import 'moment/dist/locale/ar-sa'
 
 interface Props extends VariantProps<typeof selectVariants> {
-    lang: 'ar' | 'en'
+    lang?: 'ar' | 'en'
     placeholder?: string | null
     value: string | null | undefined
     onChange: (time: string | null | undefined) => void
@@ -25,7 +25,7 @@ export const TimePicker = ({
     value,
     onChange,
     rounded,
-    lang,
+    lang = 'en',
     variant,
     className,
     colors,
@@ -34,10 +34,12 @@ export const TimePicker = ({
 }: Props & Omit<DigitalClockProps<Moment>, 'value' | 'onChange'>) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedTime, setSelectedTime] = useState<string | null | undefined>(value)
-    moment.locale(lang === 'ar' ? 'ar-ly' : 'en')
+    const localeToUse = lang === 'ar' ? 'ar-sa' : 'en'
     const timeFormat = rest.ampm ? 'hh:mm A' : 'HH:mm'
+    moment.locale(localeToUse)
+
     const handleTimeChange = (time: Moment | null) => {
-        const formattedTime = time ? time.format(timeFormat) : null
+        const formattedTime = time ? time.locale('en').format(timeFormat) : null
         setSelectedTime(formattedTime)
         onChange(formattedTime)
         setIsOpen(false)
@@ -59,7 +61,7 @@ export const TimePicker = ({
             </PopoverTrigger>
             <PopoverContent className="w-auto !rounded border-border-primary p-0 shadow-2xl" align={'start'}>
                 <div dir={lang === 'ar' ? 'rtl' : 'ltr'} className="w-[300px]">
-                    <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={lang === 'ar' ? 'ar-ly' : 'en'}>
+                    <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={localeToUse}>
                         <DigitalClock value={momentValue} onChange={handleTimeChange} {...rest} />
                     </LocalizationProvider>
                 </div>

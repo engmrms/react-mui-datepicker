@@ -23,7 +23,7 @@ type Story = StoryObj<typeof TimePicker>
 //  */
 export const Default: Story = {
     args: {
-        lang: 'ar',
+        lang: 'en',
         placeholder: '',
         rounded: 'default',
         value: '',
