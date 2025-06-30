@@ -39,7 +39,7 @@ export const TimePicker = ({
     moment.locale(localeToUse)
 
     const handleTimeChange = (time: Moment | null) => {
-        const formattedTime = time ? time.locale('en').format(timeFormat) : null
+        const formattedTime = time ? time.format(timeFormat) : null
         setSelectedTime(formattedTime)
         onChange(formattedTime)
         setIsOpen(false)
