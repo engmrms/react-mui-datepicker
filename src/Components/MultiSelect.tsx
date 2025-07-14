@@ -1,7 +1,7 @@
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { VariantProps } from 'class-variance-authority'
 import { ExpandMore } from 'google-material-icons/outlined'
-import React, { ComponentType, useCallback, useMemo } from 'react'
+import React, { ComponentType, useCallback, useEffect, useMemo } from 'react'
 import { useToggle } from 'usehooks-ts'
 import { cn, debounce } from '../Lib'
 import { strings } from '../Locales'
@@ -30,6 +30,7 @@ export interface MultiSelectProps<T extends ValueType> extends VariantProps<type
     isLoading?: boolean
     checkboxSize?: 'default' | 'sm' | 'xs'
     threshold?: number
+    showSelectButton?: boolean
 }
 
 export function MultiSelect<T extends ValueType>({
@@ -47,15 +48,22 @@ export function MultiSelect<T extends ValueType>({
     className,
     checkboxSize = 'default',
     threshold = 1,
+    showSelectButton,
 }: Readonly<MultiSelectProps<T>>) {
     const [isOpen, toggle] = useToggle(false)
     const [search, setSearch] = React.useState('')
     const [inputValue, setInputValue] = React.useState('')
+    const [tempSelectedValues, setTempSelectedValues] = React.useState<T[]>(selectedValues)
 
-    const debouncSearch = useCallback(() => debounce(value => setSearch(value), 300), [])
+    const debounceSearch = useCallback(() => debounce(value => setSearch(value), 300), [])
 
     const filteredItems = useMemo(() => options.filter(item => item.label.toLowerCase().includes(search.toLowerCase())), [options, search])
 
+    const displayedValues = isOpen && showSelectButton ? tempSelectedValues : selectedValues
+
+    useEffect(() => {
+        setTempSelectedValues(selectedValues)
+    }, [selectedValues])
     return (
         <Popover
             open={isOpen}
@@ -64,20 +72,23 @@ export function MultiSelect<T extends ValueType>({
                 if (!isOpen) {
                     setInputValue('')
                     setSearch('')
+                    if (showSelectButton) {
+                        setTempSelectedValues(selectedValues)
+                    }
                 }
             }}>
             <PopoverTrigger asChild disabled={disabled} data-testid={dataTestId}>
                 <button className={cn(selectVariants({ variant, colors, size, rounded }), className)}>
                     <span className="shrink-0 text-body-01 text-form-field-text-placeholder ">{placeholder}</span>
-                    {selectedValues?.length > 0 && (
+                    {displayedValues?.length > 0 && (
                         <>
-                            {selectedValues?.length > threshold ? (
+                            {displayedValues.length > threshold ? (
                                 <label className="ms-auto flex size-space-05 shrink-0 items-center justify-center rounded-full  bg-inverted text-caption-01 text-inverted-foreground">
-                                    {selectedValues.length}
+                                    {displayedValues.length}
                                 </label>
                             ) : (
                                 options
-                                    ?.filter(option => selectedValues?.includes(option.value))
+                                    ?.filter(option => displayedValues.includes(option.value))
                                     ?.map(option => (
                                         <Badge colors="gray" variant="ghost" size="sm" key={option.value}>
                                             {option.label}
@@ -108,22 +119,22 @@ export function MultiSelect<T extends ValueType>({
                                 value={inputValue}
                                 onValueChange={value => {
                                     setInputValue(value)
-                                    debouncSearch()(value)
+                                    debounceSearch()(value)
                                 }}
                             />
                         </ShouldRender>
                         <CommandList>
-                            <CommandEmpty>No results found.</CommandEmpty>
+                            <CommandEmpty>{strings.Shared.NoDataFound}</CommandEmpty>
                             <CommandBody
                                 options={filteredItems}
                                 dataTestId={dataTestId}
-                                onChange={onChange}
-                                selectedValues={selectedValues}
+                                selectedValues={showSelectButton ? tempSelectedValues : selectedValues}
+                                onChange={showSelectButton ? setTempSelectedValues : onChange}
                                 checkboxSize={checkboxSize}
                             />
                         </CommandList>
                     </div>
-                    <ShouldRender shouldRender={!!selectedValues?.length}>
+                    <ShouldRender shouldRender={!!selectedValues?.length || showSelectButton}>
                         <div className="flex items-center gap-space-04 border-t border-t-border bg-background px-space-04 py-space-02">
                             <Button
                                 colors="neutral"
@@ -131,11 +142,27 @@ export function MultiSelect<T extends ValueType>({
                                 size="sm"
                                 onClick={() => {
                                     onChange([])
-                                    toggle()
+                                    setTempSelectedValues([])
+                                    if (!showSelectButton) {
+                                        toggle()
+                                    }
                                 }}
                                 className="flex-1">
                                 {strings.Shared.reset}
                             </Button>
+                            <ShouldRender shouldRender={showSelectButton}>
+                                <Button
+                                    type="button"
+                                    colors="primary"
+                                    size="sm"
+                                    onClick={() => {
+                                        onChange(tempSelectedValues)
+                                        toggle()
+                                    }}
+                                    className="flex-1">
+                                    {strings.Shared.Select}
+                                </Button>
+                            </ShouldRender>
                         </div>
                     </ShouldRender>
                 </Command>
