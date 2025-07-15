@@ -79,7 +79,7 @@ export function MultiSelect<T extends ValueType>({
                                 options
                                     ?.filter(option => selectedValues?.includes(option.value))
                                     ?.map(option => (
-                                        <Badge colors="gray" variant="ghost" size="sm" key={option.value}>
+                                        <Badge colors="gray" variant="ghost" size="sm" className="ms-auto" key={option.value}>
                                             {option.label}
                                         </Badge>
                                     ))
