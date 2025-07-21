@@ -64,7 +64,7 @@ interface FilterSelectProps {
     placeholder: string
     name: string
     multi?: boolean
-    data: { value: string; label: string }[]
+    data: { value: string; label: string; renderItem?: React.ReactNode }[]
     disabled?: boolean
     isLoading?: boolean
     rounded?: 'default' | 'full'
@@ -285,6 +285,7 @@ const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading
             options={data || []}
             optionLabel="label"
             optionValue="value"
+            renderItem={opt => opt?.renderItem}
             placeholder={placeholder}
             onChange={value => upsert({ name, selectedValue: value })}
             value={(value?.[name] as string) || ''}

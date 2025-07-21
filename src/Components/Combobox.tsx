@@ -108,6 +108,7 @@ interface Props<T> extends VariantProps<typeof selectVariants> {
     options?: T[]
     optionLabel: keyof T
     optionValue: keyof T
+    renderItem?: (option: T) => React.ReactNode
     value: string
     placeholder: string
     isLoading?: boolean
@@ -155,6 +156,7 @@ const ComboboxControlNoForm = <_, T>({
     placeholder,
     isLoading,
     optionValue,
+    renderItem,
     onChange,
     value,
     triggerProps,
@@ -164,6 +166,11 @@ const ComboboxControlNoForm = <_, T>({
 }: Props<T>) => {
     const [open, setOpen] = useState(false)
     const currentValue = (options?.length && options?.find(opt => String(opt[optionValue]) === value)?.[optionLabel]) || ''
+    const renderOption = (opt: T) => {
+        if (renderItem) return renderItem(opt)
+        if (isDate) return dateFormatter({ date: String(opt?.[optionLabel]) ?? '', format: 'long' })
+        return String(opt?.[optionLabel])
+    }
     return (
         <Combobox open={open} onOpenChange={open => setOpen(open)}>
             <ComboboxTrigger isForm={false} {...triggerProps} placeholder={placeholder} isLoading={isLoading} disabled={rest?.disabled} {...rest}>
@@ -177,7 +184,7 @@ const ComboboxControlNoForm = <_, T>({
                     options?.map(opt => (
                         <ComboboxItem
                             className={cn({
-                                relative: true,
+                                'relative min-w-[220px]': true,
                                 'after:absolute after:bottom-auto after:start-space-01 after:top-auto after:h-[50%] after:w-[2px] after:rounded-full after:bg-primary':
                                     String(opt[optionValue]) === value,
                             })}
@@ -188,7 +195,7 @@ const ComboboxControlNoForm = <_, T>({
                                 onChange(String(opt[optionValue]))
                                 setOpen(false)
                             }}>
-                            {isDate ? dateFormatter({ date: String(opt?.[optionLabel]) ?? '', format: 'long' }) : String(opt?.[optionLabel])}
+                            {renderOption(opt)}
                         </ComboboxItem>
                     ))}
             </ComboboxGroup>
