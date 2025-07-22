@@ -26,10 +26,6 @@ steps:
       parameters:
           useDotnet: true
 
-    - script: |
-          git remote prune origin
-      displayName: 'Prune Remote Branches'
-
     - task: NodeTool@0
       inputs:
           versionSpec: '18.x'
