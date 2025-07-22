@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, Row, useReactTable } from '@tanstack/react-table'
+import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, Row, RowData, useReactTable } from '@tanstack/react-table'
 import { Skeleton } from './ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 
@@ -7,6 +7,14 @@ import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import { LinesPerPage, Pagination, PaginationDescription } from './paginations'
+
+declare module '@tanstack/react-table' {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    interface ColumnMeta<TData extends RowData, TValue> {
+        className?: string
+    }
+}
+
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
@@ -77,12 +85,14 @@ export function DataTable<TData, TValue>({
         table.setPageSize(pageSize)
     }, [table, pageSize])
 
+    const hasCustomWidth = columns?.some(col => col?.meta && col?.meta?.className)
+
     if (!matches) return null
 
     return (
         <>
             <div className="overflow-hidden rounded-t-3">
-                <Table>
+                <Table className={clsx(!hasCustomWidth && 'w-full table-fixed')}>
                     <TableHeader>
                         {table.getHeaderGroups().map(headerGroup => (
                             <TableRow key={headerGroup.id}>
@@ -109,7 +119,7 @@ export function DataTable<TData, TValue>({
                                             const item = flexRender(cell.column.columnDef.cell, cell.getContext())
                                             return (
                                                 <TableCell
-                                                    className=""
+                                                    className={clsx(cell?.column?.columnDef?.meta?.className)}
                                                     data-title={cell.column.columnDef.header?.toString()}
                                                     key={cell.id}
                                                     isLast={table?.getRowModel()?.rows?.length - 1 === i}>
