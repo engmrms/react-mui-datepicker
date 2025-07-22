@@ -124,7 +124,7 @@ export function MultiSelect<T extends ValueType>({
                             />
                         </ShouldRender>
                         <CommandList>
-                            <CommandEmpty>{strings.Shared.NoDataFound}</CommandEmpty>
+                            <CommandEmpty className='my-auto text-center' >{strings.Shared.NoDataFound}</CommandEmpty>
                             <CommandBody
                                 options={filteredItems}
                                 dataTestId={dataTestId}
