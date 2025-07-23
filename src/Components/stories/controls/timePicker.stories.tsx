@@ -8,6 +8,13 @@ const meta: Meta<typeof TimePicker> = {
     title: 'Design System/Controls/TimePicker',
     component: TimePicker,
     tags: ['autodocs'],
+    parameters: {
+        docs: {
+            description: {
+                component: `<h4 className="tw-text-subtitle-02">Displays a time picker.</h4>`,
+            },
+        },
+    },
 }
 
 export default meta

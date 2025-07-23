@@ -8,6 +8,13 @@ const meta: Meta<typeof DatePicker> = {
     title: 'Design System/Controls/DatePicker',
     component: DatePicker,
     tags: ['autodocs'],
+    parameters: {
+        docs: {
+            description: {
+                component: `<h4 className="tw-text-subtitle-02">Displays a date picker.</h4>`,
+            },
+        },
+    },
 }
 
 export default meta
