@@ -31,6 +31,7 @@ export interface MultiSelectProps<T extends ValueType> extends VariantProps<type
     checkboxSize?: 'default' | 'sm' | 'xs'
     threshold?: number
     showSelectButton?: boolean
+    selectButtonTitle?: string
 }
 
 export function MultiSelect<T extends ValueType>({
@@ -49,6 +50,7 @@ export function MultiSelect<T extends ValueType>({
     checkboxSize = 'default',
     threshold = 1,
     showSelectButton,
+    selectButtonTitle
 }: Readonly<MultiSelectProps<T>>) {
     const [isOpen, toggle] = useToggle(false)
     const [search, setSearch] = React.useState('')
@@ -160,7 +162,7 @@ export function MultiSelect<T extends ValueType>({
                                         toggle()
                                     }}
                                     className="flex-1">
-                                    {strings.Shared.Select}
+                                    {selectButtonTitle ?? strings.Shared.Select}
                                 </Button>
                             </ShouldRender>
                         </div>
