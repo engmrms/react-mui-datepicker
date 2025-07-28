@@ -12,6 +12,8 @@ declare module '@tanstack/react-table' {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface ColumnMeta<TData extends RowData, TValue> {
         className?: string
+        headerColSpan?: number
+        cellColSpan?: number
     }
 }
 
@@ -98,7 +100,7 @@ export function DataTable<TData, TValue>({
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map(header => {
                                     return (
-                                        <TableHead key={header.id}>
+                                        <TableHead key={header.id} colSpan={header.column.columnDef.meta?.headerColSpan ?? 1}>
                                             {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                                         </TableHead>
                                     )
@@ -119,6 +121,7 @@ export function DataTable<TData, TValue>({
                                             const item = flexRender(cell.column.columnDef.cell, cell.getContext())
                                             return (
                                                 <TableCell
+                                                    colSpan={cell.column.columnDef.meta?.cellColSpan ?? 1}
                                                     className={clsx(cell?.column?.columnDef?.meta?.className)}
                                                     data-title={cell.column.columnDef.header?.toString()}
                                                     key={cell.id}
