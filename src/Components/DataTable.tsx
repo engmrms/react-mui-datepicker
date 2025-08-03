@@ -87,15 +87,20 @@ export function DataTable<TData, TValue>({
                               onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
                               aria-label="Select all"
                               className={theme.headerSelect}
+                              size="sm"
+                              colors="primary"
                           />
                       )
-                    : '',
+                    : // to preserve the place of the checkbox when multi selection is not enabled
+                      () => <div role="checkbox" className="w-[48px]" aria-hidden="true" />,
                 cell: ({ row }) => (
                     <Checkbox
                         checked={row.getIsSelected()}
                         onCheckedChange={value => row.toggleSelected(!!value)}
                         aria-label="Select row"
                         className={theme.bodySelect}
+                        size="sm"
+                        colors="primary"
                     />
                 ),
                 enableSorting: false,
