@@ -112,7 +112,9 @@ const SheetHeader = ({ className, title, hideCenter, children, ...props }: React
     return (
         <div className={cn('flex flex-row items-center gap-space-02 px-space-05 py-space-04', className)} {...props}>
             {children}
-            <h1 className="text-body-01 font-semibold">{title}</h1>
+            <ShouldRender shouldRender={!!title}>
+                <SheetTitle>{title}</SheetTitle>
+            </ShouldRender>
             <div className="ms-auto flex items-center gap-space-01">
                 <ShouldRender shouldRender={!hideCenter}>
                     <Button variant={'text'} colors={'neutral'} size={'icon-sm'} onClick={() => setIsCenter()} className="hidden sm:inline-flex">
