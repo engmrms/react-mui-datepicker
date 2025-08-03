@@ -147,7 +147,7 @@ export function DataTable<TData, TValue>({
             table.resetRowSelection()
             row.toggleSelected(!row.getIsSelected())
         }
-        onClickRow && onClickRow(row)
+        onClickRow(row)
     }
 
     useEffect(() => {
@@ -170,7 +170,7 @@ export function DataTable<TData, TValue>({
     return (
         <>
             <div className="overflow-hidden rounded-t-3">
-                <Table className={`${clsx(!hasCustomWidth && 'w-full table-fixed')} ${theme.table}`}>
+                <Table className={clsx(!hasCustomWidth && 'w-full table-fixed', theme.table)}>
                     <TableHeader className={theme.tableHeader}>
                         {table.getHeaderGroups().map(headerGroup => (
                             <TableRow key={headerGroup.id} className={theme.tableRow}>
@@ -195,7 +195,7 @@ export function DataTable<TData, TValue>({
                                         key={row.id}
                                         data-state={row.getIsSelected() && 'selected'}
                                         onClick={() => rowClick(row)}
-                                        className={`${clsx(onClickRow && 'cursor-pointer')} ${theme.tableRow}`}>
+                                        className={clsx(onClickRow && 'cursor-pointer', theme.tableRow)}>
                                         {row.getVisibleCells().map(cell => {
                                             const item = flexRender(cell.column.columnDef.cell, cell.getContext())
                                             return (
@@ -225,7 +225,7 @@ export function DataTable<TData, TValue>({
             {!!table.getFilteredRowModel().rows.length && hasPagination && (
                 <div className="flex items-center justify-end  px-space-04 py-space-02">
                     {loading ? (
-                        <Skeleton className="ml-auto h-[20px] w-space-12" />
+                        <Skeleton className="me-auto h-[20px] w-space-12" />
                     ) : (
                         <PaginationDescription
                             currentPage={rest?.pageNumber ?? currentPage}
