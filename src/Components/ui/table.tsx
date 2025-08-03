@@ -11,7 +11,7 @@ const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableE
 Table.displayName = 'Table'
 
 const TableHeader = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(({ className, ...props }, ref) => (
-    <thead ref={ref} className={cn('', className)} {...props} />
+    <thead ref={ref} className={cn('bg-background', className)} {...props} />
 ))
 TableHeader.displayName = 'TableHeader'
 
@@ -21,7 +21,7 @@ const TableBody = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes
 TableBody.displayName = 'TableBody'
 
 const TableFooter = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(({ className, ...props }, ref) => (
-    <tfoot ref={ref} className={cn('bg-primary  text-primary-foreground', className)} {...props} />
+    <tfoot ref={ref} className={cn('bg-primary text-primary-foreground', className)} {...props} />
 ))
 TableFooter.displayName = 'TableFooter'
 
@@ -34,7 +34,7 @@ const TableHead = React.forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<
     <th
         ref={ref}
         className={cn(
-            'bg-background px-space-03 py-space-04 text-center align-middle text-body-01 font-normal text-foreground-secondary [&:has([role=checkbox])]:pr-0',
+            'px-space-03 py-space-04 text-center align-middle text-body-01 font-normal text-foreground-secondary [&:has([role=checkbox])]:w-[48px]',
             className,
         )}
         {...props}
