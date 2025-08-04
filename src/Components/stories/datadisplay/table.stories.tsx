@@ -55,25 +55,9 @@ const invoices = [
     },
 ]
 
-const meta: Meta<typeof Table> = {
-    title: 'Design System/Data Display/Table',
-    component: Table,
-    tags: ['autodocs'],
-    parameters: {
-        // layout: 'centered',
-        docs: {
-            description: {
-                component: '<h4>A responsive table component.</h4>',
-            },
-        },
-    },
-}
-
-export default meta
-type Story = StoryObj<typeof Table>
-export const Default: Story = {
-    render: () => (
-        <Table className="w-full">
+function TableDemo(arg: any) {
+    return (
+        <Table {...arg} className="w-full">
             <TableCaption>A list of your recent invoices.</TableCaption>
             <TableHeader>
                 <TableRow>
@@ -100,5 +84,25 @@ export const Default: Story = {
                 </TableRow>
             </TableFooter>
         </Table>
-    ),
+    )
+}
+
+const meta: Meta<typeof Table> = {
+    title: 'Design System/Data Display/Table',
+    component: Table,
+    tags: ['autodocs'],
+    parameters: {
+        // layout: 'centered',
+        docs: {
+            description: {
+                component: '<h4>A responsive table component.</h4>',
+            },
+        },
+    },
+}
+
+export default meta
+type Story = StoryObj<typeof Table>
+export const Default: Story = {
+    render: TableDemo,
 }
