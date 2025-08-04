@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
-import { ColumnDef, RowSelectionState } from '@tanstack/react-table'
-import { useState } from 'react'
 
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '../../ui/table'
-import DataTable from '../../DataTable'
 
 const invoices = [
     {
@@ -58,112 +55,10 @@ const invoices = [
     },
 ]
 
-// Define the invoice type
-type Invoice = {
-    invoice: string
-    paymentStatus: string
-    totalAmount: string
-    paymentMethod: string
-}
-
-// Define columns for DataTable
-const columns: ColumnDef<Invoice, any>[] = [
-    {
-        accessorKey: 'invoice',
-        header: 'Invoice',
-    },
-    {
-        accessorKey: 'paymentStatus',
-        header: 'Status',
-    },
-    {
-        accessorKey: 'paymentMethod',
-        header: 'Method',
-    },
-    {
-        accessorKey: 'totalAmount',
-        header: 'Amount',
-    },
-]
-
-// Data for the DataTable
-const data = invoices
-
-const meta: Meta<typeof DataTable> = {
+const meta: Meta<typeof Table> = {
     title: 'Design System/Data Display/Table',
-    component: DataTable,
+    component: Table,
     tags: ['autodocs'],
-    argTypes: {
-        loading: {
-            control: { type: 'boolean' },
-        },
-        enableRowSelection: {
-            control: { type: 'boolean' },
-            if: { arg: 'loading', truthy: false },
-        },
-        enableMultiRowSelection: {
-            control: { type: 'boolean' },
-            if: { arg: 'loading', truthy: false },
-        },
-        isFirstRowSelected: {
-            control: { type: 'boolean' },
-        },
-        hasPagination: {
-            control: { type: 'boolean' },
-        },
-        totalItems: {
-            control: { type: 'number' },
-        },
-        itemsPerPage: {
-            control: { type: 'number' },
-        },
-        pageNumber: {
-            control: { type: 'number' },
-        },
-        theme: {
-            control: { type: 'object' },
-            description: 'Custom theme for the table',
-        },
-        columns: {
-            table: { disable: true },
-        },
-        data: {
-            table: { disable: true },
-        },
-        NoDataComponent: {
-            table: { disable: true },
-        },
-        onPageChange: {
-            table: { disable: true },
-        },
-        setLimit: {
-            table: { disable: true },
-        },
-        onClickRow: {
-            table: { disable: true },
-        },
-        rowSelection: {
-            table: { disable: true },
-        },
-        onRowSelectionChange: {
-            table: { disable: true },
-        },
-    },
-    args: {
-        loading: false,
-        enableRowSelection: true,
-        enableMultiRowSelection: true,
-        isFirstRowSelected: false,
-        hasPagination: true,
-        totalItems: 50,
-        itemsPerPage: 10,
-        pageNumber: 2,
-        theme: {
-            tableHead: 'bg-background-primary text-white',
-            tableRow: 'odd:bg-[#F3F3F3] even:bg-card',
-            tableCell: 'border-border-primary',
-        },
-    },
     parameters: {
         // layout: 'centered',
         docs: {
@@ -175,43 +70,8 @@ const meta: Meta<typeof DataTable> = {
 }
 
 export default meta
-type Story = StoryObj<typeof DataTable>
-
+type Story = StoryObj<typeof Table>
 export const Default: Story = {
-    render: function GenericDataTable({
-        loading,
-        enableRowSelection,
-        enableMultiRowSelection,
-        isFirstRowSelected,
-        hasPagination,
-        totalItems,
-        itemsPerPage,
-        pageNumber,
-        theme,
-    }) {
-        const [selectedRows, setSelectedRows] = useState<RowSelectionState>({})
-
-        return (
-            <DataTable
-                columns={columns}
-                data={data}
-                loading={loading}
-                enableRowSelection={enableRowSelection}
-                enableMultiRowSelection={enableMultiRowSelection}
-                rowSelection={selectedRows}
-                onRowSelectionChange={setSelectedRows}
-                isFirstRowSelected={isFirstRowSelected}
-                hasPagination={hasPagination}
-                totalItems={totalItems}
-                itemsPerPage={itemsPerPage}
-                pageNumber={pageNumber}
-                theme={theme}
-            />
-        )
-    },
-}
-
-export const TableUI: Story = {
     render: () => (
         <Table className="w-full">
             <TableCaption>A list of your recent invoices.</TableCaption>

@@ -35,17 +35,18 @@ interface DataTableProps<TData, TValue> {
     enableMultiRowSelection?: boolean
     rowSelection?: RowSelectionState
     onRowSelectionChange?: (updater: RowSelectionState | ((old: RowSelectionState) => RowSelectionState)) => void
-    theme: {
-        table?: string
-        tableCaption?: string
-        tableHeader?: string
-        tableHead?: string
-        tableBody?: string
-        tableRow?: string
-        tableCell?: string
-        tableFooter?: string
-        headerSelect?: string
-        bodySelect?: string
+    theme?: {
+        // added className for intelligence purposes
+        table?: { className?: string }
+        tableCaption?: { className?: string }
+        tableHeader?: { className?: string }
+        tableHead?: { className?: string }
+        tableBody?: { className?: string }
+        tableRow?: { className?: string }
+        tableCell?: { className?: string }
+        tableFooter?: { className?: string }
+        headerSelect?: { className?: string }
+        bodySelect?: { className?: string }
     }
 }
 
@@ -86,7 +87,7 @@ export function DataTable<TData, TValue>({
                               checked={table.getIsAllPageRowsSelected()}
                               onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
                               aria-label="Select all"
-                              className={theme.headerSelect}
+                              className={clsx(theme?.headerSelect?.className)}
                               size="sm"
                               colors="primary"
                           />
@@ -98,7 +99,7 @@ export function DataTable<TData, TValue>({
                         checked={row.getIsSelected()}
                         onCheckedChange={value => row.toggleSelected(!!value)}
                         aria-label="Select row"
-                        className={theme.bodySelect}
+                        className={clsx(theme?.bodySelect?.className)}
                         size="sm"
                         colors="primary"
                     />
@@ -170,16 +171,16 @@ export function DataTable<TData, TValue>({
     return (
         <>
             <div className="overflow-hidden rounded-t-3">
-                <Table className={clsx(!hasCustomWidth && 'w-full table-fixed', theme.table)}>
-                    <TableHeader className={theme.tableHeader}>
+                <Table className={clsx(!hasCustomWidth && 'w-full table-fixed', theme?.table?.className)}>
+                    <TableHeader className={clsx(theme?.tableHeader?.className)}>
                         {table.getHeaderGroups().map(headerGroup => (
-                            <TableRow key={headerGroup.id} className={theme.tableRow}>
+                            <TableRow key={headerGroup.id} className={clsx(theme?.tableRow?.className)}>
                                 {headerGroup.headers.map(header => {
                                     return (
                                         <TableHead
                                             key={header.id}
                                             colSpan={header.column.columnDef.meta?.headerColSpan ?? 1}
-                                            className={theme.tableHead}>
+                                            className={clsx(theme?.tableHead?.className)}>
                                             {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                                         </TableHead>
                                     )
@@ -187,7 +188,7 @@ export function DataTable<TData, TValue>({
                             </TableRow>
                         ))}
                     </TableHeader>
-                    <TableBody className={theme.tableBody}>
+                    <TableBody className={clsx(theme?.tableBody?.className)}>
                         {table.getRowModel().rows?.length ? (
                             table.getRowModel().rows.map((row, i) => {
                                 return (
@@ -195,13 +196,13 @@ export function DataTable<TData, TValue>({
                                         key={row.id}
                                         data-state={row.getIsSelected() && 'selected'}
                                         onClick={() => rowClick(row)}
-                                        className={clsx(onClickRow && 'cursor-pointer', theme.tableRow)}>
+                                        className={clsx(onClickRow && 'cursor-pointer', theme?.tableRow?.className)}>
                                         {row.getVisibleCells().map(cell => {
                                             const item = flexRender(cell.column.columnDef.cell, cell.getContext())
                                             return (
                                                 <TableCell
                                                     colSpan={cell.column.columnDef.meta?.cellColSpan ?? 1}
-                                                    className={`${clsx(cell?.column?.columnDef?.meta?.className)} ${theme.tableCell}`}
+                                                    className={`${clsx(cell?.column?.columnDef?.meta?.className)} ${theme?.tableCell?.className}`}
                                                     data-title={cell.column.columnDef.header?.toString()}
                                                     key={cell.id}
                                                     isLast={table?.getRowModel()?.rows?.length - 1 === i}>
@@ -213,7 +214,7 @@ export function DataTable<TData, TValue>({
                                 )
                             })
                         ) : (
-                            <TableRow className={theme.tableRow}>
+                            <TableRow className={theme?.tableRow?.className}>
                                 <TableCell colSpan={columns.length} className="h-24 text-center">
                                     {NoDataComponent}
                                 </TableCell>
