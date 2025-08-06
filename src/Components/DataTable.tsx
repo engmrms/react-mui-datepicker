@@ -4,10 +4,10 @@ import { Skeleton } from './ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 import { Checkbox } from './ui/checkbox'
 
-import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import { LinesPerPage, Pagination, PaginationDescription } from './paginations'
+import { cn } from '../Lib/utils'
 
 declare module '@tanstack/react-table' {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -88,7 +88,7 @@ export function DataTable<TData, TValue>({
                               checked={table.getIsAllPageRowsSelected()}
                               onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
                               aria-label="Select all"
-                              className={clsx(theme?.headerSelect?.className)}
+                              className={cn(theme?.headerSelect?.className)}
                               size="sm"
                               colors="primary"
                           />
@@ -100,7 +100,7 @@ export function DataTable<TData, TValue>({
                         checked={row.getIsSelected()}
                         onCheckedChange={value => row.toggleSelected(!!value)}
                         aria-label="Select row"
-                        className={clsx(theme?.bodySelect?.className)}
+                        className={cn(theme?.bodySelect?.className)}
                         size="sm"
                         colors="primary"
                     />
@@ -170,16 +170,16 @@ export function DataTable<TData, TValue>({
     return (
         <>
             <div className="overflow-hidden rounded-t-3">
-                <Table className={clsx('w-full table-fixed', theme?.table?.className)}>
-                    <TableHeader className={clsx(theme?.tableHeader?.className)}>
+                <Table className={cn('w-full table-fixed', theme?.table?.className)}>
+                    <TableHeader className={cn(theme?.tableHeader?.className)}>
                         {table.getHeaderGroups().map(headerGroup => (
-                            <TableRow key={headerGroup.id} className={clsx(theme?.tableRow?.className)}>
+                            <TableRow key={headerGroup.id} className={cn(theme?.tableRow?.className)}>
                                 {headerGroup.headers.map(header => {
                                     return (
                                         <TableHead
                                             key={header.id}
                                             colSpan={header.column.columnDef.meta?.headerColSpan ?? 1}
-                                            className={clsx(theme?.tableHead?.className)}>
+                                            className={cn(theme?.tableHead?.className)}>
                                             {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                                         </TableHead>
                                     )
@@ -187,7 +187,7 @@ export function DataTable<TData, TValue>({
                             </TableRow>
                         ))}
                     </TableHeader>
-                    <TableBody className={clsx(theme?.tableBody?.className)}>
+                    <TableBody className={cn(theme?.tableBody?.className)}>
                         {table.getRowModel().rows?.length ? (
                             table.getRowModel().rows.map((row, i) => {
                                 return (
@@ -195,7 +195,7 @@ export function DataTable<TData, TValue>({
                                         key={row.id}
                                         data-state={row.getIsSelected() && 'selected'}
                                         onClick={() => rowClick(row)}
-                                        className={clsx(onClickRow && 'cursor-pointer', theme?.tableRow?.className)}>
+                                        className={cn(onClickRow && 'cursor-pointer', theme?.tableRow?.className)}>
                                         {row.getVisibleCells().map(cell => {
                                             const item = flexRender(cell.column.columnDef.cell, cell.getContext())
                                             return (
