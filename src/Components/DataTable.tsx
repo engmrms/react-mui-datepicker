@@ -12,10 +12,23 @@ import { LinesPerPage, Pagination, PaginationDescription } from './paginations'
 declare module '@tanstack/react-table' {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface ColumnMeta<TData extends RowData, TValue> {
-        className?: string
         headerColSpan?: number
         cellColSpan?: number
     }
+}
+
+interface Theme {
+    // added className for intelligence purposes
+    table?: { className?: string }
+    tableCaption?: { className?: string }
+    tableHeader?: { className?: string }
+    tableHead?: { className?: string }
+    tableBody?: { className?: string }
+    tableRow?: { className?: string }
+    tableCell?: { className?: string }
+    tableFooter?: { className?: string }
+    headerSelect?: { className?: string }
+    bodySelect?: { className?: string }
 }
 
 interface DataTableProps<TData, TValue> {
@@ -35,19 +48,7 @@ interface DataTableProps<TData, TValue> {
     enableMultiRowSelection?: boolean
     rowSelection?: RowSelectionState
     onRowSelectionChange?: (updater: RowSelectionState | ((old: RowSelectionState) => RowSelectionState)) => void
-    theme?: {
-        // added className for intelligence purposes
-        table?: { className?: string }
-        tableCaption?: { className?: string }
-        tableHeader?: { className?: string }
-        tableHead?: { className?: string }
-        tableBody?: { className?: string }
-        tableRow?: { className?: string }
-        tableCell?: { className?: string }
-        tableFooter?: { className?: string }
-        headerSelect?: { className?: string }
-        bodySelect?: { className?: string }
-    }
+    theme?: Theme
 }
 
 export function DataTable<TData, TValue>({
@@ -164,14 +165,12 @@ export function DataTable<TData, TValue>({
         table.setPageSize(pageSize)
     }, [table, pageSize])
 
-    const hasCustomWidth = columns?.some(col => col?.meta && col?.meta?.className)
-
     if (!matches) return null
 
     return (
         <>
             <div className="overflow-hidden rounded-t-3">
-                <Table className={clsx(!hasCustomWidth && 'w-full table-fixed', theme?.table?.className)}>
+                <Table className={clsx('w-full table-fixed', theme?.table?.className)}>
                     <TableHeader className={clsx(theme?.tableHeader?.className)}>
                         {table.getHeaderGroups().map(headerGroup => (
                             <TableRow key={headerGroup.id} className={clsx(theme?.tableRow?.className)}>
@@ -202,7 +201,7 @@ export function DataTable<TData, TValue>({
                                             return (
                                                 <TableCell
                                                     colSpan={cell.column.columnDef.meta?.cellColSpan ?? 1}
-                                                    className={`${clsx(cell?.column?.columnDef?.meta?.className)} ${theme?.tableCell?.className}`}
+                                                    className={theme?.tableCell?.className}
                                                     data-title={cell.column.columnDef.header?.toString()}
                                                     key={cell.id}
                                                     isLast={table?.getRowModel()?.rows?.length - 1 === i}>
