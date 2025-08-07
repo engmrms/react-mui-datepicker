@@ -1,20 +1,34 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, Row, RowData, useReactTable } from '@tanstack/react-table'
+import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, Row, RowData, RowSelectionState, useReactTable } from '@tanstack/react-table'
 import { Skeleton } from './ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
+import { Checkbox } from './ui/checkbox'
 
-import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import { LinesPerPage, Pagination, PaginationDescription } from './paginations'
+import { cn } from '../Lib/utils'
 
 declare module '@tanstack/react-table' {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface ColumnMeta<TData extends RowData, TValue> {
-        className?: string
         headerColSpan?: number
         cellColSpan?: number
     }
+}
+
+interface Theme {
+    // added className for intelligence purposes
+    table?: { className?: string }
+    tableCaption?: { className?: string }
+    tableHeader?: { className?: string }
+    tableHead?: { className?: string }
+    tableBody?: { className?: string }
+    tableRow?: { className?: string }
+    tableCell?: { className?: string }
+    tableFooter?: { className?: string }
+    headerSelect?: { className?: string }
+    bodySelect?: { className?: string }
 }
 
 interface DataTableProps<TData, TValue> {
@@ -30,6 +44,11 @@ interface DataTableProps<TData, TValue> {
     hasPagination?: boolean
     isFirstRowSelected?: boolean
     onClickRow?: (data: Row<TData>) => void
+    enableRowSelection?: boolean
+    enableMultiRowSelection?: boolean
+    rowSelection?: RowSelectionState
+    onRowSelectionChange?: (updater: RowSelectionState | ((old: RowSelectionState) => RowSelectionState)) => void
+    theme?: Theme
 }
 
 export function DataTable<TData, TValue>({
@@ -41,27 +60,72 @@ export function DataTable<TData, TValue>({
     hasPagination = true,
     onClickRow,
     isFirstRowSelected = false,
+    enableRowSelection,
+    enableMultiRowSelection,
+    rowSelection,
+    onRowSelectionChange,
+    theme,
     ...rest
 }: DataTableProps<TData, TValue>) {
     const tableData = React.useMemo(() => (loading ? Array(itemsPerPage || 10).fill({}) : data), [loading, itemsPerPage, data])
     const [pageSize, setPageSize] = useState(itemsPerPage || 10)
 
-    const tableColumns = React.useMemo(
-        () =>
-            loading
-                ? columns.map(column => ({
-                      ...column,
-                      cell: () => <Skeleton className="h-8 w-full" />,
-                  }))
-                : columns,
-        [loading, columns],
-    )
+    const tableColumns = React.useMemo(() => {
+        let cols = loading
+            ? columns.map(column => ({
+                  ...column,
+                  cell: () => <Skeleton className="h-8 w-full" />,
+              }))
+            : columns
+
+        // Add selection column if row selection is enabled
+        if (enableRowSelection && !loading) {
+            const selectionColumn: ColumnDef<TData, TValue> = {
+                id: 'select',
+                header: enableMultiRowSelection
+                    ? ({ table }) => (
+                          <Checkbox
+                              checked={table.getIsAllPageRowsSelected()}
+                              onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
+                              aria-label="Select all"
+                              className={cn(theme?.headerSelect?.className)}
+                              size="sm"
+                              colors="primary"
+                          />
+                      )
+                    : // to preserve the place of the checkbox when multi selection is not enabled
+                      () => <div role="checkbox" className="w-[48px]" aria-hidden="true" />,
+                cell: ({ row }) => (
+                    <Checkbox
+                        checked={row.getIsSelected()}
+                        onCheckedChange={value => row.toggleSelected(!!value)}
+                        aria-label="Select row"
+                        className={cn(theme?.bodySelect?.className)}
+                        size="sm"
+                        colors="primary"
+                    />
+                ),
+                enableSorting: false,
+                enableHiding: false,
+            }
+            cols = [selectionColumn, ...cols]
+        }
+
+        return cols
+    }, [loading, columns, enableRowSelection, enableMultiRowSelection])
 
     const table = useReactTable({
         data: tableData,
         columns: tableColumns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        onRowSelectionChange: onRowSelectionChange,
+        state: {
+            rowSelection,
+        },
+        enableRowSelection: enableRowSelection,
+        enableMultiRowSelection: enableMultiRowSelection,
+        getRowId: row => row.id, // Provide a way to identify rows
     })
 
     const matches = useMediaQuery('(min-width: 801px)')
@@ -69,9 +133,23 @@ export function DataTable<TData, TValue>({
     const currentPage = table.getState().pagination.pageIndex + 1
 
     const rowClick = (row: Row<TData>) => {
-        table.resetRowSelection()
-        row.toggleSelected(!row.getIsSelected())
-        onClickRow && onClickRow(row)
+        if (!onClickRow) return
+
+        if (enableRowSelection) {
+            if (enableMultiRowSelection) {
+                // In multi-selection mode, toggle the clicked row
+                row.toggleSelected(!row.getIsSelected())
+            } else {
+                // In single selection mode, reset all selections and select the clicked row
+                table.resetRowSelection()
+                row.toggleSelected(true)
+            }
+        } else {
+            // Legacy behavior for when selection is not explicitly enabled
+            table.resetRowSelection()
+            row.toggleSelected(!row.getIsSelected())
+        }
+        onClickRow(row)
     }
 
     useEffect(() => {
@@ -87,20 +165,21 @@ export function DataTable<TData, TValue>({
         table.setPageSize(pageSize)
     }, [table, pageSize])
 
-    const hasCustomWidth = columns?.some(col => col?.meta && col?.meta?.className)
-
     if (!matches) return null
 
     return (
         <>
             <div className="overflow-hidden rounded-t-3">
-                <Table className={clsx(!hasCustomWidth && 'w-full table-fixed')}>
-                    <TableHeader>
+                <Table className={cn('w-full table-fixed', theme?.table?.className)}>
+                    <TableHeader className={cn(theme?.tableHeader?.className)}>
                         {table.getHeaderGroups().map(headerGroup => (
-                            <TableRow key={headerGroup.id}>
+                            <TableRow key={headerGroup.id} className={cn(theme?.tableRow?.className)}>
                                 {headerGroup.headers.map(header => {
                                     return (
-                                        <TableHead key={header.id} colSpan={header.column.columnDef.meta?.headerColSpan ?? 1}>
+                                        <TableHead
+                                            key={header.id}
+                                            colSpan={header.column.columnDef.meta?.headerColSpan ?? 1}
+                                            className={cn(theme?.tableHead?.className)}>
                                             {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                                         </TableHead>
                                     )
@@ -108,7 +187,7 @@ export function DataTable<TData, TValue>({
                             </TableRow>
                         ))}
                     </TableHeader>
-                    <TableBody>
+                    <TableBody className={cn(theme?.tableBody?.className)}>
                         {table.getRowModel().rows?.length ? (
                             table.getRowModel().rows.map((row, i) => {
                                 return (
@@ -116,13 +195,13 @@ export function DataTable<TData, TValue>({
                                         key={row.id}
                                         data-state={row.getIsSelected() && 'selected'}
                                         onClick={() => rowClick(row)}
-                                        className={clsx(onClickRow && 'cursor-pointer')}>
+                                        className={cn(onClickRow && 'cursor-pointer', theme?.tableRow?.className)}>
                                         {row.getVisibleCells().map(cell => {
                                             const item = flexRender(cell.column.columnDef.cell, cell.getContext())
                                             return (
                                                 <TableCell
                                                     colSpan={cell.column.columnDef.meta?.cellColSpan ?? 1}
-                                                    className={clsx(cell?.column?.columnDef?.meta?.className)}
+                                                    className={theme?.tableCell?.className}
                                                     data-title={cell.column.columnDef.header?.toString()}
                                                     key={cell.id}
                                                     isLast={table?.getRowModel()?.rows?.length - 1 === i}>
@@ -134,7 +213,7 @@ export function DataTable<TData, TValue>({
                                 )
                             })
                         ) : (
-                            <TableRow>
+                            <TableRow className={theme?.tableRow?.className}>
                                 <TableCell colSpan={columns.length} className="h-24 text-center">
                                     {NoDataComponent}
                                 </TableCell>
@@ -146,7 +225,7 @@ export function DataTable<TData, TValue>({
             {!!table.getFilteredRowModel().rows.length && hasPagination && (
                 <div className="flex items-center justify-end  px-space-04 py-space-02">
                     {loading ? (
-                        <Skeleton className="ml-auto h-[20px] w-space-12" />
+                        <Skeleton className="me-auto h-[20px] w-space-12" />
                     ) : (
                         <PaginationDescription
                             currentPage={rest?.pageNumber ?? currentPage}
