@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, Row, RowData, RowSelectionState, useReactTable } from '@tanstack/react-table'
+import { Checkbox } from './ui/checkbox'
 import { Skeleton } from './ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
-import { Checkbox } from './ui/checkbox'
 
 import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
-import { LinesPerPage, Pagination, PaginationDescription } from './paginations'
 import { cn } from '../Lib/utils'
+import { LinesPerPage, Pagination, PaginationDescription } from './paginations'
 
 declare module '@tanstack/react-table' {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -121,7 +121,7 @@ export function DataTable<TData, TValue>({
         getPaginationRowModel: getPaginationRowModel(),
         onRowSelectionChange: onRowSelectionChange,
         state: {
-            rowSelection,
+            rowSelection: rowSelection || {},
         },
         enableRowSelection: enableRowSelection,
         enableMultiRowSelection: enableMultiRowSelection,
