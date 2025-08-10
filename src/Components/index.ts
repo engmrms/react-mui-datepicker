@@ -37,7 +37,7 @@ export * from './ui/label'
 export * from './ui/Layout'
 export * from './ui/navigation-menu'
 // TODO: check if it's used as we have paginations component
-// export * as Pagination from './ui/pagination'
+export * as ShadPagination from './ui/pagination'
 export * from './Bootstrap'
 export * from './FileUpload'
 export * from './Filter'
