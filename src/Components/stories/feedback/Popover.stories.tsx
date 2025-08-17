@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Bootstrap, Button, Input, Label, Popover, PopoverContent, PopoverTrigger, Stack } from '../../../package'
+import { Button, Input, Label, Popover, PopoverContent, PopoverTrigger, Stack } from '../../../package'
 const meta: Meta<typeof PopoverContent> = {
     title: 'Design System/FeedBack/Popover',
     component: PopoverContent,
@@ -8,10 +8,12 @@ const meta: Meta<typeof PopoverContent> = {
     args: {
         align: 'center',
         side: 'bottom',
+        dir:'ltr'
     },
     argTypes: {
         align: { control: 'radio', options: ['center', 'end', 'start'] },
         side: { control: 'radio', options: ['top', 'bottom', 'right', 'left'] },
+        dir: { control: 'radio', options: ['ltr', 'rtl'] },
     },
     parameters: {
         layout: 'centered',
@@ -39,33 +41,29 @@ export const Default: Story = {
                     Open popover
                 </Button>
             </PopoverTrigger>
-            <PopoverContent
-                {...arg}
-                className="border-t-none flex w-screen min-w-[8rem] flex-col gap-space-03 rounded-3 border-none bg-background p-space-04 max-md:rounded-t-none md:w-[36rem] md:max-w-[36rem]">
+            <PopoverContent {...arg}>
                 <div className="space-y-space-02">
                     <h4 className="font-medium leading-none">Dimensions</h4>
                     <p className="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
                 </div>
-                <Bootstrap>
-                    <Stack gap={2} direction={'col'}>
-                        <div className="flex-1">
-                            <Label htmlFor="width">Width</Label>
-                            <Input id="width" defaultValue="100%" className="" />
-                        </div>
-                        <div className="flex-1">
-                            <Label htmlFor="maxWidth">Max. width</Label>
-                            <Input id="width" defaultValue="100%" className="" />
-                        </div>
-                        <div className="flex-1">
-                            <Label htmlFor="height">Height</Label>
-                            <Input id="width" defaultValue="100%" className="" />
-                        </div>
-                        <div className="flex-1">
-                            <Label htmlFor="maxHeight">Max. height</Label>
-                            <Input id="width" defaultValue="100%" className="" />
-                        </div>
-                    </Stack>
-                </Bootstrap>
+                <Stack gap={2} direction={'col'}>
+                    <div className="flex-1">
+                        <Label htmlFor="width">Width</Label>
+                        <Input id="width" defaultValue="100%" className="" />
+                    </div>
+                    <div className="flex-1">
+                        <Label htmlFor="maxWidth">Max. width</Label>
+                        <Input id="width" defaultValue="100%" className="" />
+                    </div>
+                    <div className="flex-1">
+                        <Label htmlFor="height">Height</Label>
+                        <Input id="width" defaultValue="100%" className="" />
+                    </div>
+                    <div className="flex-1">
+                        <Label htmlFor="maxHeight">Max. height</Label>
+                        <Input id="width" defaultValue="100%" className="" />
+                    </div>
+                </Stack>
             </PopoverContent>
         </Popover>
     ),

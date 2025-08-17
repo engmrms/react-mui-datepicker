@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
-import { Checkbox, Label, Stack } from '../../../package'
+import { Label, Stack } from '../../../package'
 
 const meta: Meta<typeof Label> = {
     title: 'Design System/Data Display/Label',
@@ -27,7 +27,6 @@ export const Default: Story = {
         return (
             <div>
                 <Stack gap={2} className="flex items-center ">
-                    <Checkbox id="terms" />
                     <Label {...args} htmlFor="terms">
                         Accept terms and conditions
                     </Label>
