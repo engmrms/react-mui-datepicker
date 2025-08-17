@@ -43,7 +43,7 @@ export const ar = {
         YearTitle: 'السنة',
         MonthTitle: 'الشهر',
         PaginationDesc: 'الصفحة {0} من {1}',
-        LinesPerPage: 'عدد السطور بالصفحة',
+        LinesPerPage: 'عدد السطور بالصفحة: ',
         Actions: 'الإجراءات',
         ViewDetails: 'عرض التفاصيل',
         Language: 'اللغة',

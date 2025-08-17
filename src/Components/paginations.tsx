@@ -147,22 +147,34 @@ const PaginationDescription = ({ currentPage, totalCount, limit = 10 }: { curren
     const pageCount = Math.ceil(totalCount / limit)
     return <div className="flex-1 text-body-01">{strings.formatString(strings.Shared.PaginationDesc, currentPage, pageCount)}</div>
 }
-const LinesPerPage = ({ value, onChange }: { value: number; onChange: (value: string) => void }) => {
+const LinesPerPage = ({
+    value,
+    onChange,
+    linesPerPageOptions = [5, 10, 15, 20, 25],
+    label,
+    placeholder,
+}: {
+    value: number
+    onChange: (value: string) => void
+    linesPerPageOptions?: number[]
+    label?: string
+    placeholder?: string
+}) => {
     const { dir } = useLanguage()
     return (
         <>
-            <span className="block whitespace-nowrap text-body-01">{strings.Shared.LinesPerPage} :</span>
+            <span className="block whitespace-nowrap text-body-01">{label ?? strings.Shared.LinesPerPage}</span>
             <Select dir={dir} value={value.toString()} onValueChange={val => onChange(val)}>
                 <SelectTrigger className="!h-space-06">
-                    <SelectValue placeholder={strings.Shared.Select} />
+                    <SelectValue placeholder={placeholder ?? strings.Shared.Select} />
                 </SelectTrigger>
                 <SelectContent>
                     <SelectGroup>
-                        <SelectItem value="5">5</SelectItem>
-                        <SelectItem value="10">10</SelectItem>
-                        <SelectItem value="15">15</SelectItem>
-                        <SelectItem value="20">20</SelectItem>
-                        <SelectItem value="25">25</SelectItem>
+                        {linesPerPageOptions.map(option => (
+                            <SelectItem key={option} value={option.toString()}>
+                                {option}
+                            </SelectItem>
+                        ))}
                     </SelectGroup>
                 </SelectContent>
             </Select>
