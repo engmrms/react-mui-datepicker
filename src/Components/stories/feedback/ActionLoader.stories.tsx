@@ -23,7 +23,7 @@ export const Default: Story = {
     render: () => {
         return (
             <>
-                <div className="h-[400px]" id="loader"></div>
+                <div className="h-[50px]" id="loader"></div>
                 createPortal(
                 <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-white">
                     <ActionLoader />
