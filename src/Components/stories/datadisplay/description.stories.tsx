@@ -31,6 +31,7 @@ export const Default: Story = {
         lastItem: true,
         title: 'Title',
         stretch: false,
+        isSingleLine: true,
     },
     argTypes: {
         variant: {
