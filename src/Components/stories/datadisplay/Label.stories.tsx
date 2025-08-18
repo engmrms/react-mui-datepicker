@@ -22,6 +22,7 @@ type Story = StoryObj<typeof Label>
 export const Default: Story = {
     args: {
         hidden: false,
+        size: 'default',
     },
     render: args => {
         return (
