@@ -35,7 +35,7 @@ export const Default: Story = {
 const CollapsibleShowMore = (args: Story['args']) => {
     const [openCollapse, setOpenCollapse] = useState(false)
     return (
-        <Collapsible open={openCollapse} {...args} className="flex w-[350px] flex-col gap-space-02">
+        <Collapsible {...args} className="flex w-[350px] flex-col gap-space-02">
             <div className="flex items-center justify-between gap-space-04 px-space-04">
                 <h4 className="text-sm font-semibold">Overview</h4>
             </div>
