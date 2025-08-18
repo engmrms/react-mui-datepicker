@@ -47,6 +47,7 @@ const dlVariants = cva('grid border-b border-border-secondary', {
 export type DescriptionProps = {
     title: string
     icon?: GoogleMaterialIcon
+    isSingleLine?: boolean
 } & VariantProps<typeof dlVariants>
 
 const Description = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & PropsWithChildren>(({ children, className, ...props }, ref) => {
@@ -59,14 +60,14 @@ const Description = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEleme
 Description.displayName = 'Description'
 
 const DescriptionItem = forwardRef<HTMLDListElement, React.HTMLAttributes<HTMLDListElement> & PropsWithChildren<DescriptionProps>>(
-    ({ icon: Icon, variant, title, children, orientation, stretch, lastItem, size, padding, className, ...props }, ref) => {
+    ({ icon: Icon, isSingleLine = true, variant, title, children, orientation, stretch, lastItem, size, padding, className, ...props }, ref) => {
         return (
             <dl ref={ref} className={cn(dlVariants({ variant, orientation, size, stretch, lastItem, padding }), className)} {...props}>
                 <dt className="col-start-1 inline-flex items-center gap-space-01">
                     {Icon && <Icon className="h-8 w-8 shrink-0" />}
                     {title}:
                 </dt>
-                <dd className="line-clamp-1">{children}</dd>
+                <dd className={cn({ 'line-clamp-1': isSingleLine })}>{children}</dd>
             </dl>
         )
     },
