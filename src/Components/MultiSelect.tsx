@@ -1,7 +1,7 @@
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { VariantProps } from 'class-variance-authority'
 import { ExpandMore } from 'google-material-icons/outlined'
-import React, { ComponentType, useCallback, useEffect, useMemo } from 'react'
+import React, { ComponentType, useEffect, useMemo } from 'react'
 import { useToggle } from 'usehooks-ts'
 import { cn, debounce } from '../Lib'
 import { strings } from '../Locales'
@@ -50,14 +50,14 @@ export function MultiSelect<T extends ValueType>({
     checkboxSize = 'default',
     threshold = 1,
     showSelectButton,
-    selectButtonTitle
+    selectButtonTitle,
 }: Readonly<MultiSelectProps<T>>) {
     const [isOpen, toggle] = useToggle(false)
     const [search, setSearch] = React.useState('')
     const [inputValue, setInputValue] = React.useState('')
     const [tempSelectedValues, setTempSelectedValues] = React.useState<T[]>(selectedValues)
 
-    const debounceSearch = useCallback(() => debounce(value => setSearch(value), 300), [])
+    const debounceSearch = useMemo(() => debounce(value => setSearch(value), 300), [])
 
     const filteredItems = useMemo(() => options.filter(item => item.label.toLowerCase().includes(search.toLowerCase())), [options, search])
 
@@ -121,12 +121,12 @@ export function MultiSelect<T extends ValueType>({
                                 value={inputValue}
                                 onValueChange={value => {
                                     setInputValue(value)
-                                    debounceSearch()(value)
+                                    debounceSearch(value)
                                 }}
                             />
                         </ShouldRender>
                         <CommandList>
-                            <CommandEmpty className='my-auto text-center' >{strings.Shared.NoDataFound}</CommandEmpty>
+                            <CommandEmpty className="my-auto text-center">{strings.Shared.NoDataFound}</CommandEmpty>
                             <CommandBody
                                 options={filteredItems}
                                 dataTestId={dataTestId}
