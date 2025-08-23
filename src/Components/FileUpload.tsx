@@ -186,7 +186,6 @@ function FileUpload({
     value = [],
     onChange,
 }: FileUploadProps) {
-    console.log('value', value)
     const [state, setState] = useState<FileUploadState>({
         validFiles: value,
         invalidFiles: [],
