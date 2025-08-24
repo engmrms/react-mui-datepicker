@@ -29,7 +29,7 @@ import {
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-    useLanguage
+    useLanguage,
 } from '../package'
 
 // Types
@@ -43,6 +43,7 @@ interface FilterContextValue {
     reset: () => void
 }
 
+type FilterData = { value: string; label: string }
 interface FilterGroupProps extends React.HTMLAttributes<HTMLDivElement> {
     value: FilterValue
     /** Optional label for the filter group */
@@ -72,6 +73,7 @@ interface FilterSelectProps {
     size?: 'default' | 'sm'
     defaultOpen?: boolean
     currentValue?: string | string[] | undefined
+    renderItem?: (opt: FilterData) => React.ReactNode
 }
 
 interface MenuItemProps<T extends string | number = string> {
@@ -244,7 +246,7 @@ const FilterMobileView = ({
     )
 }
 
-const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading, rounded, size, name, defaultOpen }: FilterSelectProps) => {
+const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading, rounded, size, name, defaultOpen, renderItem }: FilterSelectProps) => {
     const { value, upsert } = useFilterContext()
     const mobileView = useMediaQuery('(max-width: 767px)')
     const { dir } = useLanguage()
@@ -310,6 +312,7 @@ const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading
             options={data || []}
             optionLabel="label"
             optionValue="value"
+            renderItem={renderItem}
             placeholder={placeholder}
             onChange={value => upsert({ name, selectedValue: value })}
             value={(value?.[name] as string) || ''}
