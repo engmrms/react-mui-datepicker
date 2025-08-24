@@ -95,7 +95,7 @@ DialogBody.displayName = 'DialogBody'
 
 const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
     <div
-        className={cn('flex flex-col-reverse gap-space-02 border-t border-border-primary p-space-04 sm:flex-row sm:justify-between', className)}
+        className={cn('flex flex-col gap-space-02 border-t border-border-primary p-space-04 sm:flex-row sm:justify-between', className)}
         {...props}
     />
 )
