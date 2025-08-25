@@ -2,8 +2,8 @@ import { FilterAlt } from 'google-material-icons/filled'
 import { ExpandLess, HighlightOff } from 'google-material-icons/outlined'
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
-import { strings } from '../Locales'
 import {
+    strings,
     Button,
     ButtonProps,
     Checkbox,
@@ -34,16 +34,18 @@ import {
 
 // Types
 type FilterValue = {
-    [name: string]: string | string[]
+    [name: string]: string | string[] | number | undefined
 }
 
 interface FilterContextValue {
     value?: FilterValue
-    upsert: (params: { name: string; selectedValue: string | string[] }) => void
+    upsert: (params: { name: string; selectedValue: string | string[] | undefined }) => void
     reset: () => void
 }
 
+type FilterData = { value: string; label: string }
 interface FilterGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+    value: FilterValue
     /** Optional label for the filter group */
     label?: string
     /** Callback when filter values change */
@@ -59,7 +61,6 @@ interface FilterGroupProps extends React.HTMLAttributes<HTMLDivElement> {
     /** Icon for the filter button */
     filterIcon?: React.ReactNode
 }
-type FilterData = { value: string; label: string }
 
 interface FilterSelectProps {
     placeholder: string
@@ -71,6 +72,7 @@ interface FilterSelectProps {
     rounded?: 'default' | 'full'
     size?: 'default' | 'sm'
     defaultOpen?: boolean
+    currentValue?: string | string[] | undefined
     renderItem?: (opt: FilterData) => React.ReactNode
 }
 
@@ -102,7 +104,7 @@ const handleNumberDisplay = (num: number) => {
 // Components
 const MenuItem = <T extends string | number = string>({ label, value, isCkecked, onChange, name, multi }: MenuItemProps<T>) => {
     return (
-        <div className="flex w-full items-center  gap-space-02 ">
+        <div className="flex w-full items-center gap-space-02">
             {multi ? (
                 <Checkbox
                     id={`${name}${value}`}
@@ -114,44 +116,71 @@ const MenuItem = <T extends string | number = string>({ label, value, isCkecked,
             ) : (
                 <RadioGroupItem id={`${name}${value}`} value={value.toString()} />
             )}
-            <Label htmlFor={label} className="text-Body-01 flex grow gap-space-02">
+            <Label htmlFor={`${name}${value}`} className="text-Body-01 flex grow gap-space-02">
                 {label}
             </Label>
         </div>
     )
 }
 
-const FilterMobileMultipleSelect = ({ data, name, multi }: { name: string; data: { value: string; label: string }[]; multi?: boolean }) => {
+
+// FilterMobileMultipleSelect handling
+function toggleMultiValue(current: string[] = [], value: string, checked: boolean): string[] {
+    const newValue = new Set(current)
+    if (checked) {
+        newValue.add(value)
+    } else {
+        newValue.delete(value)
+    }
+    return Array.from(newValue)
+}
+
+interface FilterMobileMultipleSelectProps {
+    name: string
+    data: { value: string; label: string }[]
+    multi?: boolean
+}
+
+const FilterMobileMultipleSelect = ({ data, name, multi }: FilterMobileMultipleSelectProps) => {
     const { value, upsert } = useFilterContext()
     const [search, setSearch] = useState('')
     const limit = 5
 
-    const renderMenuItem = (item: { value: string; label: string }) => {
-        const isChecked = typeof value?.[name] === 'object' && !!(value?.[name] as string[])?.find(selectedId => selectedId === item.value)
+    const currentSelected = multi && Array.isArray(value?.[name])
+        ? (value?.[name] as string[])
+        : []
 
+
+    const handleChange = (itemValue: string, checked: boolean) => {
+        if (multi) {
+            upsert({ name, selectedValue: toggleMultiValue(currentSelected, itemValue, checked) })
+        }
+    }
+
+    const renderMenuItem = (item: { value: string; label: string }) => {
+        const isChecked = multi
+            ? currentSelected.includes(item.value)
+            : value?.[name] === item.value
         return (
-            <CommandItem key={item.label} className="py-space-01">
+            <CommandItem
+                key={item.value}
+                className="py-space-01">
                 <MenuItem
                     multi={multi}
                     name={name}
                     label={item.label}
                     value={item.value}
                     isCkecked={isChecked}
-                    onChange={checked => {
-                        const newValue = [...(value?.[name] ?? [])]
-                        if (checked) newValue.push(item.value)
-                        if (!checked) {
-                            const index = newValue.indexOf(item.value)
-                            newValue.splice(index, 1)
-                        }
-                        upsert({ name, selectedValue: newValue })
-                    }}
+                    onChange={(checked) => handleChange(item.value, checked)}
                 />
             </CommandItem>
         )
     }
 
-    const filteredItems = data.filter(item => item.label.toLowerCase().includes(search.toLowerCase()))
+    const filteredItems = useMemo(
+        () => data.filter(item => item.label.toLowerCase().includes(search.toLowerCase())),
+        [data, search]
+    )
 
     return (
         <Command shouldFilter={false} className="pt-space-03">
@@ -162,7 +191,7 @@ const FilterMobileMultipleSelect = ({ data, name, multi }: { name: string; data:
                 {filteredItems?.length > limit && (
                     <Collapsible>
                         <CollapsibleContent>{filteredItems?.slice(limit)?.map(renderMenuItem)}</CollapsibleContent>
-                        <CollapsibleTrigger className="flex w-full items-center   gap-space-01 py-space-01 pe-space-02 ps-space-03  text-body-01 text-primary">
+                        <CollapsibleTrigger className="flex w-full items-center gap-space-01 py-space-01 pe-space-02 ps-space-03 text-body-01 text-primary">
                             <span className="group-data-[state=closed]:hidden">{strings.Shared.showLess}</span>
                             <span className="group-data-[state=open]:hidden">{strings.Shared.showMore}</span>
                             <ExpandLess size={16} className={'transition-transform duration-300 group-data-[state=closed]:rotate-180'} />
@@ -224,124 +253,135 @@ const FilterMobileView = ({
     )
 }
 
-const FilterSelect = React.memo(
-    ({ multi, data, placeholder, disabled, isLoading, rounded, size, name, defaultOpen, renderItem }: FilterSelectProps) => {
-        const { value, upsert } = useFilterContext()
-        const mobileView = useMediaQuery('(max-width: 767px)')
-        const { dir } = useLanguage()
+const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading, rounded, size, name, defaultOpen, renderItem }: FilterSelectProps) => {
+    const { value, upsert } = useFilterContext()
+    const mobileView = useMediaQuery('(max-width: 767px)')
+    const { dir } = useLanguage()
 
-        if (mobileView) {
-            return (
-                <Collapsible dir={dir} defaultOpen={defaultOpen} className="border-b border-border-primary px-space-03 py-space-02">
-                    <CollapsibleTrigger id="subcategoriesCollapsible" className=" flex w-full items-center  justify-between py-space-01 ps-space-02 ">
-                        <span className="text-body-01 font-semibold">{placeholder}</span>
-                        <div className="flex items-center  gap-space-01">
-                            {typeof value?.[name] === 'object' && !!value?.[name]?.length && (
-                                <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-inverted-foreground">
-                                    {handleNumberDisplay(value?.[name]?.length || 0)}
-                                </span>
-                            )}
-                            {typeof value?.[name] === 'string' && !!value?.[name] && (
-                                <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-inverted-foreground">
-                                    01
-                                </span>
-                            )}
-                            <Button variant={'text'} type="button" size={'icon-sm'} colors={'gray'}>
-                                <ExpandLess className=" transition-transform duration-300 group-data-[state=closed]:rotate-180" />
-                            </Button>
-                        </div>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                        {multi ? (
-                            <FilterMobileMultipleSelect data={data} name={name} multi={multi} />
-                        ) : (
-                            <RadioGroup
-                                name={name}
-                                size="sm"
-                                dir={dir}
-                                value={typeof value?.[name] === 'string' ? value?.[name] : undefined}
-                                onValueChange={value => upsert({ name, selectedValue: value })}>
-                                <FilterMobileMultipleSelect data={data} name={name} multi={multi} />
-                            </RadioGroup>
+    let actualValue: string | string[] | undefined
+
+    if (multi) {
+        actualValue = Array.isArray(value?.[name]) ? value?.[name] : []
+    } else {
+        actualValue = typeof value?.[name] === 'string' ? value?.[name] : undefined
+    }
+
+    if (mobileView) {
+        return (
+            <Collapsible dir={dir} defaultOpen={defaultOpen} className="border-b border-border-primary px-space-03 py-space-02">
+                <CollapsibleTrigger id="subcategoriesCollapsible" className="flex w-full items-center justify-between py-space-01 ps-space-02">
+                    <span className="text-body-01 font-semibold">{placeholder}</span>
+                    <div className="flex items-center gap-space-01">
+                        {multi && !!actualValue?.length && (
+                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-inverted-foreground">
+                                {handleNumberDisplay(actualValue.length)}
+                            </span>
                         )}
-                    </CollapsibleContent>
-                </Collapsible>
-            )
-        }
-
-        return multi ? (
-            <MultiSelect
-                options={data || []}
-                onChange={value => upsert({ name, selectedValue: value })}
-                selectedValues={(value?.[name] as string[]) || []}
-                dataTestId="muliSelect"
-                placeholder={placeholder}
-                disabled={disabled}
-                rounded={rounded}
-                size={size}
-                className="!w-max"
-            />
-        ) : (
-            <ComboboxControlNoForm
-                className="!w-max"
-                rounded={rounded}
-                options={data || []}
-                optionLabel="label"
-                optionValue="value"
-                renderItem={renderItem}
-                placeholder={placeholder}
-                onChange={value => upsert({ name, selectedValue: value })}
-                value={(value?.[name] as string) || ''}
-                size={size}
-                disabled={disabled}
-                isLoading={isLoading}
-            />
+                        {!multi && !!actualValue && (
+                            <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-inverted-foreground">
+                                01
+                            </span>
+                        )}
+                        <Button variant={'text'} type="button" size={'icon-sm'} colors={'gray'} aria-label="Toggle filter options">
+                            <ExpandLess className="transition-transform duration-300 group-data-[state=closed]:rotate-180" />
+                        </Button>
+                    </div>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                    {multi ? (
+                        <FilterMobileMultipleSelect data={data} name={name} multi={multi} />
+                    ) : (
+                        <RadioGroup
+                            name={name}
+                            size="sm"
+                            dir={dir}
+                            value={actualValue as string}
+                            onValueChange={val => upsert({ name, selectedValue: val })}>
+                            <FilterMobileMultipleSelect data={data} name={name} multi={multi} />
+                        </RadioGroup>
+                    )}
+                </CollapsibleContent>
+            </Collapsible>
         )
-    },
-)
+    }
+
+    return multi ? (
+        <MultiSelect
+            options={data || []}
+            onChange={value => upsert({ name, selectedValue: value })}
+            key={`${name}-${(actualValue as string[]).join(',')}`}
+            selectedValues={(actualValue as string[]) || []}
+            dataTestId={`multiSelect-${name}`}
+            placeholder={placeholder}
+            disabled={disabled}
+            rounded={rounded}
+            size={size}
+            className="!w-max"
+        />
+    ) : (
+        <ComboboxControlNoForm
+            className="!w-max"
+            rounded={rounded}
+            key={`${name}-${actualValue || 'empty'}`}
+            options={data || []}
+            optionLabel="label"
+            optionValue="value"
+            renderItem={renderItem}
+            placeholder={placeholder}
+            onChange={value => upsert({ name, selectedValue: value })}
+            value={(value?.[name] as string) || ''}
+            size={size}
+            disabled={disabled}
+            isLoading={isLoading}
+        />
+    )
+})
 
 FilterSelect.displayName = 'FilterSelect'
 
 const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
     (
-        { children, onValueChange, onValueReset, label, resetButtonProps, filterButtonProps, filterIcon, resetButtonLabel, className, ...props },
+        {
+            children,
+            onValueChange,
+            onValueReset,
+            label,
+            resetButtonProps,
+            filterButtonProps,
+            filterIcon,
+            resetButtonLabel,
+            className,
+            value: controlledValue,
+            ...props
+        },
         ref,
     ) => {
         const mobileView = useMediaQuery('(max-width: 767px)')
-        const [value, setValue] = useState<FilterValue>()
 
         const upsert = useCallback(
-            ({ name, selectedValue }: { name: string; selectedValue: string | string[] }) => {
-                const newValue = { ...value, [name]: selectedValue }
-                setValue(newValue)
-                if (!mobileView) {
-                    onValueChange?.(newValue)
-                }
+            ({ name, selectedValue }: { name: string; selectedValue: string | string[] | undefined }) => {
+                const newValue = { ...(controlledValue || {}), [name]: selectedValue }
+                onValueChange?.(newValue)
             },
-            [value, mobileView, onValueChange],
+            [controlledValue, onValueChange],
         )
 
         const reset = useCallback(() => {
-            const newValue = { ...value }
-            for (const key in newValue) {
-                newValue[key] = ''
-            }
-            setValue(newValue)
             onValueReset?.()
-        }, [value, onValueReset])
+        }, [onValueReset])
 
         const contextValue = useMemo(
             () => ({
-                value,
+                value: controlledValue,
                 upsert,
                 reset,
             }),
-            [value, upsert, reset],
+            [controlledValue, upsert, reset],
         )
 
         const hasActiveFilters = useMemo(
-            () => value && Object.values(value).some(val => (Array.isArray(val) ? val.length > 0 : Boolean(val))),
-            [value],
+            () => controlledValue && Object.values(controlledValue).some(val => (Array.isArray(val) ? val.length > 0 : Boolean(val))),
+            [controlledValue],
         )
 
         return (
@@ -351,7 +391,7 @@ const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
                         <FilterMobileView
                             filterButtonProps={filterButtonProps}
                             resetFilters={reset}
-                            onClickFilter={() => onValueChange?.(value)}
+                            onClickFilter={() => onValueChange?.(controlledValue)}
                             label={label}
                             filterIcon={filterIcon}>
                             {children}
