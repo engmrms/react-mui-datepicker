@@ -272,7 +272,7 @@ const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading
                 <CollapsibleTrigger id="subcategoriesCollapsible" className="flex w-full items-center justify-between py-space-01 ps-space-02">
                     <span className="text-body-01 font-semibold">{placeholder}</span>
                     <div className="flex items-center gap-space-01">
-                        {multi && Array.isArray(actualValue) && actualValue.length > 0 && (
+                        {multi && !!actualValue?.length && (
                             <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-inverted-foreground">
                                 {handleNumberDisplay(actualValue.length)}
                             </span>
