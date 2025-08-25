@@ -674,7 +674,7 @@
         --control-icon-hovered: var(--primary-800);
         --control-icon-pressed: var(--primary-800);
         --control-icon-disabled: theme(colors.neutral.400);
-        --control-border-disabled: theme(colors.alpha.black-30);
+        --control-border-disabled: theme(colors.alpha.white-30);
         --control-disabled: theme(colors.neutral.300);
 
         /* tag */
