@@ -66,7 +66,7 @@ interface FilterSelectProps {
     placeholder: string
     name: string
     multi?: boolean
-    data: { value: string; label: string }[]
+    data: FilterData[]
     disabled?: boolean
     isLoading?: boolean
     rounded?: 'default' | 'full'
@@ -150,13 +150,6 @@ const FilterMobileMultipleSelect = ({ data, name, multi }: FilterMobileMultipleS
         ? (value?.[name] as string[])
         : []
 
-    const handleSelect = (itemValue: string, isChecked: boolean) => {
-        if (multi) {
-            upsert({ name, selectedValue: toggleMultiValue(currentSelected, itemValue, !isChecked) })
-        } else {
-            upsert({ name, selectedValue: itemValue })
-        }
-    }
 
     const handleChange = (itemValue: string, checked: boolean) => {
         if (multi) {
@@ -171,7 +164,6 @@ const FilterMobileMultipleSelect = ({ data, name, multi }: FilterMobileMultipleS
         return (
             <CommandItem
                 key={item.value}
-                onSelect={() => handleSelect(item.value, isChecked)}
                 className="py-space-01">
                 <MenuItem
                     multi={multi}
@@ -285,7 +277,7 @@ const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading
                                 {handleNumberDisplay(actualValue.length)}
                             </span>
                         )}
-                        {!multi && typeof actualValue === 'string' && !!actualValue && (
+                        {!multi && !!actualValue && (
                             <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-inverted text-caption-01 text-inverted-foreground">
                                 01
                             </span>
@@ -365,15 +357,13 @@ const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
         ref,
     ) => {
         const mobileView = useMediaQuery('(max-width: 767px)')
-        // 'currentValue' is now always derived from 'controlledValue'
-        const currentValue = controlledValue // We assume it's always controlled now
 
         const upsert = useCallback(
             ({ name, selectedValue }: { name: string; selectedValue: string | string[] | undefined }) => {
-                const newValue = { ...(currentValue || {}), [name]: selectedValue }
+                const newValue = { ...(controlledValue || {}), [name]: selectedValue }
                 onValueChange?.(newValue)
             },
-            [currentValue, onValueChange],
+            [controlledValue, onValueChange],
         )
 
         const reset = useCallback(() => {
@@ -382,11 +372,11 @@ const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
 
         const contextValue = useMemo(
             () => ({
-                value: currentValue,
+                value: controlledValue,
                 upsert,
                 reset,
             }),
-            [currentValue, upsert, reset],
+            [controlledValue, upsert, reset],
         )
 
         const hasActiveFilters = useMemo(
@@ -401,7 +391,7 @@ const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
                         <FilterMobileView
                             filterButtonProps={filterButtonProps}
                             resetFilters={reset}
-                            onClickFilter={() => onValueChange?.(currentValue)}
+                            onClickFilter={() => onValueChange?.(controlledValue)}
                             label={label}
                             filterIcon={filterIcon}>
                             {children}
