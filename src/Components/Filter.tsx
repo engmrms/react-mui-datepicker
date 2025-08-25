@@ -123,33 +123,55 @@ const MenuItem = <T extends string | number = string>({ label, value, isCkecked,
     )
 }
 
-const FilterMobileMultipleSelect = ({ data, name, multi }: { name: string; data: { value: string; label: string }[]; multi?: boolean }) => {
+
+// FilterMobileMultipleSelect handling
+function toggleMultiValue(current: string[] = [], value: string, checked: boolean): string[] {
+    const newValue = new Set(current)
+    if (checked) {
+        newValue.add(value)
+    } else {
+        newValue.delete(value)
+    }
+    return Array.from(newValue)
+}
+
+interface FilterMobileMultipleSelectProps {
+    name: string
+    data: { value: string; label: string }[]
+    multi?: boolean
+}
+
+const FilterMobileMultipleSelect = ({ data, name, multi }: FilterMobileMultipleSelectProps) => {
     const { value, upsert } = useFilterContext()
     const [search, setSearch] = useState('')
     const limit = 5
 
-    const renderMenuItem = (item: { value: string; label: string }) => {
-        const currentSelected = multi && Array.isArray(value?.[name]) ? (value?.[name] as string[]) : []
-        const isChecked = multi ? currentSelected.includes(item.value) : value?.[name] === item.value
+    const currentSelected = multi && Array.isArray(value?.[name])
+        ? (value?.[name] as string[])
+        : []
 
+    const handleSelect = (itemValue: string, isChecked: boolean) => {
+        if (multi) {
+            upsert({ name, selectedValue: toggleMultiValue(currentSelected, itemValue, !isChecked) })
+        } else {
+            upsert({ name, selectedValue: itemValue })
+        }
+    }
+
+    const handleChange = (itemValue: string, checked: boolean) => {
+        if (multi) {
+            upsert({ name, selectedValue: toggleMultiValue(currentSelected, itemValue, checked) })
+        }
+    }
+
+    const renderMenuItem = (item: { value: string; label: string }) => {
+        const isChecked = multi
+            ? currentSelected.includes(item.value)
+            : value?.[name] === item.value
         return (
             <CommandItem
                 key={item.value}
-                onSelect={() => {
-                    // Manually handle selection for CommandItem to trigger change
-                    if (multi) {
-                        const newValue = new Set(currentSelected)
-                        if (isChecked) {
-                            newValue.delete(item.value)
-                        } else {
-                            newValue.add(item.value)
-                        }
-                        upsert({ name, selectedValue: Array.from(newValue) })
-                    } else {
-                        // The RadioGroup itself handles its selection visually
-                        upsert({ name, selectedValue: item.value })
-                    }
-                }}
+                onSelect={() => handleSelect(item.value, isChecked)}
                 className="py-space-01">
                 <MenuItem
                     multi={multi}
@@ -157,23 +179,16 @@ const FilterMobileMultipleSelect = ({ data, name, multi }: { name: string; data:
                     label={item.label}
                     value={item.value}
                     isCkecked={isChecked}
-                    onChange={checked => {
-                        if (multi) {
-                            const newValue = new Set(currentSelected)
-                            if (checked) {
-                                newValue.add(item.value)
-                            } else {
-                                newValue.delete(item.value)
-                            }
-                            upsert({ name, selectedValue: Array.from(newValue) })
-                        }
-                    }}
+                    onChange={(checked) => handleChange(item.value, checked)}
                 />
             </CommandItem>
         )
     }
 
-    const filteredItems = data.filter(item => item.label.toLowerCase().includes(search.toLowerCase()))
+    const filteredItems = useMemo(
+        () => data.filter(item => item.label.toLowerCase().includes(search.toLowerCase())),
+        [data, search]
+    )
 
     return (
         <Command shouldFilter={false} className="pt-space-03">
@@ -250,7 +265,14 @@ const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading
     const { value, upsert } = useFilterContext()
     const mobileView = useMediaQuery('(max-width: 767px)')
     const { dir } = useLanguage()
-    const actualValue = multi ? (Array.isArray(value?.[name]) ? value?.[name] : []) : typeof value?.[name] === 'string' ? value?.[name] : undefined
+
+    let actualValue: string | string[] | undefined
+
+    if (multi) {
+        actualValue = Array.isArray(value?.[name]) ? value?.[name] : []
+    } else {
+        actualValue = typeof value?.[name] === 'string' ? value?.[name] : undefined
+    }
 
     if (mobileView) {
         return (
@@ -268,7 +290,7 @@ const FilterSelect = React.memo(({ multi, data, placeholder, disabled, isLoading
                                 01
                             </span>
                         )}
-                        <Button variant={'text'} type="button" size={'icon-sm'} colors={'gray'}>
+                        <Button variant={'text'} type="button" size={'icon-sm'} colors={'gray'} aria-label="Toggle filter options">
                             <ExpandLess className="transition-transform duration-300 group-data-[state=closed]:rotate-180" />
                         </Button>
                     </div>
