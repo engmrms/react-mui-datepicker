@@ -1,6 +1,6 @@
 {
     "name": "mada-design-system",
-    "version": "0.5.8",
+    "version": "0.5.13",
     "sideEffects": false,
     "private": false,
     "main": "./src/index.ts",
