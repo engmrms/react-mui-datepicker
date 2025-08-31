@@ -6,6 +6,7 @@ interface Themes {
     size?: 'xs' | 'sm' | 'default'
     variant?: 'default' | 'brand'
     readOnly?: boolean
+    className?: string
 }
 interface RatingProps extends Themes {
     max?: number
@@ -13,10 +14,10 @@ interface RatingProps extends Themes {
     onChange?: (value: number) => void
 }
 
-function Rating({ max = 5, onChange, value = 0, ...props }: RatingProps) {
+function Rating({ max = 5, onChange, value = 0, className, ...props }: RatingProps) {
     const [hoverRating, setHoverRating] = useState(0)
     return (
-        <Stack gap={'none'}>
+        <Stack gap={'none'} className={cn(className)}>
             {Array.from({ length: max }, (_, i) => {
                 return (
                     <ButtonStar

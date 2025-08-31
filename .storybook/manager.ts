@@ -1,6 +1,5 @@
 import { addons } from '@storybook/manager-api'
-import tetcoBrand from './tetcoBrand'
-
+import { themes } from '@storybook/theming'
 addons.setConfig({
-    theme: tetcoBrand,
+    theme: themes.light,
 })

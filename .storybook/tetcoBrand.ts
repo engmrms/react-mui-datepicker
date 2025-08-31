@@ -1,14 +1,12 @@
 import { create } from '@storybook/theming/create'
 
-export default create({
-    base: 'light',
-
+const defaultTheme = {
     fontBase: '"IBM Reguler","Open Sans", sans-serif',
     fontCode: '"IBM Reguler"',
 
     brandTitle: 'Mada Design System',
     brandUrl: 'https://tetco.sa',
-    brandImage: 'LogoDS.svg',
+
     brandTarget: '_self',
     //
     colorPrimary: '#3A10E5',
@@ -35,4 +33,21 @@ export default create({
     inputBorder: '#353B3A',
     inputTextColor: '#0F0F0F',
     inputBorderRadius: 24,
+} as const
+
+const lightTheme = create({
+    ...defaultTheme,
+    base: 'light',
+    brandImage: 'brand-light.svg',
 })
+
+const darkTheme = create({
+    ...defaultTheme,
+    base: 'dark',
+    brandImage: 'brand-dark.svg',
+})
+
+export default {
+    light: lightTheme,
+    dark: darkTheme,
+}

@@ -1,6 +1,6 @@
 .dark .sbdocs-wrapper,
 .dark .sbdocs-preview {
-    background-color: #0D121C;
+    background-color: #0d121c;
     color: #fff;
 }
 
@@ -10,7 +10,6 @@
 
 .dark .docblock-code-toggle {
     background: transparent;
-   
 }
 
 /* .dark div:has(.docblock-code-toggle) {
@@ -59,4 +58,8 @@
 
 .dark #docs-root tbody tr:not(:first-child) {
     border-top: 1px solid #292929 !important;
+}
+
+.dark .css-qa4clq :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
+    color: #fff;
 }

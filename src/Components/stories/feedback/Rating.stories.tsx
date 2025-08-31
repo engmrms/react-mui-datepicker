@@ -30,6 +30,7 @@ export const Default: Story = {
         size: 'default',
         variant: 'default',
         readOnly: false,
+        className: 'gap-1',
     },
     render: args => {
         // eslint-disable-next-line react-hooks/rules-of-hooks

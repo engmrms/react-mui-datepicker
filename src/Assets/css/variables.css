@@ -487,11 +487,11 @@
 }
 
 .dark {
-    --background: theme(colors.neutral.700);
+    --background: theme(colors.neutral.900);
     --background-foreground: theme(colors.white);
-    --background-secondary: theme(colors.neutral.700);
+    --background-secondary: theme(colors.neutral.900);
     --background-brand: theme(colors.neutral.900);
-    --foreground: theme(colors.white);
+    --foreground: theme(colors.neutral.300);
     --overlay: theme(colors.alpha.black-70);
     --foreground-secondary: theme(colors.neutral.100);
     --foreground-tertiary: theme(colors.neutral.200);
@@ -670,7 +670,7 @@
     --control-icon-hovered: var(--primary-800);
     --control-icon-pressed: var(--primary-800);
     --control-icon-disabled: theme(colors.neutral.400);
-    --control-border-disabled: theme(colors.alpha.black-30);
+    --control-border-disabled: theme(colors.alpha.white-30);
     --control-disabled: theme(colors.neutral.300);
 
     /* tag */

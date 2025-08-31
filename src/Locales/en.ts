@@ -44,7 +44,7 @@ export const en = {
         YearTitle: 'Year',
         MonthTitle: 'Month',
         PaginationDesc: 'Page {0} of {1}',
-        LinesPerPage: 'Lines per page',
+        LinesPerPage: 'Lines per page: ',
         Actions: 'Actions',
         ViewDetails: 'View Details',
         Language: 'Language',

@@ -14,12 +14,14 @@ const IconMap = {
 export function Toaster({ position = 'bottom' }: { position?: ToastProps['position'] }) {
     const { toasts } = useToast()
     const isActive = accessibilityTools(state => state.isActive)
+    const usedPositions = Array.from(new Set(toasts.map(toast => toast.position || position)))
 
     return (
         <ToastProvider>
-            {toasts.map(function ({ id, title, description, action, ...props }) {
+            {toasts.map(function ({ id, title, description, action, position: toastPosition, ...props }) {
+                const finalPosition = toastPosition || position
                 return (
-                    <Toast key={id} {...props} className={`${isActive ? 'grayscale' : 'grayscale-0'}`} position={position}>
+                    <Toast key={id} {...props} className={`${isActive ? 'grayscale' : 'grayscale-0'}`} position={finalPosition}>
                         <div className="flex grow flex-col justify-between gap-space-04">
                             <div className="flex w-full gap-space-03">
                                 <ToastIcon icon={props.variant && IconMap[props.variant]} />
@@ -34,7 +36,9 @@ export function Toaster({ position = 'bottom' }: { position?: ToastProps['positi
                     </Toast>
                 )
             })}
-            <ToastViewport position={position} />
+            {usedPositions.map(pos => (
+                <ToastViewport key={pos} position={pos} />
+            ))}
         </ToastProvider>
     )
 }
