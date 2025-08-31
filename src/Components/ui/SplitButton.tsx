@@ -14,14 +14,19 @@ interface SplitButtonProps<T> extends Omit<ButtonProps, 'asChild' | 'variant' | 
 
 export function SplitButton<T>(props: SplitButtonProps<T>) {
     const { renderMenuItems, menuItems, className, ...rest } = props
+    const trigeerSize: Record<SplitButtonSize, ButtonProps['size']> = {
+        default: 'icon',
+        sm: 'icon-sm',
+        xs: 'icon-xs',
+    }
     const trigger = (
         <Button
             variant={rest.variant}
             rounded={rest.rounded}
-            size={rest.size}
+            size={trigeerSize[rest.size as SplitButtonSize]}
             colors={rest.colors}
             disabled={rest.disabled}
-            className={cn('peer -ml-0.5  w-[40px] rounded-s-none ', {
+            className={cn('peer -ml-0.5  rounded-s-none ', {
                 'border-s border-s-white': rest.variant === 'default',
             })}>
             <KeyboardArrowDown className="shrink-0 " />
