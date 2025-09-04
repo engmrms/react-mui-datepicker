@@ -64,6 +64,7 @@ export const ar = {
         showMore: 'أظهر أكثر',
         noResultsFound: 'لا توجد نتائج',
         Clear: 'مسح',
+        Of: 'من',
     },
 
     Footer: {
