@@ -1,12 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, Row, RowData, RowSelectionState, useReactTable } from '@tanstack/react-table'
+import {
+    ColumnDef,
+    flexRender,
+    getCoreRowModel,
+    getPaginationRowModel,
+    Row,
+    RowData,
+    RowSelectionState,
+    SortingState,
+    useReactTable,
+} from '@tanstack/react-table'
 import { Checkbox } from './ui/checkbox'
 import { Skeleton } from './ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 
+import { Sorting, SortingDown } from 'google-material-icons/outlined'
 import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import { cn } from '../Lib/utils'
+import { Button, ShouldRender } from '../package'
 import { LinesPerPage, Pagination, PaginationDescription } from './paginations'
 
 declare module '@tanstack/react-table' {
@@ -48,6 +60,7 @@ interface DataTableProps<TData, TValue> {
     enableMultiRowSelection?: boolean
     rowSelection?: RowSelectionState
     onRowSelectionChange?: (updater: RowSelectionState | ((old: RowSelectionState) => RowSelectionState)) => void
+    onSortingChange?: (sorting: SortingState) => void
     theme?: Theme
 }
 
@@ -64,11 +77,13 @@ export function DataTable<TData, TValue>({
     enableMultiRowSelection,
     rowSelection,
     onRowSelectionChange,
+    onSortingChange,
     theme,
     ...rest
 }: DataTableProps<TData, TValue>) {
     const tableData = React.useMemo(() => (loading ? Array(itemsPerPage || 10).fill({}) : data), [loading, itemsPerPage, data])
     const [pageSize, setPageSize] = useState(itemsPerPage || 10)
+    const [sorting, setSorting] = useState<SortingState>([])
 
     const tableColumns = React.useMemo(() => {
         let cols = loading
@@ -120,8 +135,14 @@ export function DataTable<TData, TValue>({
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         onRowSelectionChange: onRowSelectionChange,
+        onSortingChange: updater => {
+            const newSorting = typeof updater === 'function' ? updater(sorting) : updater
+            setSorting(newSorting)
+            onSortingChange?.(newSorting)
+        },
         state: {
             rowSelection: rowSelection || {},
+            sorting,
         },
         enableRowSelection: enableRowSelection,
         enableMultiRowSelection: enableMultiRowSelection,
@@ -173,14 +194,38 @@ export function DataTable<TData, TValue>({
                 <Table className={cn('w-full table-fixed', theme?.table?.className)}>
                     <TableHeader className={cn(theme?.tableHeader?.className)}>
                         {table.getHeaderGroups().map(headerGroup => (
-                            <TableRow key={headerGroup.id} className={cn(theme?.tableRow?.className)}>
+                            <TableRow key={headerGroup.id} className={cn('hover:bg-transparent', theme?.tableRow?.className)}>
                                 {headerGroup.headers.map(header => {
                                     return (
                                         <TableHead
                                             key={header.id}
                                             colSpan={header.column.columnDef.meta?.headerColSpan ?? 1}
                                             className={cn(theme?.tableHead?.className)}>
-                                            {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                                            {header.isPlaceholder ? null : header?.column?.columnDef?.enableSorting ? (
+                                                <div className="flex w-full items-center justify-center gap-space-02">
+                                                    {flexRender(header.column.columnDef.header, header.getContext())}
+                                                    <Button
+                                                        variant={!header.column.getIsSorted() ? 'ghost' : 'default'}
+                                                        colors="neutral"
+                                                        size="icon-xs"
+                                                        rounded="default"
+                                                        className="!size-[20px] !p-space-00"
+                                                        onClick={() => header.column.toggleSorting()}>
+                                                        <ShouldRender shouldRender={!!header.column.getIsSorted()}>
+                                                            <SortingDown
+                                                                className={cn('transition duration-200', {
+                                                                    'rotate-180': header.column.getIsSorted() === 'asc',
+                                                                })}
+                                                            />
+                                                        </ShouldRender>
+                                                        <ShouldRender shouldRender={!header.column.getIsSorted()}>
+                                                            <Sorting />
+                                                        </ShouldRender>
+                                                    </Button>
+                                                </div>
+                                            ) : (
+                                                flexRender(header.column.columnDef.header, header.getContext())
+                                            )}
                                         </TableHead>
                                     )
                                 })}
@@ -267,4 +312,4 @@ export function DataTable<TData, TValue>({
 
 export default DataTable
 
-export type { ColumnDef }
+export type { ColumnDef, SortingState }

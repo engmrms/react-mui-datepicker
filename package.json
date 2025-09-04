@@ -1,6 +1,6 @@
 {
     "name": "mada-design-system",
-    "version": "0.5.13",
+    "version": "0.6.0",
     "sideEffects": false,
     "private": false,
     "main": "./src/index.ts",
@@ -59,7 +59,7 @@
         "clsx": "^2.1.1",
         "cmdk": "^0.2.0",
         "embla-carousel-react": "^8.5.2",
-        "google-material-icons": "^2.0.1",
+        "google-material-icons": "^2.1.4",
         "immer": "^10.1.1",
         "input-otp": "^1.4.2",
         "moment": "^2.30.1",

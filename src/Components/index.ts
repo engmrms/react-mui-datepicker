@@ -1,6 +1,6 @@
 export { default as ActionLoader } from './ActionLoader'
 export * from './Combobox'
-export { DataTable, type ColumnDef } from './DataTable'
+export * from './DataTable'
 export * from './Description'
 export * from './DraggableGrid'
 export { default as Heading } from './Heading'

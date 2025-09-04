@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
 import { ColumnDef, RowSelectionState } from '@tanstack/react-table'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import DataTable from '../../DataTable'
 
@@ -85,6 +85,29 @@ const columns: ColumnDef<Invoice, any>[] = [
     },
 ]
 
+const sortableColumns: ColumnDef<Invoice, any>[] = [
+    {
+        accessorKey: 'invoice',
+        header: 'Invoice',
+        enableSorting: true,
+    },
+    {
+        accessorKey: 'paymentStatus',
+        header: 'Status',
+        enableSorting: true,
+    },
+    {
+        accessorKey: 'paymentMethod',
+        header: 'Method',
+        enableSorting: true,
+    },
+    {
+        accessorKey: 'totalAmount',
+        header: 'Amount',
+        enableSorting: true,
+    },
+]
+
 // Data for the DataTable
 const data = invoices
 
@@ -146,6 +169,25 @@ const meta: Meta<typeof DataTable> = {
         onRowSelectionChange: {
             table: { disable: true },
         },
+        onSortingChange: {
+            action: 'sorting changed',
+            description: 'Callback fired when column sorting state changes. Receives an array of sorting objects with column id and sort direction.',
+            table: {
+                type: {
+                    summary: '(sorting: SortingState) => void',
+                    detail: `SortingState is an array of objects:
+        [
+          {
+            id: string,    // Column identifier
+            desc: boolean  // true for descending, false for ascending
+          }
+        ]`,
+                },
+                category: 'Events',
+                defaultValue: { summary: 'undefined' },
+            },
+            control: false,
+        },
     },
     args: {
         loading: false,
@@ -153,9 +195,7 @@ const meta: Meta<typeof DataTable> = {
         enableMultiRowSelection: true,
         isFirstRowSelected: false,
         hasPagination: true,
-        totalItems: 50,
         itemsPerPage: 10,
-        pageNumber: 2,
         theme: {
             tableHead: { className: 'bg-background-primary text-white' },
             tableRow: { className: 'odd:bg-[#F3F3F3] even:bg-card' },
@@ -206,5 +246,76 @@ export const Default: Story = {
                 theme={theme}
             />
         )
+    },
+}
+
+export const WithSorting: Story = {
+    render: function DataTableWithSorting({
+        loading,
+        enableRowSelection,
+        enableMultiRowSelection,
+        isFirstRowSelected,
+        hasPagination,
+        totalItems,
+        itemsPerPage,
+        pageNumber,
+        onSortingChange,
+    }) {
+        const [selectedRows, setSelectedRows] = useState<RowSelectionState>({})
+        const [sorting, setSorting] = useState<any>([])
+
+        const handleSortingChange = (newSorting: any) => {
+            console.log('Sorting changed:', newSorting)
+            setSorting(newSorting)
+            onSortingChange?.(newSorting)
+        }
+
+        // Sort data based on sorting state
+        const sortedData = React.useMemo(() => {
+            if (!sorting.length) return data
+
+            return [...data].sort((a, b) => {
+                for (const sort of sorting) {
+                    const { id, desc } = sort
+                    const aValue = a[id as keyof Invoice]
+                    const bValue = b[id as keyof Invoice]
+
+                    if (aValue < bValue) return desc ? 1 : -1
+                    if (aValue > bValue) return desc ? -1 : 1
+                }
+                return 0
+            })
+        }, [sorting])
+
+        return (
+            <div className="space-y-4">
+                <div className="text-sm text-gray-600">
+                    <p>Click on any column header to sort the data.</p>
+                    <p>Sorting state will be logged to the console.</p>
+                </div>
+                <DataTable
+                    columns={sortableColumns}
+                    data={sortedData}
+                    loading={loading}
+                    enableRowSelection={enableRowSelection}
+                    enableMultiRowSelection={enableMultiRowSelection}
+                    rowSelection={selectedRows}
+                    onRowSelectionChange={setSelectedRows}
+                    isFirstRowSelected={isFirstRowSelected}
+                    hasPagination={hasPagination}
+                    totalItems={totalItems}
+                    itemsPerPage={itemsPerPage}
+                    pageNumber={pageNumber}
+                    onSortingChange={handleSortingChange}
+                />
+            </div>
+        )
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: 'This story demonstrates the sorting functionality. Click on column headers to sort the data. The sorting state is logged to the console.',
+            },
+        },
     },
 }
