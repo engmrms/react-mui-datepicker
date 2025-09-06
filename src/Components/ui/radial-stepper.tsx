@@ -1,6 +1,7 @@
 import { cva, VariantProps } from 'class-variance-authority'
 import React from 'react'
-import { cn, strings } from '../../package'
+import { cn } from '../../Lib/utils'
+import { strings } from '../../Locales'
 
 const radialStepperVariants = cva('relative flex gap-space-02 items-center', {
     variants: {
@@ -58,14 +59,14 @@ const centerTextSizeVariants = cva('', {
     },
 })
 
-export interface Step {
+export interface RadialStep {
     id: number
     title?: string
     description?: string
 }
 
 export interface RadialStepperProps extends React.ComponentPropsWithoutRef<'div'>, VariantProps<typeof radialStepperVariants> {
-    steps: Step[]
+    steps: RadialStep[]
     activeStep: number
     size?: 120 | 80 | 64 | 48 | 40
     showDetails?: boolean

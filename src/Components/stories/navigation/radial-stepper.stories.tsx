@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { RadialStepper, type Step } from '../../ui/radial-stepper'
+import { RadialStepper, type RadialStep } from '../../ui/radial-stepper'
 
 // Sample steps data
-const sampleSteps: Step[] = [
+const sampleSteps: RadialStep[] = [
     {
         id: 1,
         title: 'Step 1',
