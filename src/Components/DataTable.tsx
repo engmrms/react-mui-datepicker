@@ -18,7 +18,7 @@ import { Sorting, SortingDown } from 'google-material-icons/outlined'
 import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import { cn } from '../Lib/utils'
-import { Button, ShouldRender } from '../package'
+import { Button, ShouldRender, tableProps } from '../package'
 import { LinesPerPage, Pagination, PaginationDescription } from './paginations'
 
 declare module '@tanstack/react-table' {
@@ -79,8 +79,11 @@ export function DataTable<TData, TValue>({
     onRowSelectionChange,
     onSortingChange,
     theme,
+    variant,
+    alternating,
+    contained,
     ...rest
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue> & tableProps) {
     const tableData = React.useMemo(() => (loading ? Array(itemsPerPage || 10).fill({}) : data), [loading, itemsPerPage, data])
     const [pageSize, setPageSize] = useState(itemsPerPage || 10)
     const [sorting, setSorting] = useState<SortingState>([])
@@ -190,8 +193,12 @@ export function DataTable<TData, TValue>({
 
     return (
         <>
-            <div className="overflow-hidden rounded-t-3">
-                <Table className={cn('w-full table-fixed', theme?.table?.className)}>
+            <div className="overflow-hidden ">
+                <Table
+                    className={cn('w-full table-fixed', theme?.table?.className)}
+                    variant={variant}
+                    alternating={alternating}
+                    contained={contained}>
                     <TableHeader className={cn(theme?.tableHeader?.className)}>
                         {table.getHeaderGroups().map(headerGroup => (
                             <TableRow key={headerGroup.id} className={cn('hover:bg-transparent', theme?.tableRow?.className)}>
@@ -234,7 +241,7 @@ export function DataTable<TData, TValue>({
                     </TableHeader>
                     <TableBody className={cn(theme?.tableBody?.className)}>
                         {table.getRowModel().rows?.length ? (
-                            table.getRowModel().rows.map((row, i) => {
+                            table.getRowModel().rows.map(row => {
                                 return (
                                     <TableRow
                                         key={row.id}
@@ -249,7 +256,8 @@ export function DataTable<TData, TValue>({
                                                     className={theme?.tableCell?.className}
                                                     data-title={cell.column.columnDef.header?.toString()}
                                                     key={cell.id}
-                                                    isLast={table?.getRowModel()?.rows?.length - 1 === i}>
+                                                    //isLast={table?.getRowModel()?.rows?.length - 1 === i}
+                                                >
                                                     {item}
                                                 </TableCell>
                                             )
@@ -259,7 +267,7 @@ export function DataTable<TData, TValue>({
                             })
                         ) : (
                             <TableRow className={theme?.tableRow?.className}>
-                                <TableCell colSpan={columns.length} className="h-24 text-center">
+                                <TableCell colSpan={columns.length + (enableRowSelection ? 1 : 0)} className="h-24 text-center">
                                     {NoDataComponent}
                                 </TableCell>
                             </TableRow>

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '../../ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../ui/table'
 
 const invoices = [
     {
@@ -57,11 +57,11 @@ const invoices = [
 
 function TableDemo(arg: any) {
     return (
-        <Table {...arg} className="w-full">
-            <TableCaption>A list of your recent invoices.</TableCaption>
+        <Table {...arg}>
+            {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[100px]">Invoice</TableHead>
+                    <TableHead>Invoice</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead>Method</TableHead>
                     <TableHead>Amount</TableHead>
@@ -70,19 +70,19 @@ function TableDemo(arg: any) {
             <TableBody>
                 {invoices.map(invoice => (
                     <TableRow key={invoice.invoice}>
-                        <TableCell className="font-medium">{invoice.invoice}</TableCell>
+                        <TableCell>{invoice.invoice}</TableCell>
                         <TableCell>{invoice.paymentStatus}</TableCell>
                         <TableCell>{invoice.paymentMethod}</TableCell>
                         <TableCell>{invoice.totalAmount}</TableCell>
                     </TableRow>
                 ))}
             </TableBody>
-            <TableFooter>
+            {/* <TableFooter>
                 <TableRow>
                     <TableCell colSpan={3}>Total</TableCell>
                     <TableCell>$2,500.00</TableCell>
                 </TableRow>
-            </TableFooter>
+            </TableFooter> */}
         </Table>
     )
 }
@@ -91,11 +91,55 @@ const meta: Meta<typeof Table> = {
     title: 'Design System/Data Display/Table',
     component: Table,
     tags: ['autodocs'],
+    argTypes: {
+        variant: {
+            control: 'inline-radio',
+            options: ['default', 'compact'],
+            description: 'The variant of the table.',
+            table: {
+                type: {
+                    summary: 'default | compact',
+                },
+                category: 'Props',
+                defaultValue: { summary: 'default' },
+            },
+        },
+        contained: {
+            control: 'boolean',
+            defaultValue: false,
+            description: 'If true, the table will have a border.',
+            table: {
+                type: {
+                    summary: 'boolean',
+                },
+                category: 'Props',
+                defaultValue: { summary: 'false' },
+            },
+        },
+        alternating: {
+            control: 'boolean',
+            defaultValue: false,
+            description: 'If true, the table will have alternating rows.',
+            table: {
+                type: {
+                    summary: 'boolean',
+                },
+                category: 'Props',
+                defaultValue: { summary: 'false' },
+            },
+        },
+    },
+    args: {
+        variant: 'default',
+        contained: false,
+        alternating: false,
+    },
+
     parameters: {
         // layout: 'centered',
         docs: {
             description: {
-                component: '<h4>A responsive table component.</h4>',
+                component: '<h4>A responsive table component.</h4><p>You can use the Table component to display data in a tabular format.</p>',
             },
         },
     },
@@ -105,4 +149,25 @@ export default meta
 type Story = StoryObj<typeof Table>
 export const Default: Story = {
     render: TableDemo,
+}
+
+export const Contained: Story = {
+    render: TableDemo,
+    args: {
+        contained: true,
+    },
+}
+
+export const Alternating: Story = {
+    render: TableDemo,
+    args: {
+        alternating: true,
+    },
+}
+
+export const Compact: Story = {
+    render: TableDemo,
+    args: {
+        variant: 'compact',
+    },
 }

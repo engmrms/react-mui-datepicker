@@ -116,31 +116,52 @@ const meta: Meta<typeof DataTable> = {
     component: DataTable,
     tags: ['autodocs'],
     argTypes: {
+        variant: {
+            control: 'inline-radio',
+            options: ['default', 'compact'],
+            description: 'The variant of the table.',
+        },
+        alternating: {
+            control: 'boolean',
+            description: 'If true, the table will have alternating rows.',
+        },
+        contained: {
+            control: 'boolean',
+            description: 'If true, the table will have a border.',
+        },
         loading: {
             control: { type: 'boolean' },
+            description: 'If true, the table will be loading.',
         },
         enableRowSelection: {
             control: { type: 'boolean' },
             if: { arg: 'loading', truthy: false },
+            description: 'If true, the table will have row selection.',
         },
         enableMultiRowSelection: {
             control: { type: 'boolean' },
             if: { arg: 'loading', truthy: false },
+            description: 'If true, the table will have multi row selection.',
         },
         isFirstRowSelected: {
             control: { type: 'boolean' },
+            description: 'If true, the table will have the first row selected.',
         },
         hasPagination: {
             control: { type: 'boolean' },
+            description: 'If true, the table will have pagination.',
         },
         totalItems: {
             control: { type: 'number' },
+            description: 'The total number of items in the table.',
         },
         itemsPerPage: {
             control: { type: 'number' },
+            description: 'The number of items per page in the table.',
         },
         pageNumber: {
             control: { type: 'number' },
+            description: 'The current page number in the table.',
         },
         theme: {
             table: { disable: true },
@@ -169,6 +190,7 @@ const meta: Meta<typeof DataTable> = {
         onRowSelectionChange: {
             table: { disable: true },
         },
+
         onSortingChange: {
             action: 'sorting changed',
             description: 'Callback fired when column sorting state changes. Receives an array of sorting objects with column id and sort direction.',
@@ -196,17 +218,20 @@ const meta: Meta<typeof DataTable> = {
         isFirstRowSelected: false,
         hasPagination: true,
         itemsPerPage: 10,
+        variant: 'default',
+        alternating: false,
+        contained: false,
         theme: {
-            tableHead: { className: 'bg-background-primary text-white' },
-            tableRow: { className: 'odd:bg-[#F3F3F3] even:bg-card' },
-            tableCell: { className: 'border-border-primary' },
+            tableHead: { className: '' },
+            tableRow: { className: '' },
+            tableCell: { className: '' },
         },
     },
     parameters: {
         // layout: 'centered',
         docs: {
             description: {
-                component: '<h4>A responsive table component.</h4>',
+                component: '<h4>You can use the DataTable component to display data in a tabular format.</h4>',
             },
         },
     },
@@ -225,6 +250,9 @@ export const Default: Story = {
         totalItems,
         itemsPerPage,
         pageNumber,
+        variant,
+        alternating,
+        contained,
         theme,
     }) {
         const [selectedRows, setSelectedRows] = useState<RowSelectionState>({})
@@ -244,6 +272,9 @@ export const Default: Story = {
                 itemsPerPage={itemsPerPage}
                 pageNumber={pageNumber}
                 theme={theme}
+                variant={variant}
+                alternating={alternating}
+                contained={contained}
             />
         )
     },
