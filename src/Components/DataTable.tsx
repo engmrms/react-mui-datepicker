@@ -276,7 +276,7 @@ export function DataTable<TData, TValue>({
                 </Table>
             </div>
             {!!table.getFilteredRowModel().rows.length && hasPagination && (
-                <div className="flex items-center justify-end  px-space-04 py-space-02">
+                <div className="flex items-center justify-end  p-space-03">
                     {loading ? (
                         <Skeleton className="me-auto h-[20px] w-space-12" />
                     ) : (
