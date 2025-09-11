@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { FilterAlt } from 'google-material-icons/outlined'
-import { Stack, strings } from '../../../package'
+import { DatePicker, Input, strings } from '../../../package'
 import { FilterGroup, FilterSelect } from '../../Filter'
 
 const meta: Meta<typeof FilterGroup> = {
@@ -61,9 +61,9 @@ export const Default: Story = {
     ),
 }
 
-export const RenderItem: Story = {
+export const WithCustomItems: Story = {
     args: {
-        label: strings.Shared.Select,
+        label: 'With Custom Items',
         resetButtonProps: { rounded: 'full', size: 'default' },
         filterButtonProps: { rounded: 'full', size: 'default' },
         resetButtonLabel: 'Reset',
@@ -71,37 +71,32 @@ export const RenderItem: Story = {
     },
     render: arg => (
         <FilterGroup
-            onValueChange={v => console.log('main', v)}
-            className="flex gap-space-03 "
-            onValueReset={() => console.log('first')}
+            onValueChange={v => console.log('Filters:', v)}
+            className="flex flex-wrap gap-space-03"
+            onValueReset={() => console.log('Reset filters')}
             resetButtonProps={{ rounded: 'full', size: 'default' }}
             {...arg}>
+            <Input type="search" placeholder="Search..." className="!w-max" rounded="full" />
             <FilterSelect
-                defaultOpen
-                name="test"
+                name="status"
+                placeholder="Status"
                 rounded="full"
-                placeholder="select"
-                data={Array.from({ length: 10 }, (_, i) => ({
-                    value: i.toString(),
-                    label: `label1${i}`,
-                }))}
-                renderItem={opt => (
-                    <Stack className="w-full text-body-01" justifyContent={'between'}>
-                        <span>{opt.label}</span>
-                        <span>{opt.value}</span>
-                    </Stack>
-                )}
+                data={[
+                    { value: '1', label: 'Active' },
+                    { value: '2', label: 'Inactive' },
+                ]}
             />
             <FilterSelect
-                name="test2"
+                name="category"
+                placeholder="Category"
                 multi
-                placeholder="select"
                 rounded="full"
-                data={Array.from({ length: 10 }, (_, i) => ({
-                    value: i.toString(),
-                    label: `multi${i}`,
-                }))}
+                data={[
+                    { value: '1', label: 'Category A' },
+                    { value: '2', label: 'Category B' },
+                ]}
             />
+            <DatePicker placeholder="Select Date" className="!w-max" rounded="full" value={null} onChange={() => {}} />
         </FilterGroup>
     ),
 }
