@@ -14,7 +14,7 @@ import { Checkbox } from './ui/checkbox'
 import { Skeleton } from './ui/skeleton'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
 
-import { Sorting, SortingDown } from 'google-material-icons/outlined'
+import { Sorting, SortingDown, SortingUp } from 'google-material-icons/outlined'
 import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from 'usehooks-ts'
 import { cn } from '../Lib/utils'
@@ -218,12 +218,14 @@ export function DataTable<TData, TValue>({
                                                         rounded="default"
                                                         className="!size-[20px] !p-space-00"
                                                         onClick={() => header.column.toggleSorting()}>
-                                                        <ShouldRender shouldRender={!!header.column.getIsSorted()}>
-                                                            <SortingDown
-                                                                className={cn('transition duration-200', {
-                                                                    'rotate-180': header.column.getIsSorted() === 'asc',
-                                                                })}
-                                                            />
+                                                        <ShouldRender
+                                                            shouldRender={!!header.column.getIsSorted() && header.column.getIsSorted() === 'desc'}>
+                                                            <SortingDown />
+                                                        </ShouldRender>
+
+                                                        <ShouldRender
+                                                            shouldRender={!!header.column.getIsSorted() && header.column.getIsSorted() === 'asc'}>
+                                                            <SortingUp />
                                                         </ShouldRender>
                                                         <ShouldRender shouldRender={!header.column.getIsSorted()}>
                                                             <Sorting />
