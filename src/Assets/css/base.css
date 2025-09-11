@@ -488,6 +488,21 @@
         --link-tertiary-pressed: var(--tertiary-300);
         --link-tertiary-focused: var(--tertiary-500);
         --link-tertiary-visited: var(--tertiary-800);
+
+        /* table */
+        --table-background-row-alt: theme(colors.neutral.50);
+        --table-background-row-hovered: theme(colors.neutral.100);
+        --table-background-row-select: var(--primary-50);
+        --table-background-row-selected-hovered: var(--primary-50);
+        --table-border-row-selected-hovered: theme(colors.neutral.100);
+        --table-background-row: theme(colors.neutral.50);
+        --table-background-header: theme(colors.neutral.100);
+        --table-background-hover-selected: theme(colors.neutral.50);
+        --table-background-disabled: var(--background-disabled);
+        --table-text-body: var(--text-default);
+        --table-text-head: theme(colors.neutral.700);
+        --table-cell-border-inverse: var(--border-black);
+        --table-cell-border: theme(colors.neutral.300);
     }
 
     .dark {
@@ -845,6 +860,21 @@
         --link-icon-oncolor-pressed: theme(colors.alpha.black-60);
         --link-icon-oncolor-visited: theme(colors.alpha.black-90);
         --link-icon-oncolor-disabled: theme(colors.alpha.black-30);
+
+        /* table */
+        --table-background-row-alt: theme(colors.white);
+        --table-background-row-hovered: theme(colors.neutral.100);
+        --table-background-row-select: var(--primary-50);
+        --table-background-row-selected-hovered: var(--primary-50);
+        --table-border-row-selected-hovered: theme(colors.neutral.100);
+        --table-background-row: theme(colors.neutral.900);
+        --table-background-header: theme(colors.neutral.900);
+        --table-background-hover-selected: theme(colors.neutral.900);
+        --table-background-disabled: var(--background-disabled);
+        --table-text-body: theme(colors.white);
+        --table-text-head: theme(colors.neutral.300);
+        --table-cell-border-inverse: theme(colors.white);
+        --table-cell-border: theme(colors.neutral.600);
     }
 
     [data-theme='parent'] {

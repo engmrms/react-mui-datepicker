@@ -561,4 +561,37 @@ export const dgaToken = {
             },
         },
     },
+    table: {
+        background: {
+            row: {
+                DEFAULT: 'var(--table-background-row)',
+                alt: 'var(--table-background-row-alt)',
+                hovered: 'var(--table-background-row-hovered)',
+                select: 'var(--table-background-row-select)',
+                selected: {
+                    hovered: 'var(--table-background-row-selected-hovered)',
+                },
+            },
+            header: 'var(--table-background-header)',
+            hover: { selected: 'var(--table-background-hover-selected)' },
+            disabled: 'var(--table-background-disabled)',
+        },
+        border: {
+            row: {
+                selected: {
+                    hovered: 'var(--table-border-row-selected-hovered)',
+                },
+            },
+        },
+        text: {
+            body: 'var(--table-text-body)',
+            head: 'var(--table-text-head)',
+        },
+        cell: {
+            border: {
+                DEFAULT: 'var(--table-cell-border)',
+                inverse: 'var(--table-cell-border-inverse)',
+            },
+        },
+    },
 }
