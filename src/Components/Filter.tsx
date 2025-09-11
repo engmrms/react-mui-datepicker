@@ -279,7 +279,7 @@ const FilterMobileView = ({
 const FilterSelect = React.memo(
     ({ multi, data, placeholder, disabled, isLoading, rounded, size, name, defaultOpen, renderItem }: FilterSelectProps) => {
         const { value, upsert } = useFilterContext()
-        const mobileView = useMediaQuery('(max-width: 767px)')
+        const mobileView = useMediaQuery('(max-width: 768px)')
         const { dir } = useLanguage()
 
         let actualValue: string | string[] | undefined
@@ -381,7 +381,7 @@ const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
         },
         ref,
     ) => {
-        const mobileView = useMediaQuery('(max-width: 767px)')
+        const mobileView = useMediaQuery('(max-width: 768px)')
 
         const upsert = useCallback(
             ({ name, selectedValue }: { name: string; selectedValue: string | string[] | number | undefined }) => {
