@@ -25,7 +25,7 @@ const tableVariants = cva('border-y-table-cell-border w-full caption-bottom bord
     },
 })
 
-const tableContainerVariants = cva('relative w-full overflow-hidden r w-full overflow-x-auto', {
+const tableContainerVariants = cva('relative w-full overflow-hidden overflow-x-auto', {
     variants: {
         contained: {
             true: 'border-x border-x-table-cell-border rounded-1',
