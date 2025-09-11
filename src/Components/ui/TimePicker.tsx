@@ -19,6 +19,8 @@ interface Props extends VariantProps<typeof selectVariants> {
     timeStep?: number
 }
 
+export type TimePickerProps = Props
+
 const locales = {
     en: enUS,
     ar: arSA,
@@ -80,7 +82,7 @@ export const TimePicker = ({
     timeStep = 15,
     ampm,
     disabled,
-}: Props) => {
+}: TimePickerProps) => {
     const [isOpen, setIsOpen] = useState(false)
     const timeOptions = useMemo(() => getTimeOptions(ampm, lang, timeStep), [ampm, lang, timeStep])
 
