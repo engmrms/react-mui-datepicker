@@ -1,6 +1,7 @@
 import { Meta } from '@storybook/blocks'
 import ColorBlock from './components/ColorBlock'
 import { azure, blue, cyan, gray, green, lavender, marigold, middleBlue, red } from './components/colors'
+import StorybookFooter from '../../footer'
 
 <Meta title="Design Tokens/Color/Primitives Color" />
 
@@ -79,3 +80,5 @@ A primitive color is an individual color from our catalog of brand colors, gray.
         <ColorBlock key={e} color={e} value={e} />
     ))}
 </div>
+
+<StorybookFooter />

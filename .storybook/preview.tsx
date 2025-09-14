@@ -1,10 +1,24 @@
+import { Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks'
 import type { Preview } from '@storybook/react'
 import { themes } from '@storybook/theming'
 import React, { PropsWithChildren, useEffect } from 'react'
 import { setLanguage, useLanguage } from '../src'
-
+import StorybookFooter from '../src/Components/stories/footer'
 import './style.css'
 import '/src/Assets/css/Shared.css'
+
+const customDocsPage = () => (
+    <div className="flex flex-col" style={{ minHeight: '100%' }}>
+        <Title />
+        <Subtitle />
+        <Description />
+        <Primary />
+        <Stories />
+
+        {/* Footer goes here */}
+        <StorybookFooter />
+    </div>
+)
 
 const LocaleWrapper = ({ children, locale }: PropsWithChildren<{ locale: 'ar' | 'en' }>) => {
     const { changeLang } = useLanguage()
@@ -70,6 +84,9 @@ const preview: Preview = {
     },
     parameters: {
         // actions: { argTypesRegex: '^on[A-Z].*' },
+        docs: {
+            page: customDocsPage,
+        },
         controls: {
             matchers: {
                 color: /(background|color)$/i,

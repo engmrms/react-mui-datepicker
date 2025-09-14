@@ -5,7 +5,7 @@ const defaultTheme = {
     fontCode: '"IBM Reguler"',
 
     brandTitle: 'Mada Design System',
-    brandUrl: 'https://tetco.sa',
+    brandUrl: '/',
 
     brandTarget: '_self',
     //
