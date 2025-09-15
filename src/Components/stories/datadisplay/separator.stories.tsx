@@ -24,7 +24,11 @@ const meta: Meta<typeof Separator> = {
     title: 'Design System/Data Display/Separator',
     component: Separator,
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        asChild: {
+            table: { disable: true },
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {

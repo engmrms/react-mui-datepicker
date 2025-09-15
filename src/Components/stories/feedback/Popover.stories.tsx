@@ -8,12 +8,42 @@ const meta: Meta<typeof PopoverContent> = {
     args: {
         align: 'center',
         side: 'bottom',
-        dir:'ltr'
+        dir: 'ltr',
     },
     argTypes: {
-        align: { control: 'radio', options: ['center', 'end', 'start'] },
-        side: { control: 'radio', options: ['top', 'bottom', 'right', 'left'] },
-        dir: { control: 'radio', options: ['ltr', 'rtl'] },
+        align: {
+            control: 'radio',
+            options: ['center', 'end', 'start'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'center | end | start' },
+                defaultValue: { summary: 'center' },
+            },
+            description: 'The align of the popover',
+        },
+        side: {
+            control: 'radio',
+            options: ['top', 'bottom', 'right', 'left'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'top | bottom | right | left' },
+                defaultValue: { summary: 'bottom' },
+            },
+            description: 'The side of the popover',
+        },
+        dir: {
+            control: 'radio',
+            options: ['ltr', 'rtl'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'ltr | rtl' },
+                defaultValue: { summary: 'ltr' },
+            },
+            description: 'The direction of the popover',
+        },
+        asChild: {
+            table: { disable: true },
+        },
     },
     parameters: {
         layout: 'centered',

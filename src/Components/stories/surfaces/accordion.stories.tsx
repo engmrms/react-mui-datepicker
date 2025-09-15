@@ -76,9 +76,67 @@ const meta: Meta<typeof Accordion> = {
         isLeading: false,
     },
     argTypes: {
-        type: { control: 'radio', options: ['single', 'multiple'] },
-        size: { control: 'select', options: ['default', 'sm', 'xs'] },
-        collapsible: { description: "When type is 'single', allows closing content when clicking trigger for an open item." },
+        // Appearance
+        type: {
+            control: 'radio',
+            options: ['single', 'multiple'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'single | multiple' },
+                defaultValue: { summary: 'single' },
+            },
+            description: 'The type of the accordion',
+        },
+        size: {
+            control: 'select',
+            options: ['default', 'sm', 'xs'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | sm | xs' },
+                defaultValue: { summary: 'default' },
+            },
+            description: 'The size of the accordion',
+        },
+
+        isLeading: {
+            description: 'The position of the icon in the accordion trigger (leading or trailing)',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        // Behavior
+        disabled: {
+            description: 'The disabled state of the accordion',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        collapsible: {
+            description: "When type is 'single', allows closing content when clicking trigger for an open item.",
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        // Core Configuration
+        className: {
+            description: 'The class name of the accordion',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+            },
+        },
+
+        asChild: {
+            table: {
+                disable: true,
+            },
+        },
     },
     parameters: {
         docs: {

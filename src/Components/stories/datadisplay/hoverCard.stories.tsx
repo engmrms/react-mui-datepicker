@@ -7,6 +7,33 @@ const meta: Meta<typeof HoverCardContent> = {
     component: HoverCardContent,
     title: 'Design System/Data Display/HoverCard',
     tags: ['autodocs'],
+    args: {
+        variant: 'default',
+        align: 'start',
+    },
+    argTypes: {
+        // Appearance
+        variant: {
+            control: 'radio',
+            options: ['default', 'inverted'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | inverted' },
+                defaultValue: { summary: 'default' },
+            },
+            description: 'The variant of the hover card',
+        },
+        align: {
+            control: 'radio',
+            options: ['start', 'center', 'end'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'start | center | end' },
+                defaultValue: { summary: 'start' },
+            },
+            description: 'The align of the hover card',
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {
@@ -22,20 +49,6 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-    args: {
-        variant: 'default',
-        align: 'start',
-    },
-    argTypes: {
-        variant: {
-            control: 'radio',
-            options: ['default', 'inverted'],
-        },
-        align: {
-            control: 'radio',
-            options: ['start', 'center', 'end'],
-        },
-    },
     render: arg => (
         <div className="h-space-12">
             <HoverCard>

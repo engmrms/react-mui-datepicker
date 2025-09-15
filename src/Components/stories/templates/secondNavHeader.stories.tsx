@@ -25,7 +25,24 @@ export const Default: Story = {
         hideDivider: false,
     },
     argTypes: {
-        hideDivider: { control: 'boolean' },
+        hideDivider: {
+            control: 'boolean',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+            description: 'The hideDivider of the second nav header',
+        },
+        colors: {
+            control: 'radio',
+            options: ['primary', 'gray'],
+            description: 'The colors of the second nav header',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'primary | gray' },
+            },
+        },
     },
     render: args => (
         <SecondNavHeader {...args}>

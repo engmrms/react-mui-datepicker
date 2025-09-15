@@ -7,7 +7,56 @@ const meta: Meta<typeof List> = {
     title: 'Design System/Data Display/List',
     component: List,
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        // Appearance
+        variant: {
+            control: 'radio',
+            options: ['ordered', 'unordered'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'ordered | unordered' },
+                defaultValue: { summary: 'ordered' },
+            },
+            description: 'The variant of the list',
+        },
+        colors: {
+            control: 'select',
+            options: ['primary', 'neutral', 'onColor'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'primary | neutral | onColor' },
+                defaultValue: { summary: 'primary' },
+            },
+            description: 'The colors of the list',
+        },
+        items: {
+            control: 'object',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string[]' },
+                defaultValue: { summary: '[]' },
+            },
+            description: 'The items of the list',
+        },
+        icon: {
+            control: 'object',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'ReactNode' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The icon of the list',
+        },
+        className: {
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+            },
+        },
+    },
+
     parameters: {
         layout: 'centered',
         docs: {

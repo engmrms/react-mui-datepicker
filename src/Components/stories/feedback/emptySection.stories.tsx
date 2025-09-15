@@ -67,10 +67,65 @@ const meta: Meta<typeof EmptySection> = {
         layout: {
             options: ['vertical', 'horizontal'],
             control: { type: 'inline-radio' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'vertical | horizontal' },
+                defaultValue: { summary: 'vertical' },
+            },
+            description: 'The layout of the empty section',
         },
         background: {
             options: ['gray', 'none'],
             control: { type: 'inline-radio' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'gray | none' },
+                defaultValue: { summary: 'gray' },
+            },
+            description: 'The background of the empty section',
+        },
+        icon: {
+            control: 'object',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'ReactNode' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The icon of the empty section',
+        },
+        bordered: {
+            control: 'boolean',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+            description: 'The bordered state of the empty section',
+        },
+        description: {
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The description of the empty section',
+        },
+        title: {
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The title of the empty section',
+        },
+    },
+    parameters: {
+        docs: {
+            description: {
+                component: '<h4>EmptySection is a component that displays a message when there is no data.</h4>',
+            },
         },
     },
 }

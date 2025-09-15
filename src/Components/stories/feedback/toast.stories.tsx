@@ -12,8 +12,29 @@ const meta: Meta<typeof Toast> = {
     component: Toast,
     tags: ['autodocs'],
     argTypes: {
-        variant: { control: 'select', options: ['default', 'destructive', 'success', 'info', 'warning'] },
-        position: { control: 'select', options: ['top', 'bottom', 'top-right', 'top-left', 'bottom-right', 'bottom-left'] },
+        variant: {
+            control: 'select',
+            options: ['default', 'destructive', 'success', 'info', 'warning'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | destructive | success | info | warning' },
+                defaultValue: { summary: 'default' },
+            },
+            description: 'The variant of the toast',
+        },
+        position: {
+            control: 'select',
+            options: ['top', 'bottom', 'top-right', 'top-left', 'bottom-right', 'bottom-left'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'top | bottom | top-right | top-left | bottom-right | bottom-left' },
+                defaultValue: { summary: 'top' },
+            },
+            description: 'The position of the toast',
+        },
+        asChild: {
+            table: { disable: true },
+        },
     },
 
     decorators: [

@@ -5,7 +5,17 @@ const meta: Meta<typeof ActionLoader> = {
     title: 'Design System/FeedBack/ActionLoader',
     component: ActionLoader,
     tags: ['autodocs'],
-
+    argTypes: {
+        className: {
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The class name of the action loader',
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {

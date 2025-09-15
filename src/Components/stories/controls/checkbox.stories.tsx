@@ -9,7 +9,82 @@ const meta: Meta<CheckboxType> = {
     title: 'Design System/Controls/Checkbox',
     component: Checkbox,
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        // Behavior
+        asChild: {
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        disabled: {
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+
+        // Appearance
+        colors: {
+            control: 'select',
+            options: ['primary', 'neutral'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'primary | neutral' },
+                defaultValue: { summary: 'primary' },
+            },
+        },
+        size: {
+            control: 'select',
+            options: ['default', 'sm', 'xs'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | sm | xs' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+        checked: {
+            control: 'boolean',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean | indeterminate' },
+                defaultValue: { summary: 'checked' },
+            },
+            description: 'The checked state of the checkbox',
+        },
+
+        // Events
+        onCheckedChange: {
+            action: 'onCheckedChange',
+            table: {
+                category: 'Events',
+                type: { summary: '(checked: CheckedState) => void' },
+            },
+            description: 'The on checked change event of the checkbox',
+        },
+
+        // Core Configuration
+        className: {
+            control: 'text',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The class name of the checkbox',
+        },
+    },
+    args: {
+        asChild: false,
+        disabled: false,
+        colors: 'primary',
+        size: 'default',
+        checked: 'indeterminate',
+    },
     parameters: {
         layout: 'centered',
         docs: {
@@ -24,12 +99,6 @@ export default meta
 type Story = StoryObj<CheckboxType>
 
 export const Default: Story = {
-    args: {
-        asChild: false,
-        disabled: false,
-        colors: 'primary',
-        size: 'default',
-    },
     render: (arg, { globals: { dir } }) => {
         return (
             <div className="flex items-center gap-space-01">
@@ -43,10 +112,6 @@ export const Default: Story = {
 }
 
 export const Indeterminate: Story = {
-    args: {
-        asChild: false,
-        disabled: false,
-    },
     render: (arg, { globals: { dir } }) => {
         return (
             <div className="flex items-center gap-space-01">

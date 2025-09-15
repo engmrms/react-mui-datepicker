@@ -8,7 +8,109 @@ const meta: Meta<typeof SplitButton> = {
     title: 'Design System/Controls/SplitButton',
     component: SplitButton,
     tags: ['autodocs'],
-    argTypes: {},
+    args: {
+        variant: 'default',
+        colors: 'primary',
+        size: 'default',
+        rounded: 'default',
+        children: 'Split Button',
+        disabled: false,
+        renderMenuItems: (item: unknown) => <div>{String(item)}</div>,
+        menuItems: ['item 1', 'item 2', 'item 3', 'item 4', 'item 5', 'item 6', 'item 7', 'item 8', 'item 9', 'item 10'],
+    },
+    argTypes: {
+        // Appearance
+        variant: {
+            description: 'The variant of the split button',
+            control: 'select',
+            options: ['default', 'outline', 'lighter'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | outline | lighter' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+        colors: {
+            description: 'The colors of the split button',
+            control: 'select',
+            options: ['primary', 'neutral'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'primary | neutral' },
+                defaultValue: { summary: 'primary' },
+            },
+        },
+        size: {
+            description: 'The size of the split button',
+            control: 'select',
+            options: ['default', 'sm'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | sm' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+        rounded: {
+            description: 'The rounded of the split button',
+            control: 'select',
+            options: ['default', 'full'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | full' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+
+        // Core Configuration
+        renderMenuItems: {
+            description: 'The render menu items of the dropdown menu',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: '(item: unknown) => React.ReactNode' },
+                defaultValue: { summary: 'undefined' },
+            },
+        },
+        menuItems: {
+            description: 'The menu items of the dropdown menu',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'unknown[]' },
+                defaultValue: { summary: '[]' },
+            },
+        },
+
+        // Behavior
+        disabled: {
+            description: 'The disabled state of the split button',
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        children: {
+            control: 'text',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'Split Button' },
+            },
+            description: 'The children of the main button',
+        },
+        isLoading: {
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+            description: 'The loading state of the main button',
+        },
+        tooltip: {
+            table: { disable: true },
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {

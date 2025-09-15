@@ -1,13 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { ScrollArea, ScrollBar, Separator } from '../../../package'
 import React from 'react'
+import { ScrollArea, ScrollBar, Separator } from '../../../package'
 
 const meta: Meta<typeof ScrollArea> = {
     title: 'Design System/Surface/ScrollArea',
     component: ScrollArea,
     tags: ['autodocs'],
+    argTypes: {
+        className: {
+            description: 'The class name of the scroll area',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+            },
+        },
 
+        asChild: {
+            table: {
+                disable: true,
+            },
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {
