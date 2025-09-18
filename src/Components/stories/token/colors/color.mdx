@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/blocks'
 import ColorBlock from './components/ColorBlock'
-import { azure, blue, cyan, gray, green, lavender, marigold, middleBlue, red } from './components/colors'
+import { data } from './components/colors'
 import StorybookFooter from '../../footer'
 
 <Meta title="Design Tokens/Color/Primitives Color" />
@@ -9,76 +9,17 @@ import StorybookFooter from '../../footer'
 
 A primitive color is an individual color from our catalog of brand colors, gray.100, gary.200, etc. It is the most atomic form of color and will be attached to a semantic color name.
 
-## Gray
+<div   className="flex flex-col gap-space-05">
+{Object.entries(data).map(([key, value]) => (
 
-<div className="flex flex-wrap gap-space-04">
-    {gray.map(e => (
-        <ColorBlock key={e} color={e} value={e} />
-    ))}
+<div key={key} className="flex flex-col gap-space-02">
+    <h2 className="capitalize font-semibold">{key}</h2>
+    <div className="flex flex-wrap gap-space-03">
+        {value.map(e => (
+            <ColorBlock key={e} color={e} value={e} />
+        ))}
+    </div>
 </div>
-
-## Lavender
-
-<div className="flex flex-wrap gap-space-04">
-    {lavender.map(e => (
-        <ColorBlock key={e} color={e} value={e} />
-    ))}
+))}
 </div>
-
-## Middle Blue
-
-<div className="flex flex-wrap gap-space-04">
-    {middleBlue.map(e => (
-        <ColorBlock key={e} color={e} value={e} />
-    ))}
-</div>
-
-## Blue
-
-<div className="flex flex-wrap gap-space-04">
-    {blue.map(e => (
-        <ColorBlock key={e} color={e} value={e} />
-    ))}
-</div>
-
-## Green
-
-<div className="flex flex-wrap gap-space-04">
-    {green.map(e => (
-        <ColorBlock key={e} color={e} value={e} />
-    ))}
-</div>
-
-## Red
-
-<div className="flex flex-wrap gap-space-04">
-    {red.map(e => (
-        <ColorBlock key={e} color={e} value={e} />
-    ))}
-</div>
-
-## Marigold
-
-<div className="flex flex-wrap gap-space-04">
-    {marigold.map(e => (
-        <ColorBlock key={e} color={e} value={e} />
-    ))}
-</div>
-
-## Cyan
-
-<div className="flex flex-wrap gap-space-04">
-    {cyan.map(e => (
-        <ColorBlock key={e} color={e} value={e} />
-    ))}
-</div>
-
-## Azure
-
-<div className="flex flex-wrap gap-space-04">
-    {azure.map(e => (
-        <ColorBlock key={e} color={e} value={e} />
-    ))}
-</div>
-
 <StorybookFooter />
