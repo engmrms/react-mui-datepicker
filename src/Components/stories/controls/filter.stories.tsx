@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { FilterAlt } from 'google-material-icons/outlined'
 import { useState } from 'react'
-import { DatePicker, FilterValue, Input, strings } from '../../../package'
+import { DatePicker, Input, strings } from '../../../package'
 import { FilterGroup, FilterSelect } from '../../Filter'
 
 const meta: Meta<typeof FilterGroup> = {
@@ -125,19 +125,17 @@ export const Default: Story = {
     },
     render: arg => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const [values, setValues] = useState<FilterValue | undefined>({})
-        console.log('values', values)
+        const [values, setValues] = useState<{ test: string; test2: string[] }>({ test: '', test2: [] })
 
         return (
             <FilterGroup
+                {...arg}
                 onValueChange={v => {
-                    console.log('values', v)
-                    setValues(v)
+                    setValues(v as { test: string; test2: string[] })
                 }}
                 className="flex gap-space-03 "
-                onValueReset={() => console.log('first')}
+                onValueReset={() => setValues({ test: '', test2: [] })}
                 resetButtonProps={{ rounded: 'full', size: 'default' }}
-                {...arg}
                 value={values || {}}>
                 <FilterSelect
                     defaultOpen
@@ -172,34 +170,39 @@ export const WithCustomItems: Story = {
         resetButtonLabel: 'Reset',
         filterIcon: <FilterAlt />,
     },
-    render: arg => (
-        <FilterGroup
-            onValueChange={v => console.log('Filters:', v)}
-            className="flex flex-wrap gap-space-03"
-            onValueReset={() => console.log('Reset filters')}
-            resetButtonProps={{ rounded: 'full', size: 'default' }}
-            {...arg}>
-            <Input type="search" placeholder="Search..." className="!w-max" rounded="full" />
-            <FilterSelect
-                name="status"
-                placeholder="Status"
-                rounded="full"
-                data={[
-                    { value: '1', label: 'Active' },
-                    { value: '2', label: 'Inactive' },
-                ]}
-            />
-            <FilterSelect
-                name="category"
-                placeholder="Category"
-                multi
-                rounded="full"
-                data={[
-                    { value: '1', label: 'Category A' },
-                    { value: '2', label: 'Category B' },
-                ]}
-            />
-            <DatePicker placeholder="Select Date" className="!w-max" rounded="full" value={null} onChange={() => {}} />
-        </FilterGroup>
-    ),
+    render: arg => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [values, setValues] = useState<{ status: string; category: string[] }>({ status: '', category: [] })
+        return (
+            <FilterGroup
+                {...arg}
+                onValueChange={v => setValues(v as { status: string; category: string[] })}
+                className="flex flex-wrap gap-space-03"
+                onValueReset={() => setValues({ status: '', category: [] })}
+                resetButtonProps={{ rounded: 'full', size: 'default' }}
+                value={values || {}}>
+                <Input type="search" placeholder="Search..." className="!w-max" rounded="full" />
+                <FilterSelect
+                    name="status"
+                    placeholder="Status"
+                    rounded="full"
+                    data={[
+                        { value: '1', label: 'Active' },
+                        { value: '2', label: 'Inactive' },
+                    ]}
+                />
+                <FilterSelect
+                    name="category"
+                    placeholder="Category"
+                    multi
+                    rounded="full"
+                    data={[
+                        { value: '1', label: 'Category A' },
+                        { value: '2', label: 'Category B' },
+                    ]}
+                />
+                <DatePicker placeholder="Select Date" className="!w-max" rounded="full" value={null} onChange={() => {}} />
+            </FilterGroup>
+        )
+    },
 }
