@@ -6,6 +6,22 @@ const meta: Meta<typeof DigitalSignature> = {
     title: 'Design System/Templates/Digital Signature',
     component: DigitalSignature,
     tags: ['autodocs'],
+    argTypes: {
+        extension: {
+            description: 'The extension of the digital signature',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+            },
+        },
+        linkProps: {
+            description: 'The link props of the digital signature',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'LinkProps' },
+            },
+        },
+    },
 
     parameters: {
         docs: {

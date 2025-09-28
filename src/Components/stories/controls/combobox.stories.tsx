@@ -73,19 +73,142 @@ const meta: Meta<typeof ComboboxControl> = {
     tags: ['autodocs'],
     component: ComboboxControl,
     args: {
-        variant: 'outline',
+        variant: 'default',
         size: 'default',
         colors: 'default',
         rounded: 'default',
         disabled: false,
         placeholder: 'select',
+        isLoading: false,
     },
-    argTypes:{
-        variant: {control:"select",options:["default","outline","lighter"]},
-        size: {control:"select",options:["default","sm"]},
-        colors: {control:"select",options:["default","success","destructive"]},
-        rounded:{control:"select",options:["default","full"]},
+    argTypes: {
+        // Appearance
+        variant: {
+            description: 'The variant of the combobox',
+            control: 'select',
+            options: ['default', 'outline', 'lighter'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | outline | lighter' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+        size: {
+            description: 'The size of the combobox',
+            control: 'select',
+            options: ['default', 'sm'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | sm' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+        colors: {
+            description: 'The colors of the combobox',
+            control: 'select',
+            options: ['default', 'success', 'destructive'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | success | destructive' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+        rounded: {
+            description: 'The rounded of the combobox',
+            control: 'select',
+            options: ['default', 'full'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | full' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+        placeholder: {
+            description: 'The placeholder of the combobox',
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'select' },
+            },
+        },
 
+        // Behavior
+        disabled: {
+            description: 'The disabled state of the combobox',
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        isLoading: {
+            description: 'The loading state of the combobox',
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        // Events
+        onChange: {
+            action: 'onChange',
+            table: {
+                category: 'Events',
+                type: { summary: '(value: string) => void' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The onChange event of the combobox',
+        },
+
+        // Core Configuration
+        value: {
+            description: 'The value of the combobox',
+            control: 'text',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+            },
+        },
+        optionLabel: {
+            description: 'The option label of the combobox',
+            control: 'text',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+            },
+        },
+        optionValue: {
+            description: 'The option value of the combobox',
+            control: 'text',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+            },
+        },
+        options: {
+            description: 'The options of the combobox',
+            control: 'object',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'array' },
+                defaultValue: { summary: '[]' },
+            },
+        },
+
+        renderItem: {
+            description: 'The render item of the combobox',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: '(item: unknown) => React.ReactNode' },
+                defaultValue: { summary: 'undefined' },
+            },
+        },
     },
 
     parameters: {
@@ -103,95 +226,11 @@ export default meta
 type Story = StoryObj<typeof ComboboxControl>
 export const Default: Story = {
     render: ComboboxDemo,
-    // parameters: {
-    //     docs: {
-    //         source: {
-    //             code: `
-    //             interface Languages {
-    //                 label: string
-    //                 value: string
-    //             }
-
-    //             const languages: Languages[] = [
-    //                 { label: 'English', value: 'en' },
-    //                 { label: 'French', value: 'fr' },
-    //                 { label: 'German', value: 'de' },
-    //                 { label: 'Spanish', value: 'es' },
-    //                 { label: 'Portuguese', value: 'pt' },
-    //                 { label: 'Russian', value: 'ru' },
-    //                 { label: 'Japanese', value: 'ja' },
-    //                 { label: 'Korean', value: 'ko' },
-    //                 { label: 'Chinese', value: 'zh' },
-    //             ]
-    //             const ComboboxDemo = () => {
-    //                 const [selectedLanguage, setSelectedLanguage] = React.useState<Languages>()
-
-    //                 return (
-    //                     <Combobox>
-    //                         <PopoverTrigger asChild>
-    //                             <Button variant="outline" role="combobox">
-    //                                 {!selectedLanguage?.label ? (
-    //                                     <span className="text-body-01 text-foreground-secondary">Select Language</span>
-    //                                 ) : (
-    //                                     selectedLanguage.label
-    //                                 )}
-
-    //                                 <ExpandMore className="  h-space-05 w-space-05 text-foreground shrink-0 ms-space-02  " />
-    //                             </Button>
-    //                         </PopoverTrigger>
-
-    //                         <ComboboxGroup>
-    //                             {languages?.map(opt => (
-    //                                 <ComboboxItem
-    //                                     value={opt.value}
-    //                                     key={String(opt.value)}
-    //                                     onSelect={() => {
-    //                                         setSelectedLanguage(opt)
-    //                                     }}>
-    //                                     {opt.label}
-    //                                 </ComboboxItem>
-    //                             ))}
-    //                         </ComboboxGroup>
-    //                     </Combobox>
-    //                 )
-    //             }`,
-    //         },
-    //     },
-    // },
 }
 
 export const FormElement: Story = {
     render: arg => <ComboboxControlDemo {...arg} />,
-    // parameters: {
-    //     // docs: {
-    //     //     source: {
-    //     //         language: 'tsx',
-    //     //         code: `const ComboboxControlDemo = () => {
-    //     //             const form = useForm()
-    //     //             return (
-    //     //                 <FormField
-    //     //                     control={form.control}
-    //     //                     name="language"
-    //     //                     render={({ field }) => (
-    //     //                         <FormItem className="flex flex-col">
-    //     //                             <FormLabel>Language</FormLabel>
 
-    //     //                             <ComboboxControl<Languages>
-    //     //                                 options={languages}
-    //     //                                 optionLabel="label"
-    //     //                                 optionValue="value"
-    //     //                                 placeholder="select"
-    //     //                                 onChange={vale => field.onChange(vale)}
-    //     //                                 value={field.value}
-    //     //                             />
-    //     //                         </FormItem>
-    //     //                     )}
-    //     //                 />
-    //     //             )
-    //     //         }`,
-    //     //     },
-    //     // },
-    // },
     decorators: Story => {
         const form = useForm()
         return (

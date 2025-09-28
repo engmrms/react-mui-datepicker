@@ -7,7 +7,87 @@ const meta: Meta<typeof Select> = {
     title: 'Design System/Controls/Select',
     component: Select,
     tags: ['autodocs'],
-    argTypes: {},
+    args: {
+        variant: 'outline',
+        size: 'default',
+        disabled: false,
+        rounded: 'default',
+        colors: 'default',
+    },
+    argTypes: {
+        // Appearance
+        variant: {
+            control: 'select',
+            options: ['default', 'outline', 'lighter'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | outline | lighter' },
+                defaultValue: { summary: 'outline' },
+            },
+            description: 'The variant of the select',
+        },
+        size: {
+            control: 'select',
+            options: ['default', 'sm'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | sm' },
+                defaultValue: { summary: 'default' },
+            },
+            description: 'The size of the select',
+        },
+        rounded: {
+            control: 'select',
+            options: ['default', 'full'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | full' },
+                defaultValue: { summary: 'default' },
+            },
+            description: 'The rounded of the select',
+        },
+        colors: {
+            control: 'select',
+            options: ['default', 'success', 'destructive'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | success | destructive' },
+                defaultValue: { summary: 'default' },
+            },
+            description: 'The colors of the select',
+        },
+
+        // Behavior
+        disabled: {
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+            description: 'The disabled state of the select',
+        },
+
+        // Core Configuration
+        value: {
+            control: 'text',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The value of the select',
+        },
+        // Events
+        onValueChange: {
+            action: 'onValueChange',
+            table: {
+                category: 'Events',
+                type: { summary: '(value: string) => void' },
+            },
+            description: 'The on value change event of the select',
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {
@@ -22,17 +102,10 @@ export default meta
 type Story = StoryObj<typeof Select>
 
 export const Default: Story = {
-    args: {
-        variant: 'outline',
-        size: 'default',
-        disabled:false,
-        rounded:"default",
-        colors:"default"
-    },
     render: (arg, { globals: { dir } }) => (
-        <Select   {...arg} dir={dir} >
-            <SelectTrigger  className="w-[180px]">
-                <SelectValue placeholder="Theme"  />
+        <Select {...arg} dir={dir}>
+            <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Theme" />
             </SelectTrigger>
             <SelectContent position="popper">
                 <SelectItem value="light">Light</SelectItem>
@@ -45,7 +118,7 @@ export const Default: Story = {
 
 export const Scrollable: Story = {
     render: (arg, { globals: { dir } }) => (
-        <Select  {...arg} dir={dir}>
+        <Select {...arg} dir={dir}>
             <SelectTrigger className="w-[280px]">
                 <SelectValue placeholder="Select a timezone" />
             </SelectTrigger>

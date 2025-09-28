@@ -7,9 +7,38 @@ const meta: Meta<typeof Emoji> = {
     title: 'Design System/Data Display/Emoji',
     component: Emoji,
     tags: ['autodocs'],
-    // argTypes: {
-    //     size: { },
-    // },
+    args: {
+        variant: 'awful',
+        disabled: false,
+        size: 'default',
+    },
+    argTypes: {
+        // Appearance
+        variant: {
+            control: 'select',
+            options: ['awful', 'bad', 'ok', 'good', 'great'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'awful | bad | ok | good | great' },
+                defaultValue: { summary: 'awful' },
+            },
+            description: 'The variant of the emoji',
+        },
+        disabled: {
+            control: 'boolean',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+            description: 'The disabled state of the emoji',
+        },
+        size: {
+            table: {
+                disable: true,
+            },
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {
@@ -24,10 +53,5 @@ export default meta
 type Story = StoryObj<typeof Emoji>
 
 export const Default: Story = {
-    args: {
-        variant:"awful",
-        disabled: false,
-        size:"default"
-    },
-    render: (args)=> <Emoji {...args}/>,
+    render: args => <Emoji {...args} />,
 }

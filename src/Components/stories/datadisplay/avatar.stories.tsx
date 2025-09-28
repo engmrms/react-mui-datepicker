@@ -13,6 +13,12 @@ const meta: Meta<typeof Avatar> = {
     component: Avatar,
     title: 'Design System/Data Display/Avatar',
     tags: ['autodocs'],
+    argTypes: {
+        // Appearance
+        asChild: {
+            table: { disable: true },
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {

@@ -9,30 +9,29 @@ const boxShadow = {
     'shadow-2xl': '0px 24px 48px -12px rgba(16, 24, 40, 0.18)',
     'shadow-3xl': ' 0px 32px 64px -12px rgba(16, 24, 40, 0.14)',
 }
+
 export default function Shadows() {
     return (
-        <div className=" flex flex-col  gap-0 space-y-space-08 overflow-hidden   p-0">
-            <div className="flex w-full flex-col  space-y-space-07 ">
-                <div className="  flex w-full flex-col  gap-0 p-0">
-                    <div className="  flex w-full flex-row  gap-0 p-0">
-                        <div className="cell flex  min-w-0 flex-1 flex-row items-start gap-2 border border-border p-space-04">
-                            <span className=" text-left  text-2xl font-semibold leading-9 ">Token Name</span>
-                        </div>
-                        <div className="cell flex  min-w-0 flex-1 flex-row items-start gap-2 border border-border p-space-04">
-                            <span className="primitiveValue text-left  text-2xl font-semibold leading-9 ">Primitive value</span>
-                        </div>
-                        <div className="cell flex  min-w-0 flex-1 flex-row items-start gap-2 border border-border p-space-04">
-                            <span className="  text-left  text-2xl font-semibold leading-9 ">Usage </span>
-                        </div>
-                        <div className="cell flex  min-w-0 flex-1 flex-row items-start gap-2 border border-border p-space-04">
-                            <span className="  text-left  text-2xl font-semibold leading-9 ">Sample</span>
-                        </div>
+        <div className=" flex flex-col   overflow-hidden   pt-space-03">
+            <div className="  flex w-full flex-col  gap-0 divide-y divide-border rounded-1 border border-border ">
+                <div className="  flex w-full flex-row  divide-x divide-border">
+                    <div className="flex-1  p-space-04">
+                        <span className="text-left font-semibold">Token Name</span>
                     </div>
-
-                    {Object.entries(boxShadow).map(([shadow, value]) => (
-                        <ShadowBox key={shadow} tokenName={shadow} primitiveValue={value} usage="for cards on background" shadowClass={shadow} />
-                    ))}
+                    <div className="flex-1  p-space-04">
+                        <span className="text-left font-semibold">Primitive value</span>
+                    </div>
+                    <div className="flex-1  p-space-04">
+                        <span className="text-left font-semibold">Usage </span>
+                    </div>
+                    <div className="flex-1  p-space-04">
+                        <span className="text-left font-semibold">Sample</span>
+                    </div>
                 </div>
+
+                {Object.entries(boxShadow).map(([shadow, value]) => (
+                    <ShadowBox key={shadow} tokenName={shadow} primitiveValue={value} usage="for cards on background" shadowClass={shadow} />
+                ))}
             </div>
         </div>
     )
@@ -47,18 +46,18 @@ interface ShadowBoxProps {
 
 const ShadowBox = ({ tokenName, primitiveValue, usage, shadowClass }: ShadowBoxProps) => {
     return (
-        <div className="  flex w-full flex-row  gap-0 p-0">
-            <div className="cell flex  min-w-0 flex-1 flex-row items-center gap-2 border border-border p-space-04">
-                <span className="shadow03  min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">{tokenName}</span>
+        <div className="  flex w-full flex-row    divide-x divide-border  ">
+            <div className="flex-1 p-space-04">
+                <span className="text-left  font-semibold ">{tokenName}</span>
             </div>
-            <div className="cell flex  min-w-0 flex-1 flex-row items-center gap-0 border border-border p-space-04">
-                <span className="min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">{primitiveValue}</span>
+            <div className="flex-1 p-space-04">
+                <span className="text-left">{primitiveValue}</span>
             </div>
-            <div className="cell flex  min-w-0 flex-1 flex-row items-center gap-0 border border-border p-space-04">
-                <span className="forCardsOnBackground  min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">{usage}</span>
+            <div className="flex-1 p-space-04">
+                <span className="text-left">{usage}</span>
             </div>
-            <div className="cell flex  min-w-0 flex-1 flex-row items-center gap-2 border border-border p-space-04">
-                <div className={`${shadowClass} relative h-space-12 w-space-12 overflow-hidden rounded-3xl bg-white p-0`} />
+            <div className="flex-1 p-space-04">
+                <div className={`${shadowClass}  size-space-12 overflow-hidden rounded-3 bg-white p-0`} />
             </div>
         </div>
     )

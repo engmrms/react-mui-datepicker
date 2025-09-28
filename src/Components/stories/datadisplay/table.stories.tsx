@@ -160,7 +160,7 @@ const meta: Meta<typeof Table> = {
                 type: {
                     summary: 'default | compact',
                 },
-                category: 'Props',
+                category: 'Appearance',
                 defaultValue: { summary: 'default' },
             },
         },
@@ -172,7 +172,7 @@ const meta: Meta<typeof Table> = {
                 type: {
                     summary: 'boolean',
                 },
-                category: 'Props',
+                category: 'Appearance',
                 defaultValue: { summary: 'false' },
             },
         },
@@ -184,7 +184,7 @@ const meta: Meta<typeof Table> = {
                 type: {
                     summary: 'boolean',
                 },
-                category: 'Props',
+                category: 'Appearance',
                 defaultValue: { summary: 'false' },
             },
         },

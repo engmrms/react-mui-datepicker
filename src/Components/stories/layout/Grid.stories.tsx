@@ -33,7 +33,93 @@ const meta: Meta<typeof Grid> = {
     argTypes: {
         gap: {
             options: ['none', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            control: { type: 'inline-radio' },
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'none | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12' },
+                defaultValue: { summary: '1' },
+            },
+            description: 'The gap of the grid',
+        },
+        gapX: {
+            options: ['none', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'none | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12' },
+                defaultValue: { summary: 'none' },
+            },
+            description: 'The gapX of the grid',
+        },
+        gapY: {
+            options: ['none', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'none | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12' },
+                defaultValue: { summary: 'none' },
+            },
+            description: 'The gapY of the grid',
+        },
+        cols: {
+            options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: '1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12' },
+                defaultValue: { summary: '12' },
+            },
+            description: 'The cols of the grid',
+        },
+        autoFlow: {
+            options: ['row', 'col', 'dense', 'rowDense', 'colDense'],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'row | col | dense | rowDense | colDense' },
+                defaultValue: { summary: 'row' },
+            },
+            description: 'The autoFlow of the grid',
+        },
+        alignItems: {
+            options: ['start', 'center', 'end', 'stretch'],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'start | center | end | stretch' },
+                defaultValue: { summary: 'stretch' },
+            },
+            description: 'The alignItems of the grid',
+        },
+        justifyItems: {
+            options: ['start', 'center', 'end', 'stretch'],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'start | center | end | stretch' },
+                defaultValue: { summary: 'stretch' },
+            },
+            description: 'The justifyItems of the grid',
+        },
+        alignContent: {
+            options: ['start', 'center', 'end', 'between', 'around', 'evenly'],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'start | center | end | between | around | evenly' },
+                defaultValue: { summary: 'start' },
+            },
+            description: 'The alignContent of the grid',
+        },
+        justifyContent: {
+            options: ['start', 'center', 'end', 'between', 'around', 'evenly'],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'start | center | end | between | around | evenly' },
+                defaultValue: { summary: 'start' },
+            },
+            description: 'The justifyContent of the grid',
         },
     },
     parameters: {

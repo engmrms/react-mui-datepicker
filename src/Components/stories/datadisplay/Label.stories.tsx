@@ -6,7 +6,35 @@ const meta: Meta<typeof Label> = {
     title: 'Design System/Data Display/Label',
     component: Label,
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        // Appearance
+        hidden: {
+            control: 'boolean',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+            description: 'The hidden state of the label',
+        },
+        size: {
+            control: 'select',
+            options: ['default', 'sm'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | sm' },
+                defaultValue: { summary: 'default' },
+            },
+            description: 'The size of the label',
+        },
+        asChild: {
+            table: { disable: true },
+        },
+    },
+    args: {
+        hidden: false,
+        size: 'default',
+    },
     parameters: {
         layout: 'centered',
         docs: {
@@ -20,10 +48,6 @@ const meta: Meta<typeof Label> = {
 export default meta
 type Story = StoryObj<typeof Label>
 export const Default: Story = {
-    args: {
-        hidden: false,
-        size: 'default',
-    },
     render: args => {
         return (
             <div>

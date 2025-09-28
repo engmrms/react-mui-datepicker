@@ -7,7 +7,68 @@ const meta: Meta<typeof Pagination> = {
     title: 'Design System/Navigation/Pagination',
     component: Pagination,
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        totalItems: {
+            control: 'number',
+            description: 'The total items of the pagination',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'number' },
+                defaultValue: { summary: '50' },
+            },
+        },
+        itemsPerPage: {
+            control: 'number',
+            description: 'The items per page of the pagination',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'number' },
+                defaultValue: { summary: '10' },
+            },
+        },
+        withoutText: {
+            control: 'boolean',
+            description: 'The without text of the pagination',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        // Events
+        onPageChange: {
+            description: 'The on page change of the pagination',
+            table: {
+                category: 'Events',
+                type: { summary: 'function' },
+            },
+        },
+        // Core Configuration
+        selectedPage: {
+            control: 'number',
+            description: 'The selected page of the pagination',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'number' },
+                defaultValue: { summary: '1' },
+            },
+        },
+        className: {
+            control: 'text',
+            description: 'The class name of the pagination',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+            },
+        },
+    },
+    args: {
+        totalItems: 50,
+        itemsPerPage: 10,
+        selectedPage: 1,
+        withoutText: false,
+    },
+
     parameters: {
         docs: {
             description: {

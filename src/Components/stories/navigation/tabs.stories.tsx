@@ -11,7 +11,72 @@ const meta: Meta<typeof Tabs> = {
     title: 'Design System/Navigation/Tabs',
     component: Tabs,
     tags: ['autodocs'],
-
+    argTypes: {
+        // @ts-expect-error: 'variant' is not a valid prop on Tabs, but included for Storybook controls
+        variant: {
+            control: 'radio',
+            options: ['underline', 'filled'],
+            description: 'The variant of the tabs',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'underline | filled' },
+                defaultValue: { summary: 'filled' },
+            },
+        },
+        dir: {
+            control: 'radio',
+            options: ['rtl', 'ltr'],
+            description: 'The direction of the tabs',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'rtl | ltr' },
+                defaultValue: { summary: 'ltr' },
+            },
+        },
+        size: {
+            control: 'select',
+            options: ['default', 'sm'],
+            description: 'The size of the tabs',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | sm' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+        disabled: {
+            control: 'boolean',
+            description: 'The disabled state of the tabs',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        underline: {
+            control: 'boolean',
+            description: 'The underline state of the tabs',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        orientation: {
+            control: 'select',
+            options: ['horizontal', 'vertical'],
+            description: 'The orientation of the tabs',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'horizontal | vertical' },
+                defaultValue: { summary: 'horizontal' },
+            },
+        },
+        asChild: {
+            table: {
+                disable: true,
+            },
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {

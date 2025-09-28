@@ -9,7 +9,84 @@ const meta: Meta<typeof Rating> = {
 
     component: Rating,
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        // Core Configuration
+        className: {
+            control: 'text',
+            description: 'The class name of the rating',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'gap-1' },
+            },
+        },
+        value: {
+            control: 'number',
+            description: 'The value of the rating',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'number' },
+                defaultValue: { summary: '0' },
+            },
+        },
+        readOnly: {
+            control: 'boolean',
+            description: 'The read only state of the rating',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        // Appearance
+        max: {
+            control: 'number',
+            description: 'The max of the rating',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'number' },
+                defaultValue: { summary: '5' },
+            },
+        },
+        size: {
+            control: 'select',
+            options: ['default', 'sm', 'xs'],
+            description: 'The size of the rating',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | sm | xs' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+        variant: {
+            control: 'select',
+            options: ['default', 'brand'],
+            description: 'The variant of the rating',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | brand' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+
+        // Events
+        onChange: {
+            action: 'onChange',
+            description: 'The onChange event of the rating',
+            table: {
+                category: 'Events',
+                type: { summary: '(value: number) => void' },
+            },
+        },
+    },
+    args: {
+        max: 5,
+        value: 0,
+        size: 'default',
+        variant: 'default',
+        readOnly: false,
+        className: 'gap-1',
+    },
     parameters: {
         layout: 'centered',
         docs: {

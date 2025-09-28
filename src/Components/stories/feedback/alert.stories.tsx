@@ -6,7 +6,33 @@ const meta: Meta<typeof Alert> = {
     title: 'Design System/FeedBack/Alert',
     component: Alert,
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        colors: {
+            control: 'select',
+            options: ['default', 'primary', 'warning', 'error', 'info', 'secondary'],
+            description: 'The colors of the alert',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | primary | warning | error | info | secondary' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+        variant: {
+            control: 'select',
+            options: ['default', 'outline', 'ghost'],
+            description: 'The variant of the alert',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | outline | ghost' },
+                defaultValue: { summary: 'default' },
+            },
+        },
+    },
+    args: {
+        colors: 'default',
+        variant: 'default',
+    },
+
     parameters: {
         docs: {
             description: {

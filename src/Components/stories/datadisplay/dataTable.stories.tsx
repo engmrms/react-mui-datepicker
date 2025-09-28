@@ -116,52 +116,108 @@ const meta: Meta<typeof DataTable> = {
     component: DataTable,
     tags: ['autodocs'],
     argTypes: {
+        // Appearance
         variant: {
             control: 'inline-radio',
             options: ['default', 'compact'],
             description: 'The variant of the table.',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | compact' },
+                defaultValue: { summary: 'default' },
+            },
         },
         alternating: {
             control: 'boolean',
             description: 'If true, the table will have alternating rows.',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
         },
         contained: {
             control: 'boolean',
             description: 'If true, the table will have a border.',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
         },
         loading: {
             control: { type: 'boolean' },
             description: 'If true, the table will be loading.',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
         },
         enableRowSelection: {
             control: { type: 'boolean' },
             if: { arg: 'loading', truthy: false },
             description: 'If true, the table will have row selection.',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
         },
         enableMultiRowSelection: {
             control: { type: 'boolean' },
             if: { arg: 'loading', truthy: false },
             description: 'If true, the table will have multi row selection.',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
         },
         isFirstRowSelected: {
             control: { type: 'boolean' },
             description: 'If true, the table will have the first row selected.',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
         },
         hasPagination: {
             control: { type: 'boolean' },
             description: 'If true, the table will have pagination.',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
         },
         totalItems: {
             control: { type: 'number' },
             description: 'The total number of items in the table.',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'number' },
+                defaultValue: { summary: 'undefined' },
+            },
         },
         itemsPerPage: {
             control: { type: 'number' },
             description: 'The number of items per page in the table.',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'number' },
+                defaultValue: { summary: 'undefined' },
+            },
         },
         pageNumber: {
             control: { type: 'number' },
             description: 'The current page number in the table.',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'number' },
+                defaultValue: { summary: 'undefined' },
+            },
         },
         theme: {
             table: { disable: true },
@@ -190,7 +246,7 @@ const meta: Meta<typeof DataTable> = {
         onRowSelectionChange: {
             table: { disable: true },
         },
-
+        // Events
         onSortingChange: {
             action: 'sorting changed',
             description: 'Callback fired when column sorting state changes. Receives an array of sorting objects with column id and sort direction.',

@@ -60,6 +60,15 @@ const meta: Meta<typeof NavigationHeader> = {
     title: 'Design System/Templates/Navigation Header',
     component: NavigationHeader,
     tags: ['autodocs'],
+    argTypes: {
+        divider: {
+            description: 'The divider of the navigation header',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+            },
+        },
+    },
 
     parameters: {
         docs: {
@@ -74,13 +83,15 @@ export default meta
 type Story = StoryObj<typeof NavigationHeader>
 
 export const Default: Story = {
-    args: {},
-    render: () => {
+    args: {
+        divider: true,
+    },
+    render: args => {
         const [open, toggle, setToggle] = useToggle()
         strings.setLanguage('en')
         return (
             <>
-                <NavigationHeader divider>
+                <NavigationHeader {...args}>
                     <NavigationMain collapsed={open} onToggleCollapsed={toggle}>
                         <NavigationHeaderLogo logoSrc={vision} logoAlt="logo" />
                         <NavigationMenu className="">

@@ -22,8 +22,65 @@ const meta: Meta<typeof SimpleGrid> = {
     title: 'Design System/Layout/SimpleGrid',
     component: SimpleGridTemplate,
     tags: ['autodocs'],
-    args: {},
-    argTypes: {},
+
+    argTypes: {
+        cols: {
+            options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: '1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12' },
+                defaultValue: { summary: '3' },
+            },
+            description: 'The cols of the simple grid',
+        },
+        minChildWidth: {
+            control: { type: 'text' },
+            table: {
+                category: 'Appearance',
+                type: { summary: '100px | 10rem | string' },
+                defaultValue: { summary: '100px' },
+            },
+            description: 'The minChildWidth of the simple grid',
+        },
+        gap: {
+            options: ['none', 'small', 'medium', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'none | small | medium | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12' },
+                defaultValue: { summary: 'none' },
+            },
+            description: 'The gap of the simple grid',
+        },
+        gapX: {
+            options: ['none', 'small', 'medium', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'none | small | medium | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12' },
+                defaultValue: { summary: 'none' },
+            },
+            description: 'The gapX of the simple grid',
+        },
+        gapY: {
+            options: ['none', 'small', 'medium', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'none | small | medium | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12' },
+                defaultValue: { summary: 'none' },
+            },
+            description: 'The gapY of the simple grid',
+        },
+    },
+    args: {
+        cols: 3,
+        minChildWidth: '100px',
+        gap: 'none',
+        gapX: 'none',
+        gapY: 'none',
+    },
     parameters: {
         layout: 'centered',
         docs: {

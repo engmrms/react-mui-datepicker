@@ -1,422 +1,120 @@
+import { FontInfo, FontName, Sample } from './RowDetails'
+
 export default function ResponsiveFontSizes() {
     return (
-        <div className="typography flex flex-col items-start gap-0 overflow-hidden  p-0">
-            <div className="pageContent flex w-full flex-col items-start gap-10 pb-24 pt-0">
-                <div className="flex w-full flex-col items-start gap-0 p-0">
-                    <div className="frame3466426 flex w-full flex-row  gap-0 p-0">
-                        <div className="cell flex w-1/4 flex-row items-start gap-2 border border-border p-space-04">
-                            <span className="tokenName min-w-0 text-left text-2xl font-semibold leading-9 ">Token Name</span>
-                        </div>
-                        <div className="cell flex w-1/4    flex-row items-start gap-2 border border-border p-space-04">
-                            <span className="fontAttributes text-left  text-2xl font-semibold leading-9 ">Font attributes</span>
-                        </div>
-                        <div className="cell flex w-2/4   flex-row items-start gap-2 border border-border p-space-04">
-                            <span className="sample text-left  text-2xl font-semibold leading-9 ">Sample</span>
-                        </div>
+        <div className="  flex flex-col items-start gap-0 overflow-hidden  pt-space-03">
+            <div className="flex w-full flex-col items-start gap-0 divide-y divide-border rounded-1 border border-border p-0">
+                <div className=" flex w-full flex-row  gap-0 divide-x divide-border p-0">
+                    <div className=" flex w-1/4 flex-row items-start gap-2  p-space-04">
+                        <span className=" min-w-0 text-left text-subtitle-01 font-semibold">Token Name</span>
                     </div>
-                    <div className="flex w-full flex-row  gap-0 p-0">
-                        <div className="w-1/4 flex-1  gap-2 border border-border p-space-04">
-                            <span className="title01   text-left  text-2xl font-normal leading-8 ">Title-01</span>
-                        </div>
-                        <div className="flex w-1/4 flex-col items-start gap-0 p-0">
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="maxLgScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    max lg screen size
-                                </span>
-                                <span className="fontSize20px20rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 20px/2.0rem
-                                </span>
-                                <span className="lineHeight30px30rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 30px/3.0rem
-                                </span>
-                                <span className="fontWightRegular400 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Regular 400
-                                </span>
-                            </div>
-                            <div className="cell flex  w-1/4 w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="minLgScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    min lg screen size{' '}
-                                </span>
-                                <span className="fontSize24px24rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 24px/2.4rem
-                                </span>
-                                <span className="lineHeight32px32rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 32px/3.2rem
-                                </span>
-                                <span className="fontWightRegular400 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Regular 400
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex w-2/4 min-w-0 flex-col  gap-0 p-0">
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-xl font-normal leading-[30px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-2xl font-normal leading-8">يحيا التصميم</span>
-                            </div>
-                        </div>
+                    <div className=" flex w-1/4    flex-row items-start gap-2   p-space-04">
+                        <span className=" text-left  text-subtitle-01 font-semibold">Font attributes</span>
                     </div>
+                    <div className=" flex w-2/4   flex-row items-start gap-2  p-space-04">
+                        <span className=" text-left  text-subtitle-01 font-semibold">Sample</span>
+                    </div>
+                </div>
 
-                    <div className="flex w-full flex-row  gap-0 p-0">
-                        <div className="w-1/4  gap-2 border border-border p-space-04">
-                            <span className="title01Strong w-[400px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">Title-01 Strong</span>
-                        </div>
-                        <div className="flex w-1/4 flex-col items-start gap-0 p-0">
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="maxLgScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    max lg screen size
-                                </span>
-                                <span className="fontSize20px20rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 20px/2.0rem
-                                </span>
-                                <span className="lineHeight30px30rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 30px/3.0rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="minLgScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    min lg screen size{' '}
-                                </span>
-                                <span className="fontSize24px24rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 24px/2.4rem
-                                </span>
-                                <span className="lineHeight32px32rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 32px/3.2rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex w-2/4 flex-col  gap-0 p-0">
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-xl font-semibold leading-[30px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-2xl font-semibold leading-9">يحيا التصميم</span>
-                            </div>
-                        </div>
+                {/* title-01 */}
+                <div className="flex w-full flex-row  gap-0 divide-x divide-border p-0">
+                    <FontName title="Title-01" />
+                    <div className="flex w-1/4 flex-col items-start gap-0  divide-y divide-border p-0">
+                        <FontInfo fontSize={22} lineHeight={32} size="sm" />
+                        <FontInfo fontSize={22} lineHeight={32} size="md" />
+                        <FontInfo fontSize={24} lineHeight={32} size="xl" />
+                        <FontInfo fontSize={24} lineHeight={32} size="2xl" />
                     </div>
+                    <div className="flex w-2/4 flex-col  gap-0 divide-y divide-border p-0">
+                        <Sample className="text-[22px] leading-[32px]" />
+                        <Sample className="text-[22px] leading-[32px]" />
+                        <Sample className="text-[24px] leading-[32px]" />
+                        <Sample className="text-[24px] leading-[32px]" />
+                    </div>
+                </div>
 
-                    <div className="flex w-full flex-row  gap-0 p-0">
-                        <div className="w-1/4 gap-2 border border-border p-space-04">
-                            <span className="title02 w-[400px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">Title-02</span>
-                        </div>
-                        <div className="flex w-1/4 flex-col items-start gap-0 p-0">
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="maxLgScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    max lg screen size
-                                </span>
-                                <span className="fontSize24px24rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 24px/2.4rem
-                                </span>
-                                <span className="lineHeight36px36rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 36px/3.6rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="minLgScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    min lg screen size{' '}
-                                </span>
-                                <span className="fontSize32px32rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 32px/3.2rem
-                                </span>
-                                <span className="lineHeight40px40rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 40px/4.0rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex  w-2/4 flex-col  gap-0 p-0">
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-xl font-semibold leading-[30px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-2xl font-semibold leading-9">يحيا التصميم</span>
-                            </div>
-                        </div>
+                {/* title-02 */}
+                <div className="flex w-full flex-row  gap-0 divide-x divide-border p-0">
+                    <FontName title="Title-02" />
+                    <div className="flex w-1/4 flex-col items-start gap-0   divide-y divide-border p-0">
+                        <FontInfo fontSize={24} lineHeight={32} size="sm" />
+                        <FontInfo fontSize={24} lineHeight={32} size="md" />
+                        <FontInfo fontSize={30} lineHeight={38} size="xl" />
+                        <FontInfo fontSize={30} lineHeight={38} size="2xl" />
                     </div>
+                    <div className="flex w-2/4 flex-col  gap-0  divide-y divide-border p-0">
+                        <Sample className="text-[24px] leading-[32px]" />
+                        <Sample className="text-[24px] leading-[32px]" />
+                        <Sample className="text-[30px] leading-[38px]" />
+                        <Sample className="text-[30px] leading-[38px]" />
+                    </div>
+                </div>
 
-                    <div className="flex w-full flex-row  gap-0 p-0">
-                        <div className="w-1/4 gap-2 border border-border p-space-04">
-                            <span className="title03 w-[400px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">Title-03</span>
-                        </div>
-                        <div className="flex w-1/4 flex-col items-start gap-0 p-0">
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="smScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    sm screen size
-                                </span>
-                                <span className="fontSize28px28rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 28px/2.8rem
-                                </span>
-                                <span className="lineHeight42px42rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 42px/4.2rem
-                                </span>
-                                <span className="fontWightRegular400 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Regular 400
-                                </span>
-                            </div>
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="mdScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    md screen size
-                                </span>
-                                <span className="fontSize40px40rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 40px/4.0rem
-                                </span>
-                                <span className="lineHeight52px52rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 52px/5.2rem
-                                </span>
-                                <span className="fontWightLight300 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: light 300
-                                </span>
-                            </div>
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="minLgScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    min lg screen size{' '}
-                                </span>
-                                <span className="fontSize48px48rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 48px/4.8rem
-                                </span>
-                                <span className="lineHeight60px60rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 60px/6.0rem
-                                </span>
-                                <span className="fontWightLight300 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: light 300
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex w-2/4 flex-col  gap-0 p-0">
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-[28px] font-normal leading-[42px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-[40px] font-normal leading-[52px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-5xl font-normal leading-[60px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                        </div>
+                {/* title-03 */}
+                <div className="flex w-full flex-row  gap-0 divide-x divide-border p-0">
+                    <FontName title="Title-03" />
+                    <div className="flex w-1/4 flex-col items-start gap-0  divide-y divide-border p-0">
+                        <FontInfo fontSize={28} lineHeight={38} size="sm" />
+                        <FontInfo fontSize={30} lineHeight={38} size="md" />
+                        <FontInfo fontSize={36} lineHeight={44} size="xl" />
+                        <FontInfo fontSize={36} lineHeight={44} size="2xl" />
                     </div>
+                    <div className="flex w-2/4 flex-col  gap-0  divide-y divide-border p-0">
+                        <Sample className="text-[28px] leading-[38px]" />
+                        <Sample className="text-[30px] leading-[38px]" />
+                        <Sample className="text-[36px] leading-[44px]" />
+                        <Sample className="text-[36px] leading-[44px]" />
+                    </div>
+                </div>
 
-                    <div className="flex w-full flex-row  gap-0 p-0">
-                        <div className="w-1/4  gap-2 border border-border p-space-04">
-                            <span className="title03Strong w-[400px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">Title-03 Strong</span>
-                        </div>
-                        <div className="flex w-1/4 flex-col items-start gap-0 p-0">
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="smScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    sm screen size
-                                </span>
-                                <span className="fontSize28px28rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 28px/2.8rem
-                                </span>
-                                <span className="lineHeight42px42rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 42px/4.2rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="mdScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    md screen size
-                                </span>
-                                <span className="fontSize40px40rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 40px/4.0rem
-                                </span>
-                                <span className="lineHeight52px52rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 52px/5.2rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="minLgScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    min lg screen size{' '}
-                                </span>
-                                <span className="fontSize48px48rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 48px/4.8rem
-                                </span>
-                                <span className="lineHeight60px60rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 60px/6.0rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex  w-2/4 flex-col  gap-0 p-0">
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-[28px] font-semibold leading-[42px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-[40px] font-semibold leading-[52px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-5xl font-semibold leading-[60px] ">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                        </div>
+                {/* display-01 */}
+                <div className="flex w-full flex-row  gap-0 divide-x divide-border p-0">
+                    <FontName title="Display-01" />
+                    <div className="flex w-1/4 flex-col items-start gap-0  divide-y divide-border p-0">
+                        <FontInfo fontSize={32} lineHeight={40} size="sm" />
+                        <FontInfo fontSize={32} lineHeight={40} size="md" />
+                        <FontInfo fontSize={48} lineHeight={60} size="xl" />
+                        <FontInfo fontSize={48} lineHeight={60} size="2xl" />
                     </div>
+                    <div className="flex w-2/4 flex-col  gap-0  divide-y divide-border p-0">
+                        <Sample className="text-[32px] leading-[40px]" />
+                        <Sample className="text-[32px] leading-[40px]" />
+                        <Sample className="text-[48px] leading-[60px]" />
+                        <Sample className="text-[48px] leading-[60px]" />
+                    </div>
+                </div>
 
-                    <div className="flex w-full flex-row  gap-0 p-0">
-                        <div className="w-1/4  gap-2 border border-border p-space-04">
-                            <span className="display01 w-[400px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">Display-01</span>
-                        </div>
-                        <div className="flex w-1/4 flex-col items-start gap-0 p-0">
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="minMdScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    min md screen size
-                                </span>
-                                <span className="fontSize32px32rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 32px/3.2rem
-                                </span>
-                                <span className="lineHeight44px44rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 44px/4.4rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="lgScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    lg screen size
-                                </span>
-                                <span className="fontSize48px48rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 48px/4.8rem
-                                </span>
-                                <span className="lineHeight60px60rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 60px/6.0rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="minXlScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    min xl screen size{' '}
-                                </span>
-                                <span className="fontSize64px64rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 64px/6.4rem
-                                </span>
-                                <span className="lineHeight78px78rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 78px/7.8rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex w-2/4 flex-col  gap-0 p-0">
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-[32px] font-semibold leading-[44px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-5xl font-semibold leading-[60px] ">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-[64px] font-semibold leading-[78px] ">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                        </div>
+                {/* display-02 */}
+                <div className="flex w-full flex-row  gap-0 divide-x divide-border p-0">
+                    <FontName title="Display-02" />
+                    <div className="flex w-1/4 flex-col items-start gap-0  divide-y divide-border p-0">
+                        <FontInfo fontSize={30} lineHeight={60} size="sm" />
+                        <FontInfo fontSize={36} lineHeight={44} size="md" />
+                        <FontInfo fontSize={48} lineHeight={60} size="xl" />
+                        <FontInfo fontSize={60} lineHeight={72} size="2xl" />
                     </div>
-                    <div className="flex w-full flex-row  gap-0 p-0">
-                        <div className="w-1/4  gap-2 border border-border p-space-04">
-                            <span className="display02 w-[400px] min-w-0 flex-1 text-left  text-2xl font-normal leading-8 ">Display-02</span>
-                        </div>
-                        <div className="flex w-1/4 flex-col items-start gap-0 p-0">
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="minMdScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    min md screen size
-                                </span>
-                                <span className="fontSize42px42rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 42px/4.2rem
-                                </span>
-                                <span className="lineHeight54px54rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 54px/5.4rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="lgScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    lg screen size
-                                </span>
-                                <span className="fontSize54px54rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 54px/5.4rem
-                                </span>
-                                <span className="lineHeight70px70rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 70px/7.0rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                            <div className="cell flex w-full flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="minXlScreenSize w-[442.75px] text-left  text-2xl font-semibold leading-9 text-[#1881ff]">
-                                    min xl screen size{' '}
-                                </span>
-                                <span className="fontSize84px84rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Size : 84px/8.4rem
-                                </span>
-                                <span className="lineHeight98px98rem w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Line Height: 98px/9.8rem
-                                </span>
-                                <span className="fontWightSemiBold600 w-[442.75px] text-left  text-2xl font-normal leading-8 ">
-                                    Font Wight: Semi Bold 600
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex w-2/4 flex-col  gap-0 p-0">
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-[42px] font-semibold leading-[54px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-[54px] font-semibold leading-[70px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                            <div className="cell flex h-[189px] min-h-0 w-full flex-1 flex-col items-start justify-center gap-2 border border-border p-space-04">
-                                <span className="sb-unstyled w-full  text-right  text-[84px] font-semibold leading-[98px]">
-                                    يحيا التصميم
-                                </span>
-                            </div>
-                        </div>
+                    <div className="flex w-2/4 flex-col  gap-0  divide-y divide-border p-0">
+                        <Sample className="text-[30px] leading-[60px]" />
+                        <Sample className="text-[36px] leading-[36px]" />
+                        <Sample className="text-[48px] leading-[60px]" />
+                        <Sample className="text-[60px] leading-[72px]" />
+                    </div>
+                </div>
+
+                {/* display-03 */}
+                <div className="flex w-full flex-row  gap-0 divide-x divide-border p-0">
+                    <FontName title="Display-03" />
+                    <div className="flex w-1/4 flex-col items-start gap-0  divide-y divide-border p-0">
+                        <FontInfo fontSize={36} lineHeight={44} size="sm" />
+                        <FontInfo fontSize={48} lineHeight={60} size="md" />
+                        <FontInfo fontSize={60} lineHeight={90} size="xl" />
+                        <FontInfo fontSize={72} lineHeight={90} size="2xl" />
+                    </div>
+                    <div className="flex w-2/4 flex-col  gap-0  divide-y divide-border p-0">
+                        <Sample className="text-[36px] leading-[44px]" />
+                        <Sample className="text-[48px] leading-[60px]" />
+                        <Sample className="text-[60px] leading-[90px]" />
+                        <Sample className="text-[72px] leading-[90px]" />
                     </div>
                 </div>
             </div>

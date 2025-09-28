@@ -28,28 +28,63 @@ const meta: Meta<typeof Stack> = {
     argTypes: {
         direction: {
             options: ['row', 'row-reverse', 'col', 'col-reverse'],
-            control: { type: 'inline-radio' },
+            control: { type: 'select' },
+            table: {
+                category: 'Appearance',
+                type: { summary: 'row | row-reverse | col | col-reverse' },
+                defaultValue: { summary: 'row' },
+            },
+            description: 'The direction of the stack',
         },
         gap: {
             options: ['none', 'small', 'medium', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
             control: { type: 'select' },
             description: 'also you can use gapX,gapY',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'none | small | medium | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12' },
+                defaultValue: { summary: 'none' },
+            },
         },
         justifyItems: {
             control: { type: 'select' },
             options: ['start', 'center', 'end', 'stretch'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'start | center | end | stretch' },
+                defaultValue: { summary: 'stretch' },
+            },
+            description: 'The justifyItems of the stack',
         },
         alignItems: {
             control: { type: 'select' },
             options: ['start', 'center', 'end', 'stretch'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'start | center | end | stretch' },
+                defaultValue: { summary: 'stretch' },
+            },
+            description: 'The alignItems of the stack',
         },
         alignContent: {
             control: { type: 'select' },
             options: ['start', 'center', 'end', 'between', 'around', 'evenly'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'start | center | end | between | around | evenly' },
+                defaultValue: { summary: 'start' },
+            },
+            description: 'The alignContent of the stack',
         },
         justifyContent: {
             control: { type: 'select' },
             options: ['start', 'center', 'end', 'between', 'around', 'evenly'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'start | center | end | between | around | evenly' },
+                defaultValue: { summary: 'start' },
+            },
+            description: 'The justifyContent of the stack',
         },
     },
     parameters: {

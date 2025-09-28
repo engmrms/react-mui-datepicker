@@ -32,9 +32,107 @@ const meta = {
             include: ['isEditMode', 'size', 'isResizable', 'isMandatory', 'isVisible'],
             hideNoControlsWarning: true,
         },
+        docs: {
+            description: {
+                component: '<h4>Displays a Widget component that can be resized and edited.</h4>',
+            },
+        },
     },
     tags: ['autodocs'],
-    render: (args: StoryProps) => {
+
+    argTypes: {
+        isEditMode: {
+            control: 'boolean',
+            description: 'Toggle edit mode for the widget',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        size: {
+            control: 'radio',
+            options: ['half', 'full'],
+            description: 'Size of the widget',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'half | full' },
+                defaultValue: { summary: 'half' },
+            },
+        },
+        isResizable: {
+            control: 'boolean',
+            description: 'Whether the widget can be resized',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'true' },
+            },
+        },
+        isMandatory: {
+            control: 'boolean',
+            description: 'Whether the widget is mandatory (cannot be removed)',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        isVisible: {
+            control: 'boolean',
+            description: 'Whether the widget is visible',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'true' },
+            },
+        },
+        config: {
+            table: {
+                disable: true,
+            },
+        },
+        isDragging: {
+            table: {
+                disable: true,
+            },
+        },
+        isOver: {
+            table: {
+                disable: true,
+            },
+        },
+        isDragOverlay: {
+            table: {
+                disable: true,
+            },
+        },
+        onConfigChange: {
+            table: {
+                disable: true,
+            },
+        },
+        children: {
+            table: {
+                disable: true,
+            },
+        },
+    },
+} as Meta<StoryProps>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+    args: {
+        config: baseConfig,
+        isEditMode: false,
+        size: 'half',
+        isResizable: true,
+        isMandatory: false,
+        isVisible: true,
+    },
+    render: args => {
         const updatedConfig = {
             ...args.config,
             size: args.size,
@@ -84,72 +182,5 @@ const meta = {
                 </div>
             </div>
         )
-    },
-    argTypes: {
-        isEditMode: {
-            control: 'boolean',
-            description: 'Toggle edit mode for the widget',
-        },
-        size: {
-            control: 'radio',
-            options: ['half', 'full'],
-            description: 'Size of the widget',
-        },
-        isResizable: {
-            control: 'boolean',
-            description: 'Whether the widget can be resized',
-        },
-        isMandatory: {
-            control: 'boolean',
-            description: 'Whether the widget is mandatory (cannot be removed)',
-        },
-        isVisible: {
-            control: 'boolean',
-            description: 'Whether the widget is visible',
-        },
-        config: {
-            table: {
-                disable: true,
-            },
-        },
-        isDragging: {
-            table: {
-                disable: true,
-            },
-        },
-        isOver: {
-            table: {
-                disable: true,
-            },
-        },
-        isDragOverlay: {
-            table: {
-                disable: true,
-            },
-        },
-        onConfigChange: {
-            table: {
-                disable: true,
-            },
-        },
-        children: {
-            table: {
-                disable: true,
-            },
-        },
-    },
-} as Meta<StoryProps>
-
-export default meta
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {
-    args: {
-        config: baseConfig,
-        isEditMode: false,
-        size: 'half',
-        isResizable: true,
-        isMandatory: false,
-        isVisible: true,
     },
 }

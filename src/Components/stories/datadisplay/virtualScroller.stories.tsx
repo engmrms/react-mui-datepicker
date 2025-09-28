@@ -12,41 +12,77 @@ const meta: Meta<typeof VirtualScroller> = {
     tags: ['autodocs'],
 
     argTypes: {
+        // Appearance
         items: {
             control: 'object',
             description:
                 "The array of data items to be rendered in the virtual scroller. Each item will be passed to the `renderItem` function.\n\nExample:\n  items={['Item 1', 'Item 2', 'Item 3']}",
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string[]' },
+                defaultValue: { summary: '[]' },
+            },
         },
         renderItem: {
             action: 'renderItem',
             description:
                 'A function that receives an item and its virtual item metadata, and returns a React node to render. This is where you define how each row looks.\n\nExample:\n  renderItem={(item, virtualItem) => (\n    <div>\n      <span>{virtualItem?.index}</span>\n      <span>{item}</span>\n    </div>\n  )}',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'function' },
+                defaultValue: { summary: '() => {}' },
+            },
         },
         async: {
             control: 'boolean',
             description:
                 'If true, enables infinite/async loading. When the user scrolls to the end, `onAsyncLoad` will be called.\n\nExample:\n  async={true}',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
         },
         onAsyncLoad: {
             action: 'onAsyncLoad',
             description:
                 'Callback triggered when the user scrolls near the end of the list and more data should be loaded. Use this to fetch more items.\n\nExample:\n  onAsyncLoad={() => {\n    // Fetch more data here\n  }}',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'function' },
+                defaultValue: { summary: '() => {}' },
+            },
         },
         isLoading: {
             control: 'boolean',
             description:
                 'Indicates if more data is currently being loaded. Used to show loading indicators.\n\nExample:\n  isLoading={isFetchingNextPage}',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
         },
         options: {
             control: 'object',
             description:
                 'Additional options for the virtualizer, such as `overscan` (number of extra items to render above/below the viewport).\n\nExample:\n  options={{ overscan: 5 }}',
             default: {},
+            table: {
+                category: 'Appearance',
+                type: { summary: 'object' },
+                defaultValue: { summary: '{}' },
+            },
         },
         renderLoader: {
             action: 'renderLoader',
             description:
                 'Optional. Custom loader component to render while loading more items.\n\nExample:\n  renderLoader={() => <div>Loading...</div>}',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'function' },
+                defaultValue: { summary: '() => {}' },
+            },
         },
     },
     parameters: {

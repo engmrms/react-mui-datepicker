@@ -12,7 +12,117 @@ const meta: Meta<typeof Textarea> = {
     title: 'Design System/Controls/Textarea',
     component: Textarea,
     tags: ['autodocs'],
-    argTypes: {},
+    args: {
+        variant: 'outline',
+        colors: 'default',
+        rounded: 'default',
+        disabled: false,
+        placeholder: 'Enter new text',
+        maxLength: undefined,
+        startAdornment: undefined,
+        endAdornment: undefined,
+        cols: undefined,
+        rows: undefined,
+    },
+    argTypes: {
+        // Appearance
+        variant: {
+            control: 'select',
+            options: ['outline', 'default'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'outline | default' },
+                defaultValue: { summary: 'outline' },
+            },
+            description: 'The variant of the textarea',
+        },
+        colors: {
+            control: 'select',
+            options: ['default', 'success', 'destructive'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | success | destructive' },
+                defaultValue: { summary: 'default' },
+            },
+            description: 'The colors of the textarea',
+        },
+        rounded: {
+            control: 'select',
+            options: ['default', 'full'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | full' },
+                defaultValue: { summary: 'default' },
+            },
+            description: 'The rounded of the textarea',
+        },
+
+        placeholder: {
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'Enter new text' },
+            },
+            description: 'The placeholder of the textarea',
+        },
+        maxLength: {
+            control: 'number',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'number' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The max length of the textarea',
+        },
+
+        startAdornment: {
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: ' ReactNode' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The start adornment of the textarea',
+        },
+        endAdornment: {
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: ' ReactNode' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The end adornment of the textarea',
+        },
+        cols: {
+            control: 'number',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'number' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The cols of the textarea',
+        },
+        rows: {
+            control: 'number',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'number' },
+                defaultValue: { summary: 'undefined' },
+            },
+            description: 'The rows of the textarea',
+        },
+        // Behavior
+        disabled: {
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+            description: 'The disabled state of the textarea',
+        },
+    },
     parameters: {
         docs: {
             description: {

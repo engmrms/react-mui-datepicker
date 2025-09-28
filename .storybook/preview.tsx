@@ -1,4 +1,4 @@
-import { Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks'
+import { Controls, Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks'
 import type { Preview } from '@storybook/react'
 import { themes } from '@storybook/theming'
 import React, { PropsWithChildren, useEffect } from 'react'
@@ -13,6 +13,7 @@ const customDocsPage = () => (
         <Subtitle />
         <Description />
         <Primary />
+        <Controls />
         <Stories />
 
         {/* Footer goes here */}

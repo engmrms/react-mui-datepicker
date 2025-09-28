@@ -16,6 +16,17 @@ const meta: Meta<typeof Breadcrumb> = {
     component: Breadcrumb,
     title: 'Design System/Navigation/Breadcrumbs',
     tags: ['autodocs'],
+    argTypes: {
+        separator: {
+            control: 'object',
+            description: 'The separator of the breadcrumb',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'ReactNode' },
+                defaultValue: { summary: '-' },
+            },
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {

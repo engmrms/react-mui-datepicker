@@ -6,6 +6,34 @@ const meta: Meta<typeof Text> = {
     component: Text,
     title: 'Design System/Data Display/Text',
     tags: ['autodocs'],
+    args: {
+        children: 'this is text sample',
+        as: 'span',
+    },
+    argTypes: {
+        as: {
+            control: 'select',
+            options: ['span', 'label', 'p'],
+            description: 'span | label | p',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'span | label | p' },
+                defaultValue: { summary: 'span' },
+            },
+        },
+        children: {
+            control: 'text',
+            description: 'The children of the text',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'this is text sample' },
+            },
+        },
+        asChild: {
+            table: { disable: true },
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {

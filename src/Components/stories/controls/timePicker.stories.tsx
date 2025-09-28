@@ -61,6 +61,14 @@ export const Default: Story = {
             },
             description: 'Minute interval for time options',
         },
+        className: {
+            control: 'text',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+            },
+        },
 
         // Appearance
         placeholder: {

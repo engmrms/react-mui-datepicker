@@ -7,7 +7,144 @@ const meta: Meta<typeof FileUpload> = {
     title: 'Design System/Controls/FileUpload',
     component: FileUpload,
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        // Behavior
+        disabled: {
+            description: 'Disable the file upload',
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        multiple: {
+            description: 'Enable multiple files upload',
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        maxFiles: {
+            description: 'The maximum number of files that can be uploaded',
+            control: 'number',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'number' },
+                defaultValue: { summary: '1' },
+            },
+        },
+        maxSize: {
+            description: 'The maximum size of the file that can be uploaded',
+            control: 'number',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'number' },
+                defaultValue: { summary: '1' },
+            },
+        },
+        isInvalid: {
+            description: 'Handle the invalid state of the file upload',
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+        isRequired: {
+            description: 'Show asterisk in the label',
+            control: 'boolean',
+            table: {
+                category: 'Behavior',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+        },
+
+        // Appearance
+        browseLabel: {
+            description: 'The browse label of the file upload button',
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'Browse' },
+            },
+        },
+        description: {
+            description: 'The description of the file upload',
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'Description' },
+            },
+        },
+        label: {
+            description: 'The label of the file upload',
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'Label' },
+            },
+        },
+
+        // Events
+        onFileSelect: {
+            description: 'Fires when the files are selected with callback to update upload progress',
+            table: {
+                category: 'Events',
+                type: {
+                    summary:
+                        "(files: FileInfo[], updateCallback: (id: string, progress: number, status?: FileInfo['status'], error?: string) => void) => void",
+                },
+                defaultValue: {
+                    summary: '-',
+                },
+            },
+        },
+        onChange: {
+            description: 'Fires when the files are changed',
+            table: {
+                category: 'Events',
+                type: { summary: '(files: FileInfo[]) => void' },
+                defaultValue: { summary: '-' },
+            },
+        },
+
+        // Core Configuration
+        value: {
+            description: 'The value of the file upload',
+            control: 'object',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'array' },
+                defaultValue: { summary: '[]' },
+            },
+        },
+        acceptedFormats: {
+            description: 'The accepted formats of the file upload',
+            control: 'object',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'object' },
+                defaultValue: { summary: '{}' },
+            },
+        },
+        customError: {
+            description: 'The custom error of the file upload',
+            control: 'text',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' },
+            },
+        },
+    },
     args: {
         disabled: false,
         multiple: false,
@@ -15,6 +152,13 @@ const meta: Meta<typeof FileUpload> = {
         maxSize: 1,
         isInvalid: false,
         isRequired: false,
+        browseLabel: 'Browse',
+        description: '',
+        label: 'Upload files',
+        value: [],
+        onFileSelect: undefined,
+        onChange: undefined,
+        customError: '',
     },
     parameters: {
         layout: 'centered',

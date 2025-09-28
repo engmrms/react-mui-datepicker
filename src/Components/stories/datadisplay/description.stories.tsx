@@ -11,7 +11,83 @@ const meta: Meta<DescriptionProps> = {
     title: 'Design System/Data Display/Description',
     component: DescriptionItem,
     tags: ['autodocs'],
-    argTypes: {},
+    args: {
+        variant: 'default',
+        orientation: 'horizental',
+        lastItem: true,
+        title: 'Title',
+        stretch: false,
+        isSingleLine: true,
+    },
+    argTypes: {
+        // Appearance
+        variant: {
+            control: 'radio',
+            options: ['default', 'list'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'default | list' },
+                defaultValue: { summary: 'default' },
+            },
+            description: 'The variant of the description',
+        },
+        orientation: {
+            control: 'radio',
+            options: ['horizental', 'vertical'],
+            table: {
+                category: 'Appearance',
+                type: { summary: 'horizental | vertical' },
+                defaultValue: { summary: 'horizental' },
+            },
+            description: 'The orientation of the description',
+        },
+        icon: {
+            control: 'select',
+            options: iconsName,
+            description: 'Google Material Icon (Outlined | Filled) ',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'GoogleMaterialIcon' },
+                defaultValue: { summary: 'undefined' },
+            },
+        },
+        lastItem: {
+            control: 'boolean',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'true' },
+            },
+            description: 'The last item of the description',
+        },
+        title: {
+            control: 'text',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'string' },
+                defaultValue: { summary: 'Title' },
+            },
+            description: 'The title of the description',
+        },
+        stretch: {
+            control: 'boolean',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' },
+            },
+            description: 'The stretch of the description',
+        },
+        isSingleLine: {
+            control: 'boolean',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'true' },
+            },
+            description: 'The is single line of the description',
+        },
+    },
     parameters: {
         layout: '',
         docs: {
@@ -25,30 +101,6 @@ const meta: Meta<DescriptionProps> = {
 export default meta
 type Story = StoryObj<DescriptionProps>
 export const Default: Story = {
-    args: {
-        variant: 'default',
-        orientation: 'horizental',
-        lastItem: true,
-        title: 'Title',
-        stretch: false,
-        isSingleLine: true,
-    },
-    argTypes: {
-        variant: {
-            control: 'radio',
-            options: ['default', 'list'],
-        },
-        orientation: {
-            control: 'radio',
-            options: ['horizental', 'vertical'],
-        },
-        icon: {
-            control: 'select',
-            options: iconsName,
-            description: 'Google Material Icon (Outlined | Filled) ',
-        },
-    },
-
     render: arg => {
         const iconName = arg.icon as unknown as string
         const icon = icons.find(([name]) => name === iconName)?.[1] as outlined.GoogleMaterialIcon | undefined

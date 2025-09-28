@@ -6,7 +6,57 @@ const meta: Meta<typeof Stepper> = {
     title: 'Design System/Navigation/Stepper',
     component: Stepper,
     tags: ['autodocs'],
-    argTypes: {},
+    argTypes: {
+        // Appearance
+        orientation: {
+            control: 'radio',
+            options: ['horizontal', 'vertical'],
+            description: 'The orientation of the stepper',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'horizontal | vertical' },
+                defaultValue: { summary: 'horizontal' },
+            },
+        },
+        variant: {
+            control: 'radio',
+            options: ['circle', 'dot'],
+            description: 'The variant of the stepper',
+            table: {
+                category: 'Appearance',
+                type: { summary: 'circle | dot' },
+                defaultValue: { summary: 'circle' },
+            },
+        },
+
+        // Events
+        onChange: {
+            description: 'The on step change of the stepper',
+            table: {
+                category: 'Events',
+                type: { summary: 'function' },
+            },
+        },
+
+        // Core Configuration
+        activeStep: {
+            control: 'number',
+            description: 'The active step of the stepper',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'number' },
+                defaultValue: { summary: '1' },
+            },
+        },
+        className: {
+            control: 'text',
+            description: 'The class name of the stepper',
+            table: {
+                category: 'Core Configuration',
+                type: { summary: 'string' },
+            },
+        },
+    },
     parameters: {
         layout: 'centered',
         docs: {
