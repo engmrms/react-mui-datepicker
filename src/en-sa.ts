@@ -84,6 +84,7 @@ export default moment.defineLocale("en-sa", {
     LLL: "D MMMM YYYY HH:mm",
     LLLL: "dddd D MMMM YYYY HH:mm",
   },
+
   meridiemParse: /[ص م]/,
 
   isPM(input) {
@@ -120,13 +121,15 @@ export default moment.defineLocale("en-sa", {
   //   yy: pluralize("y"),
   // },
   preparse(string: string) {
-    return string.replace(/[١٢٣٤٥٦٧٨٩٠]/g, (match: string | number) => numberMap[match]).replace(/،/g, ",");
+    return string
+      .replace(/[١٢٣٤٥٦٧٨٩٠]/g, (match: string | number) => numberMap[match])
+      .replace(/،/g, ",");
   },
   postformat(string: string) {
     return string.replace(/\d/g, (match: string | number) => symbolMap[match]).replace(/,/g, "،");
   },
   week: {
-    dow: 6, // Saturday is the first day of the week.
+    dow: 0, // Saturday is the first day of the week.
     doy: 12, // The week that contains Jan 12th is the first week of the year.
   },
 });

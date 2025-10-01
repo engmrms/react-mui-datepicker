@@ -33,21 +33,24 @@ export default App;
 
 The React MUI Datepicker component accepts the following props:
 
-| Prop            | Type                                      | Description       |
-| --------------- | ----------------------------------------- | ----------------- |
-| lang            | ar or en (optional)                       | default: en       |
-| isError         | boolean (optional)                        |                   |
-| maxDate         | Date (optional)                           |                   |
-| minDate         | Date (optional)                           |                   |
-| disabled        | boolean (optional)                        |                   |
-| ref             | React.Ref<HTMLInputElement> (optional)    |                   |
-| value           | string (optional)                         |                   |
-| onChange        | (date: Moment or null) => void (optional) |                   |
-| toggleText      | string (optional)                         |                   |
-| isToggle        | boolean (optional)                        |                   |
-| calendar        | "gregrian" or "hijri" (optional)          | default: gregrian |
-| toggleClassName | string (optional)                         |                   |
-| inputClassName  | string (optional)                         |                   |
+| Prop            | Type                                                               | Description       |
+| --------------- | ------------------------------------------------------------------ | ----------------- |
+| lang            | ar or en (optional)                                                | default: en       |
+| isError         | boolean (optional)                                                 |                   |
+| maxDate         | Date (optional)                                                    |                   |
+| minDate         | Date (optional)                                                    |                   |
+| disabled        | boolean (optional)                                                 |                   |
+| ref             | React.Ref<HTMLInputElement> (optional)                             |                   |
+| value           | string (optional)                                                  |                   |
+| onChange        | (date: Moment or null) => void (optional)                          |                   |
+| toggleText      | string (optional)                                                  |                   |
+| isToggle        | boolean (optional)                                                 |                   |
+| calendar        | "gregrian" or "hijri" (optional)                                   | default: gregrian |
+| toggleClassName | string (optional)                                                  |                   |
+| inputClassName  | string (optional)                                                  |                   |
+| toggleElement   | ReactNode (optional)                                               |                   |
+| switchElement   | (onCheckedChange: (checked) => void) => React.ReactNode (optional) |                   |
+| switchText      | string (optional)                                                  |                   |
 
 ## License
 

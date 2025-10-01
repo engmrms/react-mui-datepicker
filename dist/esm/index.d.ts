@@ -1,21 +1,29 @@
+import { DateCalendarProps } from '@mui/x-date-pickers';
+import { Moment } from 'moment-hijri';
 import React from 'react';
 
-type Calendar = "gregrian" | "hijri";
-interface Props {
-    lang?: "ar" | "en";
-    isError?: boolean;
-    isToggle?: boolean;
-    calendar?: Calendar;
-    maxDate?: Date;
-    minDate?: Date;
+type Calendar = "gregorian" | "hijri";
+interface Props extends Omit<DateCalendarProps<Moment | Date>, "value" | "onChange"> {
+    value?: Date;
+    onChange?: (date: Date | undefined) => void;
     disabled?: boolean;
-    ref?: React.Ref<HTMLInputElement>;
-    value?: any;
-    toggleText?: string;
-    onChange?: (date: string | null) => void;
-    toggleClassName?: string;
-    inputClassName?: string;
+    calendar?: Calendar;
+    lang?: "ar" | "en";
+    isToggle?: boolean;
+    placeholder?: string;
+    defaultToToday?: boolean;
+    dateFormat?: string;
+    switchText?: string;
+    minDate?: Date;
+    maxDate?: Date;
+    toggleElement?: React.ReactNode;
+    switchElement?: (onCheckedChange: (checked: boolean) => void) => React.ReactNode;
+    ariaLabel?: string;
+    ariaDescribedBy?: string;
+    showTodayButton?: boolean;
+    showClearButton?: boolean;
+    autoClose?: boolean;
 }
-declare function DatePicker({ ref, lang, isError, disabled, maxDate, minDate, onChange, value, isToggle, toggleText, calendar, toggleClassName, inputClassName, }: Props): React.JSX.Element;
+declare function DatePicker({ lang, onChange, value, isToggle, switchText, calendar, placeholder, defaultToToday, dateFormat, disabled, maxDate, minDate, toggleElement, switchElement, ...rest }: Props): React.JSX.Element;
 
 export { DatePicker };
