@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DatePicker } from "..";
-
+import "../style.css";
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
   title: "Example/DatePicker",
@@ -15,7 +15,6 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    maxDate: { control: "date" },
     calendar: {
       options: ["gregorian", "hijri"],
       control: { type: "radio" },
@@ -24,7 +23,7 @@ const meta = {
       options: ["en", "ar"],
       control: { type: "radio" },
     },
-    toggleText: { control: "text", if: { arg: "isToggle", truthy: true } },
+    switchText: { control: "text", if: { arg: "isToggle", truthy: true } },
   },
 } satisfies Meta<typeof DatePicker>;
 
@@ -36,12 +35,9 @@ export const Primary: Story = {
   args: {
     isToggle: true,
     disabled: false,
-    calendar: "gregrian",
-    lang: "en",
-    toggleText: "switch calendar",
-    maxDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-    minDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
-    toggleClassName: "",
-    inputClassName: "",
+    calendar: "hijri",
+    lang: "ar",
+    switchText: "switch calendar",
   },
 };
+//

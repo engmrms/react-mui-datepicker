@@ -66,7 +66,20 @@ const symbolMap = {
       return str.replace(/%d/i, number);
     };
   },
-  months = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
+  months = [
+    "يناير",
+    "فبراير",
+    "مارس",
+    "أبريل",
+    "مايو",
+    "يونيو",
+    "يوليو",
+    "أغسطس",
+    "سبتمبر",
+    "أكتوبر",
+    "نوفمبر",
+    "ديسمبر",
+  ];
 
 export default moment.defineLocale("ar-sa", {
   months: months,
@@ -134,7 +147,7 @@ export default moment.defineLocale("ar-sa", {
       .replace(/,/g, "،");
   },
   week: {
-    dow: 6, // Saturday is the first day of the week.
+    dow: 0, // Saturday is the first day of the week.
     doy: 12, // The week that contains Jan 12th is the first week of the year.
   },
 });
