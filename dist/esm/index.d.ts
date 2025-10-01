@@ -2,7 +2,6 @@ import { DateCalendarProps } from '@mui/x-date-pickers';
 import { Moment } from 'moment-hijri';
 import React from 'react';
 
-type Calendar = "gregorian" | "hijri";
 interface Props extends Omit<DateCalendarProps<Moment | Date>, "value" | "onChange"> {
     value?: Date;
     onChange?: (date: Date | undefined) => void;
@@ -25,5 +24,17 @@ interface Props extends Omit<DateCalendarProps<Moment | Date>, "value" | "onChan
     autoClose?: boolean;
 }
 declare function DatePicker({ lang, onChange, value, isToggle, switchText, calendar, placeholder, defaultToToday, dateFormat, disabled, maxDate, minDate, toggleElement, switchElement, ...rest }: Props): React.JSX.Element;
+interface CalendarProps extends Omit<DateCalendarProps<Moment | Date>, "value" | "onChange"> {
+    locale: Calendar;
+    selected: Date | null | undefined;
+    onChange: (date: Date | undefined) => void;
+    handleClose: () => void;
+    minDate: Date;
+    maxDate: Date;
+    rest: any;
+    lang: "ar" | "en";
+}
+type Calendar = "gregorian" | "hijri";
+declare const Calendar: ({ locale, selected, onChange, handleClose, minDate, maxDate, rest, lang, }: CalendarProps) => React.JSX.Element;
 
-export { DatePicker };
+export { Calendar, DatePicker };
