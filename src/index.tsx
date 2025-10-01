@@ -176,7 +176,7 @@ const updateLocale = (lang: "ar" | "en", locale: Calendar) => {
   }
 };
 
-export function DatePicker({
+function DatePicker({
   lang = "en",
   onChange,
   value,
@@ -248,8 +248,6 @@ export function DatePicker({
     return <Typography variant="body1">Invalid date</Typography>;
   }
 
-  const localeToUse = lang === "ar" ? "ar-ly" : "en";
-  updateLocale(lang, locale);
   return (
     <ThemeProvider theme={theme}>
       {toggleElement ? (
@@ -302,42 +300,108 @@ export function DatePicker({
           </Stack>
         )}
 
-        {locale === CalendarType.HIJRI && (
-          <LocalizationProvider dateAdapter={AdapterMomentHijri}>
-            <DateCalendarComponent
-              value={selected ? momentHj(selected) : undefined}
-              onChange={(date) => {
-                if (onChange) onChange(date);
-                setSelected(date);
-              }}
-              handleClose={handleClose}
-              minDate={momentHj(minDate)}
-              maxDate={momentHj(maxDate)}
-              {...rest}
-            />
-          </LocalizationProvider>
-        )}
-        {/* </div> */}
-        {/* <div style={{ display: locale === CalendarType.GREGORIAN ? "block" : "none" }}> */}
-        {locale === CalendarType.GREGORIAN && (
-          <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={localeToUse}>
-            <DateCalendarComponent
-              value={selected ? momentHj(selected) : undefined}
-              onChange={(date) => {
-                if (onChange) onChange(date);
-                setSelected(date);
-              }}
-              handleClose={handleClose}
-              minDate={momentHj(minDate)}
-              maxDate={momentHj(maxDate)}
-              {...rest}
-            />
-          </LocalizationProvider>
-        )}
+        <CalendarPure
+          locale={locale}
+          selected={selected}
+          onChange={(date) => {
+            if (onChange) onChange(date);
+            setSelected(date);
+          }}
+          handleClose={handleClose}
+          minDate={minDate}
+          maxDate={maxDate}
+          rest={rest}
+          lang={lang}
+        />
       </Popover>
     </ThemeProvider>
   );
 }
+
+interface CalendarProps extends Omit<DateCalendarProps<Moment | Date>, "value" | "onChange"> {
+  locale: Calendar;
+  selected: Date | null | undefined;
+  onChange: (date: Date | undefined) => void;
+  handleClose: () => void;
+  minDate: Date;
+  maxDate: Date;
+  rest: any;
+  lang: "ar" | "en";
+}
+
+const Calendar = ({
+  locale,
+  selected,
+  onChange,
+  handleClose,
+  minDate,
+  maxDate,
+  rest,
+  lang,
+}: CalendarProps) => {
+  updateLocale(lang, locale);
+  return (
+    <ThemeProvider theme={theme}>
+      <CalendarPure
+        locale={locale}
+        selected={selected}
+        onChange={onChange}
+        handleClose={handleClose}
+        minDate={minDate}
+        maxDate={maxDate}
+        rest={rest}
+        lang={lang}
+      />
+    </ThemeProvider>
+  );
+};
+
+const CalendarPure = ({
+  locale,
+  selected,
+  onChange,
+  handleClose,
+  minDate,
+  maxDate,
+  rest,
+  lang,
+}: CalendarProps) => {
+  const localeToUse = lang === "ar" ? "ar-ly" : "en";
+  updateLocale(lang, locale);
+  return (
+    <>
+      {locale === CalendarType.HIJRI && (
+        <LocalizationProvider dateAdapter={AdapterMomentHijri}>
+          <DateCalendarComponent
+            value={selected ? momentHj(selected) : undefined}
+            onChange={(date) => {
+              if (onChange) onChange(date);
+            }}
+            handleClose={handleClose}
+            minDate={momentHj(minDate)}
+            maxDate={momentHj(maxDate)}
+            {...rest}
+          />
+        </LocalizationProvider>
+      )}
+
+      {locale === CalendarType.GREGORIAN && (
+        <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={localeToUse}>
+          <DateCalendarComponent
+            value={selected ? momentHj(selected) : undefined}
+            onChange={(date) => {
+              if (onChange) onChange(date);
+            }}
+            handleClose={handleClose}
+            minDate={momentHj(minDate)}
+            maxDate={momentHj(maxDate)}
+            {...rest}
+          />
+        </LocalizationProvider>
+      )}
+    </>
+  );
+};
 
 interface DateCalendarComponentProps
   extends Omit<DateCalendarProps<Moment | Date>, "value" | "onChange"> {
@@ -375,3 +439,5 @@ const DateCalendarComponent = ({
     />
   );
 };
+
+export { Calendar, DatePicker };
