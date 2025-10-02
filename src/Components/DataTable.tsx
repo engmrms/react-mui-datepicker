@@ -91,9 +91,9 @@ export function DataTable<TData, TValue>({
     const tableColumns = React.useMemo(() => {
         let cols = loading
             ? columns.map(column => ({
-                  ...column,
-                  cell: () => <Skeleton className="h-8 w-full" />,
-              }))
+                ...column,
+                cell: () => <Skeleton className="h-8 w-full" />,
+            }))
             : columns
 
         // Add selection column if row selection is enabled
@@ -102,17 +102,17 @@ export function DataTable<TData, TValue>({
                 id: 'select',
                 header: enableMultiRowSelection
                     ? ({ table }) => (
-                          <Checkbox
-                              checked={table.getIsAllPageRowsSelected()}
-                              onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
-                              aria-label="Select all"
-                              className={cn(theme?.headerSelect?.className)}
-                              size="sm"
-                              colors="primary"
-                          />
-                      )
+                        <Checkbox
+                            checked={table.getIsAllPageRowsSelected()}
+                            onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
+                            aria-label="Select all"
+                            className={cn(theme?.headerSelect?.className)}
+                            size="sm"
+                            colors="primary"
+                        />
+                    )
                     : // to preserve the place of the checkbox when multi selection is not enabled
-                      () => <div role="checkbox" className="w-[48px]" aria-hidden="true" />,
+                    () => <div role="checkbox" className="w-[48px]" aria-hidden="true" />,
                 cell: ({ row }) => (
                     <Checkbox
                         checked={row.getIsSelected()}
@@ -243,10 +243,10 @@ export function DataTable<TData, TValue>({
                     </TableHeader>
                     <TableBody className={cn(theme?.tableBody?.className)}>
                         {table.getRowModel().rows?.length ? (
-                            table.getRowModel().rows.map(row => {
+                            table.getRowModel().rows.map((row, index) => {
                                 return (
                                     <TableRow
-                                        key={row.id}
+                                        key={`${row.id}-${index}`}
                                         data-state={row.getIsSelected() && 'selected'}
                                         onClick={() => rowClick(row)}
                                         className={cn(onClickRow && 'cursor-pointer', theme?.tableRow?.className)}>
@@ -258,7 +258,7 @@ export function DataTable<TData, TValue>({
                                                     className={theme?.tableCell?.className}
                                                     data-title={cell.column.columnDef.header?.toString()}
                                                     key={cell.id}
-                                                    //isLast={table?.getRowModel()?.rows?.length - 1 === i}
+                                                //isLast={table?.getRowModel()?.rows?.length - 1 === i}
                                                 >
                                                     {item}
                                                 </TableCell>
