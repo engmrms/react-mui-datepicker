@@ -216,8 +216,8 @@ const FilterMobileView = ({
             if (
                 child.type &&
                 typeof child.type === 'object' &&
-                'type' in child.type &&
-                (child.type as { type?: { displayName?: string } }).type?.displayName === 'FilterSelect'
+                'displayName' in child.type &&
+                (child.type as { displayName?: string }).displayName === 'FilterSelect'
             ) {
                 return child
             }
