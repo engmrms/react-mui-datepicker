@@ -9,61 +9,53 @@ export const hash = Math.floor(Math.random() * 90000) + 10000
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    publicDir: false,
-    build: {
-        minify: 'esbuild',
-        lib: {
-            entry: resolve(__dirname, join('src', 'package.ts')),
-            formats: ['cjs', 'es'],
-            fileName: format => `index.${format}.js`,
+  publicDir: false,
+  build: {
+    minify: 'esbuild',
+    lib: {
+      entry: resolve(__dirname, join('src', 'index.ts')),
+      formats: ['es'],
+      fileName: format => `index.${format}.js`,
+    },
+    rollupOptions: {
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
         },
-        rollupOptions: {
-            output: {
-                globals: {
-                    react: 'React',
-                    'react-dom': 'ReactDOM',
-                },
-                preserveModules: true, // Enable tree-shaking
-                preserveModulesRoot: 'src', // Preserve module structure
-                //sourcemap: true,
-                exports: 'named',
-            },
-            plugins: [
-                inject({
-                    React: 'react',
-                    exclude: 'src/**',
-                }),
-            ],
+        preserveModules: true, // Enable tree-shaking
+        preserveModulesRoot: 'src', // Preserve module structure
+        //sourcemap: true,
+        exports: 'named',
+      },
+      plugins: [
+        inject({
+          React: 'react',
+          exclude: 'src/**',
+        }),
+      ],
 
-            external: [
-                'react/jsx-runtime',
-                'react',
-                'react-dom',
-                /^@radix-ui/,
-                'recharts',
-                '@tanstack/react-query',
-                'react-localization',
-                'framer-motion',
-            ],
-        },
-        commonjsOptions: { requireReturnsDefault: 'preferred' },
-        assetsInlineLimit: 0,
+      external: ['react/jsx-runtime', 'react', 'react-dom', /^@radix-ui/],
     },
-    esbuild: {
-        legalComments: 'none',
-        drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : [],
-    },
+    commonjsOptions: { requireReturnsDefault: 'preferred' },
+    assetsInlineLimit: 0,
+    cssCodeSplit: false,
+  },
+  esbuild: {
+    legalComments: 'none',
+    drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : [],
+  },
 
-    plugins: [react(), basicSsl(), dts({ tsconfigPath: './tsconfig.json', rollupTypes: true })],
+  plugins: [react(), basicSsl(), dts({ tsconfigPath: './tsconfig.json', rollupTypes: true })],
 
-    server: {
-        https: true,
-        port: 3000,
+  server: {
+    https: true,
+    port: 3000,
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      plugins: [esbuildCommonjs(['moment-hijri'])],
     },
-    optimizeDeps: {
-        esbuildOptions: {
-            plugins: [esbuildCommonjs(['moment-hijri'])],
-        },
-        include: ['moment-hijri'],
-    },
+    include: ['moment-hijri'],
+  },
 })

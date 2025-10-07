@@ -12,12 +12,7 @@ rm -rf dist
 #build the package
 echo "\033[32m# => Build the package\033[0m"
 pnpm build:lib
-# copy tsconfig.node.json ./dist folder
-echo "\033[32m# => Copy tsconfig.node.json ./dist folder\033[0m"
-cp tsconfig.node.json ./dist
-# move to dist folder
-echo "\033[32m# => Move to dist folder\033[0m"
-cd dist
+
 #yalc publish
 echo "\033[32m# => yalc publish\033[0m"
 yalc publish
