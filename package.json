@@ -1,6 +1,6 @@
 {
   "name": "react-mui-datepicker",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "sideEffects": false,
   "private": false,
   "main": "dist/index.es.js",
@@ -60,15 +60,13 @@
   },
   "dependencies": {
     "@date-io/moment": "2.17.0",
-    "google-material-icons": "^2.1.4",
-    "react-router-dom": "^6.16.0",
-    "tailwind-scrollbar": "^3.1.0",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@hookform/resolvers": "^3.10.0",
     "@mui/material": "latest",
     "@mui/system": "latest",
     "@mui/x-date-pickers": "latest",
+    "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-label": "2.1.1",
     "@radix-ui/react-popover": "1.1.4",
     "@radix-ui/react-slot": "1.1.1",
@@ -76,10 +74,13 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.4",
+    "google-material-icons": "^2.1.4",
     "moment": "latest",
     "moment-hijri": "latest",
     "moment-jalaali": "latest",
+    "react-router-dom": "^6.16.0",
     "tailwind-merge": "^2.5.5",
+    "tailwind-scrollbar": "^3.1.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
