@@ -1,34 +1,65 @@
 import { esbuildCommonjs } from "@originjs/vite-plugin-commonjs";
-// import basicSsl from "@vitejs/plugin-basic-ssl";
-import viteReact from "@vitejs/plugin-react";
+import inject from "@rollup/plugin-inject";
+import basicSsl from "@vitejs/plugin-basic-ssl";
+import react from "@vitejs/plugin-react";
+import { join, resolve } from "path";
 import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
+export const hash = Math.floor(Math.random() * 90000) + 10000;
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  server: {
-    host: "localhost",
-    port: 3000,
-    // https: true,
+  publicDir: false,
+  build: {
+    minify: "esbuild",
+    lib: {
+      entry: resolve(__dirname, join("src", "index.ts")),
+      formats: ["es"],
+      fileName: (format) => `index.${format}.js`,
+    },
+    rollupOptions: {
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+        preserveModules: true, // Enable tree-shaking
+        preserveModulesRoot: "src", // Preserve module structure
+        //sourcemap: true,
+        exports: "named",
+      },
+      plugins: [
+        inject({
+          React: "react",
+          exclude: "src/**",
+        }),
+      ],
+
+      external: ["react/jsx-runtime", "react", "react-dom", /^@radix-ui/],
+    },
+    commonjsOptions: { requireReturnsDefault: "preferred" },
+    assetsInlineLimit: 0,
+    cssCodeSplit: false,
+  },
+  esbuild: {
+    legalComments: "none",
+    drop: process.env.NODE_ENV === "production" ? ["console", "debugger"] : [],
   },
 
-  plugins: [viteReact()],
-  // resolve: {
-  //     alias: [
-  //         { find: '~/Core', replacement: path.resolve(__dirname, './src/Core') },
-  //         { find: '~/Models', replacement: path.resolve(__dirname, './src/Models') },
-  //         { find: '~/API', replacement: path.resolve(__dirname, './src/API') },
-  //         { find: '~/Assets', replacement: path.resolve(__dirname, './src/Assets') },
-  //         { find: '~/Pages', replacement: path.resolve(__dirname, './src/Pages') },
-  //         { find: '~/Locales', replacement: path.resolve(__dirname, './src/Locales') },
-  //     ],
-  // },
+  plugins: [
+    react(),
+    basicSsl(),
+    dts({ tsconfigPath: "./tsconfig.json", rollupTypes: true }),
+  ],
+
+  server: {
+    https: true,
+    port: 3000,
+  },
   optimizeDeps: {
     esbuildOptions: {
       plugins: [esbuildCommonjs(["moment-hijri"])],
     },
     include: ["moment-hijri"],
   },
-  // test: {
-  //   globals: true,
-  // },
 });
